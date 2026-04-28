@@ -1,0 +1,84 @@
+skill:
+  id: knowledge.dgho_igg_substitution_bcma
+  version: 1
+  category: knowledge
+  name: 'DGHO MM guideline card: Hypogammaglobulinemia and IgG substitution threshold and dosing'
+  description: 'Curated DGHO guideline knowledge on hypogammaglobulinemia under modern MM therapy, with an IgG threshold (<4
+    g/L) for recommending immunoglobulin substitution to reduce non-progression associated mortality, and suggested dosing
+    interval. Use for planning supportive care especially under BCMA-directed therapy.'
+  triggers:
+    data_domains:
+    - lab_values
+    - therapy_history
+    - doctor_letter
+    question_types:
+    - next_step
+    - therapy_planning
+    keywords:
+    - Hypogammaglobulinaemie, IgG <4 g/L, Immunglobulinsubstitution, BCMA, Infektionen, Prophylaxe
+    semantic_cues:
+    - Question asks about infection prophylaxis or supportive care during BCMA-directed therapy (CAR-T, bispecific) or after
+      such therapies.
+    - Question notes low IgG and asks what to do.
+activation:
+  stage_constraints:
+    preferred_stage: plan
+    avoid_stages:
+    - parse
+  do_not_use_if:
+  - Question is about VTE prophylaxis only and no immunoglobulin context is present.
+conflicts:
+  overrides:
+  - If a local infectious disease policy skill exists, align and use this card for the DGHO IgG trigger and dosing anchor.
+  duplicates: []
+requirements:
+  inputs_required:
+  - Current IgG level and trend.
+  - Therapy context, especially BCMA-directed therapies, and recent serious infections if present.
+  must_cite_or_quote: false
+  must_show_work: false
+knowledge:
+  provenance:
+    paper: 'DGHO Onkopedia Leitlinie: Multiples Myelom (MM_DGHO.pdf)'
+    section_hints:
+    - 6.1.3.2.3 Immunglobulinsubstitution
+  core_points:
+  - Modern effective MM therapy is associated with prolonged immunosuppression, especially hypogammaglobulinemia.
+  - At IgG serum levels below 4 g/L, immunoglobulin substitution is recommended to reduce non-progression associated mortality,
+    analogous to other secondary immune defects.
+  - DGHO notes that serious infections under BCMA-directed therapy can be markedly reduced by correcting therapy-induced immunoglobulin
+    deficiency.
+  - Recommended dosing is 0.2 to 0.4 g per kg body weight every 3 to 4 weeks.
+  operationalization:
+    planning_checks:
+    - If IgG <4 g/L, consider initiating regular IVIG substitution, especially with recurrent or severe infections or under
+      BCMA-directed therapy.
+    - Document dose range and interval and defer exact product and protocol to institutional standards.
+    - Combine with broader infection prophylaxis plan as applicable.
+guidelines:
+  answer_guardrails:
+  - Do not treat IgG threshold as a substitute for clinical judgment; mention infection history and therapy context.
+  - Do not state absolute risk reduction as a universal guarantee.
+examples:
+  positive:
+  - q: IgG ist 3.2 g/L unter BCMA-Therapie. Was empfehlen die Leitlinien?
+    a: DGHO empfiehlt bei IgG <4 g/L eine regelmaessige Immunglobulinsubstitution zur Senkung der nicht progressionsassoziierten
+      Mortalitaet, analog anderer sekundaerer Immundefekte. Als Dosierung wird 0.2 bis 0.4 g/kg alle 3 bis 4 Wochen genannt,
+      eingebettet in ein Infektionsmanagement.
+  negative:
+  - q: Welche Kriterien fuer ASZT?
+    a: 'Nicht geeignet: dafuer ist die ASZT Karte zuständig.'
+uncertainty:
+  when_to_say_unclear:
+  - IgG value is missing or units are unclear.
+  - Patient has selective IgA deficiency or other special immunology context not provided.
+  fallback: Ask for IgG value and therapy context; provide conditional guidance.
+micro_tests:
+  should_activate:
+  - IgG 3.5 g/L unter Teclistamab, braucht der Patient IVIG?
+  - Wie dosiert man Immunglobulin nach DGHO?
+  should_not_activate:
+  - Venetoclax t(11;14)?
+  - SLiM-CRAB Therapieindikation?
+  adversarial:
+  - 'IgG 3.9 g/L, aber keine Infekte und Therapie nicht BCMA: muss Empfehlung als kontextabhaengig formulieren.'

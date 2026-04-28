@@ -1,0 +1,85 @@
+skill:
+  id: knowledge.dgho_venetoclax_t1114_offlabel
+  version: 1
+  category: knowledge
+  name: 'DGHO MM guideline card: Venetoclax use restricted to t(11;14) due to infection risk (off-label)'
+  description: 'Curated DGHO guideline knowledge on venetoclax in r/r MM: not approved, used off-label in combinations, and
+    recommended only in the t(11;14) subgroup due to increased fatal infections in broader populations. Use for therapy planning
+    and eligibility discussions.'
+  triggers:
+    data_domains:
+    - cytogenetics
+    - therapy_history
+    - doctor_letter
+    question_types:
+    - eligibility
+    - therapy_planning
+    - next_step
+    keywords:
+    - Venetoclax, BCL2, t(11;14), BELLINI, CANOVA, off-label, toedliche Infektionen
+    semantic_cues:
+    - Question asks whether venetoclax is an option and under what biomarker constraints.
+    - Question asks to justify restriction to t(11;14) and to flag infection risk.
+activation:
+  stage_constraints:
+    preferred_stage: plan
+    avoid_stages:
+    - parse
+  do_not_use_if:
+  - Cytogenetics are not available and question is not about whether to order them.
+  - Question is about first-line standard regimens without venetoclax consideration.
+conflicts:
+  overrides:
+  - If an institution-specific off-label policy exists, align with it and use this card only for DGHO rationale.
+  duplicates: []
+requirements:
+  inputs_required:
+  - t(11;14) status or whether it is unknown.
+  - Prior lines and planned combination partner drugs.
+  - Infection history or risk factors if available.
+  must_cite_or_quote: false
+  must_show_work: false
+knowledge:
+  provenance:
+    paper: 'DGHO Onkopedia Leitlinie: Multiples Myelom (MM_DGHO.pdf)'
+    section_hints:
+    - Venetoclax section and BELLINI discussion
+  core_points:
+  - Venetoclax is not approved for MM and is used off-label in combinations.
+  - DGHO recommends restricting venetoclax combinations to patients with t(11;14) because of increased fatal infections observed
+    outside this subgroup.
+  - In BELLINI, venetoclax plus bortezomib and dexamethasone improved PFS overall but showed worse OS due to fatal infections,
+    while the t(11;14) subgroup had strong PFS benefit without the negative OS signal.
+  - Selection should consider elevated infection risk carefully.
+  operationalization:
+    planning_checks:
+    - Require documented t(11;14) before suggesting venetoclax as an option.
+    - Explicitly flag off-label status and the need for payer approval workflows if relevant.
+    - Include infection risk assessment and prophylaxis planning considerations.
+guidelines:
+  answer_guardrails:
+  - Do not recommend venetoclax without t(11;14) evidence. If unknown, recommend cytogenetics review or testing.
+  - Do not present off-label use as standard of care.
+examples:
+  positive:
+  - q: Patient mit r/r MM und t(11;14). Kommt Venetoclax in Frage?
+    a: DGHO beschreibt Venetoclax als nicht zugelassen beim MM und nur im Off-Label-Use. Aufgrund erhoehter Rate toedlicher
+      Infektionen wird die Kombination nur bei Pat. mit t(11;14) nach sorgfaeltiger Selektion bzgl. Infektionsrisiko empfohlen.
+  negative:
+  - q: Patient ohne zytogenetische Daten, soll ich Venetoclax geben?
+    a: 'Nicht ausreichend belegt: DGHO empfiehlt Venetoclax nur bei nachgewiesener t(11;14). Erst t(11;14) klären.'
+uncertainty:
+  when_to_say_unclear:
+  - t(11;14) status is unknown.
+  - Infection risk is high but not characterized.
+  fallback: Say venetoclax cannot be recommended from current record and list what is needed (t(11;14), infection history,
+    combination context).
+micro_tests:
+  should_activate:
+  - Venetoclax bei t(11;14), was sagt DGHO?
+  - Warum nur t(11;14) bei Venetoclax?
+  should_not_activate:
+  - Cilta-cel Nebenwirkungen?
+  - SLiM-CRAB Therapieindikation?
+  adversarial:
+  - 'Patient hat t(11;14), aber rezidivierende schwere Infekte: muss Risiko betonen und keine unkritische Empfehlung geben.'

@@ -1,0 +1,88 @@
+skill:
+  id: knowledge.dgho_aszt_eligibility
+  version: 1
+  category: knowledge
+  name: 'DGHO MM guideline card: ASZT eligibility and practical age boundaries'
+  description: 'Curated DGHO guideline knowledge on eligibility for high-dose therapy with autologous stem cell transplantation
+    (ASZT), including age ranges used in trials, emphasis on biological age and organ function, and the German reimbursement
+    caveat beyond 70 years. Use for eligibility and next-step planning questions around ASZT.'
+  triggers:
+    data_domains:
+    - doctor_letter
+    - tumor_board
+    - therapy_history
+    - comorbidities
+    question_types:
+    - eligibility
+    - next_step
+    - therapy_planning
+    keywords:
+    - ASZT, autologe Stammzelltransplantation, Hochdosis, Melphalan, hochdosisfaehig, Stammzellapherese, Induktion
+      vor Hochdosis
+    semantic_cues:
+    - Question asks whether a patient is ASZT-eligible or how to decide based on age and comorbidity.
+    - Question asks about planning an induction plus ASZT pathway in frontline MM.
+activation:
+  stage_constraints:
+    preferred_stage: plan
+    avoid_stages:
+    - parse
+  do_not_use_if:
+  - Question is about allogeneic transplant.
+  - Question is about CAR-T or BiTE eligibility rather than ASZT.
+conflicts:
+  overrides:
+  - If an institution-specific ASZT policy skill exists, prefer that for local constraints, but keep DGHO reimbursement caveat
+    in mind.
+  duplicates: []
+requirements:
+  inputs_required:
+  - Patient age and key comorbidities.
+  - Organ function and performance status proxies if available.
+  - 'Clinical context: frontline vs relapse.'
+  must_cite_or_quote: false
+  must_show_work: false
+knowledge:
+  provenance:
+    paper: 'DGHO Onkopedia Leitlinie: Multiples Myelom (MM_DGHO.pdf)'
+    section_hints:
+    - 6.1.1.1 ASZT geeignet
+  core_points:
+  - Upper age limit for ASZT is not sharply defined; many randomized studies included patients up to 65 years, some groups
+    to 70 years, and selected patients without comorbidity up to 75 years.
+  - Key criteria are biological age with good organ function and absence of significant comorbidity, rather than calendar
+    age alone.
+  - In Germany, reimbursement for ASZT in patients older than 70 years is not accepted by all payers and may need individual
+    confirmation.
+  operationalization:
+    eligibility_checks:
+    - Identify contraindications to high-dose therapy and major comorbidity burden.
+    - Separate calendar age from biological fitness explicitly in the reasoning.
+    - If age >70 and ASZT is proposed, mention payer approval as a practical step.
+guidelines:
+  answer_guardrails:
+  - Do not assert ASZT eligibility if comorbidity or organ function data are missing; provide a conditional answer.
+  - Do not invent a strict age cutoff.
+examples:
+  positive:
+  - q: Patient ist 72, sonst fit. Kommt ASZT in Frage?
+    a: DGHO betont, dass die Eignung sich am biologischen Alter, der Organfunktion und fehlender signifikanter Komorbiditaet
+      orientieren soll. Studien schlossen selektierte Patientinnen und Patienten teils bis 75 Jahre ein. Praktisch muss bei
+      >70 Jahren in Deutschland haeufig die Kostenuebernahme durch den Kostentraeger im Einzelfall gesichert werden.
+  negative:
+  - q: Welche Dosis Teclistamab wird gegeben?
+    a: 'Nicht geeignet: kein ASZT-Thema.'
+uncertainty:
+  when_to_say_unclear:
+  - No organ function or frailty information is available.
+  - Comorbidity description is vague.
+  fallback: Recommend transplant center evaluation and list the specific missing fitness and organ function items.
+micro_tests:
+  should_activate:
+  - Ist der Patient hochdosisfaehig fuer ASZT?
+  - ASZT bei 74 Jahren, wie begruenden?
+  should_not_activate:
+  - Ist der Patient lenalidomid refraktaer?
+  - Welche MRD-Rate hatte PERSEUS?
+  adversarial:
+  - 'Patient 68 mit schwerer Herzinsuffizienz: muss Kontraindikationen betonen, nicht nur Alter.'

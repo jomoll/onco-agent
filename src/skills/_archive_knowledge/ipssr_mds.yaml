@@ -1,0 +1,78 @@
+skill:
+  id: knowledge.ipssr_mds
+  name: IPSS-R for Myelodysplastic Syndromes
+  version: 1
+  category: knowledge
+  description: >
+    Thresholds and risk groups for the Revised International Prognostic Scoring System (IPSS-R) in MDS.
+    Use when calculating or interpreting IPSS-R scores from labs, marrow blasts, and cytogenetics.
+  triggers:
+    question_types: ["score_value_plus_date_and_source", "risk_assessment"]
+    keywords:
+      - "IPSS-R, R-IPSS, MDS, blasts, Zytogenetik, Hämoglobin, Thrombozyten, ANC"
+    semantic_cues:
+      - "Question asks for IPSS-R score/risk category or staging in MDS."
+    data_domains: ["lab_values", "cytology", "pathology", "doctor_letter", "tumor_board"]
+activation:
+  intent: >
+    Provide reference criteria for IPSS-R calculation and interpretation (risk category thresholds,
+    component point assignments, and required data elements).
+conflicts: []
+
+knowledge:
+  required_parameters:
+    - name: "Cytogenetic risk group"
+      categories: ["Very Good", "Good", "Intermediate", "Poor", "Very Poor"]
+      notes: >
+        Examples: Very Good (−Y, del(11q)); Good (Normal, del(5q) alone, del(12p), del(20q)); Intermediate (del(7q),
+        +8, +19, i(17q), any other); Poor (−7, inv(3)/t(3q)/del(3q)); Very Poor (≥3 abnormalities).
+    - name: "Bone marrow blasts"
+      unit: "%"
+      thresholds: ["<=2", ">2-<5", "5-10", ">10"]
+    - name: "Hemoglobin"
+      unit: "g/dL"
+      thresholds: [">=10", "8-<10", "<8"]
+    - name: "Platelets"
+      unit: "×10^9/L"
+      thresholds: [">=100", "50-<100", "<50"]
+    - name: "Absolute neutrophil count (ANC)"
+      unit: "×10^9/L"
+      thresholds: [">=0.8", "<0.8"]
+
+  component_points:
+    cytogenetics:
+      very_good: 0
+      good: 1
+      intermediate: 2
+      poor: 3
+      very_poor: 4
+    marrow_blasts:
+      "<=2": 0
+      ">2-<5": 1
+      "5-10": 2
+      ">10": 3
+    hemoglobin_g_per_dl:
+      ">=10": 0
+      "8-<10": 1
+      "<8": 1.5
+    platelets_10e9_per_L:
+      ">=100": 0
+      "50-<100": 0.5
+      "<50": 1
+    anc_10e9_per_L:
+      ">=0.8": 0
+      "<0.8": 0.5
+
+  risk_categories:
+    very_low: "<=1.5"
+    low: ">1.5-3"
+    intermediate: ">3-4.5"
+    high: ">4.5-6"
+    very_high: ">6"
+
+guidelines:
+  - "Check for documented IPSS-R in notes first; if present, cite source/date before recalculating."
+  - "Use contemporaneous values; if components are from different dates, note this in rationale."
+  - "Do not guess cytogenetic group—if missing or unclear, mark IPSS-R as not calculable and list missing data."
+  - "Include component values, dates, and point assignments when reporting a calculated score."
+  - "Cite evidence inline using [ctx:ID] identifiers."

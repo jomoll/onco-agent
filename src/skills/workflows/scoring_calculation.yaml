@@ -1,0 +1,330 @@
+skill:
+  id: workflows.scoring_calculation
+  name: Clinical Scoring System Calculation Workflow
+  version: 1
+  category: workflow
+  description: >
+    Select for questions requesting clinical scores (ISS, R-ISS, R2-ISS, IPSS-R, ECOG, HCT-CI, etc.)
+    that can be documented or calculated from available lab values and clinical findings.
+  triggers:
+    question_types: ["score_value_plus_date_and_source"]
+    semantic_cues:
+      - "Requests a clinical score value that may be documented or calculable from structured data."
+    keywords: ["(optional lexicon) ISS, R-ISS, R2-ISS, IPSS-R, HCT-CI, ECOG, Score, Staging"]
+    data_domains: ["doctor_letter", "tumor_board", "lab_values", "pathology", "cytology", "flow"]
+activation:
+  intent: "Use when calculating or retrieving clinical risk scores from patient data."
+conflicts:
+  - workflows.current_status_check
+  - workflows.lab_at_timepoint
+steps:
+  - name: Check for documented score
+    detail: >
+      First search recent clinical documents (doctor_letter, tumor_board, consult) for explicit
+      mentions of the score (e.g., "ISS Stage II", "R-ISS III", "ECOG 1"). Use retrieve_reports
+      with focused keywords matching the score name. If found and recent, cite the documented value
+      with date and source section.
+      - name: Identify required input parameters
+        detail: >
+          If no documented score is found, determine what lab values and clinical findings are required
+          to calculate the score:
+          - ISS: β2-microglobulin (mg/L), albumin (g/dL)
+          - R-ISS: β2-microglobulin, albumin, LDH (elevated/normal), high-risk cytogenetics (del17p, t(4;14), t(14;16))
+          - R2-ISS: β2-microglobulin, albumin, LDH ratio, high-risk cytogenetics (including del1p, gain1q), ISS1q gain
+          - IPSS-R (MDS): cytogenetic risk group (Very Good/Good/Intermediate/Poor/Very Poor), marrow blast %, hemoglobin (g/dL), platelets (×10^9/L), ANC (×10^9/L)
+          - ECOG: Performance status from clinical notes
+          - HCT-CI: Comorbidity assessment from history/consult documents
+      - name: Retrieve required lab values
+        detail: >
+          Use retrieve_lab_values with time_scope="latest" to gather the most recent measurements
+          for each required parameter. For ISS/R-ISS/R2-ISS, retrieve:
+          - Beta-2-Mikroglobulin (β2M, B2M)
+          - Albumin
+          - LDH (Laktatdehydrogenase)
+          For IPSS-R, retrieve hemoglobin, platelets, and absolute neutrophil count (ANC).
+          Extract the numeric values, units, dates, and reference ranges from the results.
+          For LDH, use the reference range returned by the lab tool to determine if elevated.
+          EXCEPTION — HCT-CI: Do NOT use retrieve_lab_values or time_scope="latest" for HCT-CI.
+          HCT-CI requires a full lifetime comorbidity search. Skip to the next step.
+      - name: Retrieve comorbidities for HCT-CI (full history)
+        detail: >
+          FOR HCT-CI ONLY. Use retrieve_reports with time_scope="all", top_k=15-20, and
+          report_type=['doctor_letter', 'history', 'anamnesis', 'consult', 'tumor_board'].
+          Issue two queries: one broad ("Komorbiditäten Vorerkrankungen Anamnese") and one
+          targeted to comorbidity categories that tend to be buried in old records:
+          "Vorhofflimmern Herzinsuffizienz Herzklappen Schlaganfall TIA Niereninsuffizienz
+          Leberzirrhose COPD Lungenfibrose Diabetes Adipositas Depression Magenulkus Tumor".
+          For each of the 17 HCT-CI categories, determine if a qualifying condition is
+          explicitly documented anywhere in the retrieved records:
+          arrhythmia (Vorhofflimmern, Herzrhythmusstörung), cardiac disease (Herzinsuffizienz,
+          Kardiomyopathie, KHK), heart valve disease (Herzklappenfehler),
+          cerebrovascular disease (Schlaganfall, TIA, apoplektischer Insult),
+          psychiatric disturbance (Depression, Psychose, psychiatrisch),
+          renal moderate/severe (Niereninsuffizienz, eGFR <50, Kreatinin erhöht, Dialyse),
+          hepatic mild (erhöhte Leberwerte, milde Hepatopathie),
+          hepatic moderate/severe (Leberzirrhose, portale Hypertension),
+          pulmonary moderate (mäßige Lungenfunktionseinschränkung, COPD GOLD II-III),
+          pulmonary severe (schwere Lungenfunktionseinschränkung, COPD GOLD IV),
+          diabetes on medication (Diabetes mellitus insulinpflichtig oder OAD),
+          obesity BMI >35 (Adipositas permagna),
+          inflammatory bowel disease (Morbus Crohn, Colitis ulcerosa),
+          peptic ulcer (Magenulkus, Ulkus duodeni),
+          rheumatologic disease (Rheuma, SLE, Vaskulitis),
+          prior solid tumor (Karzinom, solider Tumor — not MM itself),
+          persistent infection (persistierende Infektion, rezidivierende Infekte).
+          IMPORTANT: Only explicitly documented active or chronic conditions count.
+          Resolved acute events (e.g., acute kidney injury that fully recovered, transient
+          infection cleared before admission) do NOT qualify unless the HCT-CI definition
+          includes them. Do not count historical mentions of conditions that are no longer
+          present or managed.
+      - name: Retrieve cytogenetics for R-ISS/R2-ISS
+        detail: >
+          For R-ISS, R2-ISS, and IPSS-R calculations, search cytology/flow/pathology reports for FISH or
+          cytogenetic results. Look for high-risk abnormalities:
+          - del17p or del(17p)
+          - t(4;14) or t(4;14)(p16;q32)
+          - t(14;16) or t(14;16)(q32;q23)
+          - del1p (R2-ISS only)
+          - gain1q or amp1q (R2-ISS only)
+          - IPSS-R cytogenetic risk grouping: Very Good, Good, Intermediate, Poor, Very Poor (map findings to these buckets)
+          Use retrieve_reports with report_type=['cytology', 'flow', 'pathology'] and keywords
+          like "FISH", "Zytogenetik", "del17p", "t(4;14)". Parse results to determine if any
+          high-risk features are present.
+      - name: Apply ECOG-specific rules (Q41 / ECOG questions only)
+        detail: >
+          ECOG has a 180-day look-back window from the Stichtag. The decision tree is:
+
+          1. Was an explicit ECOG value documented within 180 days before the Stichtag?
+             → Answer: <value> | <DD.MM.YYYY> | Dokumentiert
+             Clinical descriptions alone are NOT "Dokumentiert" — the record must say
+             "ECOG X" or "Karnofsky X%".
+
+          2. No explicit ECOG, but a clear functional limitation is EXPLICITLY described
+             in clinical text from within 180 days before the Stichtag?
+             → Answer: Status: nicht dokumentiert aber berechenbar; Calculated value: <X>
+             "Eindeutige funktionelle Einschränkung" requires direct, unambiguous statements
+             such as: "bettlägerig", "rollstuhlpflichtig", "gehunfähig", "vollständig auf
+             Pflege angewiesen", "arbeitsfähig", "ECOG entspricht ...", "Karnofsky ≈ X%".
+             ❌ NOT eligible for ECOG estimation: disease progression narrative, therapy
+             toxicity descriptions, hospitalization alone, or vague statements like
+             "reduzierter AZ" without further specification.
+
+          3. No explicit ECOG AND no clear functional description within 180 days?
+             → Answer: Status: nicht berechenbar
+             (This includes cases where functional data exists but is older than 180 days
+             before the Stichtag — do NOT use outdated descriptions.)
+
+          ECOG scale (0–4):
+          · 0 = Fully active, no restrictions. ("voll belastbar", "arbeitsfähig", "ECOG 0")
+          · 1 = Restricted in strenuous activity; ambulatory, capable of light work.
+                ("kann leichte Arbeit verrichten", "eingeschränkte Belastbarkeit")
+          · 2 = Ambulatory, all self-care; unable to work; up >50% of waking hours.
+                ("nur noch leichte Alltagsaktivitäten", "keine Arbeit möglich")
+          · 3 = Limited self-care; confined to bed/chair >50% of waking hours.
+                ("bettlägerig mehr als 50%", "nur begrenzte Selbstversorgung")
+          · 4 = Completely disabled; no self-care; totally confined to bed/chair.
+                ("bettlägerig", "rollstuhlpflichtig", "vollständig pflegebedürftig",
+                ICU patients who are sedated/intubated and unable to care for themselves)
+
+      - name: Apply HCT-CI point values (Q42 / HCT-CI questions only)
+        detail: >
+          HCT-CI has a 365-day look-back for "Dokumentiert"; otherwise calculate from
+          lifetime comorbidity history ("Berechnet"). The decision tree mirrors ECOG:
+
+          1. Explicit HCT-CI total score documented within 365 days before Stichtag?
+             → Answer: <value> | <DD.MM.YYYY> | Dokumentiert
+
+          2. Not documented, but comorbidities are derivable from clinical records?
+             → Answer: Status: nicht dokumentiert aber berechenbar; Calculated value: <X>
+             Call calculate_hctci_score with the 17 boolean inputs (see next step).
+
+          3. Essentially no clinical documentation at all?
+             → Answer: Status: nicht berechenbar
+
+          HCT-CI point values per category (Sorror 2005) — use these to verify the
+          tool's result before outputting:
+          · Arrhythmia (Vorhofflimmern, Herzrhythmusstörung): 1 pt
+          · Cardiac disease (Herzinsuffizienz, KHK, Kardiomyopathie, Z.n. MI): 1 pt
+          · Heart valve disease (Herzklappenfehler, excl. Mitralklappenprolaps): 3 pt
+          · Cerebrovascular disease (Schlaganfall, TIA): 1 pt
+          · Psychiatric disturbance (Depression, Angststörung, requiring treatment): 1 pt
+          · Renal moderate/severe (Kreatinin >177 µmol/L or >2.0 mg/dL, eGFR <50,
+            Dialyse, Nierentransplantation): 2 pt
+          · Hepatic mild (Hepatitis, Leberwerterhöhung, Bilirubin 1.5–3× ULN): 1 pt
+          · Hepatic moderate/severe (Leberzirrhose, portale Hypertension): 3 pt
+          · Pulmonary moderate (DLco/FEV1 66–80%, or dyspnea on moderate exertion): 1 pt
+          · Pulmonary severe (DLco/FEV1 <66%, or dyspnea at rest, or O2 dependency): 2 pt
+          · Diabetes on medication (Insulin or oral antidiabetics): 1 pt
+          · Obesity BMI >35: 1 pt
+          · Inflammatory bowel disease (Morbus Crohn, Colitis ulcerosa): 1 pt
+          · Peptic ulcer (Magenulkus, Ulkus duodeni, requiring treatment): 2 pt
+          · Rheumatologic disease (SLE, Vaskulitis, rheumatoide Arthritis): 2 pt
+          · Prior solid tumor (any prior non-MM malignancy): 3 pt
+          · Persistent infection (ongoing infection requiring treatment at time of
+            assessment): 1 pt
+
+      - name: Verify all required parameters before calculation
+        detail: >
+          HARD GATE: Before calling ANY scoring tool, verify that EVERY required input
+          parameter was found in the retrieved evidence. Create a checklist of required
+          parameters and mark each as found (with value, date, source) or missing.
+          If ANY parameter is missing, STOP HERE and answer with "Status: nicht berechenbar",
+          listing all missing parameters in the Reasoning. Do NOT proceed to calculation.
+          Two categories of parameters:
+          - Lab-based parameters (e.g., β2M, albumin, LDH, hemoglobin, platelets, ANC,
+            cytogenetics): require explicit numeric values with dates. Do NOT estimate,
+            infer, or derive from indirect evidence.
+          - Clinical-assessment parameters (e.g., performance status, comorbidities):
+            may be derived from eindeutige (unambiguous) clinical descriptions when no
+            explicit score is documented. Mark as Berechnet. Do NOT infer from vague or
+            indirect narrative.
+      - name: Calculate score if all parameters verified
+        detail: >
+          Only if the verification step above confirmed ALL required parameters with
+          explicit documented values: call the appropriate scoring tool:
+          - calculate_iss_score(serum_beta2_microglobulin, serum_albumin, measurement_date)
+          - calculate_riss_score(serum_beta2_microglobulin, serum_albumin, ldh_elevated, high_risk_ca, measurement_date)
+          - calculate_r2iss_score(serum_beta2_microglobulin, serum_albumin, ldh_ratio, high_risk_ca_present, iss1q_gain, measurement_date)
+          - calculate_ipssr_score(hemoglobin_g_per_dl, platelets_10e9_per_L, anc_10e9_per_L, marrow_blast_percent, cytogenetic_risk, measurement_date)
+      - calculate_hctci_score(arrhythmia, cardiac_disease, inflammatory_bowel_disease, diabetes_medication, cerebrovascular_disease, psychiatric_disturbance, mild_hepatic_abnormality, obesity_bmi_gt_35, persistent_infection, rheumatologic_disease, peptic_ulcer, renal_moderate_severe, pulmonary_moderate, prior_solid_tumor, heart_valve_disease, pulmonary_severe, hepatic_moderate_severe)
+      Parse the JSON result and extract stage, score, and date.
+      IMPORTANT: For HCT-CI, the tool returns a JSON with hctci_score, risk_group, and
+      component details. Extract ONLY the numeric score value for the answer — do NOT
+      dump the raw JSON or include risk_group/components in the Answer line. Put
+      component details in the Reasoning instead.
+  - name: Format response
+    detail: >
+      Produce a structured answer using the correct format for each case:
+      - Explicitly documented with date: Answer: <score value> | <DD.MM.YYYY> | Dokumentiert
+      - Lab-calculated (ISS/R-ISS/R2-ISS/IPSS-R with numeric inputs):
+          Answer: <score value> | <DD.MM.YYYY> | Berechnet
+      - Estimated from clinical descriptions (ECOG/HCT-CI, no explicit score in record):
+          Answer: Status: nicht dokumentiert aber berechenbar; Calculated value: <X>
+          (Use this format for ECOG estimated from functional descriptions and
+          HCT-CI calculated from comorbidity history when no direct score is documented.)
+      - Cannot be determined: Answer: Status: nicht berechenbar
+      In the rationale, cite the specific lab values, functional descriptions, or
+      comorbidities used, with inline citations.
+      IMPORTANT: Never output raw JSON, key=value pairs, or extra prose in the Answer line.
+requirements:
+  - "Always check for documented scores first before attempting calculation."
+  - "For calculated scores, explicitly state which lab values and dates were used."
+  - "For R-ISS/R2-ISS, clearly indicate whether cytogenetic data was available and which abnormalities were found."
+  - >
+    CRITICAL — two categories of score inputs:
+    (A) Numeric lab values (β2M, albumin, LDH, hemoglobin, platelets, ANC, blast %):
+        These are HARD requirements. If any required numeric value is missing, the score is
+        'nicht berechenbar'. Do not guess or estimate.
+    (B) Binary clinical findings (high-risk cytogenetics, 1q gain/del1p, cytogenetic risk group):
+        If no documentation is found after a thorough search, assume the finding is ABSENT
+        (e.g., high_risk_ca=False, iss1q_gain=False) and note this assumption in the Reasoning.
+        Absence of documented findings does NOT make the score 'nicht berechenbar'.
+    (C) HCT-CI comorbidity categories:
+        HCT-CI is a checklist of 17 comorbidity categories. ALWAYS use time_scope="all"
+        for HCT-CI retrieval — comorbidities may only appear in old records and will be
+        missed by recent-biased retrieval. For actively managed patients with clinical
+        documentation (doctor letters, consults, history/anamnesis), absence of a comorbidity
+        in ALL available documentation means the comorbidity is ABSENT (score 0 for that
+        category). Do NOT require each of the 17 categories to be explicitly mentioned —
+        only documented comorbidities contribute points.
+        CRITICAL: Only count a comorbidity if it is explicitly documented as active or
+        chronic. Do NOT count resolved acute conditions (e.g., AKI that recovered, transient
+        infection) unless they meet the HCT-CI definition for ongoing impairment. When in
+        doubt about whether a condition qualifies, note the uncertainty in Reasoning but do
+        not inflate the score with borderline findings.
+        HCT-CI is 'nicht berechenbar' ONLY when there is essentially no clinical
+        documentation at all (no doctor letters, no history, no consults). If ANY
+        substantive clinical documentation exists, calculate the score from what is documented.
+    Per-score numeric requirements:
+    - ISS: β2-microglobulin, albumin.
+    - R-ISS: β2-microglobulin, albumin, LDH.
+    - R2-ISS: β2-microglobulin, albumin, LDH ratio.
+    - IPSS-R: hemoglobin, platelets, ANC, marrow blast %.
+    - Clinical-assessment scores (ECOG, HCT-CI): An explicit documented value counts as
+      Dokumentiert. When no explicit value exists, these may be derived from unambiguous
+      clinical descriptions (e.g., functional status descriptions for ECOG, documented
+      comorbidity diagnoses for HCT-CI). Mark as Berechnet. Do NOT derive from vague
+      narrative, treatment history alone, or hospitalization status alone.
+  - "Do not guess or estimate lab values; use only documented measurements with explicit numeric values and dates."
+  - "Cite all evidence inline using [ctx:ID] format in the Reasoning."
+  - >
+    All lab values used for calculation must come from retrieved evidence within the
+    specified time interval. If the question specifies a Stichtag, only lab values from
+    reports up to that date may be used. Do not use values from earlier than 6 months
+    before the Stichtag unless no newer values exist and you explicitly note the staleness.
+uncertainty:
+  missing_evidence: "Answer: Status: nicht berechenbar\nReasoning: Fehlende Werte: <list missing parameters with last searched date>."
+  conflicting_values: "If multiple recent values exist, use the most recent measurement and note the date range."
+  ambiguous_cytogenetics: >
+    If cytogenetic results are ambiguous or conflicting, explain in Reasoning.
+    If no cytogenetic/FISH results are found at all, assume no high-risk findings
+    (high_risk_ca=False, iss1q_gain=False) and note the assumption. The score remains
+    calculable. If the score can still be bounded or the most likely value determined, commit to that
+    value and explain the component uncertainty in Reasoning.
+retry_policy:
+  max_attempts: 2
+  rules:
+    - "Allow at most 1 retry for any retrieval step."
+    - "Retries for lab values should broaden the time window (e.g., extend from 'latest' to last 3 months)."
+    - "Retries for cytogenetics should try alternative report types or keywords."
+    - "Do not stop on missing labs/cytogenetics until at least one retrieval attempt has been made for each."
+outputs:
+  - "Structured answer: Status | Wert | Datum | Quelle"
+  - "Reasoning with inline citations of all lab values and reports used"
+micro_tests:
+  should_activate:
+    - "Welcher ISS-Score ergibt sich aus den verfügbaren Daten?"
+    - "Welcher R-ISS oder R2-ISS-Status ergibt sich am Stichtag?"
+    - "ECOG-Score am Stichtag (dokumentiert oder berechnet)?"
+  should_not_activate:
+    - "Wie hat sich das Paraprotein entwickelt?"  # trend, not score
+    - "Ist der Patient triple-class refraktär?"  # eligibility, not score
+  adversarial:
+    - "R-ISS berechnen, aber nur β2M und Albumin sind dokumentiert (LDH und Zytogenetik fehlen)."  # must mark nicht berechenbar with reason
+    - "ISS-Score aus vor 2 Jahren alten Werten berechnen, obwohl neuere Werte fehlen."  # must use only recent values or mark as outdated
+    - "ECOG: functional description from 2019, Stichtag 2024 → CORRECT: Status: nicht berechenbar (>180 days). WRONG: any estimated value using old data."
+    - "ECOG: patient described as 'bettlägerig' in Arztbrief from 90 days before Stichtag → CORRECT: Status: nicht dokumentiert aber berechenbar; Calculated value: 3. WRONG: Status: nicht berechenbar."
+    - "ECOG: patient described as 'reduzierter AZ' without further detail → CORRECT: Status: nicht berechenbar (too vague). WRONG: any estimated value."
+    - "HCT-CI: cardiac disease (1pt) + renal moderate (2pt) + prior solid tumor (3pt) = 6 total. WRONG: summing 1+1+1=3 by not applying correct point values per category."
+    - "HCT-CI: use 'Status: nicht dokumentiert aber berechenbar; Calculated value: X' format when calculating from comorbidities. WRONG: 'X | date | Berechnet' for HCT-CI estimated from history."
+
+examples:
+  iss_documented:
+    question: "Welcher ISS-Score ergibt sich am Stichtag aus den verfügbaren Daten?"
+    answer: "Answer: ISS Stage II | 15.11.2024 | Dokumentiert"
+    rationale: "Reasoning: Im Tumorboardbericht vom 15.11.2024 wird explizit ISS Stage II genannt [ctx:042]."
+
+  iss_calculated:
+    question: "Welcher ISS-Score ergibt sich am Stichtag aus den verfügbaren Daten?"
+    answer: "Answer: ISS Stage I | 10.11.2024 | Berechnet"
+    rationale: "Reasoning: Berechnet aus β2-Mikroglobulin 2.8 mg/L und Albumin 4.2 g/dL (beide 10.11.2024) [ctx:103, ctx:105]. ISS Stage I (Score 1): β2M < 3.5 mg/L und Albumin ≥ 3.5 g/dL."
+
+  riss_incomplete:
+    question: "Welcher R-ISS-Status ergibt sich am Stichtag aus den verfügbaren Daten?"
+    answer: "Answer: Status: nicht berechenbar"
+    rationale: "Reasoning: β2-Mikroglobulin 4.2 mg/L und Albumin 3.5 g/dL vom 10.11.2024 dokumentiert [ctx:103, ctx:105], aber LDH-Werte fehlen und keine FISH-Ergebnisse in der Akte gefunden (letzte Suche: Zytologie/Pathologie bis 15.11.2024)."
+
+  r2iss_calculated:
+    question: "Welcher R2-ISS-Status ergibt sich am Stichtag aus den verfügbaren Daten?"
+    answer: "Answer: R2-ISS Stage III | 12.11.2024 | Berechnet"
+    rationale: "Reasoning: Berechnet aus β2-Mikroglobulin 6.2 mg/L, Albumin 3.2 g/dL, LDH 380 U/L (ULN 250 U/L, Ratio 1.52) alle vom 12.11.2024 [ctx:201, ctx:203, ctx:205], und FISH vom 08.11.2024 zeigt t(4;14) positiv [ctx:207]. R2-ISS Stage III (Score 3): ISS Stage III + high-risk CA + LDH erhöht."
+
+  hctci_calculated:
+    question: "Bestimme den HCT-CI-Score am Stichtag aus den verfügbaren Daten."
+    answer: "Answer: Status: nicht dokumentiert aber berechenbar; Calculated value: 3"
+    rationale: "Reasoning: Chronische Niereninsuffizienz (2 Punkte, eGFR 28 ml/min [ctx:101]) und Depression (1 Punkt [ctx:103]). Keine weiteren HCT-CI-Komorbiditäten dokumentiert."
+
+  hctci_from_available_docs:
+    question: "Bestimme den HCT-CI-Score am Stichtag aus den verfügbaren Daten."
+    answer: "Answer: Status: nicht dokumentiert aber berechenbar; Calculated value: 1"
+    rationale: "Reasoning: Depression dokumentiert (1 Punkt [ctx:103]). Keine weiteren der 17 HCT-CI-Komorbiditäten in Arztbriefen, Konsilen oder Anamnese erwähnt — bei aktiv betreuten Patienten als abwesend gewertet."
+
+  ecog_estimated:
+    question: "Bestimme den ECOG-Score am Stichtag."
+    answer: "Answer: Status: nicht dokumentiert aber berechenbar; Calculated value: 2"
+    rationale: "Reasoning: Im Arztbrief vom 12.06.2024 wird beschrieben, dass der Patient nur noch leichte Alltagsaktivitäten ausführen kann und nicht mehr arbeitsfähig ist [ctx:003]. Kein expliziter ECOG-Score dokumentiert."
+
+  ecog_not_calculable_old_data:
+    question: "Bestimme den ECOG-Score am Stichtag."
+    answer: "Answer: Status: nicht berechenbar"
+    rationale: "Reasoning: Letzte funktionelle Beschreibung aus 2019 [ctx:001], >180 Tage vor Stichtag 15.11.2024. Keine aktuellen Angaben zum Leistungsstatus innerhalb des 180-Tage-Fensters."

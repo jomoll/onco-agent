@@ -1,0 +1,67 @@
+skill:
+  id: workflows.lab_at_timepoint
+  name: Lab Retrieval at Reference Time
+  version: 1
+  category: workflow
+  description: >
+    Select when the question asks for lab values at or near a specific date/time,
+    requiring a timestamped snapshot (not for "jemals"/history questions).
+  triggers:
+    question_types: ["lab_snapshot", "response_assessment"]
+    semantic_cues:
+      - "Requests lab values at/near a specific date/time."
+    keywords: ["(optional lexicon) zum Zeitpunkt, am, Laborwert, Paraprotein, FLC, IgG, IgA, IgM"]
+    data_domains: ["lab_values"]
+activation:
+  intent: "Use for point-in-time lab retrieval with explicit/implicit timestamp."
+conflicts:
+  - workflows.lab_trend
+  - workflows.current_status_check
+steps:
+  - name: Identify tests
+    detail: >
+      Extract the requested lab names from the question. Map colloquial terms
+      to canonical lab keys returned by retrieve_lab_values. If unspecified,
+      choose the most relevant panel (CBC, CMP, free light chains).
+  - name: Determine target timestamp
+    detail: >
+      Parse explicit dates or relative phrases via parsing.de_date_formats.
+      Record tolerance (default ±12h unless question specifies) and whether the
+      user needs the exact value or trend.
+  - name: Call retrieve_lab_values (date-scoped)
+    detail: >
+      Use retrieve_lab_values with lab_query (canonical keys). If an exact timestamp is required,
+      set time_scope="date" with date_exact. If tolerance is allowed, use time_scope="range" with
+      date_start/date_end to represent the window. Stop once you have a value within tolerance.
+      Only broaden to time_scope="latest" if the scoped call returns no data, and clearly flag
+      that the measurement is not at the requested time.
+  - name: Summarize output
+    detail: >
+      Report each test as "Test: value unit (Datum Uhrzeit, Δh=...)", mention
+      reference ranges when provided, and cite the measurement IDs.
+requirements:
+  - "Confirm the tolerance window used for each reported value."
+  - "If no measurement falls within the requested window, cite the nearest available value and note the deviation."
+  - "Always list the canonical lab keys queried so the reviewer sees exactly what was requested."
+uncertainty:
+  missing_evidence: "Kein Messwert im Zeitfenster; nächstliegenden Wert mit Abweichung angeben."
+retry_policy:
+  max_attempts: 2
+  rules:
+    - "Allow at most 1 retry for retrieve_lab_values."
+    - "Retries must change scope meaningfully (broaden the time window via time_scope=\"range\" or switch to time_scope=\"latest\" with explicit flag)."
+failure_modes:
+  - description: "Lab name not found"
+    mitigation: "Use available_tests list returned by previous call; relaunch snapshot."
+  - description: "Time outside available data"
+    mitigation: "Note absence explicitly and provide nearest available timestamp."
+micro_tests:
+  should_activate:
+    - "IgG am 2024-11-08?"
+    - "CRP zum Zeitpunkt der Aufnahme?"
+    - "FLC-Werte um den 01.03.2024 (±1 Tag)?"
+  should_not_activate:
+    - "Wie hat sich das IgG entwickelt?"  # trend
+    - "Nimmt der Patient aktuell Lenalidomid?"  # status
+  adversarial:
+    - "Paraprotein zum 10.01., aber nur Werte vom 12.01. vorhanden."  # must report nearest with deviation

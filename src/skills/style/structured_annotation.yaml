@@ -1,0 +1,210 @@
+skill:
+  id: style.structured_annotation
+  name: Structured Answer Format (Example-Based)
+  version: 1.1
+  category: style
+  inherits:
+    - style.base
+  description: >
+    Enforces structured answers matching annotation UI format using concrete examples.
+    Each schema type shows: format with all options, concrete example, and common mistakes.
+  triggers:
+    question_types: ["*"]
+    semantic_cues:
+      - "Use whenever producing patient-facing answers that should align with annotation schemas."
+activation:
+  intent: "Default formatting layer for clinical Q&A to mirror annotation schemas."
+conflicts: []
+structure:
+  template:
+    - "Answer: <schema-aligned value(s) or Abstain>"
+    - "Reasoning: <1–2 sentences with inline citations [ctx:ID]>"
+rules:
+  answer_formats:
+    single_choice: |
+      Format: Answer: <option from schema>
+      Example: Answer: Ja
+               Reasoning: Im Arztbrief vom 23.07.2021 wird eine Daratumumab-Therapie dokumentiert [ctx:001].
+      ❌ WRONG: "Ja, Patient erhält..." (no extra words in Answer line)
+    
+    two_single_choice: |
+      Format: Answer: <label1>=<option1>; <label2>=<option2>
+      Example: Answer: Aktuell=Ja; Jemals=Nein
+               Reasoning: Aktuelle Therapie mit Bortezomib läuft [ctx:002], keine CAR-T dokumentiert [ctx:005].
+      ❌ WRONG: Adding explanations in Answer line
+    
+    yn_plus_short_text: |
+      Format: Answer: Ja/Nein/Unklar | <brief text>
+      Example: Answer: Ja | Dosisreduktion auf 75% wegen Neutropenie
+               Reasoning: Im Verlauf Reduktion der Carfilzomib-Dosis dokumentiert [ctx:003].
+      ❌ WRONG: Adding citations in Answer line
+    
+    answer_plus_single_choice: |
+      Format: Answer: Kategorie=<option>; Antwort=<text>
+      Example: Answer: Kategorie=CR; Antwort=KRD-Therapie erreichte beste Response
+               Reasoning: Nach 3 Zyklen KRD wurde CR dokumentiert [ctx:007].
+    
+    criteria_table_plus_final: |
+      Format: Answer: Criteria: <criterion1>=Erfüllt/Nicht erfüllt/Fehlt; ... | Final: Ja/Nein/Unklar
+      Example: Answer: Criteria: ECOG≤2=Erfüllt; Nierenfunktion=Nicht erfüllt; Aktive Infektionen=Erfüllt; FISH=Fehlt | Final: Nein
+               Reasoning: ECOG 1 dokumentiert [ctx:004], aber GFR <30 ml/min [ctx:006]. Keine aktiven Infektionen dokumentiert. FISH-Ergebnis nicht in der Akte.
+      NOTE on 'Fehlt' vs 'Erfüllt' for exclusion criteria: When a criterion checks for the
+      ABSENCE of a condition (e.g., "keine aktiven Infektionen", "kein ZNS-Befall"), and
+      the condition is not mentioned anywhere in the record, mark as 'Erfüllt' (= exclusion
+      criterion met, condition absent). 'Fehlt' is reserved for criteria requiring a specific
+      positive test or value that was never performed/documented.
+      NOTE on Final verdict: Commit to Ja or Nein when the majority of criteria are resolved.
+      One or two 'Fehlt' items do NOT justify Final=Unklar if the overall picture is clear.
+    
+    multi_interval_up_to_3: |
+      Format: Answer: Status=Dokumentiert/Nie verabreicht/Nicht dokumentiert/Unklar || (Start=DD.MM.YYYY, End=DD.MM.YYYY/Laufend); ...
+      Example: Answer: Status=Dokumentiert || 08.10.2022 - 18.10.2022; 15.07.2023 - 24.07.2023
+               Reasoning: Meropenem vom 08.-18.10.2022 [ctx:002] und 15.-24.07.2023 [ctx:008].
+      ❌ WRONG: Using vague dates or missing Status field
+    
+    cycle_start_dose_list: |
+      Format: Answer: Status=Dokumentiert/Nie verabreicht/Nicht dokumentiert/Unklar || <DD.MM.YYYY> | <dose> | <unit mg/mg/m^2/mg/kg>; ...
+      Example: Answer: Status=Dokumentiert || 05.12.2018 | 5 | mg; 09.01.2019 | 10 | mg
+               Reasoning: Zyklus 1 am 05.12.2018 mit 5 mg [ctx:001], Zyklus 2 am 09.01.2019 mit 10 mg [ctx:003].
+      ❌ WRONG: C1D1: 05.12.2018 (use calendar dates DD.MM.YYYY, NEVER cycle labels like C1D1/C2D1/C*D1)
+      ❌ WRONG: Reasoning says "C1D1 am 04.01.2022 erwähnt" but Answer says Status=Nicht dokumentiert — Status MUST be Dokumentiert when Reasoning contains a documented date.
+      Note: Rows only appear when Status=Dokumentiert
+    
+    melphalan_exposure_episode_up_to_3: |
+      Format: Answer: Status=Dokumentiert/Nie verabreicht/Nicht dokumentiert/Unklar || <Typ Hochdosis/ASCT|Regime> | <DD.MM.YYYY> | <dose> | <unit>; ...
+      Example: Answer: Status=Dokumentiert || Hochdosis/ASCT | 03.03.2014 | 100 | mg/m^2; Hochdosis/ASCT | 05.03.2019 | 100 | mg/m^2
+               Reasoning: Erste HD-Melphalan im März 2014 [ctx:002], zweite im März 2019 [ctx:007].
+      Note: Max 3 episodes, Rows only when Status=Dokumentiert
+    
+    doxo_exposure_episode_up_to_3: |
+      Format: Answer: Status=Dokumentiert/Nie verabreicht/Nicht dokumentiert/Unklar || <Form Konventionell|Liposomal|Unklar> | <DD.MM.YYYY> | <dose> | <unit>; ...
+      Example: Answer: Status=Dokumentiert || Konventionell | 25.06.2021 | 20 | mg
+               Reasoning: Doxorubicin konventionell im Juni 2021 mit 20 mg dokumentiert [ctx:004].
+      Note: Max 3 episodes, Rows only when Status=Dokumentiert
+    
+    count_plus_interval: |
+      Format: Answer: Count=1/2/3/4/5/Nicht dokumentiert/Unklar | Start=DD.MM.YYYY | End=DD.MM.YYYY
+      Example: Answer: Count=3 | Start=10.05.2021 | End=15.08.2021
+               Reasoning: Drei Transfusionen zwischen Mai und August 2021 dokumentiert [ctx:005].
+    
+    date_or_not_documented: |
+      Format: Answer: <DD.MM.YYYY or MM.YYYY or Nicht dokumentiert or Unklar>
+      Example: Answer: 10/2018
+               Reasoning: Erstes Nierenversagen im Oktober 2018 dokumentiert [ctx:003].
+    
+    score_value_plus_date_and_source: |
+      Format: Answer: <score value> | <DD.MM.YYYY> | Dokumentiert/Berechnet
+      Format (not calculable): Answer: Status: nicht berechenbar
+      Format (unclear): Answer: Unklar
+      Example: Answer: 0 | 15.10.2018 | Dokumentiert
+               Reasoning: ECOG-Score von 0 explizit im Arztbrief vom 15.10.2018 dokumentiert [ctx:002].
+      Example: Answer: ISS II | 15.10.2018 | Berechnet
+               Reasoning: Berechnet aus Albumin 3.2 g/dl und β2-Mikroglobulin 4.5 mg/l vom 15.10.2018 [ctx:002].
+      Example: Answer: Status: nicht berechenbar
+               Reasoning: Für die ISS-Berechnung fehlen β2-Mikroglobulin-Werte in den verfügbaren Berichten [ctx:005].
+      ❌ WRONG: "Unklar" when the score cannot be calculated due to missing lab values (use "Status: nicht berechenbar" instead)
+      ❌ WRONG: "ECOG-Score: 0 (Datum: 2025-12-09)" or "ISS-Stage=II" (use pipe separators, not colons/equals)
+      ❌ WRONG: "0" or "II" alone (must include date and source)
+    
+    free_text: |
+      Format: Answer: <brief text>
+      Example: Answer: Zunahme der Plasmazellen von 5% auf 18%
+               Reasoning: KMP vom 10.03.2019 zeigt 5% [ctx:001], KMP vom 15.07.2021 zeigt 18% [ctx:004].
+    
+    list: |
+      Format: Answer: Items: <item1>; <item2>; ...
+      Example: Answer: Items: Lenalidomid; Bortezomib; Daratumumab
+               Reasoning: Alle drei Substanzen in der Therapiehistorie dokumentiert [ctx:002][ctx:005].
+    
+    abstain: |
+      Format: Answer: Abstain
+      Example: Answer: Abstain
+               Reasoning: Widersprüchliche Angaben zur Dosierung in verschiedenen Berichten [ctx:003][ctx:007].
+  
+  evidence:
+    - "Cite evidence ONLY in Reasoning using provided [ctx:ID] format"
+    - "Never add citations, prose, or explanations in the Answer line"
+    - "Do not invent evidence; if insufficient, use Abstain (but see below: absence in existing records ≠ 'Nicht dokumentiert')."
+    - "'Nicht dokumentiert' means NO relevant clinical documentation exists at all (no doctor letters, no treatment summaries, no labs). If ANY clinical documentation exists for the patient and the queried finding/drug/condition is absent from it → 'Nein'. Absence of a finding in existing documentation is evidence of 'Nein', not 'Nicht dokumentiert'."
+    - >
+      Exception to the above: When a question asks whether a specific clinical event or
+      diagnostic finding was 'documented' (e.g., AKI, acute organ failure, a specific lab
+      abnormality) and the answer depends on a specific test or measurement having been
+      performed — answering 'Nein' requires that the relevant assessment was carried out
+      and found to be normal. If the necessary test was never performed or never appears
+      in the record, answer 'Nicht dokumentiert': the event can be neither confirmed nor
+      excluded. This exception applies to acute-event questions (AKI, sepsis, NIV/Beatmung,
+      acute lung failure) and diagnostic-procedure questions (FISH performed, bone marrow
+      biopsy result). It does NOT apply to therapy-status questions (Q2/Q3-type: is patient
+      on Bortezomib?) — for those, absence from therapy documentation = 'Nein'.
+    - "For therapy response questions (schema includes 'Nie verabreicht'): if the patient's documented treatment history does not include the queried therapy → 'Nie verabreicht'. Use 'Nicht dokumentiert' only when the therapy WAS given but no response assessment is documented."
+    - "When claiming absence (Nein, Nie verabreicht, Nicht dokumentiert, Fehlt), reference the full search scope using compact range notation, e.g. '[ctx:001]–[ctx:020]'. Do not list every citation individually — use a range to keep the Reasoning concise."
+  
+  rationale:
+    - "ALWAYS provide Reasoning with citations, even for simple answers"
+    - "Keep to ≤2 sentences unless complex criteria require more"
+    - "Explain where data came from (which reports/dates) with [ctx:ID] references"
+  
+  separators:
+    - "Status/Rows split: ||"
+    - "Multiple rows: ;"
+    - "Within row fields: |"
+    - "Multiple items in list: ;"
+
+requirements:
+  - "Final output MUST have exactly two lines: 'Answer:' and 'Reasoning:'"
+  - "Answer line must match schema format exactly - use examples as templates"
+  - "Never add citations, evidence, or extra prose to Answer line"
+  - "If data missing, use the appropriate schema option: 'Nicht berechenbar' ONLY for score_value schemas, 'Unklar' for yn/eligibility schemas, 'Nicht dokumentiert' for therapy/date schemas. NEVER use an option that is not listed in the question's answer_schema."
+  - "Respect all schema options (Ja/Nein/Unklar/Nicht dokumentiert/Abstain/etc.)"
+  - >
+    'Unklar' is valid in exactly two cases:
+    (1) CONFLICT: two documents make opposite factual claims about the same event or status.
+    (2) DOMINANCE questions only: documented evidence exists for BOTH sides (e.g., both
+        progression AND toxicity are explicitly recorded) and neither clearly dominates.
+
+    'Unklar' is NEVER valid for:
+    · Absence of documentation — absence is directional evidence (Nein), not ambiguity.
+      ❌ WRONG: 'Unklar | Keine Dokumentation gefunden' — always wrong; absence = Nein.
+    · Missing a formal metric (ECOG score, a specific lab) when other clinical evidence exists.
+      ❌ WRONG: 'Unklar | kein ECOG dokumentiert' — commit based on available clinical picture.
+    · Refractoriness / multi-class refractory questions: if any required drug class was never
+      administered, the patient CANNOT be refractory to it → overall answer is definitively Nein.
+      ❌ WRONG: 'Unklar | Nicht alle Klassen dokumentiert' — missing class exposure = Nein.
+    · Therapy-status questions ("Wurde X je gegeben?", "Erhält Patient X?"): if the drug does not
+      appear anywhere in the therapy record → Nein.
+      ❌ WRONG: 'Unklar | Keine eindeutige Dokumentation' — absence from therapy record = Nein.
+
+    When evidence is incomplete but directional: commit to the directional answer and express
+    uncertainty in Reasoning only (e.g., 'Einschränkung: kein formaler ECOG dokumentiert.').
+  - "For list schemas with Status field: Rows only appear when Status=Dokumentiert"
+  - >
+    CONSISTENCY CHECK (all schemas): After drafting both lines, read them together and
+    verify the Answer Status matches the evidence described in the Reasoning:
+    · If Reasoning describes a documented date, dose, or clinical event for the answer
+      subject → Answer Status MUST be "Dokumentiert" (or "Ja" for yn schemas).
+    · If Reasoning confirms the drug/event is completely absent from all therapy mentions
+      across the record → Status MUST be "Nie verabreicht".
+    · If Reasoning confirms the drug was administered but the specific dates/doses are
+      not recorded → Status MUST be "Nicht dokumentiert".
+    A mismatch between Reasoning content and Answer Status is always an error.
+    Correct the Answer to match the evidence described, or revise the Reasoning to
+    explicitly justify the discrepancy (e.g., evidence found is planned-only, not administered).
+
+micro_tests:
+  should_activate:
+    - "Any clinical Q&A requiring structured output"
+    - "Questions with explicit schema specifications"
+  should_not_activate:
+    - "Non-clinical conversations"
+  adversarial:
+    - "Date fields must always use calendar format (DD.MM.YYYY), never cycle notation (C1D1/Z1/Tag1)"
+    - "Free text question with choice schema → enforce choice format only"
+    - "Reasoning: 'C1D1 am 04.01.2022 erwähnt' + Answer: Status=Nicht dokumentiert → WRONG; must be Status=Dokumentiert"
+    - "Drug completely absent from record → 'Nie verabreicht', NOT 'Nicht dokumentiert'"
+    - "Drug administered but no cycle dates recorded → 'Nicht dokumentiert', NOT 'Nie verabreicht'"
+    - "Question: 'Akutes Nierenversagen?' — creatinine never measured during hospitalization → CORRECT: Nicht dokumentiert. WRONG: Nein. This is an acute-event question where absence of the specific test = Nicht dokumentiert."
+    - "Question: 'Erhält der Patient Bortezomib?' (current therapy) — not mentioned in therapy section → CORRECT: Nein. WRONG: Nicht dokumentiert. For therapy-status questions, absence from therapy docs = Nein."
+    - "Therapy only mentioned in tumor board planning, no doctor letter confirms administration → CORRECT answer: Nein (not Unklar). See plan_vs_administered policy."
+    - "Refractoriness question (e.g., triple-class, quadruple-class refraktär): a required drug class that was never administered = patient CANNOT be refractory to it = CORRECT: Nein. ❌ WRONG: 'Unklar | Keine dokumentierten Therapieklassen' — no documentation of exposure is definitive Nein, not ambiguity. ❌ WRONG: 'Unklar | Keine eindeutige Dokumentation einer refraktären Erkrankung' — if required classes are absent from therapy history, commit to Nein immediately."
+    - "Dominance question with multiple schema options (e.g., Krankheitsprogression|Therapietoxizität|Beides gleichwertig|Unklar): 'Unklar' means no clinical evidence available for either side. If evidence exists for both sides, use 'Beides gleichwertig'. If evidence clearly tilts one direction, commit to that option. ❌ WRONG: 'Unklar' when documented signs of toxicity or progression are present."

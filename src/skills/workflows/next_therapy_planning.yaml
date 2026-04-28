@@ -1,0 +1,67 @@
+skill:
+  id: workflows.next_therapy_planning
+  name: Next Therapy Planning Workflow
+  version: 1
+  category: workflow
+  description: >
+    Select for next-step therapy questions that require synthesis of current status, prior lines,
+    organ function, and refractory tier into actionable options.
+  triggers:
+    question_types: ["next_step", "therapy_recommendation"]
+    semantic_cues:
+      - "Requests recommended next therapy options based on current status and history."
+    keywords: ["(optional lexicon) nächste Therapie, weiterer Schritt, Plan, Empfehlung"]
+    data_domains: ["doctor_letter", "tumor_board", "lab_values"]
+activation:
+  intent: "Use when synthesizing next-line options with supporting eligibility evidence."
+conflicts:
+  - workflows.current_status_check
+  - workflows.lab_at_timepoint
+steps:
+  - name: Summarize current status
+    detail: >
+      Gather the most recent disease assessments (labs, imaging, physician summary) to state the
+      current response/progression and symptomatic issues.
+  - name: Review prior lines & refractory status
+    detail: >
+      Leverage the refractory classification workflow output (or rerun key steps) to list prior lines
+      and class exposure.
+  - name: Assess risk stratification
+    detail: >
+      If risk stratification is relevant (especially for frontline or early relapse planning), check
+      for documented ISS/R-ISS/R2-ISS staging or calculate it if sufficient lab values and cytogenetics
+      are available. Use the scoring_calculation workflow or call calculate_iss_score, calculate_riss_score,
+      or calculate_r2iss_score tools directly. High-risk features (R-ISS III, R2-ISS IV, high-risk
+      cytogenetics) may influence therapy intensity recommendations.
+  - name: Evaluate organ function & comorbidities
+    detail: >
+      Collect key labs and performance metrics affecting treatment choice (renal/hepatic function,
+      cytopenias, ECOG).
+  - name: Propose options
+    detail: >
+      Based on guidelines/available agents, suggest feasible next therapies or trials, noting prerequisites
+      and any missing diagnostics. Include “Supportive care” actions if appropriate.
+requirements:
+  - "Recommendations must cite the evidence supporting eligibility (lines, labs, performance)."
+  - "Flag contraindications or missing evaluations alongside the suggestion."
+uncertainty:
+  missing_evidence: "Empfehlung nur bedingt möglich; fehlende Daten/Diagnostik explizit aufführen."
+retry_policy:
+  max_attempts: 2
+  rules:
+    - "Allow at most 1 retry for any retrieval step."
+    - "Retries must change scope meaningfully (top_k jump, broaden date range, or switch to a different report_type/corpus)."
+outputs:
+  - "Current status summary."
+  - "Recommended options list with rationale and citations."
+  - "Outstanding workup required before each option."
+micro_tests:
+  should_activate:
+    - "Welche Therapieoption kommt nach Progress unter Dara-KPd infrage?"
+    - "Was ist der nächste Therapieschritt bei multiplen Vorlinien?"
+    - "Welche Optionen bestehen bei ECOG 2 und eingeschränkter Nierenfunktion?"
+  should_not_activate:
+    - "IgG am 2024-11-08?"  # lab snapshot
+    - "Hat der Patient jemals eine SZT erhalten?"  # ever status
+  adversarial:
+    - "Therapieempfehlung erfragen, aber wesentliche Kriterien (z.B. ECOG, Organfunktion) fehlen."  # must flag missing data

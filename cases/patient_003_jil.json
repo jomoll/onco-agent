@@ -1,0 +1,2069 @@
+{
+  "patient_id": "patient_003",
+  "firstname": "Jil",
+  "lastname": "Doe",
+  "date_of_birth": "1951-11-03",
+  "reports": [
+    {
+      "report_type": "history",
+      "report_date": "2016-09-05",
+      "title": "Basic medical history – Initial diagnosis Multiple Myeloma",
+      "sections": [
+        {
+          "name": "Medical history",
+          "content": "The 64-year-old patient presents after out-of-town evaluation. For 6 months, he has experienced progressive back pain (LWK3 fracture, externally treated), weight loss of 8 kg, and marked fatigue. Pre-existing conditions: Paroxysmal atrial fibrillation (known since 2012, anticoagulation with Apixaban), mild renal insufficiency CKD IIIa (creatinine 1.4 mg/dl baseline before diagnosis)."
+        },
+        {
+          "name": "Pre-existing conditions",
+          "content": "Paroxysmal atrial fibrillation (since 2012) – anticoagulation with Apixaban 5 mg 1-0-1.\nMild renal insufficiency CKD IIIa (baseline creatinine 1.4 mg/dl, eGFR ~52 ml/min).  \nArterial hypertension, Amlodipin 5 mg + Ramipril 5 mg.  \nFatty liver (steatosis hepatis, grade 1, sonographically) – mild hepatic function impairment."
+        }
+      ]
+    },
+    {
+      "report_type": "pathology",
+      "report_date": "2016-09-10",
+      "title": "Bone marrow biopsy – Initial diagnosis",
+      "sections": [
+        {
+          "name": "Findings",
+          "content": "Bone marrow core biopsy from 08/09/2016.\nCellularity: approx. 80–90%.\nDiffuse infiltration by mature plasma cells, degree of infiltration approx. 70%.\nImmunohistochemistry: CD138+, IgA+, lambda-dominant, CD19-, CD56+.\nGomori: MF-1."
+        },
+        {
+          "name": "FISH result",
+          "content": "FISH (09/2016):\n- del(17p): negative\n- t(4;14): POSITIVE (IgH-FGFR3 translocation in 68% of cells) – high-risk cytogenetics\n- t(14;16): negative\n- 1q21 gain: POSITIVE (55% of cells)\nConclusion: t(4;14) and 1q21 gain as high-risk features."
+        },
+        {
+          "name": "Diagnosis",
+          "content": "Multiple myeloma, IgA light chain lambda.\nISS stage III (β2-microglobulin 8.2 mg/l, albumin 2.9 g/dl).\nR-ISS stage III (ISS III + high-risk cytogenetics t(4;14)).\nMyeloma kidney failure: creatinine rise to 3.2 mg/dl on admission (light chain nephropathy)."
+        }
+      ]
+    },
+    {
+      "report_type": "doctor_letter",
+      "report_date": "2016-09-15",
+      "title": "Physician letter – Initial diagnosis, emergency initiation of VCD",
+      "sections": [
+        {
+          "name": "Diagnoses",
+          "content": "Hematological diagnoses:\nMultiple myeloma, IgA light chain lambda (initial diagnosis 09/2016)\nISS stage III, R-ISS stage III\nHigh-risk cytogenetics: t(4;14), 1q21 gain\nOsseous manifestations: LWK3 compression fracture, disseminated osteolytic lesions BWK8, BWK12, pelvis, left femur\n\nComorbidities:\nParoxysmal atrial fibrillation (since 2012)\nRenal insufficiency CKD IIIa (acutely worsened to CKD V on admission – myeloma kidney)\nMild hepatic steatosis\nArterial hypertension"
+        },
+        {
+          "name": "Therapy plan",
+          "content": "Emergency initiation of VCD (bortezomib/cyclophosphamide/dexamethasone) due to myeloma kidney and ISS stage III; 4 cycles planned.\nBortezomib 1.3 mg/m² s.c. days 1, 4, 8, 11 / 21-day cycle.\nCyclophosphamide 300 mg/m² p.o. days 1, 8, 15.\nDexamethasone 40 mg days 1, 2, 4, 5, 8, 9, 11, 12.\nZoledronic acid 4 mg i.v. (after renal reconstitution)."
+        },
+        {
+          "name": "Renal failure",
+          "content": "Acute renal failure due to light chain nephropathy (cast nephropathy) on admission 08/09/2016. Creatinine on admission: 3.2 mg/dl (baseline 1.4 mg/dl). eGFR: 18 ml/min. Dialysis required due to hyperkalaemia (potassium 6.2 mmol/l) and fluid overload: haemodialysis commenced 09/09/2016, 3 sessions until partial recovery. After 3 weeks VCD: creatinine 1.8 mg/dl, dialysis discontinued. External renal biopsy: cast nephropathy confirmed."
+        },
+        {
+          "name": "ECOG",
+          "content": "ECOG performance status: 2 (reduced general condition, bedridden <50% of the day, impaired activities of daily living)."
+        }
+      ]
+    },
+    {
+      "report_type": "radiology",
+      "report_date": "2016-09-12",
+      "title": "Skeletal CT – Staging",
+      "sections": [
+        {
+          "name": "Findings",
+          "content": "Whole-body low-dose CT from 12/09/2016.\nSpine: LWK3 compression fracture (approx. 40% height loss). Lytic lesions at BWK8 (12 mm), BWK12 (8 mm), LWK1 (10 mm).\nPelvis: Extensive osteolytic lesions bilateral os ilium, left os ischii (largest lesion 25 mm).\nLong bones: Lytic lesion left femur, proximal (14 mm).\nSkull: Diffuse osteopenia, scattered small calvarial lesions (<5 mm).\nConclusion: Disseminated osseous involvement in multiple myeloma with LWK3 compression fracture. Fracture risk at left femur."
+        }
+      ]
+    },
+    {
+      "report_type": "tumor_board",
+      "report_date": "2016-09-19",
+      "title": "Tumor board decision – Initial diagnosis MM IgA lambda, treatment planning",
+      "sections": [
+        {
+          "name": "Reason for discussion",
+          "content": "Initial diagnosis of multiple myeloma IgA lambda in a 64-year-old patient with acute renal failure (myeloma kidney) and high-risk cytogenetics."
+        },
+        {
+          "name": "Findings",
+          "content": "MM IgA lambda, ISS III, R-ISS III. t(4;14) and 1q21 gain. LWK3 fracture, disseminated osteolytic lesions. Acute renal failure (creatinine 3.2 mg/dl) requiring dialysis (from 09/09/2016). ECOG 2."
+        },
+        {
+          "name": "Decision",
+          "content": "Emergency VCD induction therapy (bortezomib/cyclophosphamide/dexamethasone) for myeloma kidney – no IMiD-based regimen due to renal failure. Goal: rapid response, renal recovery, then autologous SCT if kidney recovered and ECOG ≤2. Orthopedic consult for fracture risk at left femur. Zoledronic acid after renal reconstitution (creatinine <3.0 mg/dl)."
+        }
+      ]
+    },
+    {
+      "report_type": "doctor_letter",
+      "report_date": "2016-10-10",
+      "title": "Physician letter – VCD cycle 1 completion, dialysis weaning",
+      "sections": [
+        {
+          "name": "Diagnoses",
+          "content": "Multiple myeloma, IgA LC lambda (initial diagnosis 09/2016)\nAfter VCD cycle 1: creatinine decline – dialysis weaning"
+        },
+        {
+          "name": "Current course",
+          "content": "VCD cycle 1 (started 15/09/2016, 21-day cycle) completed. Third haemodialysis session on 15/09/2016.\nCreatinine under therapy: 3.2 mg/dl → 2.4 mg/dl (28/09/2016) → 1.9 mg/dl (10/10/2016). Dialysis no longer required since 04/10/2016.\nIgA 42.0 g/l (baseline 58.2 g/l, -28%). Declining trend.\nCalcium normalised (2.4 mmol/l).\nHb 9.4 g/dl, transfusion 2 packed red blood cells (01/10/2016).\nPotassium within normal range."
+        },
+        {
+          "name": "Chronic medication",
+          "content": "Bortezomib 1.3 mg/m² s.c. days 1, 4, 8, 11 (cycle 2 from 06/10/2016)\nCyclophosphamide 300 mg/m² p.o. days 1, 8, 15\nDexamethasone 40 mg days 1, 2, 4, 5, 8, 9, 11, 12\nValacyclovir 500 mg 1-0-1 (herpes prophylaxis)\nPantoprazole 40 mg 1-0-0\nApixaban paused (dialysis, bleeding risk – cardiology consulted)\nAmlodipine 5 mg 1-0-0"
+        },
+        {
+          "name": "Further procedure",
+          "content": "Start VCD cycle 2 on 06/10/2016. Weekly renal function and lab monitoring. Zoledronic acid as soon as creatinine <2.0 mg/dl stably."
+        }
+      ]
+    },
+    {
+      "report_type": "doctor_letter",
+      "report_date": "2016-11-07",
+      "title": "Physician's letter – VCD Cycle 2 Follow-up",
+      "sections": [
+        {
+          "name": "Diagnoses",
+          "content": "Multiple myeloma, IgA LC lambda (initial diagnosis 09/2016)\nAfter VCD cycle 2: partial renal recovery, first signs of remission"
+        },
+        {
+          "name": "Current course",
+          "content": "VCD cycle 2 (06/10–26/10/2016) completed. Outpatient therapy.\nCreatinine 1.8 mg/dl (eGFR 38 ml/min), stable. No dialysis required.\nIgA 32.5 g/l (-44% vs. baseline 58.2 g/l).\nFLC lambda 1240 mg/l (baseline 1840 mg/l, -33%).\nHb 10.2 g/dl. No transfusion-requiring anaemia currently.\nZoledronic acid 4 mg i.v. first dose on 28/10/2016 (creatinine <2.0 mg/dl).\nNeuropathy: fingertip tingling bilateral grade 1 under bortezomib. No dose reduction."
+        },
+        {
+          "name": "Maintenance medication",
+          "content": "VCD as before, cycle 3 from 27/10/2016. Zoledronic acid 4 mg i.v. monthly. Apixaban 2.5 mg 1-0-1 (reduced dose, renal insufficiency CKD IIIb)."
+        },
+        {
+          "name": "Further procedure",
+          "content": "Cycle 3 follow-up mid-November. Remission assessment after cycle 4."
+        }
+      ]
+    },
+    {
+      "report_type": "radiology",
+      "report_date": "2016-11-20",
+      "title": "Whole‑body low‑dose CT – follow‑up under VCD",
+      "sections": [
+        {
+          "name": "Full report",
+          "content": "Clinical information: MM IgA lambda, after 2 cycles VCD, follow-up of osteolytic lesions.\n\nClinical question: Progression of osseous lesions? New fracture risk?\n\nPrior imaging: WB-LDCT 12/09/2016.\n\nFindings: Spine: LWK3 compression fracture stable (no further height loss). BWK8, BWK12, LWK1 lytic lesions stable. No new vertebral fractures. Pelvis: Osteolytic lesions bilateral os ilium stable. Femur: Lytic lesion proximal left 14 mm stable. No new critical fracture risk.\n\nConclusion: Stable osseous situation under ongoing VCD therapy. No progression of osteolytic lesions. No new fracture detected. Bisphosphonate therapy recommended (already being initiated)."
+        }
+      ]
+    },
+    {
+      "report_type": "doctor_letter",
+      "report_date": "2016-12-05",
+      "title": "Physician's letter – VCD Cycle 3 Follow-up",
+      "sections": [
+        {
+          "name": "Diagnoses",
+          "content": "Multiple myeloma, IgA LC lambda (initial diagnosis 09/2016)\nAfter VCD cycle 3: sustained remission, ECOG improvement"
+        },
+        {
+          "name": "Current course",
+          "content": "Cycle 3 VCD (27/10–16/11/2016) completed. Outpatient.\nIgA 22.8 g/l (-61% vs. baseline). FLC lambda 820 mg/l (-55%). Patient ECOG: 1 (significant improvement, mobile, daily activities possible again).\nCreatinine 1.7 mg/dl (eGFR 40 ml/min), stable. Hb 10.8 g/dl.\nNeuropathy grade 1 stable.\nRadiological follow-up 20/11/2016: stable situation, no fracture."
+        },
+        {
+          "name": "Maintenance medication",
+          "content": "VCD cycle 4 started 17/11/2016. Zoledronic acid dose 2. Valacyclovir, pantoprazole, apixaban, amlodipine as before."
+        },
+        {
+          "name": "Further procedure",
+          "content": "Remission assessment after cycle 4 (approx. 02/2017). Stem cell mobilization planned if adequate response."
+        }
+      ]
+    },
+    {
+      "report_type": "doctor_letter",
+      "report_date": "2017-02-20",
+      "title": "Physician letter – Response after 4 cycles VCD, ASCT preparation",
+      "sections": [
+        {
+          "name": "Diagnoses",
+          "content": "Multiple myeloma, IgA LC lambda (initial diagnosis 09/2016)\nAfter 4 cycles VCD: PR\nRecovered from acute renal failure (dialysis 09/2016, now CKD IIIb)\nPlanning autologous stem cell transplantation"
+        },
+        {
+          "name": "Therapeutic response",
+          "content": "After 4 cycles VCD:\n- IgA: 18.4 g/l (baseline 58 g/l)\n- Serum immunofixation: positive\n- Free light chains lambda: 420 mg/l (baseline 1840 mg/l)\nAssessment: PR (partial response)\n\nRenal function after VCD: creatinine 1.8 mg/dl (eGFR 38 ml/min), significant improvement vs. admission (creatinine 3.2 mg/dl). Dialysis no longer required since 10/2016.\n\nCumulative bortezomib dose to date: 4 cycles × 4 doses × 1.3 mg/m² × 1.88 m² BSA = approx. 38.9 mg total.\nNo doxorubicin exposure."
+        },
+        {
+          "name": "Stem cell mobilization",
+          "content": "Stem cell mobilization with G‑CSF successful. CD34+: 5,8 × 10^6 cells/kg (1 transplantation possible)."
+        },
+        {
+          "name": "Planning",
+          "content": "HD-melphalan (200 mg/m²) + autologous SCT planned for 03/2017.\nCumulative melphalan dose (planned): 200 mg/m² × 1.88 m² BSA = 376 mg total."
+        }
+      ]
+    },
+    {
+      "report_type": "tumor_board",
+      "report_date": "2017-02-27",
+      "title": "Tumor board decision – PR after VCD × 4, ASCT planned",
+      "sections": [
+        {
+          "name": "Reason for discussion",
+          "content": "Response assessment after 4 cycles VCD in MM IgA lambda, ISS III. Planning ASCT."
+        },
+        {
+          "name": "Findings",
+          "content": "PR (IgA 18.4 g/l, -68%). Renal function recovered (creatinine 1.8 mg/dl, dialysis discontinued). ECOG 2→1. Stem cell mobilization performed (CD34+: 5.8 × 10^6/kg). High-risk cytogenetics t(4;14) persists."
+        },
+        {
+          "name": "Decision",
+          "content": "HD-melphalan 200 mg/m² + autologous SCT in March 2017. Target melphalan dose: 376 mg (BSA 1.88 m²). Post-ASCT lenalidomide maintenance considering renal insufficiency (reduced dose if necessary). Next tumor board after ASCT discharge."
+        }
+      ]
+    },
+    {
+      "report_type": "doctor_letter",
+      "report_date": "2017-03-10",
+      "title": "Physician letter – Admission for ASCT, HD‑melphalan conditioning",
+      "sections": [
+        {
+          "name": "Diagnoses",
+          "content": "Multiple myeloma, IgA LC lambda (initial diagnosis 09/2016)\nAfter VCD × 4: PR\nAdmission for autologous stem cell transplantation"
+        },
+        {
+          "name": "Admission and Conditioning",
+          "content": "Inpatient admission on 06/03/2017. Admission labs 06/03/2017: Hb 10.8 g/dl, leukocytes 5.2 G/l, neutrophils 3.1 G/l, platelets 142 G/l. Creatinine 1.9 mg/dl, eGFR 37 ml/min (CKD IIIb).\nConditioning: HD-melphalan 200 mg/m² (176 mg, reduced to 176 mg due to GFR <40 ml/min – renal insufficiency. Total dose 376 mg minus renal adjustment: 344 mg) i.v. on 08/03/2017 (D-2). Hyperhydration 3 l/m²/d.\nStem cell reinfusion: 10/03/2017 (D0), 5.8 × 10^6 CD34+/kg. Uneventful."
+        },
+        {
+          "name": "Further procedure",
+          "content": "G-CSF from D+5. Daily blood count and vital sign monitoring. Isolation until engraftment."
+        }
+      ]
+    },
+    {
+      "report_type": "doctor_letter",
+      "report_date": "2017-04-03",
+      "title": "Physician letter – ASCT discharge after engraftment",
+      "sections": [
+        {
+          "name": "Diagnoses",
+          "content": "Multiple myeloma, IgA LC lambda (initial diagnosis 09/2016)\nAfter HD-melphalan + ASCT (10/03/2017): engraftment day +13\nDischarge day +24"
+        },
+        {
+          "name": "Inpatient course",
+          "content": "Engraftment: neutrophils >0.5 G/l on day +13 (23/03/2017). Mucositis grade 2 (day +5 to +12, opioid patch analgesia). No transfusion-requiring anaemia after day +7 (Hb nadir 8.2 g/dl day +8, 2 packed red blood cells transfused).\nPost-engraftment infection-free. Platelets >50 G/l on day +17, >100 G/l on day +22.\nDischarge labs 03/04/2017: Hb 10.6 g/dl, leukocytes 5.4 G/l, neutrophils 3.8 G/l, platelets 104 G/l (rising). Creatinine 2.0 mg/dl (stable CKD IIIb).\nIgA 12.4 g/l (preliminary response assessment after ASCT)."
+        },
+        {
+          "name": "Chronic medication",
+          "content": "Valacyclovir 500 mg 1-0-1\nPantoprazole 40 mg 1-0-0\nFluconazole 100 mg/d (until 6 weeks post-ASCT)\nApixaban 2.5 mg 1-0-1 (atrial fibrillation)\nAmlodipine 5 mg 1-0-0\nRamipril 2.5 mg (dose halved, CKD)"
+        },
+        {
+          "name": "Further procedure",
+          "content": "Outpatient follow-up day +45 on 24/04/2017. Formal remission assessment after 3 months (06/2017)."
+        }
+      ]
+    },
+    {
+      "report_type": "doctor_letter",
+      "report_date": "2017-04-24",
+      "title": "Physician letter – Post‑ASCT outpatient control day +45",
+      "sections": [
+        {
+          "name": "Diagnoses",
+          "content": "Multiple myeloma, IgA LC lambda (initial diagnosis 09/2016)\nAfter HD-melphalan + ASCT: day +45"
+        },
+        {
+          "name": "Current course",
+          "content": "Patient [correction: male] in stable condition. Fatigue declining, ECOG 1. No fever, no infection. Mucositis fully resolved.\nLabs 22/04/2017: Hb 11.4 g/dl, leukocytes 6.2 G/l, neutrophils 4.0 G/l, platelets 186 G/l. Creatinine 1.9 mg/dl, eGFR 40 ml/min. IgA 10.2 g/l, FLC lambda 142 mg/l.\nAtrial fibrillation: paroxysmal, no rate increase. ECG: sinus rhythm."
+        },
+        {
+          "name": "Chronic medication",
+          "content": "As at discharge. Fluconazole stopped (>6 weeks post-ASCT)."
+        },
+        {
+          "name": "Further procedure",
+          "content": "Formal remission assessment (IgA, FLC, immunofixation, bone marrow biopsy) after 3 months (June 2017). Discussion of lenalidomide maintenance considering renal function."
+        }
+      ]
+    },
+    {
+      "report_type": "doctor_letter",
+      "report_date": "2017-06-10",
+      "title": "Physician letter – post‑ASCT control",
+      "sections": [
+        {
+          "name": "Diagnoses",
+          "content": "Multiple myeloma, IgA LC lambda (initial diagnosis 09/2016)\nAfter HD-melphalan (200 mg/m²) + ASCT (03/2017): VGPR\nKidney: CKD IIIb stable"
+        },
+        {
+          "name": "Course after ASCT",
+          "content": "Autologous stem cell transplantation with HD-melphalan on 10/03/2017. Engraftment day +14. Uncomplicated course, no significant mucositis. Discharge day +20.\n\nRemission assessment 06/2017:\n- IgA: 6.2 g/l (baseline 58 g/l)\n- Serum immunofixation: positive (weakly)\n- Free light chains lambda: 62 mg/l\nAssessment: VGPR"
+        }
+      ]
+    },
+    {
+      "report_type": "doctor_letter",
+      "report_date": "2017-09-18",
+      "title": "Physician letter – post‑ASCT 6‑month control, VGPR confirmed",
+      "sections": [
+        {
+          "name": "Diagnoses",
+          "content": "Multiple myeloma, IgA LC lambda (initial diagnosis 09/2016)\nAfter VCD × 4 + HD-melphalan + ASCT (03/2017): VGPR\nLenalidomide maintenance feasible with restrictions (CKD IIIb)"
+        },
+        {
+          "name": "Current course",
+          "content": "6-month follow-up post-ASCT. Remission stable. General condition: ECOG 1, significant improvement vs. initial diagnosis.\nLabs 15/09/2017: IgA 6.2 g/l, immunofixation: positive (weakly). FLC lambda 62 mg/l. Hb 12.2 g/dl, leukocytes 5.8 G/l, neutrophils 3.4 G/l. Creatinine 1.8 mg/dl (eGFR 41 ml/min).\nAssessment: VGPR sustained.\nLenalidomide maintenance: started lenalidomide 10 mg/d (reduced due to CKD IIIb, standard dose 25 mg contraindicated). Started 01/09/2017."
+        },
+        {
+          "name": "Chronic medication",
+          "content": "Lenalidomide 10 mg/d days 1–21, 28-day cycle (renal insufficiency-adjusted)\nValacyclovir 500 mg 1-0-1\nPantoprazole 40 mg 1-0-0\nApixaban 2.5 mg 1-0-1\nAmlodipine 5 mg 1-0-0\nRamipril 2.5 mg 1-0-0\nAspirin 100 mg 1-0-0 (thrombosis prophylaxis under lenalidomide)"
+        },
+        {
+          "name": "Further procedure",
+          "content": "Next follow-up 12/2017. Monthly blood count monitoring by GP."
+        }
+      ]
+    },
+    {
+      "report_type": "doctor_letter",
+      "report_date": "2017-12-11",
+      "title": "Physician letter – post‑ASCT 9‑month control, lenalidomide maintenance",
+      "sections": [
+        {
+          "name": "Diagnoses",
+          "content": "Multiple myeloma, IgA LC lambda (initial diagnosis 09/2016)\nVGPR under lenalidomide maintenance\nCKD IIIb stable"
+        },
+        {
+          "name": "Current course",
+          "content": "Patient in good general condition, ECOG 1. Lenalidomide 10 mg well tolerated for 3 months. Mild fatigue grade 1, no diarrhoea, no infection.\nLabs 08/12/2017: IgA 6.8 g/l (slightly rising, but still in VGPR range), immunofixation positive. FLC lambda 74 mg/l. Hb 11.8 g/dl, neutrophils 2.4 G/l, platelets 158 G/l. Creatinine 1.8 mg/dl.\nAssessment: VGPR sustained. Slight IgA rise, not yet progression."
+        },
+        {
+          "name": "Long‑term medication",
+          "content": "As before. Zoledronic acid dose 7 (monthly)."
+        },
+        {
+          "name": "Further procedure",
+          "content": "Closer monitoring in view of slight IgA rise. Next follow-up 03/2018 with comprehensive labs including FLC and immunofixation. Annual skeletal CT follow-up 03/2018."
+        }
+      ]
+    },
+    {
+      "report_type": "radiology",
+      "report_date": "2018-03-19",
+      "title": "Skeletal CT – Annual follow‑up",
+      "sections": [
+        {
+          "name": "Full report",
+          "content": "Clinical information: MM IgA lambda, after ASCT 03/2017 and VCD induction, 12-month follow-up under lenalidomide maintenance.\n\nClinical question: New osteolytic lesions? Fracture progression?\n\nPrior imaging: WB-LDCT 20/11/2016.\n\nFindings: Spine: LWK3 compression fracture with unchanged height loss. No new fracture. No new osteolytic lesion at BWK8, BWK12, LWK1 (stable). No new vertebral bodies involved. Pelvis: Os ilium osteolytic lesions stable. Left femur: Lytic lesion proximal stable (14 mm). Skull: Known small calvarial lesions, no progression.\n\nConclusion: Stable osseous situation without evidence of new osteolytic lesions or fracture events. Consistent with sustained remission under lenalidomide maintenance."
+        }
+      ]
+    },
+    {
+      "report_type": "doctor_letter",
+      "report_date": "2018-05-14",
+      "title": "Physician letter – Post‑ASCT 14‑month follow‑up, IgA increase",
+      "sections": [
+        {
+          "name": "Diagnoses",
+          "content": "Multiple myeloma, IgA LC lambda (initial diagnosis 09/2016)\nVGPR under lenalidomide maintenance, current IgA rise – monitoring"
+        },
+        {
+          "name": "Current course",
+          "content": "Labs 11/05/2018: IgA 14.8 g/l (rise vs. 6.8 g/l 12/2017), immunofixation positive. FLC lambda 182 mg/l (rising). Hb 11.2 g/dl, creatinine 1.9 mg/dl.\nAssessment: IgA rise >25% vs. nadir – formally partial progression (no CRAB criteria met yet). No clinical evidence of new organ damage. Imaging 03/2018 stable.\nMonitoring changed to monthly. Tumor board presentation planned."
+        },
+        {
+          "name": "Long‑term medication",
+          "content": "Lenalidomide maintenance continued at 10 mg/d. Other medications unchanged."
+        },
+        {
+          "name": "Further procedure",
+          "content": "Tumor board presentation 20/05/2018. Next laboratory monitoring monthly. Skeletal CT if clinically indicated."
+        }
+      ]
+    },
+    {
+      "report_type": "pathology",
+      "report_date": "2018-07-30",
+      "title": "Bone marrow biopsy – first relapse",
+      "sections": [
+        {
+          "name": "Findings",
+          "content": "Bone marrow core biopsy from 25/07/2018.\nCellularity: 75%.\nDetection of a plasma cell infiltrate: approx. 30% of nucleated cells.\nImmunohistochemistry: CD138+, lambda+, IgA+, CD19-, CD56+ (as at initial diagnosis)."
+        },
+        {
+          "name": "FISH result",
+          "content": "FISH (07/2018):\n- t(4;14): POSITIVE (persists, 65% of cells)\n- 1q21 gain: POSITIVE (persists, 58% of cells)\n- del(17p): negative\nComparison with initial diagnosis: t(4;14) and 1q21 gain unchanged persistent."
+        },
+        {
+          "name": "Diagnosis",
+          "content": "Histologically and cytogenetically confirmed first relapse of multiple myeloma after ASCT. Plasma cell infiltration 30% (baseline initial diagnosis 70%). No new high-risk cytogenetic abnormalities."
+        }
+      ]
+    },
+    {
+      "report_type": "tumor_board",
+      "report_date": "2018-07-09",
+      "title": "Tumor board decision – progression under Lenalidomid, relapse therapy",
+      "sections": [
+        {
+          "name": "Reason for discussion",
+          "content": "IgA rise and development of new osteolytic lesions on CT (20/07/2018) under lenalidomide maintenance after ASCT in MM IgA lambda, ISS III, t(4;14)."
+        },
+        {
+          "name": "Findings",
+          "content": "IgA 24.5 g/l (post-ASCT nadir 6.2 g/l), new osteolytic lesions CT 20/07/2018. Lenalidomide-refractory. BM biopsy 25/07/2018: 30% plasma cell infiltrate, t(4;14) persists."
+        },
+        {
+          "name": "Decision",
+          "content": "Start 2nd line therapy with carfilzomib + lenalidomide + dexamethasone (KRd) from 01/08/2018. Caution: history of atrial fibrillation – carfilzomib with cardiac vigilance; pre-treatment echocardiography, cardiologist involved. Next tumor board after 4 cycles."
+        }
+      ]
+    },
+    {
+      "report_type": "cardiology",
+      "report_date": "2018-08-06",
+      "title": "Cardiology consult – echocardiography before Carfilzomib",
+      "sections": [
+        {
+          "name": "Question",
+          "content": "Cardiac baseline assessment for planned carfilzomib therapy. Known paroxysmal atrial fibrillation (apixaban). Exclusion of relevant left ventricular dysfunction."
+        },
+        {
+          "name": "Finding",
+          "content": "Transthoracic echocardiography 06/08/2018:\nLV function: Normal, EF 55% (biplane).\nNo wall motion abnormalities.\nAortic valve: Mild aortic sclerosis without haemodynamic significance.\nMitral valve: Mild mitral regurgitation (grade 1).\nNo pericardial effusion. Right heart unremarkable."
+        },
+        {
+          "name": "Assessment",
+          "content": "Adequate systolic LV function for carfilzomib therapy. Cardiological co-management under carfilzomib recommended. Repeat echo after 3 cycles."
+        }
+      ]
+    },
+    {
+      "report_type": "doctor_letter",
+      "report_date": "2018-10-15",
+      "title": "Physician letter – KRd cycles 2–3, cardiotoxicity signal",
+      "sections": [
+        {
+          "name": "Diagnoses",
+          "content": "Multiple myeloma, IgA LC lambda (initial diagnosis 09/2016)\n1st relapse, 2nd line KRd\nUnder carfilzomib: fluid retention grade 2, echocardiography deterioration"
+        },
+        {
+          "name": "Current course",
+          "content": "KRd cycles 1–2 (01/08–28/08/2018) uncomplicated. Cycle 3 (29/08–18/09/2018): increasing leg oedema (grade 2), exertional dyspnoea. Echocardiography 01/10/2018: EF 50% (baseline 55%). No pericardial effusion.\nResponse labs: IgA 18.2 g/l (baseline 24.5 g/l, -26%). PR threshold not yet reached (-50%). FLC lambda 420 mg/l.\nCardiological recommendation: carfilzomib dose reduction to 20 mg/m² (from 27 mg/m²) in cycle 4.\nAtrial fibrillation: stable, no rate increase."
+        },
+        {
+          "name": "Chronic medication",
+          "content": "Carfilzomib 20 mg/m² (reduced) days 1, 2, 8, 9, 15, 16 / 28-day cycle\nLenalidomide 25 mg days 1–21\nDexamethasone 40 mg weekly\nFurosemide 40 mg/d p.o. (oedema therapy)\nApixaban 2.5 mg 1-0-1\nAmlodipine, ramipril, valacyclovir as before"
+        },
+        {
+          "name": "Further procedure",
+          "content": "Cardiological follow-up (echo) after cycle 4. Lenalidomide dose remains 25 mg (no current renal problem under KRd). Next oncological follow-up end of November."
+        }
+      ]
+    },
+    {
+      "report_type": "cardiology",
+      "report_date": "2018-12-10",
+      "title": "Cardiology consult – echo follow‑up under Carfilzomib cycle 6",
+      "sections": [
+        {
+          "name": "Question",
+          "content": "Cardiovascular follow-up under carfilzomib in known atrial fibrillation and grade 2 fluid retention."
+        },
+        {
+          "name": "Findings",
+          "content": "Echocardiography 10/12/2018:\nLV EF: 48% (decrease from 55% pre-therapy to 48%).\nNew: Mild inferolateral hypokinesia. No pericardial effusion. Diastolic dysfunction grade 1.\nLeg oedema reduced under furosemide."
+        },
+        {
+          "name": "Assessment",
+          "content": "Mild carfilzomib-associated cardiotoxicity (EF reduction of 7%, to 48%). No clinical signs of heart failure. Recommendation: carfilzomib discontinuation after current cycle (6 cycles planned, now completed). No further carfilzomib exposure. Continue cardiological co-management and echo monitoring every 6 months."
+        }
+      ]
+    },
+    {
+      "report_type": "doctor_letter",
+      "report_date": "2019-01-14",
+      "title": "Physician letter – KRd cycle 6 completed, response evaluation",
+      "sections": [
+        {
+          "name": "Diagnoses",
+          "content": "Multiple myeloma, IgA LC lambda (initial diagnosis 09/2016)\nAfter KRd × 6: SD (stable disease), end of therapy\nCarfilzomib-associated cardiotoxicity (EF 48%)"
+        },
+        {
+          "name": "Current course",
+          "content": "KRd 6 cycles (08/2018–12/2018) completed. Final assessment:\n- IgA: 22.1 g/l (baseline 24.5 g/l – only marginal reduction)\n- FLC lambda: 380 mg/l (baseline 680 mg/l – 44% reduction, but IgA as primary marker insufficient)\n- Immunofixation: positive\n- Formal response: SD (no ≥50% reduction of M-protein)\n\nCardiology 10/12/2018: EF 48% (from 55%). Carfilzomib discontinued after 6 cycles due to cardiotoxicity and lack of response.\nRefractory status now: lenalidomide-refractory, carfilzomib-refractory."
+        },
+        {
+          "name": "Further procedure",
+          "content": "Tumor board 20/01/2019. Next therapy line for high-risk refractory MM: discuss PACE regimen (or other salvage therapy)."
+        }
+      ]
+    },
+    {
+      "report_type": "doctor_letter",
+      "report_date": "2018-08-15",
+      "title": "Physician letter – First relapse, start of KRd.",
+      "sections": [
+        {
+          "name": "Diagnoses.",
+          "content": "Multiple myeloma, IgA LC lambda (initial diagnosis 09/2016)\n1st relapse (07/2018) after VCD + ASCT\nStart 2nd line: carfilzomib + lenalidomide + dexamethasone (KRd)"
+        },
+        {
+          "name": "Relapse.",
+          "content": "During follow-up 07/2018, IgA rise to 24.5 g/l. New osteolytic lesions on skeletal CT 20/07/2018: new osteolytic lesions at BWK5 (12 mm) and os sacrum (10 mm). First documented new osteolytic lesions on CT: 20/07/2018.\nBone marrow biopsy 25/07/2018: plasma cell infiltration 30%, t(4;14) positive, 1q21 gain persistent."
+        },
+        {
+          "name": "Therapy plan 2nd line.",
+          "content": "Start carfilzomib + lenalidomide + dexamethasone (KRd) from 01/08/2018.\nCarfilzomib 20 mg/m² days 1/2 cycle 1, then 27 mg/m² days 1, 2, 8, 9, 15, 16 / 28-day cycle.\nLenalidomide 25 mg/d p.o. days 1–21.\nDexamethasone 40 mg weekly.\n\nNote: Carfilzomib used with heightened cardiac caution due to history of atrial fibrillation. Pre-treatment echocardiography: EF 55%, no pericardial effusion."
+        },
+        {
+          "name": "Carfilzomib tolerability.",
+          "content": "Under KRd after 2 cycles: grade 2 dyspnoea and new fluid retention (leg oedema). Suspected carfilzomib-associated cardiac toxicity. Echocardiography cycle 3: EF 48% (decrease from 55% to 48%). Carfilzomib dose reduction to 20 mg/m², continued monitoring. Regular cardiological co-management. No pericardial effusion, no heart failure. Atrial fibrillation not worsened.\n\nCarfilzomib period: 01/08/2018 – 31/12/2018 (5 months, total 6 cycles)."
+        }
+      ]
+    },
+    {
+      "report_type": "doctor_letter",
+      "report_date": "2019-02-10",
+      "title": "Physician letter – Response under KRd, therapy termination.",
+      "sections": [
+        {
+          "name": "Response KRd.",
+          "content": "After 6 cycles KRd:\n- IgA: 22.1 g/l (baseline 24.5 g/l, only slight reduction)\n- Serum immunofixation: positive\n- Free light chains lambda: 380 mg/l\nAssessment: SD (stable disease) – insufficient tumour mass reduction.\nKRd therapy discontinued due to lack of response and carfilzomib toxicity.\n\nPost-KRd refractory: lenalidomide-refractory (no reduction under KRd), carfilzomib-refractory (no reduction, toxicity)."
+        },
+        {
+          "name": "Further procedure.",
+          "content": "Discussion at tumor board. Next line: PACE regimen (cisplatin, doxorubicin, cyclophosphamide, etoposide) for refractory disease."
+        }
+      ]
+    },
+    {
+      "report_type": "tumor_board",
+      "report_date": "2019-01-21",
+      "title": "Tumor board decision – SD after KRd, 3rd line PACE.",
+      "sections": [
+        {
+          "name": "Reason for discussion.",
+          "content": "Treatment planning after SD under KRd × 6 in triple-refractory MM IgA lambda (PI-refractory [carfilzomib], IMiD-refractory [len], alkylators not yet used as rescue)."
+        },
+        {
+          "name": "Refractoriness status.",
+          "content": "Bortezomib: used in 1L VCD, no immediate relapse after bortezomib – formally not refractory (initial response PR).\nCarfilzomib: SD under KRd → refractory.\nLenalidomide: progression under len maintenance → refractory.\nCD38 antibody: not received.\nPomalidomide: not received."
+        },
+        {
+          "name": "Resolution",
+          "content": "3rd therapy line: PACE regimen (cisplatin + doxorubicin + cyclophosphamide + etoposide) as salvage therapy. Caution cumulative doxorubicin (heart failure risk due to carfilzomib cardiotoxicity: EF 48%). Close cardiological supervision. PACE start April 2019 (after short recovery break). Zoledronic acid pause due to renal insufficiency (GFR 38 ml/min)."
+        }
+      ]
+    },
+    {
+      "report_type": "doctor_letter",
+      "report_date": "2019-03-11",
+      "title": "Physician letter – Pre‑therapeutic examinations before PACE",
+      "sections": [
+        {
+          "name": "Diagnoses",
+          "content": "Multiple myeloma, IgA LC lambda (initial diagnosis 09/2016)\nSD after KRd, lenalidomide-refractory, carfilzomib-refractory\nPreparation for PACE salvage therapy"
+        },
+        {
+          "name": "Current course",
+          "content": "Pre-therapeutic evaluation completed.\nEchocardiography 28/02/2019: EF 50% (recovery from 48% after carfilzomib discontinuation). No pericardial effusion. No heart failure.\nLabs 07/03/2019: IgA 22.4 g/l (stable), FLC lambda 395 mg/l. Hb 9.8 g/dl, neutrophils 2.0 G/l. Creatinine 1.9 mg/dl, eGFR 38 ml/min. Potassium 4.2 mmol/l.\nHearing test and audiometry (cisplatin pre-assessment): normal hearing, no contraindication.\nECOG: 2."
+        },
+        {
+          "name": "Chronic medication",
+          "content": "Lenalidomide discontinued. Furosemide 40 mg/d (as needed). Apixaban 2.5 mg 1-0-1. Amlodipine 5 mg. Ramipril 2.5 mg. Valacyclovir continued."
+        },
+        {
+          "name": "Further procedure",
+          "content": "PACE cycle 1 inpatient admission 01/04/2019 (4-day continuous infusion, intensive care backup)."
+        }
+      ]
+    },
+    {
+      "report_type": "doctor_letter",
+      "report_date": "2019-05-20",
+      "title": "Physician letter – PACE cycles 1–2, tolerability and response",
+      "sections": [
+        {
+          "name": "3rd‑line therapy",
+          "content": "Start PACE regimen (cisplatin 10 mg/m²/d CIV + doxorubicin 10 mg/m²/d CIV × 4 days + cyclophosphamide 400 mg/m²/d CIV × 4 days + etoposide 40 mg/m²/d CIV × 4 days) from 01/04/2019.\nCycles 1 and 2 completed.\n\nDoxorubicin period: within PACE: 01/04/2019 – 04/04/2019 (cycle 1), 22/04/2019 – 25/04/2019 (cycle 2). Cumulative doxorubicin dose: 2 cycles × 4 days × 10 mg/m² × 1.88 m² BSA = approx. 150 mg total."
+        },
+        {
+          "name": "PACE tolerability",
+          "content": "Tolerability of PACE: very poor. Cycle 1: severe mucositis grade 3 (oral and oesophageal lesions), grade 4 neutropenia (G-CSF therapy), febrile neutropenia with inpatient admission, antibiotics with meropenem (20/04/2019 – 30/04/2019, 10 days).\nCycle 2: again mucositis grade 2, grade 3 anaemia (Hb 6.8 g/dl), transfusion 4 packed red blood cells. Sepsis: blood culture positive for E. coli on 28/04/2019, antibiotics with meropenem (28/04/2019 – 10/05/2019).\nAfter 2 cycles PACE, therapy discontinued due to toxicity."
+        },
+        {
+          "name": "PACE response",
+          "content": "Response after 2 cycles PACE: IgA 17.2 g/l (baseline 22.1 g/l), immunofixation positive. Mixed response. Therapy discontinued due to toxicity."
+        }
+      ]
+    },
+    {
+      "report_type": "doctor_letter",
+      "report_date": "2019-06-10",
+      "title": "Physician letter – Post‑PACE discharge, bridging",
+      "sections": [
+        {
+          "name": "Diagnoses",
+          "content": "Multiple myeloma, IgA LC lambda (initial diagnosis 09/2016)\nAfter PACE × 2 (04–05/2019): mixed response, therapy discontinued due to toxicity\nCurrently: recovery from PACE toxicity"
+        },
+        {
+          "name": "Current course",
+          "content": "After completing PACE cycle 2 (ended 30/04/2019) and E. coli sepsis (antibiotics until 10/05/2019), now discharged inpatient on 10/06/2019.\nRecovery labs 06/06/2019: Hb 9.8 g/dl, leukocytes 4.8 G/l, neutrophils 2.4 G/l, platelets 118 G/l. IgA 17.2 g/l.\nOral mucositis fully resolved. No fever.\nOral mucosa: normal findings. ECOG 2 (weaker than before PACE)."
+        },
+        {
+          "name": "Further procedure",
+          "content": "Tumor board 24/06/2019 for planning 4th therapy line. PACE therapy discontinued. Further options: daratumumab-based regimen, pomalidomide. Bridging phase until decision."
+        }
+      ]
+    },
+    {
+      "report_type": "tumor_board",
+      "report_date": "2019-06-24",
+      "title": "Tumor board decision – post‑PACE, 4th line daratumumab‑based",
+      "sections": [
+        {
+          "name": "Reason for discussion",
+          "content": "4th line treatment planning after discontinuation of PACE × 2 (toxicity) in triple-class-refractory MM IgA lambda."
+        },
+        {
+          "name": "Refractoriness status",
+          "content": "Bortezomib: formally not refractory (1L VCD → PR).\nCarfilzomib: refractory (SD under KRd).\nLenalidomide: refractory (progression under len maintenance).\nPomalidomide: not received → still an option.\nDaratumumab: not received → option.\nAlkylators (cyclophosphamide in VCD, cyclophosphamide+doxorubicin in PACE): partially exposed."
+        },
+        {
+          "name": "Decision",
+          "content": "4th line: daratumumab + pomalidomide + dexamethasone (Dara-Pd), start 01/10/2019 after complete recovery from PACE toxicity. Pomalidomide dose 4 mg (with possible reduction to 3 mg due to pre-existing neutropenia). Await haematopoietic recovery. ECOG monitoring."
+        }
+      ]
+    },
+    {
+      "report_type": "doctor_letter",
+      "report_date": "2019-08-12",
+      "title": "Physician letter – bridging phase before Dara‑Pd, staging",
+      "sections": [
+        {
+          "name": "Diagnoses",
+          "content": "Multiple myeloma, IgA LC lambda (initial diagnosis 09/2016)\nAfter PACE discontinuation – recovery phase\nPreparation for 4th line Dara-Pd"
+        },
+        {
+          "name": "Current course",
+          "content": "Patient recovering from PACE toxicity. ECOG now 1 (improvement). No signs of infection.\nLabs 09/08/2019: IgA 19.6 g/l (slight rise vs. 17.2 g/l 06/2019 – progression). FLC lambda 520 mg/l. Hb 10.2 g/dl, neutrophils 2.8 G/l.\nRenal function: creatinine 1.9 mg/dl, eGFR 38 ml/min, stable.\nNo new organ damage. No new CRAB criterion (fracture unchanged, no hypercalcaemia, no new renal insufficiency)."
+        },
+        {
+          "name": "Further procedure",
+          "content": "Start Dara-Pd October 2019. Until then: low-dose dexamethasone 20 mg/week as bridging therapy. Next follow-up September 2019."
+        }
+      ]
+    },
+    {
+      "report_type": "doctor_letter",
+      "report_date": "2019-11-08",
+      "title": "Physician letter – fourth line therapy Dara‑Pd",
+      "sections": [
+        {
+          "name": "Diagnoses",
+          "content": "Multiple myeloma, IgA LC lambda (initial diagnosis 09/2016)\n4th line: daratumumab + pomalidomide + dexamethasone (Dara-Pd)\nAfter VCD (1L), ASCT, KRd (2L), PACE (3L)"
+        },
+        {
+          "name": "Therapy",
+          "content": "Start daratumumab + pomalidomide + dexamethasone (Dara-Pd) from 01/10/2019.\nDaratumumab 16 mg/kg i.v. weekly cycles 1–2, every 2 weeks cycles 3–6, monthly from cycle 7.\nPomalidomide 4 mg/d p.o. days 1–21 / 28-day cycle.\nDexamethasone 40 mg weekly.\n\nPomalidomide period: 01/10/2019 – 31/03/2021 (18 months)."
+        },
+        {
+          "name": "Tolerability of Pomalidomide",
+          "content": "Pomalidomide tolerability: grade 3 neutropenia in cycle 3 (dose reduction to 3 mg). Fatigue grade 2 (persistent). No thrombotic event. No infection. Overall acceptable tolerability at reduced dose."
+        }
+      ]
+    },
+    {
+      "report_type": "doctor_letter",
+      "report_date": "2020-02-03",
+      "title": "Physician letter – Dara-Pd quarterly review, PR confirmed",
+      "sections": [
+        {
+          "name": "Diagnoses",
+          "content": "Multiple myeloma, IgA LC lambda (initial diagnosis 09/2016)\n4th line: Dara-Pd (ongoing)\nAfter 4 cycles Dara-Pd: PR"
+        },
+        {
+          "name": "Current course",
+          "content": "Dara-Pd since October 2019 (4 cycles). First remission assessment:\n- IgA: 11.0 g/l (baseline 22 g/l, -50%) → PR\n- Immunofixation: positive\n- FLC lambda: 680 mg/l (baseline 1280 mg/l at therapy start 10/2019)\nGrade 3 neutropenia in cycle 3 → pomalidomide dose reduction to 3 mg.\nDaratumumab infusions well tolerated. No infusion-related anaphylaxis. Fatigue grade 2 (persistent).\nCreatinine 1.9 mg/dl, eGFR 38 ml/min (stable CKD IIIb)."
+        },
+        {
+          "name": "Chronic medication",
+          "content": "Daratumumab 16 mg/kg i.v. every 2 weeks (from cycle 3)\nPomalidomide 3 mg days 1–21\nDexamethasone 40 mg weekly\nApixaban 2.5 mg 1-0-1\nAmlodipine 5 mg\nRamipril 2.5 mg\nValacyclovir 500 mg\nPantoprazole 40 mg"
+        },
+        {
+          "name": "Further procedure",
+          "content": "Next quarterly follow-up 06/2020. Daratumumab monthly from cycle 7."
+        }
+      ]
+    },
+    {
+      "report_type": "doctor_letter",
+      "report_date": "2020-06-08",
+      "title": "Physician letter – Dara-Pd quarterly review, response stable",
+      "sections": [
+        {
+          "name": "Diagnoses",
+          "content": "Multiple myeloma, IgA LC lambda (initial diagnosis 09/2016)\n4th line: Dara-Pd, PR sustained"
+        },
+        {
+          "name": "Current course",
+          "content": "8 months Dara-Pd. Remission stable.\n- IgA: 10.8 g/l (stable vs. 11.0 g/l 02/2020), immunofixation positive\n- FLC lambda: 640 mg/l (stable)\nHb 9.6 g/dl (chronic anaemia, stable). Neutrophils 2.2 G/l. Creatinine 1.9 mg/dl.\nFatigue grade 2 persists. No infection since therapy start. Daratumumab monthly (cycle 7+), well tolerated.\nECOG: 2."
+        },
+        {
+          "name": "Further procedure",
+          "content": "Next follow-up 09/2020 with skeletal imaging."
+        }
+      ]
+    },
+    {
+      "report_type": "radiology",
+      "report_date": "2020-09-21",
+      "title": "Skeletal CT – follow-up under Dara-Pd",
+      "sections": [
+        {
+          "name": "Full report",
+          "content": "Clinical information: MM IgA lambda, 4th line Dara-Pd, PR after 10 cycles. Follow-up of osteolytic lesions.\n\nClinical question: New osteolytic lesions? Fracture progression?\n\nPrior imaging: Skeletal CT 19/03/2018.\n\nFindings: Spine: LWK3 compression fracture stable. Known osteolytic lesions BWK8, BWK12 stable. New: Small lytic lesion BWK4 (6 mm). Pelvis: Osteolytic lesions bilateral os ilium stable. Left femur: Lytic lesion stable (14 mm). No new fractures. No cortical breakthrough.\n\nConclusion: Predominantly stable osseous situation under Dara-Pd. New small osteolytic lesion BWK4 – close monitoring. No immediate fracture risk."
+        }
+      ]
+    },
+    {
+      "report_type": "doctor_letter",
+      "report_date": "2020-11-16",
+      "title": "Physician letter – Dara-Pd year-end summary, ongoing PR",
+      "sections": [
+        {
+          "name": "Diagnoses",
+          "content": "Multiple myeloma, IgA LC lambda (initial diagnosis 09/2016)\n4th line: Dara-Pd, 13 months, PR sustained"
+        },
+        {
+          "name": "Current course",
+          "content": "13 months Dara-Pd. Patient in stable condition. IgA 11.2 g/l (stable, immunofixation positive). FLC lambda 660 mg/l. Hb 9.8 g/dl. Neutrophils 2.0 G/l.\nCT 09/2020: New small osteolytic lesion BWK4, remaining lesions stable.\nCreatinine 2.0 mg/dl (slight deterioration). eGFR 35 ml/min. Urine proteinuria 0.8 g/24h (tubular insufficiency).\nECOG 2. Atrial fibrillation paroxysmal, no event."
+        },
+        {
+          "name": "Further procedure",
+          "content": "Continue therapy. Next follow-up 02/2021. Nephrology consult due to creatinine rise."
+        }
+      ]
+    },
+    {
+      "report_type": "doctor_letter",
+      "report_date": "2021-01-25",
+      "title": "Physician letter – Dara-Pd follow-up, IgA rise – early progression",
+      "sections": [
+        {
+          "name": "Diagnoses",
+          "content": "Multiple myeloma, IgA LC lambda (initial diagnosis 09/2016)\n4th line: Dara-Pd – IgA rise, suspected incipient progression"
+        },
+        {
+          "name": "Current course",
+          "content": "Labs 22/01/2021: IgA 18.2 g/l (rise from 11.2 g/l 11/2020 to 18.2 g/l – +62%, clinically significant).\nFLC lambda: 1420 mg/l (substantial rise). Immunofixation strongly positive.\nCreatinine 3.4 mg/dl (rise, eGFR 17 ml/min) – renewed renal deterioration.\nHb 8.8 g/dl, platelets 98 G/l. LDH 380 U/l (elevated, progression marker).\nAssessment: Biochemical progression under Dara-Pd. No CRAB criterion yet clinically, but rapid deterioration of all markers. Close monitoring."
+        },
+        {
+          "name": "Further procedure",
+          "content": "Weekly laboratory monitoring. Nephrology consult (renewed renal deterioration). Tumor board presentation if progression confirmed. Haemodialysis preparation."
+        }
+      ]
+    },
+    {
+      "report_type": "doctor_letter",
+      "report_date": "2021-04-15",
+      "title": "Physician letter – Progress under Dara-Pd, dialysis again",
+      "sections": [
+        {
+          "name": "Diagnoses",
+          "content": "Multiple myeloma, IgA LC lambda (initial diagnosis 09/2016)\nProgression under Dara-Pd (4th line)\nRenewed acute renal failure, dialysis required (04/2021)\nECOG: 2"
+        },
+        {
+          "name": "Response to Dara-Pd",
+          "content": "Under Dara-Pd: initial PR (IgA decrease from 22 g/l to 11 g/l after 4 cycles). From 03/2021 renewed IgA rise to 28 g/l. Immunofixation strongly positive. Progression confirmed.\n\nResponse status: daratumumab-refractory, pomalidomide-refractory."
+        },
+        {
+          "name": "Renal failure",
+          "content": "Acute-on-chronic renal failure in the context of myeloma progression. Creatinine rise to 4.8 mg/dl (03/2021), eGFR <12 ml/min. Haemodialysis started 08/04/2021 (3× weekly). Patient compliance good. Ablation of renal function by myeloma/LC deposition.\n\nDate of renal failure: 03/2021 (creatinine rise), dialysis start 08/04/2021."
+        },
+        {
+          "name": "HCT‑CI",
+          "content": "HCT-CI calculation:\n- Atrial fibrillation: 1 point (arrhythmia)\n- Mild hepatic dysfunction (hepatic steatosis): 1 point (mild hepatic abnormality)\n- Renal function moderate-severe (CKD IIIb/dialysis): 2 points (renal moderate-severe)\nTotal HCT-CI score: 4 points → High risk."
+        }
+      ]
+    },
+    {
+      "report_type": "pathology",
+      "report_date": "2021-05-10",
+      "title": "Bone marrow biopsy – Progress after Dara-Pd",
+      "sections": [
+        {
+          "name": "Findings",
+          "content": "Bone marrow core biopsy from 08/05/2021.\nCellularity: 85%.\nPlasma cell infiltration: 60% (marked increase).\nCD138+, lambda+, IgA+."
+        },
+        {
+          "name": "FISH result",
+          "content": "FISH (05/2021):\n- t(4;14): POSITIVE (persists, now 72% of cells)\n- del(17p): POSITIVE (NEW, 28% of cells) – acquired under therapy\n- 1q21 gain: POSITIVE (68% of cells, increase)\n\nComparison with initial diagnosis (09/2016): del(17p) newly acquired. t(4;14) and 1q21 gain persist."
+        }
+      ]
+    },
+    {
+      "report_type": "doctor_letter",
+      "report_date": "2021-07-12",
+      "title": "Physician letter – Hemodialysis maintenance, Best Supportive Care",
+      "sections": [
+        {
+          "name": "Diagnoses",
+          "content": "Multiple myeloma, IgA LC lambda (initial diagnosis 09/2016)\nProgression under Dara-Pd (4th line), dialysis required (since 08/04/2021)\nCurrently no cytotoxic therapy – best supportive care"
+        },
+        {
+          "name": "Current course",
+          "content": "Patient on regular haemodialysis 3× weekly (Tue, Thu, Sat) since 08/04/2021. Compliance good.\nLabs 08/07/2021: IgA 30.2 g/l (stable after progression, under BSC). FLC lambda 1960 mg/l. Hb 8.8 g/dl (dialysis-associated anaemia, erythropoietin therapy started). Platelets 82 G/l.\nECOG 2. No acute infection. Atrial fibrillation stable under apixaban.\nAnti-BCMA therapies being assessed: teclistamab authorisation (EMA) pending, active study search."
+        },
+        {
+          "name": "Chronic medication",
+          "content": "No cytotoxic therapy.\nErythropoietin (darbepoetin alfa 150 µg s.c. weekly)\nApixaban 2.5 mg 1-0-1\nAmlodipine 5 mg\nPantoprazole 40 mg\nValacyclovir 500 mg\nPhosphate binder (sevelamer carbonate)"
+        },
+        {
+          "name": "Further procedure",
+          "content": "Continue haemodialysis. Tumor board presentation once new therapy option available. Next follow-up 10/2021."
+        }
+      ]
+    },
+    {
+      "report_type": "doctor_letter",
+      "report_date": "2021-10-18",
+      "title": "Physician letter – Quarterly control under dialysis, search for therapy option",
+      "sections": [
+        {
+          "name": "Diagnoses",
+          "content": "Multiple myeloma, IgA LC lambda (initial diagnosis 09/2016)\nDialysis required (since 04/2021)\nContinued BSC – no cytotoxic therapy possible"
+        },
+        {
+          "name": "Current course",
+          "content": "Patient on haemodialysis, stable situation. IgA 31.8 g/l (slowly rising). FLC lambda 2100 mg/l.\nHb 9.2 g/dl (erythropoietin therapy with improvement). Platelets 76 G/l (mild thrombocytopenia). ECOG 2. No organ failure beyond kidney.\nTeclistamab (BiTE, BCMA×CD3): EMA authorisation in Europe expected 08/2022. MajesTEC-1 study: patient registered for named patient programme."
+        },
+        {
+          "name": "Further procedure",
+          "content": "Continue BSC/dialysis. Next follow-up 01/2022. Tumor board once teclistamab available."
+        }
+      ]
+    },
+    {
+      "report_type": "tumor_board",
+      "report_date": "2022-01-17",
+      "title": "Tumor board decision – Teclistamab via Named Patient Program",
+      "sections": [
+        {
+          "name": "Meeting purpose",
+          "content": "Treatment planning 5th line in quad-refractory MM IgA lambda, dialysis-dependent. Teclistamab (BCMA × CD3 bispecific antibody) now available via named patient programme (before EMA authorisation)."
+        },
+        {
+          "name": "Refractoriness status",
+          "content": "1L VCD+ASCT → PR, VGPR; 2L KRd → SD (carfilzomib-refractory, len-refractory); 3L PACE × 2 → discontinued due to toxicity; 4L Dara-Pd → PR → PD (dara-refractory, pom-refractory). Bortezomib: formally not refractory."
+        },
+        {
+          "name": "Decision",
+          "content": "Start teclistamab (BCMA × CD3) via named patient programme from 01/02/2022. Step-up dosing due to CRS risk. Inpatient monitoring for at least 48h after each step-up dose. Caution dialysis: close coordination with nephrology."
+        }
+      ]
+    },
+    {
+      "report_type": "doctor_letter",
+      "report_date": "2022-02-14",
+      "title": "Physician letter – Teclistamab step‑up dosing, CRS grade 1",
+      "sections": [
+        {
+          "name": "Diagnoses",
+          "content": "Multiple myeloma, IgA LC lambda (initial diagnosis 09/2016)\n5th line: teclistamab (BiTE) – step-up completed"
+        },
+        {
+          "name": "Current course",
+          "content": "Teclistamab step-up dosing performed:\n- 01/02/2022: 0.06 mg/kg s.c. → CRS grade 1 (fever 38.4°C, 6h after injection, self-limiting, no corticosteroid required)\n- 08/02/2022: 0.3 mg/kg s.c. → No CRS\n- 15/02/2022: 1.5 mg/kg s.c. → No CRS (full dose reached)\nInpatient monitoring 48h each time. No ICANS. CRS prophylaxis: dexamethasone + diphenhydramine + acetaminophen.\nDialysis continued without problems during hospitalisation."
+        },
+        {
+          "name": "Further procedure",
+          "content": "Weekly teclistamab injections outpatient. Next follow-up 04/2022 (after 2 cycles)."
+        }
+      ]
+    },
+    {
+      "report_type": "doctor_letter",
+      "report_date": "2022-04-11",
+      "title": "Physician letter – Teclistamab 2 cycles, SD – no depth of response",
+      "sections": [
+        {
+          "name": "Diagnoses",
+          "content": "Multiple myeloma, IgA LC lambda (initial diagnosis 09/2016)\n5th line: teclistamab, 2 cycles – SD"
+        },
+        {
+          "name": "Current course",
+          "content": "Teclistamab since 15/02/2022 weekly 1.5 mg/kg s.c. (after step-up). 2 cycles (8 doses) completed.\nResponse: IgA 26.0 g/l (baseline 28.3 g/l – minimal reduction -8%, no PR). Immunofixation strongly positive. FLC lambda 1820 mg/l (stable).\nInfections: pneumonia 03/2022 (Haemophilus influenzae, antibiotics 10 days, inpatient 1 week). CRS: no further episodes after step-up.\nECOG: 2."
+        },
+        {
+          "name": "Further procedure",
+          "content": "Teclistamab continued (SD – in immunotherapy response may be delayed). Next remission assessment after 4 cycles 07/2022. Caution infection prophylaxis: IVIG supplementation considered."
+        }
+      ]
+    },
+    {
+      "report_type": "doctor_letter",
+      "report_date": "2022-03-10",
+      "title": "Physician letter – 5th line: Teclistamab (BiTE)",
+      "sections": [
+        {
+          "name": "Diagnoses",
+          "content": "Multiple myeloma, IgA LC lambda (initial diagnosis 09/2016)\n5th line: teclistamab (BCMA × CD3 bispecific antibody / BiTE)\nQuadruple-class-exposed and refractory (PI, IMiD, CD38-antibody, alkylating)"
+        },
+        {
+          "name": "History and refractory status",
+          "content": "Therapy lines to date:\n09/2016–02/2017: VCD × 4 cycles → PR\n03/2017: HD-melphalan + autologous SCT → VGPR\n08/2018–12/2018: KRd × 6 cycles → SD (carfilzomib-refractory, lenalidomide-refractory)\n04/2019–05/2019: PACE × 2 cycles → mixed response, discontinued due to toxicity\n10/2019–03/2021: Dara-Pd → PR → progression (daratumumab-refractory, pomalidomide-refractory)\n\nRefractory status:\n- Bortezomib: not refractory (did not relapse on bortezomib, therapy ended for other reasons)\n- Carfilzomib: refractory (SD under KRd)\n- Lenalidomide: refractory (SD under KRd)\n- Pomalidomide: refractory (progression under Dara-Pd)\n- Daratumumab: refractory (progression under Dara-Pd)\n→ Triple-class-refractory: Yes (PI + IMiD + CD38-antibody)\n→ Quadruple-class-refractory: Yes (incl. alkylators/PACE)\n\nNo CAR-T received. No alloSCT received."
+        },
+        {
+          "name": "Therapy plan 5th line",
+          "content": "Start teclistamab (BCMA × CD3) within MajesTEC-1 programme from 01/02/2022.\nStep-up dosing: 0.06 mg/kg, then 0.3 mg/kg, then 1.5 mg/kg s.c. weekly.\nHospitalisation for initial CRS monitoring required."
+        },
+        {
+          "name": "Current status",
+          "content": "ECOG: 2 (persistent fatigue, reduced mobility, dialysis-dependent 3×/week, otherwise ambulatory).\nNo ventilation. No alloSCT. No CAR-T therapy."
+        }
+      ]
+    },
+    {
+      "report_type": "doctor_letter",
+      "report_date": "2022-06-13",
+      "title": "Physician letter – Teclistamab cycles 3–4, pneumonia, SD ongoing",
+      "sections": [
+        {
+          "name": "Diagnoses",
+          "content": "Multiple myeloma, IgA LC lambda (initial diagnosis 09/2016)\n5th line teclistamab – after 4 cycles: SD, no PR\nPneumonia 06/2022 (hospitalised)"
+        },
+        {
+          "name": "Current course",
+          "content": "Teclistamab cycles 3–4 (04–06/2022) completed. Second pneumonia 01/06/2022 (P. aeruginosa, confirmed on BAL), inpatient treatment 01–14/06/2022 (piperacillin/tazobactam).\nResponse assessment after 4 cycles (teclistamab monthly interval from cycle 3):\n- IgA: 26.8 g/l (baseline 28.3 g/l, -5%) – formally SD\n- FLC lambda: 1840 mg/l (baseline, no decrease)\n- Immunofixation strongly positive\nAssessment: SD sustained, no response under teclistamab. Further cycles still justifiable, but PD threshold being monitored.\nECOG 2–3 (ECOG 3 during infection, back to 2 after recovery)."
+        },
+        {
+          "name": "Further procedure",
+          "content": "Teclistamab continued cautiously. IVIG supplementation 0.4 g/kg/month initiated (hypogammaglobulinaemia under teclistamab). Next remission assessment 07/2022."
+        }
+      ]
+    },
+    {
+      "report_type": "doctor_letter",
+      "report_date": "2022-08-20",
+      "title": "Physician letter – Response to Teclistamab, Progression",
+      "sections": [
+        {
+          "name": "Response to Teclistamab",
+          "content": "Under teclistamab (BiTE therapy, BCMA × CD3):\nAfter 2 cycles: SD (IgA 26 g/l, baseline 28 g/l, minimal reduction, no PR).\nAfter 4 cycles (07/2022): progression, IgA 32 g/l, new osteolytic lesions on skeletal imaging.\nTeclistamab discontinued 08/2022 due to progression after total 4 cycles.\n\nAdverse events: CRS grade 1 after step-up dose (fever, mild hypotension, self-limiting). Infections: 2 episodes of pneumonia (03/2022 and 06/2022) under teclistamab, treated with antibiotics.\n\nTeclistamab response (BiTE): SD → PD. Teclistamab-refractory."
+        },
+        {
+          "name": "Further procedure",
+          "content": "Patient is now quintuple-refractory: refractory to carfilzomib, lenalidomide, pomalidomide, daratumumab, teclistamab (BiTE). No approved standard next-line regimen available.\n\nNo alloSCT due to age (70 years), ECOG 2, comorbidities.\nDiscussion at tumor board. Patient informed of palliative situation. Possible study enrolment or best supportive care.\n\nECOG: 2. HCT-CI: 4 points (high risk)."
+        }
+      ]
+    },
+    {
+      "report_type": "tumor_board",
+      "report_date": "2022-08-25",
+      "title": "Tumor board decision – Progression after BiTE, further options",
+      "sections": [
+        {
+          "name": "Reason for discussion",
+          "content": "Progression under teclistamab (5th line) in a 70-year-old patient with quadruple-class-refractory multiple myeloma."
+        },
+        {
+          "name": "Previous therapy lines",
+          "content": "1L: VCD × 4 → PR; ASCT HD-melphalan → VGPR\n2L: KRd × 6 → SD (refractory)\n3L: PACE × 2 → mixed response, discontinued\n4L: Dara-Pd → PR → PD (refractory)\n5L: Teclistamab (BiTE) × 4 → SD → PD (refractory)"
+        },
+        {
+          "name": "Refractoriness status",
+          "content": "Triple-class-refractory: YES (PI-refractory [carfilzomib], IMiD-refractory [len+pom], CD38-antibody-refractory [dara])\nQuadruple-class-refractory: YES (incl. alkylators and PACE)\nBiTE-refractory (teclistamab): YES\nCAR-T: not received, not indicated due to ECOG 2, HCT-CI 4, dialysis-dependent"
+        },
+        {
+          "name": "Decision",
+          "content": "No further curative therapy options. Palliative situation. Study options actively sought: no suitable studies currently open. Transition to best supportive care discussed. Optimise pain therapy. Bisphosphonate pause (dialysis-dependent). Continue haemodialysis."
+        }
+      ]
+    },
+    {
+      "report_type": "doctor_letter",
+      "report_date": "2022-10-03",
+      "title": "Physician Letter – Best Supportive Care after BiTE Failure",
+      "sections": [
+        {
+          "name": "Diagnoses",
+          "content": "Multiple myeloma, IgA LC lambda (initial diagnosis 09/2016)\nAfter 5 therapy lines (VCD+ASCT, KRd, PACE, Dara-Pd, teclistamab): quintuple-refractory\nBest supportive care\nHaemodialysis 3× weekly"
+        },
+        {
+          "name": "Current Course",
+          "content": "Teclistamab discontinued 08/2022 due to progression (IgA 32 g/l, PD). Patient informed of palliative situation. No further curative therapy options available.\nCurrent labs 30/09/2022: IgA 34.2 g/l, FLC lambda 2380 mg/l. Hb 8.6 g/dl. Platelets 68 G/l. Creatinine on dialysis.\nECOG 2–3 (increasing weakness). No pain (pain therapy optimised). No active infection."
+        },
+        {
+          "name": "Chronic Medication",
+          "content": "Haemodialysis 3× weekly\nErythropoietin s.c. weekly\nApixaban 2.5 mg 1-0-1 (atrial fibrillation, CHA₂DS₂-VASc score 4)\nAmlodipine 5 mg\nPantoprazole 40 mg\nMetamizole 500 mg as needed (pain)\nPhosphate binder"
+        },
+        {
+          "name": "Further Procedure",
+          "content": "Quarterly follow-up 12/2022. Optimise pain therapy. Palliative team involved. Family meeting planned. Possible study options still being assessed (currently none open)."
+        }
+      ]
+    },
+    {
+      "report_type": "radiology",
+      "report_date": "2022-11-14",
+      "title": "Skeletal CT – Palliative Follow‑up",
+      "sections": [
+        {
+          "name": "Full report",
+          "content": "Clinical information: MM IgA lambda, quintuple-refractory, best supportive care, haemodialysis. Palliative follow-up.\n\nClinical question: Fracture risk? New osteolytic lesions?\n\nPrior imaging: Skeletal CT 21/09/2020.\n\nFindings: Spine: LWK3 compression fracture stable. BWK4 lesion (6 mm, since 09/2020): now 10 mm, slight progression. BWK8, BWK12, LWK1 stable lesions. Pelvis: Osteolytic lesions bilateral os ilium slightly progressive. New small osteolytic lesion os sacrum (8 mm). Left femur: Lytic lesion 14 mm stable, no cortical breakthrough. No new manifest fracture.\n\nConclusion: Slight osseous progression in the context of palliated non-curative disease. No immediate fracture risk. Adjust pain therapy if clinically indicated."
+        }
+      ]
+    },
+    {
+      "report_type": "doctor_letter",
+      "report_date": "2022-12-05",
+      "title": "Physician Letter – Quarterly Review BSC, Stable Palliative Situation",
+      "sections": [
+        {
+          "name": "Diagnoses",
+          "content": "Multiple myeloma, IgA LC lambda (initial diagnosis 09/2016)\nQuintuple-refractory, best supportive care\nHaemodialysis 3× weekly"
+        },
+        {
+          "name": "Current Course",
+          "content": "Patient stable under BSC, no further deterioration. ECOG 2–3. No acute hospitalisation since tumor board 08/2022.\nLabs 02/12/2022: IgA 36.8 g/l (slowly rising). Hb 9.0 g/dl (under erythropoietin). Platelets 64 G/l.\nPain control: metamizole and low-dose opioid (morphine SR 10 mg 1-0-1) with good response.\nPalliative team care established. Home care options discussed. Patient wishes outpatient follow-up for as long as possible."
+        },
+        {
+          "name": "Further Procedure",
+          "content": "Continue dialysis and BSC. Next follow-up 03/2023. No further tumour-specific therapies planned."
+        }
+      ]
+    }
+  ],
+  "lab_values": [
+    {
+      "name": "IgA",
+      "date": "2016-09-08",
+      "value": "58.2",
+      "unit": "g/l",
+      "reference_range": "0.7 - 4.0"
+    },
+    {
+      "name": "IgG",
+      "date": "2016-09-08",
+      "value": "3.8",
+      "unit": "g/l",
+      "reference_range": "7.0 - 16.0"
+    },
+    {
+      "name": "Free light chains Lambda",
+      "date": "2016-09-08",
+      "value": "1840",
+      "unit": "mg/l",
+      "reference_range": "5.7 - 26.3"
+    },
+    {
+      "name": "Free light chains Kappa",
+      "date": "2016-09-08",
+      "value": "8.4",
+      "unit": "mg/l",
+      "reference_range": "3.3 - 19.4"
+    },
+    {
+      "name": "Kappa/Lambda",
+      "date": "2016-09-08",
+      "value": "0.005",
+      "unit": "",
+      "reference_range": "0.26 - 1.65"
+    },
+    {
+      "name": "Beta-2 microglobulin",
+      "date": "2016-09-08",
+      "value": "8.2",
+      "unit": "mg/l",
+      "reference_range": "< 2.5"
+    },
+    {
+      "name": "Albumin",
+      "date": "2016-09-08",
+      "value": "2.9",
+      "unit": "g/dl",
+      "reference_range": "3.5 - 5.0"
+    },
+    {
+      "name": "LDH",
+      "date": "2016-09-08",
+      "value": "388",
+      "unit": "U/l",
+      "reference_range": "< 244"
+    },
+    {
+      "name": "Calcium",
+      "date": "2016-09-08",
+      "value": "2.8",
+      "unit": "mmol/l",
+      "reference_range": "2.15 - 2.55"
+    },
+    {
+      "name": "Creatinine",
+      "date": "2016-09-08",
+      "value": "3.2",
+      "unit": "mg/dl",
+      "reference_range": "0.7 - 1.3"
+    },
+    {
+      "name": "eGFR",
+      "date": "2016-09-08",
+      "value": "18",
+      "unit": "ml/min",
+      "reference_range": "> 60"
+    },
+    {
+      "name": "Potassium",
+      "date": "2016-09-08",
+      "value": "6.2",
+      "unit": "mmol/l",
+      "reference_range": "3.5 - 5.0"
+    },
+    {
+      "name": "Hemoglobin",
+      "date": "2016-09-08",
+      "value": "8.1",
+      "unit": "g/dl",
+      "reference_range": "13.5 - 17.5"
+    },
+    {
+      "name": "Leukocytes",
+      "date": "2016-09-08",
+      "value": "9.8",
+      "unit": "G/l",
+      "reference_range": "4.0 - 9.0"
+    },
+    {
+      "name": "Platelets",
+      "date": "2016-09-08",
+      "value": "88",
+      "unit": "G/l",
+      "reference_range": "150 - 400"
+    },
+    {
+      "name": "Inflammatory markers",
+      "date": "2016-09-08",
+      "value": "12.4",
+      "unit": "mg/dl",
+      "reference_range": "< 0.5"
+    },
+    {
+      "name": "Creatinine",
+      "date": "2016-10-05",
+      "value": "1.8",
+      "unit": "mg/dl",
+      "reference_range": "0.7 - 1.3"
+    },
+    {
+      "name": "eGFR",
+      "date": "2016-10-05",
+      "value": "38",
+      "unit": "ml/min",
+      "reference_range": "> 60"
+    },
+    {
+      "name": "IgA",
+      "date": "2017-02-15",
+      "value": "18.4",
+      "unit": "g/l",
+      "reference_range": "0.7 - 4.0"
+    },
+    {
+      "name": "Free light chains Lambda",
+      "date": "2017-02-15",
+      "value": "420",
+      "unit": "mg/l",
+      "reference_range": "5.7 - 26.3"
+    },
+    {
+      "name": "Creatinine",
+      "date": "2017-02-15",
+      "value": "1.8",
+      "unit": "mg/dl",
+      "reference_range": "0.7 - 1.3"
+    },
+    {
+      "name": "Hemoglobin",
+      "date": "2017-02-15",
+      "value": "10.2",
+      "unit": "g/dl",
+      "reference_range": "13.5 - 17.5"
+    },
+    {
+      "name": "IgA",
+      "date": "2017-06-05",
+      "value": "6.2",
+      "unit": "g/l",
+      "reference_range": "0.7 - 4.0"
+    },
+    {
+      "name": "Free light chains lambda",
+      "date": "2017-06-05",
+      "value": "62.0",
+      "unit": "mg/l",
+      "reference_range": "5.7 - 26.3"
+    },
+    {
+      "name": "Hemoglobin",
+      "date": "2017-06-05",
+      "value": "11.8",
+      "unit": "g/dl",
+      "reference_range": "13.5 - 17.5"
+    },
+    {
+      "name": "IgA",
+      "date": "2018-07-20",
+      "value": "24.5",
+      "unit": "g/l",
+      "reference_range": "0.7 - 4.0"
+    },
+    {
+      "name": "Free light chains lambda",
+      "date": "2018-07-20",
+      "value": "680",
+      "unit": "mg/l",
+      "reference_range": "5.7 - 26.3"
+    },
+    {
+      "name": "Beta‑2 microglobulin",
+      "date": "2018-07-20",
+      "value": "5.8",
+      "unit": "mg/l",
+      "reference_range": "< 2.5"
+    },
+    {
+      "name": "Creatinine",
+      "date": "2018-07-20",
+      "value": "2.1",
+      "unit": "mg/dl",
+      "reference_range": "0.7 - 1.3"
+    },
+    {
+      "name": "Hemoglobin",
+      "date": "2018-07-20",
+      "value": "9.8",
+      "unit": "g/dl",
+      "reference_range": "13.5 - 17.5"
+    },
+    {
+      "name": "LDH",
+      "date": "2018-07-20",
+      "value": "342",
+      "unit": "U/l",
+      "reference_range": "< 244"
+    },
+    {
+      "name": "IgA",
+      "date": "2019-02-05",
+      "value": "22.1",
+      "unit": "g/l",
+      "reference_range": "0.7 - 4.0"
+    },
+    {
+      "name": "Hemoglobin",
+      "date": "2019-02-05",
+      "value": "9.2",
+      "unit": "g/dl",
+      "reference_range": "13.5 - 17.5"
+    },
+    {
+      "name": "Hemoglobin",
+      "date": "2019-04-28",
+      "value": "6.8",
+      "unit": "g/dl",
+      "reference_range": "13.5 - 17.5"
+    },
+    {
+      "name": "Leukocytes",
+      "date": "2019-04-28",
+      "value": "0.4",
+      "unit": "G/l",
+      "reference_range": "4.0 - 9.0"
+    },
+    {
+      "name": "Neutrophils",
+      "date": "2019-04-28",
+      "value": "0.1",
+      "unit": "G/l",
+      "reference_range": "1.8 - 7.5"
+    },
+    {
+      "name": "Inflammatory markers",
+      "date": "2019-04-28",
+      "value": "22.8",
+      "unit": "mg/dl",
+      "reference_range": "< 0.5"
+    },
+    {
+      "name": "IgA",
+      "date": "2021-03-10",
+      "value": "28.3",
+      "unit": "g/l",
+      "reference_range": "0.7 - 4.0"
+    },
+    {
+      "name": "Free light chains lambda",
+      "date": "2021-03-10",
+      "value": "2240",
+      "unit": "mg/l",
+      "reference_range": "5.7 - 26.3"
+    },
+    {
+      "name": "Creatinine",
+      "date": "2021-03-10",
+      "value": "4.8",
+      "unit": "mg/dl",
+      "reference_range": "0.7 - 1.3"
+    },
+    {
+      "name": "eGFR",
+      "date": "2021-03-10",
+      "value": "11",
+      "unit": "ml/min",
+      "reference_range": "> 60"
+    },
+    {
+      "name": "Hemoglobin",
+      "date": "2021-03-10",
+      "value": "8.5",
+      "unit": "g/dl",
+      "reference_range": "13.5 - 17.5"
+    },
+    {
+      "name": "Leukocytes",
+      "date": "2021-03-10",
+      "value": "4.2",
+      "unit": "G/l",
+      "reference_range": "4.0 - 9.0"
+    },
+    {
+      "name": "Platelets",
+      "date": "2021-03-10",
+      "value": "96",
+      "unit": "G/l",
+      "reference_range": "150 - 400"
+    },
+    {
+      "name": "Beta2-Microglobulin",
+      "date": "2021-03-10",
+      "value": "18.4",
+      "unit": "mg/l",
+      "reference_range": "< 2.5"
+    },
+    {
+      "name": "LDH",
+      "date": "2021-03-10",
+      "value": "412",
+      "unit": "U/l",
+      "reference_range": "< 244"
+    },
+    {
+      "name": "IgA",
+      "date": "2022-07-15",
+      "value": "26.0",
+      "unit": "g/l",
+      "reference_range": "0.7 - 4.0"
+    },
+    {
+      "name": "Free Light Chains Lambda",
+      "date": "2022-07-15",
+      "value": "1820",
+      "unit": "mg/l",
+      "reference_range": "5.7 - 26.3"
+    },
+    {
+      "name": "Hemoglobin",
+      "date": "2022-07-15",
+      "value": "8.8",
+      "unit": "g/dl",
+      "reference_range": "13.5 - 17.5"
+    },
+    {
+      "name": "Creatinine",
+      "date": "2022-07-15",
+      "value": "5.2",
+      "unit": "mg/dl",
+      "reference_range": "0.7 - 1.3"
+    },
+    {
+      "name": "LDH",
+      "date": "2022-07-15",
+      "value": "480",
+      "unit": "U/l",
+      "reference_range": "< 244"
+    },
+    {
+      "name": "Albumin",
+      "date": "2022-07-15",
+      "value": "2.6",
+      "unit": "g/dl",
+      "reference_range": "3.5 - 5.0"
+    },
+    {
+      "name": "Platelets",
+      "date": "2022-07-15",
+      "value": "74",
+      "unit": "G/l",
+      "reference_range": "150 - 400"
+    },
+    {
+      "name": "Inflammatory marker",
+      "date": "2022-07-15",
+      "value": "8.4",
+      "unit": "mg/dl",
+      "reference_range": "< 0.5"
+    },
+    {
+      "name": "IgA",
+      "date": "2016-10-05",
+      "value": "42.0",
+      "unit": "g/l",
+      "reference_range": "0.7 - 4.0"
+    },
+    {
+      "name": "Free Light Chains Lambda",
+      "date": "2016-10-05",
+      "value": "1240",
+      "unit": "mg/l",
+      "reference_range": "5.7 - 26.3"
+    },
+    {
+      "name": "Calcium",
+      "date": "2016-10-05",
+      "value": "2.4",
+      "unit": "mmol/l",
+      "reference_range": "2.15 - 2.55"
+    },
+    {
+      "name": "Hemoglobin",
+      "date": "2016-10-05",
+      "value": "9.4",
+      "unit": "g/dl",
+      "reference_range": "13.5 - 17.5"
+    },
+    {
+      "name": "Platelets",
+      "date": "2016-10-05",
+      "value": "128",
+      "unit": "G/l",
+      "reference_range": "150 - 400"
+    },
+    {
+      "name": "IgA",
+      "date": "2016-11-05",
+      "value": "32.5",
+      "unit": "g/l",
+      "reference_range": "0.7 - 4.0"
+    },
+    {
+      "name": "Free Light Chains Lambda",
+      "date": "2016-11-05",
+      "value": "820",
+      "unit": "mg/l",
+      "reference_range": "5.7 - 26.3"
+    },
+    {
+      "name": "Creatinine",
+      "date": "2016-11-05",
+      "value": "1.8",
+      "unit": "mg/dl",
+      "reference_range": "0.7 - 1.3"
+    },
+    {
+      "name": "eGFR",
+      "date": "2016-11-05",
+      "value": "38",
+      "unit": "ml/min",
+      "reference_range": "> 60"
+    },
+    {
+      "name": "Hemoglobin",
+      "date": "2016-11-05",
+      "value": "10.2",
+      "unit": "g/dl",
+      "reference_range": "13.5 - 17.5"
+    },
+    {
+      "name": "IgA",
+      "date": "2016-12-05",
+      "value": "22.8",
+      "unit": "g/l",
+      "reference_range": "0.7 - 4.0"
+    },
+    {
+      "name": "Free Light Chains Lambda",
+      "date": "2016-12-05",
+      "value": "560",
+      "unit": "mg/l",
+      "reference_range": "5.7 - 26.3"
+    },
+    {
+      "name": "Hemoglobin",
+      "date": "2016-12-05",
+      "value": "10.8",
+      "unit": "g/dl",
+      "reference_range": "13.5 - 17.5"
+    },
+    {
+      "name": "Neutrophils",
+      "date": "2016-12-05",
+      "value": "2.0",
+      "unit": "G/l",
+      "reference_range": "1.8 - 7.5"
+    },
+    {
+      "name": "IgA",
+      "date": "2017-03-06",
+      "value": "12.4",
+      "unit": "g/l",
+      "reference_range": "0.7 - 4.0"
+    },
+    {
+      "name": "Hemoglobin",
+      "date": "2017-03-06",
+      "value": "10.6",
+      "unit": "g/dl",
+      "reference_range": "13.5 - 17.5"
+    },
+    {
+      "name": "Leukocytes",
+      "date": "2017-03-06",
+      "value": "5.4",
+      "unit": "G/l",
+      "reference_range": "4.0 - 9.0"
+    },
+    {
+      "name": "Neutrophils",
+      "date": "2017-03-06",
+      "value": "3.8",
+      "unit": "G/l",
+      "reference_range": "1.8 - 7.5"
+    },
+    {
+      "name": "Platelets",
+      "date": "2017-03-06",
+      "value": "104",
+      "unit": "G/l",
+      "reference_range": "150 - 400"
+    },
+    {
+      "name": "Creatinine",
+      "date": "2017-03-06",
+      "value": "2.0",
+      "unit": "mg/dl",
+      "reference_range": "0.7 - 1.3"
+    },
+    {
+      "name": "IgA",
+      "date": "2017-09-15",
+      "value": "6.2",
+      "unit": "g/l",
+      "reference_range": "0.7 - 4.0"
+    },
+    {
+      "name": "Free Light Chains Lambda",
+      "date": "2017-09-15",
+      "value": "62.0",
+      "unit": "mg/l",
+      "reference_range": "5.7 - 26.3"
+    },
+    {
+      "name": "Creatinine",
+      "date": "2017-09-15",
+      "value": "1.8",
+      "unit": "mg/dl",
+      "reference_range": "0.7 - 1.3"
+    },
+    {
+      "name": "eGFR",
+      "date": "2017-09-15",
+      "value": "41",
+      "unit": "ml/min",
+      "reference_range": "> 60"
+    },
+    {
+      "name": "Hemoglobin",
+      "date": "2017-09-15",
+      "value": "12.2",
+      "unit": "g/dl",
+      "reference_range": "13.5 - 17.5"
+    },
+    {
+      "name": "Neutrophils",
+      "date": "2017-09-15",
+      "value": "3.4",
+      "unit": "G/l",
+      "reference_range": "1.8 - 7.5"
+    },
+    {
+      "name": "IgA",
+      "date": "2017-12-08",
+      "value": "6.8",
+      "unit": "g/l",
+      "reference_range": "0.7 - 4.0"
+    },
+    {
+      "name": "Free light chains lambda",
+      "date": "2017-12-08",
+      "value": "74.0",
+      "unit": "mg/l",
+      "reference_range": "5.7 - 26.3"
+    },
+    {
+      "name": "Hemoglobin",
+      "date": "2017-12-08",
+      "value": "11.8",
+      "unit": "g/dl",
+      "reference_range": "13.5 - 17.5"
+    },
+    {
+      "name": "Neutrophils",
+      "date": "2017-12-08",
+      "value": "2.4",
+      "unit": "G/l",
+      "reference_range": "1.8 - 7.5"
+    },
+    {
+      "name": "Platelets",
+      "date": "2017-12-08",
+      "value": "158",
+      "unit": "G/l",
+      "reference_range": "150 - 400"
+    },
+    {
+      "name": "Creatinine",
+      "date": "2017-12-08",
+      "value": "1.8",
+      "unit": "mg/dl",
+      "reference_range": "0.7 - 1.3"
+    },
+    {
+      "name": "IgA",
+      "date": "2018-05-11",
+      "value": "14.8",
+      "unit": "g/l",
+      "reference_range": "0.7 - 4.0"
+    },
+    {
+      "name": "Free light chains lambda",
+      "date": "2018-05-11",
+      "value": "182",
+      "unit": "mg/l",
+      "reference_range": "5.7 - 26.3"
+    },
+    {
+      "name": "Hemoglobin",
+      "date": "2018-05-11",
+      "value": "11.2",
+      "unit": "g/dl",
+      "reference_range": "13.5 - 17.5"
+    },
+    {
+      "name": "Creatinine",
+      "date": "2018-05-11",
+      "value": "1.9",
+      "unit": "mg/dl",
+      "reference_range": "0.7 - 1.3"
+    },
+    {
+      "name": "IgA",
+      "date": "2018-10-08",
+      "value": "18.2",
+      "unit": "g/l",
+      "reference_range": "0.7 - 4.0"
+    },
+    {
+      "name": "Free light chains lambda",
+      "date": "2018-10-08",
+      "value": "420",
+      "unit": "mg/l",
+      "reference_range": "5.7 - 26.3"
+    },
+    {
+      "name": "Hemoglobin",
+      "date": "2018-10-08",
+      "value": "10.4",
+      "unit": "g/dl",
+      "reference_range": "13.5 - 17.5"
+    },
+    {
+      "name": "Neutrophils",
+      "date": "2018-10-08",
+      "value": "2.4",
+      "unit": "G/l",
+      "reference_range": "1.8 - 7.5"
+    },
+    {
+      "name": "Creatinine",
+      "date": "2018-10-08",
+      "value": "1.9",
+      "unit": "mg/dl",
+      "reference_range": "0.7 - 1.3"
+    },
+    {
+      "name": "IgA",
+      "date": "2019-08-09",
+      "value": "19.6",
+      "unit": "g/l",
+      "reference_range": "0.7 - 4.0"
+    },
+    {
+      "name": "Free light chains lambda",
+      "date": "2019-08-09",
+      "value": "520",
+      "unit": "mg/l",
+      "reference_range": "5.7 - 26.3"
+    },
+    {
+      "name": "Hemoglobin",
+      "date": "2019-08-09",
+      "value": "10.2",
+      "unit": "g/dl",
+      "reference_range": "13.5 - 17.5"
+    },
+    {
+      "name": "Neutrophils",
+      "date": "2019-08-09",
+      "value": "2.8",
+      "unit": "G/l",
+      "reference_range": "1.8 - 7.5"
+    },
+    {
+      "name": "Creatinine",
+      "date": "2019-08-09",
+      "value": "1.9",
+      "unit": "mg/dl",
+      "reference_range": "0.7 - 1.3"
+    },
+    {
+      "name": "IgA",
+      "date": "2020-01-27",
+      "value": "11.0",
+      "unit": "g/l",
+      "reference_range": "0.7 - 4.0"
+    },
+    {
+      "name": "Free light chains lambda",
+      "date": "2020-01-27",
+      "value": "680",
+      "unit": "mg/l",
+      "reference_range": "5.7 - 26.3"
+    },
+    {
+      "name": "Hemoglobin",
+      "date": "2020-01-27",
+      "value": "9.6",
+      "unit": "g/dl",
+      "reference_range": "13.5 - 17.5"
+    },
+    {
+      "name": "Neutrophils",
+      "date": "2020-01-27",
+      "value": "2.0",
+      "unit": "G/l",
+      "reference_range": "1.8 - 7.5"
+    },
+    {
+      "name": "Platelets",
+      "date": "2020-01-27",
+      "value": "102",
+      "unit": "G/l",
+      "reference_range": "150 - 400"
+    },
+    {
+      "name": "Creatinine",
+      "date": "2020-01-27",
+      "value": "2.0",
+      "unit": "mg/dl",
+      "reference_range": "0.7 - 1.3"
+    },
+    {
+      "name": "LDH",
+      "date": "2020-01-27",
+      "value": "320",
+      "unit": "U/l",
+      "reference_range": "< 244"
+    },
+    {
+      "name": "IgA",
+      "date": "2020-06-05",
+      "value": "10.8",
+      "unit": "g/l",
+      "reference_range": "0.7 - 4.0"
+    },
+    {
+      "name": "Free light chains lambda",
+      "date": "2020-06-05",
+      "value": "640",
+      "unit": "mg/l",
+      "reference_range": "5.7 - 26.3"
+    },
+    {
+      "name": "Hemoglobin",
+      "date": "2020-06-05",
+      "value": "9.6",
+      "unit": "g/dl",
+      "reference_range": "13.5 - 17.5"
+    },
+    {
+      "name": "Platelets",
+      "date": "2020-06-05",
+      "value": "98",
+      "unit": "G/l",
+      "reference_range": "150 - 400"
+    },
+    {
+      "name": "Creatinine",
+      "date": "2020-06-05",
+      "value": "2.0",
+      "unit": "mg/dl",
+      "reference_range": "0.7 - 1.3"
+    },
+    {
+      "name": "IgA",
+      "date": "2020-11-12",
+      "value": "11.2",
+      "unit": "g/l",
+      "reference_range": "0.7 - 4.0"
+    },
+    {
+      "name": "Hemoglobin",
+      "date": "2020-11-12",
+      "value": "9.8",
+      "unit": "g/dl",
+      "reference_range": "13.5 - 17.5"
+    },
+    {
+      "name": "Platelets",
+      "date": "2020-11-12",
+      "value": "94",
+      "unit": "G/l",
+      "reference_range": "150 - 400"
+    },
+    {
+      "name": "Creatinine",
+      "date": "2020-11-12",
+      "value": "2.0",
+      "unit": "mg/dl",
+      "reference_range": "0.7 - 1.3"
+    },
+    {
+      "name": "LDH",
+      "date": "2020-11-12",
+      "value": "352",
+      "unit": "U/l",
+      "reference_range": "< 244"
+    },
+    {
+      "name": "IgA",
+      "date": "2021-01-22",
+      "value": "18.2",
+      "unit": "g/l",
+      "reference_range": "0.7 - 4.0"
+    },
+    {
+      "name": "Free light chains lambda",
+      "date": "2021-01-22",
+      "value": "1420",
+      "unit": "mg/l",
+      "reference_range": "5.7 - 26.3"
+    },
+    {
+      "name": "Creatinine",
+      "date": "2021-01-22",
+      "value": "3.4",
+      "unit": "mg/dl",
+      "reference_range": "0.7 - 1.3"
+    },
+    {
+      "name": "eGFR",
+      "date": "2021-01-22",
+      "value": "17",
+      "unit": "ml/min",
+      "reference_range": "> 60"
+    },
+    {
+      "name": "Hemoglobin",
+      "date": "2021-01-22",
+      "value": "8.8",
+      "unit": "g/dl",
+      "reference_range": "13.5 - 17.5"
+    },
+    {
+      "name": "Platelets",
+      "date": "2021-01-22",
+      "value": "98",
+      "unit": "G/l",
+      "reference_range": "150 - 400"
+    },
+    {
+      "name": "LDH",
+      "date": "2021-01-22",
+      "value": "380",
+      "unit": "U/l",
+      "reference_range": "< 244"
+    },
+    {
+      "name": "IgA",
+      "date": "2021-07-08",
+      "value": "30.2",
+      "unit": "g/l",
+      "reference_range": "0.7 - 4.0"
+    },
+    {
+      "name": "Free light chains lambda",
+      "date": "2021-07-08",
+      "value": "1960",
+      "unit": "mg/l",
+      "reference_range": "5.7 - 26.3"
+    },
+    {
+      "name": "Hemoglobin",
+      "date": "2021-07-08",
+      "value": "8.8",
+      "unit": "g/dl",
+      "reference_range": "13.5 - 17.5"
+    },
+    {
+      "name": "Platelets",
+      "date": "2021-07-08",
+      "value": "82",
+      "unit": "G/l",
+      "reference_range": "150 - 400"
+    },
+    {
+      "name": "IgA",
+      "date": "2021-10-15",
+      "value": "31.8",
+      "unit": "g/l",
+      "reference_range": "0.7 - 4.0"
+    },
+    {
+      "name": "Free light chains lambda",
+      "date": "2021-10-15",
+      "value": "2100",
+      "unit": "mg/l",
+      "reference_range": "5.7 - 26.3"
+    },
+    {
+      "name": "Hemoglobin",
+      "date": "2021-10-15",
+      "value": "9.2",
+      "unit": "g/dl",
+      "reference_range": "13.5 - 17.5"
+    },
+    {
+      "name": "Platelets",
+      "date": "2021-10-15",
+      "value": "76",
+      "unit": "G/l",
+      "reference_range": "150 - 400"
+    },
+    {
+      "name": "IgA",
+      "date": "2022-06-10",
+      "value": "26.8",
+      "unit": "g/l",
+      "reference_range": "0.7 - 4.0"
+    },
+    {
+      "name": "Free light chains lambda",
+      "date": "2022-06-10",
+      "value": "1840",
+      "unit": "mg/l",
+      "reference_range": "5.7 - 26.3"
+    },
+    {
+      "name": "Hemoglobin",
+      "date": "2022-06-10",
+      "value": "8.6",
+      "unit": "g/dl",
+      "reference_range": "13.5 - 17.5"
+    },
+    {
+      "name": "Neutrophils",
+      "date": "2022-06-10",
+      "value": "1.8",
+      "unit": "G/l",
+      "reference_range": "1.8 - 7.5"
+    },
+    {
+      "name": "Platelets",
+      "date": "2022-06-10",
+      "value": "70",
+      "unit": "G/l",
+      "reference_range": "150 - 400"
+    },
+    {
+      "name": "LDH",
+      "date": "2022-06-10",
+      "value": "468",
+      "unit": "U/l",
+      "reference_range": "< 244"
+    },
+    {
+      "name": "IgA",
+      "date": "2022-09-30",
+      "value": "34.2",
+      "unit": "g/l",
+      "reference_range": "0.7 - 4.0"
+    },
+    {
+      "name": "Free light chains lambda",
+      "date": "2022-09-30",
+      "value": "2380",
+      "unit": "mg/l",
+      "reference_range": "5.7 - 26.3"
+    },
+    {
+      "name": "Hemoglobin",
+      "date": "2022-09-30",
+      "value": "8.6",
+      "unit": "g/dl",
+      "reference_range": "13.5 - 17.5"
+    },
+    {
+      "name": "Platelets",
+      "date": "2022-09-30",
+      "value": "68",
+      "unit": "G/l",
+      "reference_range": "150 - 400"
+    },
+    {
+      "name": "LDH",
+      "date": "2022-09-30",
+      "value": "495",
+      "unit": "U/l",
+      "reference_range": "< 244"
+    },
+    {
+      "name": "Albumin",
+      "date": "2022-09-30",
+      "value": "2.4",
+      "unit": "g/dl",
+      "reference_range": "3.5 - 5.0"
+    },
+    {
+      "name": "IgA",
+      "date": "2022-12-02",
+      "value": "36.8",
+      "unit": "g/l",
+      "reference_range": "0.7 - 4.0"
+    },
+    {
+      "name": "Hemoglobin",
+      "date": "2022-12-02",
+      "value": "9.0",
+      "unit": "g/dl",
+      "reference_range": "13.5 - 17.5"
+    },
+    {
+      "name": "Platelets",
+      "date": "2022-12-02",
+      "value": "64",
+      "unit": "G/l",
+      "reference_range": "150 - 400"
+    },
+    {
+      "name": "LDH",
+      "date": "2022-12-02",
+      "value": "510",
+      "unit": "U/l",
+      "reference_range": "< 244"
+    }
+  ]
+}

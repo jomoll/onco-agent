@@ -1,0 +1,61 @@
+skill:
+  id: workflows.refractory_classification
+  name: Refractory Classification Workflow
+  version: 1
+  category: workflow
+  description: >
+    Select for refractory-status questions that require class-level exposure and resistance
+    assessment (single/triple/quadruple-class) with supporting evidence; use for trial options
+    tied to refractory status.
+  triggers:
+    question_types: ["refractory_status", "next_step"]
+    semantic_cues:
+      - "Requests refractory tier (single/double/triple/quad) based on class exposures."
+    keywords: ["(optional lexicon) refraktär, Progress, Triple-Class, Quadruple-Class"]
+    data_domains: ["doctor_letter", "tumor_board"]
+activation:
+  intent: "Use when class-based refractory status must be derived from therapy lines."
+conflicts:
+  - workflows.current_status_check
+steps:
+  - name: Enumerate prior lines
+    detail: >
+      Use retrieve_reports (therapy sections) to list each line with agents, start/stop dates,
+      and best documented response. Normalize regimen aliases using parsing skills.
+  - name: Identify progression events
+    detail: >
+      For each line, search for reports describing progression, relapse, or discontinuation due
+      to intolerance. Capture the date and evidence snippet.
+  - name: Map classes
+    detail: >
+      Categorize each regimen into mechanism classes (PI, IMiD, anti-CD38, alkylator, cellular therapy).
+      Build a table showing which classes the patient has failed.
+  - name: Determine refractory tier
+    detail: >
+      Based on the mapping, label the patient as single/double/triple/quadruple-class refractory.
+      If data for a class are missing, mark it as unknown rather than assuming.
+requirements:
+  - "Cite at least one report per line documenting the therapy and outcome."
+  - "Explicitly state the definition used (e.g., progression on treatment vs. within 60 days)."
+  - "Highlight missing class exposure so future steps can address gaps."
+uncertainty:
+  missing_evidence: "Refraktär-Status unklar wegen fehlender Linien-/Progress-Daten; fehlende Klassen markieren."
+retry_policy:
+  max_attempts: 2
+  rules:
+    - "Allow at most 1 retry for any retrieval step."
+    - "Retries must change scope meaningfully (top_k jump, broaden date range, or switch to a different report_type/corpus)."
+outputs:
+  - "Table of prior lines with regimen, dates, best response."
+  - "Class exposure summary (PI, IMiD, anti-CD38, etc.)."
+  - "Refractory tier conclusion with rationale."
+micro_tests:
+  should_activate:
+    - "Ist der Patient triple-class refraktär?"
+    - "Welche Klassen wurden versagt (PI/IMiD/CD38)?"
+    - "Refraktärstatus für BCMA-Studie ermitteln."
+  should_not_activate:
+    - "Nimmt der Patient aktuell Lenalidomid?"  # status
+    - "Wie hat sich das Paraprotein entwickelt?"  # lab trend
+  adversarial:
+    - "Unklare Progress-Dokumentation; reicht das für triple-class?"  # must note missing evidence

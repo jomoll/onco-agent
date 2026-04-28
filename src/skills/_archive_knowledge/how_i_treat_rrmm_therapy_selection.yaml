@@ -1,0 +1,143 @@
+skill:
+  id: knowledge.how_i_treat_rrmm_therapy_selection
+  name: Relapsed MM therapy selection and next-step planning by resistance profile (Blood How I Treat 2022)
+  version: 1
+  category: knowledge
+  description: >
+    Practice-oriented domain knowledge for relapsed and relapsed/refractory MM (RRMM) based on a Blood "How I treat" article.
+    Use for Category 3 questions about therapy planning and next steps at relapse, especially first relapse, structured around
+    resistance to lenalidomide, bortezomib, and anti-CD38 therapy, plus patient-specific constraints (neuropathy, cytopenias, renal
+    impairment, cardiovascular risk, frailty). This is a decision scaffold, not a guideline with binding rules.
+
+  triggers:
+    question_types: ["therapy_planning", "next_step", "relapse_strategy", "eligibility"]
+    keywords:
+      - "relapsed, relapse, progression, biochemical relapse, IMWG refractory, within 60 days"
+      - "lenalidomide refractory, pomalidomide, bortezomib refractory, carfilzomib, ixazomib"
+      - "daratumumab refractory, isatuximab, elotuzumab"
+      - "PVd, Dara-Kd, Isa-Kd, Dara-Rd, KRd, IRd, SVd, venetoclax, t(11;14)"
+      - "salvage ASCT, second transplant, pentarefractory, triple-class refractory"
+    semantic_cues:
+      - "Question asks what to do at biochemical or clinical relapse and whether to treat now."
+      - "Question asks which regimen fits given prior exposure and refractoriness to lenalidomide and or anti-CD38."
+      - "Question asks about options when double refractory or penta-refractory."
+      - "Question asks whether salvage ASCT is reasonable and what to use for reinduction."
+    data_domains: ["therapy_history", "lab_values", "clinical_status", "pathology", "tumor_board", "imaging"]
+
+activation:
+  intent: >
+    Provide a structured plan for relapse management anchored to resistance status and practical constraints.
+    Output a short regimen shortlist with rationale and an explicit list of missing data that blocks decision making.
+
+requirements:
+  - "Label this as practice-oriented guidance (How I treat). Do not present as binding guideline or local SOP."
+  - "Do not invent approvals, doses, or eligibility cutoffs. If regulatory status matters, label it as uncertain or local."
+  - "Always separate (A) relapse type and urgency from (B) resistance profile and (C) patient constraints."
+  - "If recommending venetoclax, require explicit t(11;14) evidence and state that Ven-Vd is not approved in this context per the article."
+  - "If considering anti-CD38 reuse after daratumumab refractoriness, explicitly state evidence is limited."
+
+knowledge:
+  provenance:
+    paper: "Kastritis, Terpos, Dimopoulos. Blood 2022;139(19):2904-2917. How I treat relapsed multiple myeloma."
+    anchors:
+      - "Definition of refractoriness and timing: pages 1-2"
+      - "First relapse selection logic and Figure 1: pages 2-3"
+      - "Patient-factor fit matrix (Figure 2): page 3"
+      - "Salvage ASCT discussion: page 9"
+      - "Multirefractory and novel immunotherapies overview: pages 9-10"
+
+  core_principles:
+    - "Most patients relapse and require sequential therapies; resistance to major drug classes is the critical driver of regimen choice."
+    - "Three-drug regimens are the standard approach at relapse when feasible."
+    - "Biochemical relapse often merits earlier treatment than waiting for symptomatic relapse, based on accumulating data cited by the authors."
+
+  definitions_and_urgency:
+    refractoriness_definition:
+      - "IMWG style refractoriness is progression while on therapy or within 60 days after the last dose."
+    relapse_type_guardrail:
+      - "Distinguish biochemical relapse from clinical relapse and document the evidence for progression before changing therapy."
+
+  decision_inputs_required:
+    - "Prior lines and exact exposure history, including maintenance therapy at relapse (lenalidomide maintenance is common)."
+    - "Resistance status: lenalidomide refractory, bortezomib refractory, daratumumab refractory."
+    - "Time since last dose of key agents, because an IMiD-free interval can affect pomalidomide activity."
+    - "Patient constraints: neuropathy, cytopenias, renal impairment, cardiovascular risk, frailty, infection history."
+    - "Risk stratification: ISS/R-ISS/R2-ISS staging at relapse can inform intensity of therapy and trial eligibility. Check for documented staging or calculate using available lab values and cytogenetics."
+    - "Cytogenetics where relevant (for example t(11;14) when considering venetoclax, or high-risk features for trial stratification)."
+
+  therapy_selection_scaffold:
+    first_relapse_lenalidomide_resistant:
+      framing:
+        - "Lenalidomide resistance is the key determinant for salvage therapy selection in current practice."
+      preferred_classes:
+        - "Class switch away from lenalidomide backbone, typically using anti-CD38 plus a PI or pomalidomide-based triplets."
+      regimens_highlighted_by_authors:
+        - "Daratumumab plus carfilzomib and dexamethasone (Dara-Kd56)."
+        - "Isatuximab plus carfilzomib and dexamethasone (Isa-Kd56)."
+        - "Pomalidomide plus bortezomib and dexamethasone (PVd), with mature second-line data."
+        - "Daratumumab plus bortezomib and dexamethasone (Dara-Vd) is considered less active than anti-CD38 plus carfilzomib options."
+      patient_factor_notes:
+        - "Residual neuropathy argues against bortezomib-based choices."
+        - "Cytopenias and renal impairment can constrain IMiD or alkylator additions."
+
+    double_refractory_lenalidomide_and_bortezomib:
+      framing:
+        - "Combine agents with no cross-resistance and consider alkylator-containing regimens when many novel options are exhausted or unavailable."
+      options_discussed:
+        - "Anti-CD38 plus pomalidomide and dexamethasone (Dara-Pd or Isa-Pd) or Elo-Pd as antibody plus Pd options."
+        - "Carfilzomib-based options, sometimes with cyclophosphamide (KCyD) as an alkylator-containing intensification."
+        - "Polychemotherapy can be a bridge in fit patients when rapid control is needed."
+      caution:
+        - "Subgroup evidence for anti-CD38 plus carfilzomib in true double-refractory populations is limited in the cited trials."
+
+    first_relapse_not_lenalidomide_resistant:
+      framing:
+        - "If relapse occurs off lenalidomide or after a sufficiently long interval, an Rd-based triplet can be used."
+      rd_based_options:
+        - "Dara-Rd is presented as the preferred Rd-based option by PFS outcomes in standard-risk first relapse."
+        - "KRd is also an effective option with PFS and OS benefit in first relapse in the cited evidence base."
+        - "IRd and Elo-Rd are alternatives with more nuanced benefit profiles depending on prior therapy and line."
+      pi_based_options_if_bortezomib_sensitive:
+        - "Kd56, Dara-Vd, Dara-Kd56, or Isa-Kd56 are PI-based options depending on prior exposures and constraints."
+
+    daratumumab_refractory_first_relapse:
+      framing:
+        - "As daratumumab moves to first-line, daratumumab-refractory relapse will become common; mechanisms and reversibility remain uncertain."
+      options_discussed:
+        - "If not exposed to lenalidomide, consider lenalidomide plus PI regimens (KRd, IRd, VRd) or switch to a different antibody class such as elotuzumab (Elo-Rd)."
+        - "If refractory to both daratumumab and lenalidomide, consider PI-based combinations such as Kd or PVd; evidence is limited in this exact setting."
+        - "Selinexor plus Vd (SVd) is discussed as a mechanistically different option with limited daratumumab-refractory data."
+      anti_cd38_reuse_caveat:
+        - "Evidence for daratumumab retreatment at second line is limited, and isatuximab monotherapy after daratumumab refractoriness had low response in a small cited study."
+
+  salvage_asct:
+    when_to_consider:
+      - "Strongly consider salvage ASCT for eligible patients who deferred ASCT in first remission."
+      - "Consider second ASCT selectively for patients relapsing late after frontline ASCT, often when the first PFS interval is around 3 to 4 years in common expert practice cited."
+    reinduction_notes:
+      - "If on lenalidomide maintenance, a non-lenalidomide regimen that includes a PI is a reasonable reinduction template."
+      - "In biochemical-only relapse, moving directly to high-dose melphalan can be considered in selected cases, per the narrative discussion."
+
+  multirefractory_and_novel_immunotherapy:
+    prognosis_flag:
+      - "Penta-refractory disease is associated with very poor outcomes in the cited cohort (median OS 5.6 months)."
+    later_line_options_discussed:
+      - "Selinexor-dexamethasone and belantamab mafodotin are described as options for triple-class refractory disease, with notable toxicity tradeoffs."
+      - "BCMA-directed CAR-T and bispecific antibodies are described as highly active options, constrained by availability, logistics, and evolving sequencing considerations."
+
+guidelines:
+  - "Output format for relapse questions: (1) Relapse type and urgency, (2) Resistance profile, (3) Patient constraints, (4) Regimen shortlist (2 to 3 options) with rationale, (5) What data is missing, (6) Next steps and monitoring."
+  - "If the record lacks exact dates of last lenalidomide, bortezomib, or daratumumab dose, mark resistance status as Unclear and state what to check."
+  - "If neuropathy, cytopenias, renal impairment, or infection burden are present, explicitly map them to regimen feasibility, referencing Figure 2 logic."
+  - "Avoid long enumerations of all regimens. Prioritize the smallest actionable shortlist consistent with the resistance profile."
+
+micro_tests:
+  should_activate:
+    - "Patient relapses while on lenalidomide maintenance. What is the next line?"
+    - "Biochemical relapse only. Treat now or wait?"
+    - "Lenalidomide- and bortezomib-refractory. What options remain?"
+    - "Progression on daratumumab-based first line. Next step?"
+    - "Is salvage ASCT reasonable at first relapse?"
+  should_not_activate:
+    - "Frontline induction choice for transplant-eligible NDMM."
+    - "CAR-T eligibility criteria for a specific product (use CAR-T trial cards instead)."

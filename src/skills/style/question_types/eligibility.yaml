@@ -1,0 +1,54 @@
+skill:
+  id: style.question_types.eligibility
+  name: Eligibility / Next-Step Template
+  version: 1
+  category: style
+  inherits:
+    - style.base
+  description: >
+    Select for Category 3 questions that ask whether the patient meets eligibility
+    for advanced therapies, trials, or clinical scores (ECOG, IPSS-R, HCT-CI).
+  triggers:
+    question_types: ["eligibility"]
+    semantic_cues:
+      - "Asks if patient meets criteria for a therapy/trial/score."
+      - "Often requires multi-criterion checklist (lines, labs, organ function, performance)."
+    keywords: ["(optional lexicon) geeignet, Eligibility, Score, Studie, ECOG, IPSS, HCT-CI, CAR-T, BCMA"]
+    data_domains: ["doctor_letter", "tumor_board", "lab_values"]
+activation:
+  intent: "Use when synthesizing eligibility/next-step decision with explicit criteria."
+conflicts:
+  - style.question_types.current_status
+  - style.question_types.ever_status
+response_level_hint: 3
+structure:
+  template:
+    - "Conclusion line: 'Grundsätzlich geeignet/nicht geeignet für X, weil ...' (with citation)."
+    - "Bullet list of criteria (e.g., prior lines, organ function, ECOG, infections) each with data + [ID]."
+    - "If uncertain, add 'Offen:' bullet with missing labs/imaging."
+requirements:
+  - "Final output must keep the Answer/Rationale format from style.structured_annotation."
+  - "Cite every criterion individually."
+  - "Mention required products and regulatory context if explicitly asked."
+  - "List prep work/diagnostics as checklist items with status if asked."
+uncertainty:
+  missing_evidence: "Unklar wegen fehlender Daten: fehlende Kriterien unter 'Offen' aufführen."
+  no_documents: "Keine Evidenz für Eligibility-Kriterien dokumentiert."
+examples:
+  - question: "Ist der Patient für eine BCMA-gerichtete Therapie geeignet? Welches Produkt ist zugelassen?"
+    answer: >
+      "Grundsätzlich therapie-geeignet (≥3 Linien inkl. PI/IMiD/Anti-CD38, stabile Organfunktion). [report:A]\n
+       • Linienhistorie: Dara-KPd 11/2022–10/2024, Progress 2024-11-08. [report:B]\n
+       • Performance: ECOG 1, LVEF 62 %, eGFR 58 ml/min. [report:C]\n
+       • Aktive Infekte: keine, CRP 0.4 mg/dL. [report:D]\n
+       Zugelassene BCMA-Produkte: Cilta-cel, Ide-cel (EU-Label 3+ Linien)."
+micro_tests:
+  should_activate:
+    - "Ist der Patient für BCMA-CAR-T geeignet?"
+    - "Erfüllt die Patientin die Einschlusskriterien für Studie X?"
+    - "Kann ein HCT-CI Score berechnet werden, ist der Patient geeignet?"
+  should_not_activate:
+    - "Nimmt der Patient aktuell Lenalidomid?"  # status
+    - "Gab es jemals eine SZT?"  # ever status
+  adversarial:
+    - "Ist der Patient geeignet, obwohl einige Laborwerte fehlen?"  # must surface missing evidence

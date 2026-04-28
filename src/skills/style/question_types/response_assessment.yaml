@@ -1,0 +1,84 @@
+skill:
+  id: style.question_types.response_assessment
+  name: Response Assessment Template
+  version: 1
+  category: style
+  inherits:
+    - style.base
+  description: >
+    Select for Category 2 questions asking about response depth (IMWG) or tolerance
+    to a specific therapy/regimen.
+  triggers:
+    question_types: ["response_assessment"]
+    semantic_cues:
+      - "Asks for response depth (IMWG) or tolerance under a regimen."
+      - "May request best response, progression, or toxicity."
+    keywords: ["(optional lexicon) IMWG, VGPR, CR, Ansprechen, Verträglichkeit, Toxizität"]
+    data_domains: ["doctor_letter", "tumor_board", "lab_values"]
+activation:
+  intent: "Use when the question is about depth of response or toxicity under a named regimen."
+conflicts:
+  - style.question_types.current_status
+  - style.question_types.comparison
+response_level_hint: 2
+structure:
+  template:
+    - "Lead sentence: 'Unter <Regime> zeigte sich eine <IMWG-Kategorie>.'"
+    - "Bullet/line for paraprotein/FLC trend (start → nadir)."
+    - "Bullet/line for imaging or marrow confirmation."
+    - "Optional bullet for tolerability/adverse events."
+requirements:
+  - "Final output must keep the Answer/Rationale format from style.structured_annotation; use this template to shape rationale content, not the Answer line."
+  - "Explicitly name the IMWG category (sCR, CR, VGPR, PR, MR, SD, PD)."
+  - "Provide the measurement dates supporting best response and progression."
+  - "Mention key toxicities with CTCAE grade if documented."
+  - "Keep it concise: 3–4 lines max (lead + 2–3 bullets)."
+  - "Stop after summarizing best response with supporting trend evidence; do not expand beyond required timepoints."
+  - >
+    CRITICAL: Only count formally documented IMWG response categories. The response
+    category must appear as an explicit classification in the text (e.g., 'Response: CR',
+    'VGPR erreicht', 'partielle Remission'). Do NOT infer a response category from
+    lab values alone (e.g., do not infer CR from negative immunofixation, do not infer
+    VGPR from >90% paraprotein reduction).
+  - >
+    For "best response" questions: enumerate ALL therapy lines and their documented
+    IMWG responses. Select the deepest (sCR > CR > VGPR > PR > MR > SD > PD).
+    If no formal IMWG response is documented, answer 'Nicht dokumentiert'.
+  - >
+    RETRIEVAL OBLIGATION for best-response questions: Do not return the first response
+    assessment found. Use at least two retrieval calls — one targeted at the specific
+    therapy period named in the question (time_scope covering that line's dates), and
+    one broader call covering the full history (time_scope="all") to catch later
+    reassessments that may document a deeper response. Responses are sometimes documented
+    months after the nadir; a VGPR documented at cycle 3 may become CR at cycle 6.
+    Only finalise the answer after both calls are complete.
+  - >
+    Always include BOTH the IMWG category AND the therapy name in the answer.
+    Match the response to the correct therapy line — verify the response assessment
+    date falls within the therapy period and mentions the therapy by name.
+temporal_authority:
+  - "Best response = deepest IMWG category reached during therapy (sCR > CR > VGPR > PR > MR > SD > PD)."
+  - "Search entire therapy period, not just recent reports; progression reports may exist after best response."
+  - "Look for explicit categorization ('Response: CR', 'VGPR erreicht'); avoid inferring from isolated lab values."
+  - "A response assessment must temporally overlap with the queried therapy to be attributed to it."
+uncertainty:
+  missing_evidence: "IMWG-Kategorie nicht belegbar; gemessene Werte mit Datum nennen und Unsicherheit explizit kennzeichnen."
+  no_documents: "Keine Response-Dokumentation verfügbar."
+examples:
+  - question: "Wie war die Response auf Isa/Pom/Dex?"
+    answer: >
+      "Unter Isa/Pom/Dex (Linie 4, 2023-04 bis 2023-11) wurde eine VGPR erreicht. [report:Tx1]\n
+       Paraprotein fiel von 3.4 g/dL (2023-04-03) auf 0.4 g/dL (2023-08-21). [report:Lab1]\n
+       Knochenmark 2023-09-15 mit <5% Plasmazellen. [report:BM1]"
+micro_tests:
+  should_activate:
+    - "Wie war die Response auf Dara-VRd?"
+    - "Welche Nebenwirkungen traten unter KRD auf?"
+    - "Hat der Patient eine VGPR erreicht?"
+  should_not_activate:
+    - "Nimmt der Patient aktuell Lenalidomid?"  # current status
+    - "Vergleiche IgG zwischen April und August."  # pure comparison
+  adversarial:
+    - "War die Therapie wirksam oder nicht, obwohl nur ein einzelner Labwert vorliegt?"  # must note insufficient evidence
+    - "Erster abgerufener Bericht zeigt VGPR (Zyklus 3), späterer Bericht dokumentiert CR (Zyklus 6) → must return CR as best response, not VGPR."
+    - "Bester Response unter Erstlinie gefragt, aber Response-Dokumentation erscheint nur in Bericht zur zweiten Linie → attribute response to correct therapy line by verifying dates overlap with treatment period."

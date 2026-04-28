@@ -1,0 +1,50 @@
+skill:
+  id: style.question_types.current_status
+  name: Current Status Template
+  version: 1
+  category: style
+  inherits:
+    - style.base
+  description: >
+    Select for Category 1 current-status questions (yes/no on ongoing medication, device,
+    infection). Focus on the most recent documentation.
+  triggers:
+    question_types: ["current_status"]
+    semantic_cues:
+      - "Asks if a therapy/device/condition is ongoing or present right now / at the reference date."
+      - "Binary yes/no about current medication plan, device in place, infection or complication present."
+    keywords: ["(optional lexicon hints) aktuell, laufend, derzeit, erhält, unter Therapie, Katheter liegt, Infekt besteht"]
+    data_domains: ["doctor_letter", "tumor_board", "Medikationsplan"]
+activation:
+  intent: "Use for present-tense status of an intervention without exploring full history or first/last dates."
+conflicts:
+  - style.question_types.ever_status
+  - style.question_types.temporal_localization
+  - style.question_types.comparison
+  - style.question_types.lab_trend
+response_level_hint: 1
+structure:
+  template:
+    - "Satz 1 (Pflicht, max 1 Satz): 'Ja/Nein, <Intervention> ...' + neuestes Datum + Quelle."
+    - "Satz 2 (optional, max 1 Satz): nur falls Klärung nötig (z.B. Erhaltung vs. Akuttherapie, Dosis/Route wenn relevant)."
+requirements:
+  - "Final output must keep the Answer/Rationale format from style.structured_annotation."
+  - "Keep it concise: maximum 2 sentences total."
+  - "One decisive sentence; optional second only if it clarifies dose/route."
+  - "Cite the most recent report verifying the status."
+uncertainty:
+  missing_evidence: "Nein, keine Dokumentation bis <Datum>."
+examples:
+  - question: "Nimmt der Patient aktuell Lenalidomid?"
+    answer: >
+      "Ja, Lenalidomid 10 mg p.o. 1-0-0 als Erhaltung seit 2024-11-08. [report:Med2024]"
+micro_tests:
+  should_activate:
+    - "Nimmt die Patientin derzeit Carfilzomib?"
+    - "Liegt aktuell ein zentraler Katheter?"
+    - "Besteht zum Stichtag 2024-11-08 ein aktiver Infekt?"
+  should_not_activate:
+    - "Wann begann die Lenalidomid-Erhaltung?"  # first occurrence → temporal localization
+    - "Wie hat sich das Paraprotein im Verlauf entwickelt?"  # trend
+  adversarial:
+    - "Ist aktuell KEIN Dexamethason mehr im Plan, weil die letzte Dosis abgesetzt wurde?"  # negative phrasing, requires citing latest omission

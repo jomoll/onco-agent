@@ -1,0 +1,57 @@
+skill:
+  id: style.question_types.temporal_localization
+  name: Temporal Localization Template
+  version: 1
+  category: style
+  inherits:
+    - style.base
+  description: >
+    Answers that pinpoint the first/last occurrence of an event (new lesions,
+    organ failure onset, imaging change).
+  triggers:
+    question_types: ["temporal_localization"]
+    semantic_cues:
+      - "Requests the date of first/last occurrence or onset."
+      - "Often phrased as 'wann/seit wann/erstmals/zuletzt'."
+    keywords: ["(optional lexicon) wann, erstmals, seit wann, zuletzt, neu"]
+    data_domains: ["radiology", "doctor_letter"]
+activation:
+  intent: "Use when locating first/last occurrence of an event; not just current status."
+conflicts:
+  - style.question_types.current_status
+  - style.question_types.ever_status
+  - style.question_types.comparison
+response_level_hint: 2
+structure:
+  template:
+    - "Satz 1: Datum der ersten/letzten Dokumentation ('Am YYYY-MM-DD trat ... auf')."
+    - "Satz 2: Vergleich zur vorherigen Untersuchung ('Vorherige Untersuchung am ... zeigte ...')."
+    - "Satz 3 (optional): kurzste Folgeentwicklung, falls gefragt."
+requirements:
+  - "Final output must keep the Answer/Rationale format from style.structured_annotation; use this template to shape rationale content, not the Answer line."
+  - "Provide at least two citations: first positive finding and most recent prior negative study."
+  - "If no prior comparison exists, explicitly say 'Kein früherer Bericht verfügbar'."
+  - "Use ranges when question spans 'zwischen Datum A und B'."
+  - "Stop after the first-occurrence date and the immediate prior comparison are documented."
+retrieval_strategy:
+  - "Query broadly without temporal qualifiers: 'Osteolysen' not 'neue Osteolysen' to avoid retrieving only recent denials."
+  - "Use time_scope='all' for historical events; recent reports may say 'no new X' even if X occurred earlier."
+  - "Filter results chronologically for first positive mention; exclude pure negations."
+uncertainty:
+  missing_evidence: "Kein früherer Bericht verfügbar; frühestes Datum der vorliegenden Nachweise nennen."
+  no_documents: "Nicht dokumentiert."
+examples:
+  - question: "Wann zeigten sich erstmals neue Osteolysen im CT?"
+    answer: >
+      "Neue Osteolysen wurden am 2023-12-24 im CT der Schulter erstmals beschrieben. [report:CT24]\n
+       Das CT vom 2022-12-24 zeigte an gleicher Lokalisation keine Läsionen. [report:CT22]"
+micro_tests:
+  should_activate:
+    - "Seit wann besteht die Niereninsuffizienz?"
+    - "Wann traten die neuen Osteolysen erstmals auf?"
+    - "Wann war der letzte Nachweis einer Plasmazelle im Knochenmark?"
+  should_not_activate:
+    - "Nimmt der Patient aktuell Lenalidomid?"  # current status
+    - "Gab es jemals eine Stammzelltransplantation?"  # ever status
+  adversarial:
+    - "Wann zuletzt KEINE Osteolysen im CT, und wann traten sie dann auf?"  # requires prior negative then first positive

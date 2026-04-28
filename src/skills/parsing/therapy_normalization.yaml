@@ -1,0 +1,141 @@
+skill:
+  id: parsing.therapy_normalization
+  name: Therapy Normalization (Abbreviations + Class Mapping)
+  version: 1
+  category: parsing
+  description: >
+    Reference dictionary of therapy abbreviations, drug class mappings, and regimen
+    compositions. Consult these lookup tables when constructing search queries.
+  triggers:
+    question_types: ["therapy_exposure", "ever_status", "eligibility", "response_assessment", "*"]
+    semantic_cues:
+      - "Clinical or regimen abbreviations that need expansion for clarity."
+      - "Class/regimen mentioned without explicit drug names; need expansion to agents."
+    keywords: ["(lexicon) Dara, Vel, Btz, Len, Pom, KRD, VRd, PI, IMID, CD38, BiTE, CAR-T"]
+    data_domains: ["doctor_letter", "tumor_board"]
+activation:
+  intent: "Provides lookup tables for drug abbreviations and regimen compositions — consult when building search queries."
+conflicts: []
+
+# =============================================================================
+# SECTION 1: ABBREVIATION EXPANSIONS
+# Single drug abbreviations → full generic names
+# =============================================================================
+abbreviations:
+  # Trade names → Generic names
+  Revlimid: Lenalidomid
+  Pomalyst: Pomalidomid
+  Imnovid: Pomalidomid
+  Velcade: Bortezomib
+  Kyprolis: Carfilzomib
+  Ninlaro: Ixazomib
+  Darzalex: Daratumumab
+  Sarclisa: Isatuximab
+  Empliciti: Elotuzumab
+  Tecvayli: Teclistamab
+  Elrexfio: Elranatamab
+  Talvey: Talquetamab
+  Abecma: Idecabtagene vicleucel
+  Carvykti: Ciltacabtagene autoleucel
+  Adriamycin: Doxorubicin
+  # Monoclonal antibodies
+  Dara: Daratumumab
+  Isa: Isatuximab
+  Elo: Elotuzumab
+  # Proteasome inhibitors
+  Vel: Bortezomib
+  Btz: Bortezomib
+  Carfi: Carfilzomib
+  Carf: Carfilzomib
+  Ixa: Ixazomib
+  # IMiDs
+  Len: Lenalidomid
+  Pom: Pomalidomid
+  Thal: Thalidomid
+  # Bispecifics / CAR-T
+  Tec: Teclistamab
+  Elra: Elranatamab
+  Ide-cel: Idecabtagene vicleucel
+  Cilta-cel: Ciltacabtagene autoleucel
+  # Clinical terms
+  AZ: Allgemeinzustand
+  KM: Knochenmark
+  p.o.: per os
+  i.v.: intravenous
+  s.c.: subcutan
+
+# =============================================================================
+# SECTION 2: THERAPY CLASS MAPPINGS
+# Drug classes → list of representative agents for search expansion
+# =============================================================================
+class_mapping:
+  cd38_antibody:
+    aliases: ["CD38-Antikörper", "Anti-CD38", "CD38-AK"]
+    drugs: ["Daratumumab", "Darzalex", "Isatuximab", "Sarclisa"]
+  slamf7_antibody:
+    aliases: ["SLAMF7-Antikörper", "Anti-SLAMF7", "Anti-CS1"]
+    drugs: ["Elotuzumab", "Empliciti"]
+  imid:
+    aliases: ["IMID", "IMiD"]
+    drugs: ["Lenalidomid", "Pomalidomid", "Thalidomid", "Revlimid", "Pomalyst"]
+  proteasome_inhibitor:
+    aliases: ["Proteasominhibitor", "PI"]
+    drugs: ["Bortezomib", "Carfilzomib", "Ixazomib", "Velcade", "Kyprolis", "Ninlaro"]
+  bite:
+    aliases: ["BiTE", "T-cell engager"]
+    drugs: ["Teclistamab", "Tecvayli", "Elranatamab", "Elrexfio", "Talquetamab", "Talvey"]
+  car_t:
+    aliases: ["CAR-T", "CART", "CAR T"]
+    drugs: ["Idecabtagene vicleucel", "Abecma", "Ciltacabtagene autoleucel", "Carvykti"]
+
+# =============================================================================
+# SECTION 3: COMBINATION REGIMEN MAPPINGS
+# Regimen abbreviations → constituent drugs
+# =============================================================================
+regimen_mapping:
+  # Two-drug combinations
+  Rd: ["Lenalidomid", "Dexamethason"]
+  Vd: ["Bortezomib", "Dexamethason"]
+  VelDex: ["Bortezomib", "Dexamethason"]
+  Kd: ["Carfilzomib", "Dexamethason"]
+  Pd: ["Pomalidomid", "Dexamethason"]
+  # Three-drug combinations
+  VRd: ["Bortezomib", "Lenalidomid", "Dexamethason"]
+  KRd: ["Carfilzomib", "Lenalidomid", "Dexamethason"]
+  IRd: ["Ixazomib", "Lenalidomid", "Dexamethason"]
+  VCD: ["Bortezomib", "Cyclophosphamid", "Dexamethason"]
+  VelCD: ["Bortezomib", "Cyclophosphamid", "Dexamethason"]
+  VMP: ["Bortezomib", "Melphalan", "Prednison"]
+  PAD: ["Bortezomib", "Doxorubicin", "Dexamethason"]
+  BAD: ["Bortezomib", "Doxorubicin", "Dexamethason"]
+  KPd: ["Carfilzomib", "Pomalidomid", "Dexamethason"]
+  RAD: ["Lenalidomid", "Doxorubicin", "Dexamethason"]
+  # Daratumumab combinations
+  Dara-Rd: ["Daratumumab", "Lenalidomid", "Dexamethason"]
+  Dara-Vd: ["Daratumumab", "Bortezomib", "Dexamethason"]
+  Dara-Kd: ["Daratumumab", "Carfilzomib", "Dexamethason"]
+  Dara-Pd: ["Daratumumab", "Pomalidomid", "Dexamethason"]
+  DPd: ["Daratumumab", "Pomalidomid", "Dexamethason"]
+  DVRd: ["Daratumumab", "Bortezomib", "Lenalidomid", "Dexamethason"]
+  DVCd: ["Daratumumab", "Bortezomib", "Cyclophosphamid", "Dexamethason"]
+  # Isatuximab combinations
+  Isa-Pd: ["Isatuximab", "Pomalidomid", "Dexamethason"]
+  IPd: ["Isatuximab", "Pomalidomid", "Dexamethason"]
+  Isa-VRd: ["Isatuximab", "Bortezomib", "Lenalidomid", "Dexamethason"]
+  # Elotuzumab combinations
+  Elo-Pd: ["Elotuzumab", "Pomalidomid", "Dexamethason"]
+  EPd: ["Elotuzumab", "Pomalidomid", "Dexamethason"]
+  # Intensive regimens
+  PACE: ["Cisplatin", "Doxorubicin", "Cyclophosphamid", "Etoposid"]
+  D-PACE: ["Dexamethason", "Cisplatin", "Doxorubicin", "Cyclophosphamid", "Etoposid"]
+  DKd-PACE: ["Daratumumab", "Carfilzomib", "Dexamethason", "Cisplatin", "Doxorubicin", "Cyclophosphamid", "Etoposid"]
+
+guidelines:
+  - "When a question names a class/regimen, expand queries with the mapped drug names."
+  - "Include both the class term and at least two representative drugs in retrieve_reports queries."
+  - "Preserve clinical qualifiers (+/-) and dosing tokens during expansion."
+  - "For ambiguous abbreviations (e.g., KM = Knochenmark vs Kontrastmittel), prefer hematology context."
+requirements:
+  - "If a mapped drug is not found, state which class terms and drugs were searched."
+uncertainty:
+  missing_mapping: "If no mapping exists, keep the original term and note it as unmapped."

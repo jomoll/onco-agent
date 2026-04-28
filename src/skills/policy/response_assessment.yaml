@@ -1,0 +1,145 @@
+skill:
+  id: policy.response_assessment
+  name: Response Assessment Policy
+  version: 1
+  category: policy
+  description: >
+    Deterministic rules for extracting and validating IMWG treatment response
+    categories. Prevents inference from lab values alone and enforces formal
+    documentation requirements.
+  triggers:
+    question_types: ["response_assessment", "*"]
+    semantic_cues:
+      - Need to identify IMWG response category
+      - Best response under a therapy line
+    keywords: ["CR", "VGPR", "PR", "SD", "PD", "Ansprechen", "Response", "Remission", "Progression"]
+    data_domains: ["doctor_letter", "tumor_board"]
+
+activation:
+  intent: Apply when the question asks for treatment response depth or best response to a therapy.
+
+conflicts: []
+
+policy_rules:
+  imwg_hierarchy:
+    sCR: 100
+    CR: 90
+    VGPR: 80
+    PR: 70
+    MR: 60
+    SD: 50
+    PD: 40
+    unknown: 0
+
+  valid_response_sources:
+    description: >
+      Only count formally documented IMWG response categories. The response must
+      appear as an explicit classification in the clinical text, not be inferred.
+    accepted_patterns:
+      - "\\b(s?CR|VGPR|PR|MR|SD|PD)\\b"
+      - "(komplette|partielle|stringente|sehr gute partielle)\\s*Remission"
+      - "stable disease"
+      - "progressive disease"
+      - "Progression"
+      - "minimale? Res(ponse|idualerkrankung)"
+
+  inference_prohibitions:
+    description: >
+      Do NOT infer IMWG response categories from indirect evidence alone.
+    rules:
+      - rule_id: no_lab_inference
+        description: >
+          A drop in paraprotein, FLC, or M-gradient alone does NOT constitute
+          a formally documented response. Lab trends may SUPPORT a documented
+          response but cannot REPLACE an explicit IMWG classification.
+        prohibited_inferences:
+          - "Do not infer CR from negative immunofixation alone"
+          - "Do not infer VGPR from >90% M-protein reduction alone"
+          - "Do not infer PR from >50% M-protein reduction alone"
+
+      - rule_id: correct_therapy_line
+        description: >
+          The response must be attributed to the correct therapy line. When
+          multiple therapy lines exist, match the response to the line active
+          at the time of the response assessment, not the most recent line.
+
+      - rule_id: best_response_enumeration
+        description: >
+          For "best response" questions: enumerate ALL therapy lines and their
+          documented IMWG responses. Select the deepest response using the
+          imwg_hierarchy. If no formal response is documented for any line,
+          answer "Nicht dokumentiert".
+
+  therapy_line_matching:
+    description: >
+      When extracting response for a specific therapy, verify that the response
+      assessment document refers to the same therapy/regimen.
+    rules:
+      - rule_id: temporal_overlap
+        description: >
+          The response assessment date must fall within the therapy period
+          (between start date and stop date + 30 days). Assessments outside
+          this window belong to a different therapy line.
+      - rule_id: regimen_name_match
+        description: >
+          The response document must mention the queried therapy by name or
+          abbreviation. A response documented under a different regimen name
+          does not count, even if temporally overlapping.
+
+outputs:
+  response_category: sCR | CR | VGPR | PR | MR | SD | PD | unknown
+  therapy_line: identified therapy line the response belongs to
+  determinacy: high | medium | low
+  supporting_evidence_ids: list of evidence ids used
+  trace: rationale with hierarchy scores and source validation
+
+requirements:
+  - >
+    Only count formally documented IMWG response categories (sCR, CR, VGPR, PR,
+    MR, SD, PD). The category must appear as an explicit classification in a
+    doctor_letter or tumor_board report. Do NOT infer response from lab markers
+    (paraprotein drop, FLC changes, immunofixation) without an accompanying
+    formal IMWG classification.
+  - >
+    For "best response" questions: enumerate ALL documented therapy lines and
+    their associated IMWG response categories. Rank by the imwg_hierarchy
+    (sCR > CR > VGPR > PR > MR > SD > PD) and select the deepest.
+  - >
+    Match response to the correct therapy line. A response assessment must
+    temporally overlap with the queried therapy and must mention it by name.
+    Do not attribute a response from one therapy line to another.
+  - >
+    When extracting the response, always include BOTH the IMWG category AND
+    the therapy name in the answer. An answer like "CR" without specifying
+    under which therapy is incomplete.
+  - >
+    If no formally documented IMWG response exists for the queried therapy,
+    answer "Nicht dokumentiert" — do not estimate or infer a category from
+    laboratory trends.
+
+tests:
+  - name: formal_cr_selected
+    description: "Explicit CR documentation should be accepted"
+    input:
+      target_therapy: "Dara-VRd"
+      evidence_items:
+        - evidence_id: "r1"
+          text: "Unter Dara-VRd wurde eine komplette Remission (CR) erreicht."
+          report_type: "doctor_letter"
+          document_time: "2024-03-15"
+    expect:
+      response_category: "CR"
+      determinacy: "high"
+
+  - name: lab_only_rejected
+    description: "Lab-only evidence without formal IMWG classification should not be accepted"
+    input:
+      target_therapy: "KRD"
+      evidence_items:
+        - evidence_id: "l1"
+          text: "Paraprotein von 3.4 auf 0.1 g/dL gesunken, Immunfixation negativ."
+          report_type: "lab"
+          document_time: "2024-06-01"
+    expect:
+      response_category: "unknown"
+      determinacy: "low"

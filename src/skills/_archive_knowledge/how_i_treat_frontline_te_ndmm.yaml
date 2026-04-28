@@ -1,0 +1,76 @@
+skill:
+  id: knowledge.how_i_treat_frontline_te_ndmm
+  name: Practice workflow card for frontline transplant-eligible NDMM (Perrot, Blood How I Treat 2022)
+  version: 1
+  category: knowledge
+  description: >
+    Practice-oriented domain knowledge for transplant-eligible newly diagnosed MM (NDMM),
+    based on a Blood "How I treat" article. Use to structure answers about frontline strategy,
+    transplant timing, induction selection (triplet vs quadruplet), risk-adapted intensity, and MRD-adapted thinking.
+    This card provides decision heuristics and workflow structure, not rigid guideline thresholds.
+
+  triggers:
+    question_types: ["frontline_strategy", "therapy_planning", "next_step", "maintenance_strategy", "transplant_timing"]
+    keywords:
+      - "transplant eligible, ASCT, upfront transplant, deferred transplant, induction, consolidation, maintenance"
+      - "MRD, minimal residual disease, SLiM CRAB, high-risk cytogenetics, tandem ASCT"
+      - "VRd, VTD, D-VTD, D-VRd, quadruplet"
+    semantic_cues:
+      - "Question asks for a recommended frontline sequence in transplant-eligible NDMM."
+      - "Question asks whether ASCT should be upfront vs delayed."
+      - "Question asks how risk (cytogenetics, MRD depth) should change induction or maintenance intensity."
+    data_domains: ["doctor_letter", "tumor_board", "pathology", "lab_values", "therapy_history"]
+
+activation:
+  intent: >
+    Provide an explicit planning scaffold: baseline workup and start criteria, induction choice,
+    transplant plan (single vs tandem when appropriate), consolidation stance, and maintenance selection,
+    with risk- and MRD-oriented framing. Do not treat as binding guideline.
+
+requirements:
+  - "Label statements as expert review / practice-oriented (How I treat), not randomized protocol requirements."
+  - "Do not invent numeric thresholds for transplant eligibility or organ function from this paper."
+  - "When recommending escalation (tandem ASCT, reinforced maintenance), require explicit evidence of high-risk disease or poor response."
+  - "If MRD is discussed, explicitly note that MRD-guided adaptation is not yet universally standard and depends on local practice."
+
+knowledge:
+  provenance:
+    paper: "Perrot A., Blood 2022;139(19):2882-2888. How I treat frontline transplantation-eligible multiple myeloma."
+  backbone_workflow:
+    - "Default backbone for transplant-eligible NDMM: induction -> HD melphalan + ASCT -> (optional) consolidation -> lenalidomide maintenance."
+    - "ASCT is framed as a cornerstone even in the PI/IMiD era, supported by randomized trials showing PFS benefit; OS benefit varies across studies."
+  induction_selection_heuristics:
+    - "Triplet induction uses PI + IMiD + dex; VRd is presented as a standard option."
+    - "Quadruplet induction (adding anti-CD38) is described as the new standard trend in transplant programs, with D-VTD approved and D-VRd anticipated."
+    - "Induction length has increased in practice; longer induction (e.g. 6 cycles VRd) can deepen response."
+  transplant_timing_heuristics:
+    - "Upfront ASCT generally favored as standard outside trials."
+    - "Delayed ASCT at first relapse can be discussed in selected young, standard-risk patients with long durable response and strong preference for preserving near-term quality of life."
+  risk_adaptation:
+    high_risk:
+      - "Tandem ASCT is recommended for genetically high-risk disease in the discussion."
+      - "High-risk disease may warrant reinforced maintenance (e.g. adding a PI) rather than lenalidomide alone."
+    standard_risk:
+      - "Lenalidomide maintenance is described as standard; fixed duration of 2-3 years is proposed by the author for standard-risk outside trials."
+  mrd_dynamic_risk:
+    - "MRD is emphasized as a strong prognostic factor and a candidate tool for response-adapted strategies."
+    - "Practical note: MRD-adapted escalation/de-escalation is presented as emerging and often trial-driven."
+  start_treatment_and_preworkup:
+    - "SLiM CRAB criteria are listed as triggers to start therapy (BM plasma cells >= 60%, FLC ratio >= 100 with involved FLC > 100 mg/L, or >1 MRI focal lesion)."
+    - "If not emergent, use the short planning window before starting therapy for vaccines, imaging completion, and dental/cardiovascular assessments."
+
+guidelines:
+  - "Frontline strategy answer format: (1) Patient eligibility and risk summary, (2) Induction choice and rationale, (3) Transplant plan (single vs tandem), (4) Consolidation stance, (5) Maintenance plan, (6) MRD role if available, (7) Open items and missing data."
+  - "When the question is 'upfront vs delayed ASCT', explicitly list: expected benefit (PFS), expected burden (toxicity/QoL), and patient preference constraints."
+  - "For risk summary, include ISS/R-ISS/R2-ISS staging if available. Check for documented staging in clinical notes or calculate using scoring tools (calculate_iss_score, calculate_riss_score, calculate_r2iss_score) if lab values and cytogenetics are available. High-risk features (R-ISS III, R2-ISS IV) support tandem ASCT or reinforced maintenance discussions."
+  - "If cytogenetics are missing, do not label risk group. Request FISH / cytogenetics and consider response depth as a dynamic risk proxy only with explicit evidence. Without cytogenetics, R-ISS and R2-ISS cannot be calculated, but ISS can still be determined from β2-microglobulin and albumin."
+
+micro_tests:
+  should_activate:
+    - "Was ist ein sinnvoller 1L Plan bei transplant eligible NDMM?"
+    - "Upfront ASCT oder ASCT bei erstem Rezidiv?"
+    - "Wie wuerdest du bei high-risk Zytogenetik eskalieren?"
+    - "Welche Rolle spielt MRD fuer Therapieadaptation?"
+  should_not_activate:
+    - "Ist der Patient fuer ide-cel geeignet?"
+    - "Welche Dosis Bortezomib am Tag 8?"

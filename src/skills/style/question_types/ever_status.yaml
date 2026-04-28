@@ -1,0 +1,49 @@
+skill:
+  id: style.question_types.ever_status
+  name: Ever Status Template
+  version: 1
+  category: style
+  inherits:
+    - style.base
+  description: >
+    Select for questions asking whether an event ever occurred (past history). Focus on
+    full-history evidence and cite the earliest or most relevant mention.
+  triggers:
+    question_types: ["ever_status", "ever_performed", "history_status"]
+    semantic_cues:
+      - "Asks if an event/therapy/procedure ever occurred in history (not just current)."
+      - "May use negatives like 'noch kein/keinen' or 'jemals'."
+    keywords: ["(optional lexicon) jemals, bisher, schon einmal, noch kein, durchgeführt, erhalten"]
+    data_domains: ["doctor_letter", "tumor_board"]
+activation:
+  intent: "Binary ever/never questions needing full-record search and earliest/any occurrence."
+conflicts:
+  - style.question_types.current_status
+  - style.question_types.temporal_localization
+  - style.question_types.comparison
+response_level_hint: 1
+structure:
+  template:
+    - "Satz 1: 'Ja/Nein, ...' mit Ereignis und frühestem/bestätigendem Datum/Quelle."
+    - "Satz 2 (optional): kurzer Hinweis auf Suchumfang oder Negationslogik."
+requirements:
+  - "Final output must keep the Answer/Rationale format from style.structured_annotation."
+  - "Keep it concise: maximum 2 sentences total."
+  - "One decisive sentence; optional second only if it clarifies timeframe or setting."
+  - "For 'Nein', cite the search scope (full history)."
+uncertainty:
+  missing_evidence: "Nicht dokumentiert in der gesamten verfügbaren Akte."
+examples:
+  - question: "Hatte der Patient jemals eine Stammzelltransplantation?"
+    answer: >
+      "Nein, in der gesamten verfügbaren Dokumentation findet sich keine Stammzelltransplantation. [scope:all_reports]"
+micro_tests:
+  should_activate:
+    - "Hat der Patient jemals eine Autologe SZT erhalten?"
+    - "Wurde schon einmal eine BiTE-Therapie durchgeführt?"
+    - "Gab es bisher eine FISH-Diagnostik?"
+  should_not_activate:
+    - "Nimmt der Patient aktuell Lenalidomid?"  # current status
+    - "Wann trat die erste Osteolyse auf?"  # temporal localization
+  adversarial:
+    - "Hat der Patient bisher noch KEINE Anti-CD38-Therapie dokumentiert?"  # double negation requires correct polarity

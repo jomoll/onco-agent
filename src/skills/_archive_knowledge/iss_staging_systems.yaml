@@ -1,0 +1,253 @@
+skill:
+  id: knowledge.iss_staging_systems
+  name: ISS, R-ISS, and R2-ISS Staging Systems for Multiple Myeloma
+  version: 1
+  category: knowledge
+  description: >
+    Domain knowledge for the International Staging System (ISS), Revised ISS (R-ISS), and
+    Second Revision ISS (R2-ISS) for multiple myeloma risk stratification. Use when calculating
+    or interpreting these staging scores from patient data.
+  triggers:
+    question_types: ["score_value_plus_date_and_source", "eligibility", "risk_assessment"]
+    keywords:
+      - "ISS, R-ISS, R2-ISS, International Staging System, Staging, Risk, Prognose"
+      - "β2-Mikroglobulin, Beta-2-Mikroglobulin, B2M, Albumin, LDH"
+      - "del17p, t(4;14), t(14;16), del1p, gain1q, amp1q, high-risk cytogenetics"
+    semantic_cues:
+      - "Question asks for ISS, R-ISS, or R2-ISS stage or score calculation."
+      - "Question asks about risk stratification based on lab values and cytogenetics."
+    data_domains: ["lab_values", "cytology", "flow", "pathology", "doctor_letter", "tumor_board"]
+activation:
+  intent: >
+    Use as reference knowledge when calculating or interpreting ISS-based staging systems.
+    Provides criteria, thresholds, and clinical interpretation for each system.
+conflicts: []
+
+knowledge:
+  provenance:
+    iss_reference: "Greipp et al., J Clin Oncol 2005;23(15):3412-3420"
+    riss_reference: "Palumbo et al., J Clin Oncol 2015;33(26):2863-2869"
+    r2iss_reference: "D'Agostino et al., J Clin Oncol 2022;40(29):3406-3418"
+    notes: "These are established risk stratification systems used in clinical practice and trials."
+
+  iss_staging_system:
+    description: >
+      The International Staging System (ISS) uses two serum markers to stratify patients
+      into three risk groups. It is the simplest and most widely used staging system.
+    required_parameters:
+      - name: "Serum β2-microglobulin"
+        unit: "mg/L"
+        notes: "Primary marker reflecting tumor burden and renal function"
+      - name: "Serum albumin"
+        unit: "g/dL"
+        notes: "Marker of nutritional status and systemic inflammation"
+    staging_criteria:
+      stage_i:
+        definition: "β2-microglobulin < 3.5 mg/L AND albumin ≥ 3.5 g/dL"
+        score: 1
+        prognosis: "Most favorable; lower tumor burden"
+      stage_ii:
+        definition: "Neither Stage I nor Stage III criteria met"
+        score: 2
+        prognosis: "Intermediate"
+      stage_iii:
+        definition: "β2-microglobulin ≥ 5.5 mg/L"
+        score: 3
+        prognosis: "Least favorable; higher tumor burden"
+    interpretation:
+      - "ISS is purely biochemical and does not incorporate cytogenetics or LDH."
+      - "Median OS historically: Stage I ~62 months, Stage II ~44 months, Stage III ~29 months (pre-novel agent era)."
+      - "Still used as baseline stratification in many trials."
+
+  riss_staging_system:
+    description: >
+      The Revised International Staging System (R-ISS) incorporates ISS with LDH and
+      high-risk cytogenetic abnormalities to refine risk stratification.
+    required_parameters:
+      - name: "Serum β2-microglobulin"
+        unit: "mg/L"
+      - name: "Serum albumin"
+        unit: "g/dL"
+      - name: "LDH level"
+        unit: "U/L or IU/L"
+        notes: "Compare to upper limit of normal (ULN); elevated if > ULN"
+      - name: "High-risk cytogenetic abnormalities"
+        detection: "FISH or conventional cytogenetics"
+        abnormalities: ["del17p or del(17p)", "t(4;14) or t(4;14)(p16;q32)", "t(14;16) or t(14;16)(q32;q23)"]
+        notes: "Any one of these three abnormalities qualifies as high-risk CA"
+    staging_criteria:
+      stage_i:
+        definition: "ISS Stage I AND no high-risk CA AND normal LDH"
+        score: 1
+        prognosis: "Best prognosis; 5-year OS ~82%"
+      stage_ii:
+        definition: "Not R-ISS Stage I or Stage III"
+        score: 2
+        prognosis: "Intermediate; 5-year OS ~62%"
+      stage_iii:
+        definition: "ISS Stage III AND (high-risk CA OR elevated LDH)"
+        score: 3
+        prognosis: "Poorest prognosis; 5-year OS ~40%"
+    interpretation:
+      - "R-ISS combines disease burden (ISS), proliferative activity (LDH), and tumor biology (cytogenetics)."
+      - "High-risk CA presence significantly impacts prognosis even in lower ISS stages."
+      - "LDH elevation reflects higher tumor proliferation and is associated with worse outcomes."
+
+  r2iss_staging_system:
+    description: >
+      The Second Revision ISS (R2-ISS) further refines R-ISS by incorporating additional
+      cytogenetic abnormalities (1q gain/amplification, del1p) and using LDH ratio instead
+      of binary elevated/normal. Creates four risk groups.
+    required_parameters:
+      - name: "Serum β2-microglobulin"
+        unit: "mg/L"
+      - name: "Serum albumin"
+        unit: "g/dL"
+      - name: "LDH ratio"
+        calculation: "LDH value / upper limit of normal (ULN)"
+        notes: "Continuous measure; > 1.0 indicates elevation"
+      - name: "High-risk cytogenetic abnormalities (expanded)"
+        detection: "FISH or conventional cytogenetics"
+        abnormalities:
+          - "del17p or del(17p)"
+          - "t(4;14) or t(4;14)(p16;q32)"
+          - "t(14;16) or t(14;16)(q32;q23)"
+          - "del1p or del(1p32)"
+          - "gain1q or amp1q (1q21 gain/amplification)"
+        notes: "Expanded definition includes 1p deletion and 1q gain"
+      - name: "ISS and 1q gain interaction"
+        notes: "Presence of both ISS Stage II/III and 1q gain/amplification"
+    staging_criteria:
+      stage_i:
+        definition: "ISS Stage I AND no high-risk CA AND LDH ratio ≤ 1.0 AND no 1q gain"
+        score: 1
+        prognosis: "Best prognosis; 5-year PFS ~77%, 5-year OS ~94%"
+      stage_ii:
+        definition: "Not Stage I, III, or IV"
+        score: 2
+        prognosis: "Good prognosis; 5-year PFS ~62%, 5-year OS ~87%"
+      stage_iii:
+        definition: "ISS Stage III OR high-risk CA OR LDH ratio > 1.0 OR (ISS II + 1q gain)"
+        score: 3
+        prognosis: "Intermediate-poor; 5-year PFS ~42%, 5-year OS ~69%"
+      stage_iv:
+        definition: "ISS Stage III AND high-risk CA AND LDH ratio > 1.0"
+        score: 4
+        prognosis: "Worst prognosis; 5-year PFS ~24%, 5-year OS ~48%"
+    interpretation:
+      - "R2-ISS provides more granular risk stratification with four groups instead of three."
+      - "1q gain/amplification is very common in MM and independently predicts worse outcomes."
+      - "Stage IV represents ultra-high-risk patients with multiple adverse features."
+      - "R2-ISS better identifies very low-risk (Stage I) and very high-risk (Stage IV) patients."
+
+  calculation_workflow:
+    step_1: "Determine ISS stage from β2-microglobulin and albumin"
+    step_2_riss: "For R-ISS: Check for high-risk CA (del17p, t(4;14), t(14;16)) and LDH elevation"
+    step_2_r2iss: "For R2-ISS: Check for expanded high-risk CA (add del1p, gain1q) and calculate LDH ratio"
+    step_3: "Apply staging algorithm to assign final stage/score"
+    step_4: "Cite all lab values and cytogenetic findings with dates"
+
+  clinical_interpretation_guidance:
+    when_to_use_iss:
+      - "When only β2-microglobulin and albumin are available"
+      - "For historical comparison or when cytogenetics/LDH unavailable"
+      - "Simple baseline risk assessment"
+    when_to_use_riss:
+      - "When ISS parameters plus LDH and basic FISH are available"
+      - "Standard risk stratification in modern practice"
+      - "Binary high-risk CA classification sufficient"
+    when_to_use_r2iss:
+      - "When comprehensive cytogenetics including 1q status are available"
+      - "Most refined risk stratification"
+      - "Identifying ultra-high-risk (Stage IV) patients for clinical trials or aggressive therapy"
+    missing_data_handling:
+      - "If only ISS parameters available: calculate ISS only, note R-ISS/R2-ISS not calculable"
+      - "If cytogenetics missing: calculate ISS, note R-ISS/R2-ISS require FISH data"
+      - "If LDH missing: calculate ISS, note R-ISS/R2-ISS require LDH"
+      - "Do not guess or impute missing values; explicitly list what is missing"
+
+  common_pitfalls:
+    unit_conversion:
+      - "β2-microglobulin: Ensure units are mg/L (some labs report in μg/mL, which is equivalent)"
+      - "Albumin: Must be in g/dL (convert from g/L if needed: divide by 10)"
+      - "LDH: Compare to lab-specific ULN; reference ranges vary by assay"
+    temporal_considerations:
+      - "Use contemporaneous values from similar time points when possible"
+      - "If values are from different dates, note this and use the most recent for each parameter"
+      - "Cytogenetics typically done at diagnosis; may not need repeat unless suspected clonal evolution"
+    interpretation_context:
+      - "ISS/R-ISS/R2-ISS are prognostic, not predictive of treatment response"
+      - "Modern therapies have improved outcomes across all risk groups"
+      - "High-risk patients may benefit from more intensive or investigational approaches"
+
+guidelines:
+  - "Always check for documented staging first before calculating from raw data."
+  - "When calculating, explicitly state which staging system is being used and why."
+  - "List all required parameters with values, units, dates, and sources."
+  - "If calculating R-ISS or R2-ISS, clearly specify which cytogenetic abnormalities were assessed and which were found."
+  - "If data are incomplete, calculate what is possible (e.g., ISS from β2M + albumin) and list missing parameters needed for R-ISS/R2-ISS."
+  - "Cite all evidence inline using [ctx:ID] format."
+  - "Include clinical interpretation appropriate to the calculated stage."
+
+examples:
+  iss_complete:
+    question: "Welcher ISS-Score ergibt sich aus den verfügbaren Daten?"
+    lab_values:
+      - "β2-microglobulin: 2.8 mg/L (10.11.2024)"
+      - "Albumin: 4.2 g/dL (10.11.2024)"
+    calculation: "ISS Stage I: β2M < 3.5 mg/L AND albumin ≥ 3.5 g/dL"
+    answer: "Answer: Status=nicht dokumentiert aber berechenbar | Wert=ISS Stage I | Datum=berechnet aus Werten vom 10.11.2024 | Quelle=Berechnet"
+    rationale: "Reasoning: Berechnet aus β2-Mikroglobulin 2.8 mg/L [ctx:103] und Albumin 4.2 g/dL [ctx:105] (beide 10.11.2024). ISS Stage I erfüllt beste Prognosekategorie."
+
+  riss_complete:
+    question: "Welcher R-ISS-Status ergibt sich aus den verfügbaren Daten?"
+    lab_values:
+      - "β2-microglobulin: 4.2 mg/L (12.11.2024)"
+      - "Albumin: 3.6 g/dL (12.11.2024)"
+      - "LDH: 320 U/L (ULN 250 U/L) → elevated (12.11.2024)"
+    cytogenetics:
+      - "FISH (08.11.2024): del17p negativ, t(4;14) negativ, t(14;16) negativ"
+    calculation: "ISS Stage II (β2M 3.5-5.5) + no high-risk CA + elevated LDH → R-ISS Stage II"
+    answer: "Answer: Status=nicht dokumentiert aber berechenbar | Wert=R-ISS Stage II | Datum=berechnet aus Werten vom 12.11.2024 | Quelle=Berechnet"
+    rationale: "Reasoning: ISS Stage II (β2M 4.2 mg/L, Albumin 3.6 g/dL) [ctx:201, ctx:203], LDH 320 U/L erhöht (ULN 250) [ctx:205], aber keine high-risk CA in FISH vom 08.11.2024 [ctx:207]. R-ISS Stage II (intermediäre Prognose)."
+
+  r2iss_high_risk:
+    question: "Welcher R2-ISS-Status ergibt sich aus den verfügbaren Daten?"
+    lab_values:
+      - "β2-microglobulin: 6.5 mg/L (15.11.2024)"
+      - "Albumin: 3.0 g/dL (15.11.2024)"
+      - "LDH: 380 U/L (ULN 250 U/L) → ratio 1.52 (15.11.2024)"
+    cytogenetics:
+      - "FISH (10.11.2024): del17p positiv, t(4;14) negativ, t(14;16) negativ, gain1q positiv"
+    calculation: "ISS Stage III + high-risk CA (del17p) + LDH ratio > 1 → R2-ISS Stage IV"
+    answer: "Answer: Status=nicht dokumentiert aber berechenbar | Wert=R2-ISS Stage IV | Datum=berechnet aus Werten vom 15.11.2024 | Quelle=Berechnet"
+    rationale: "Reasoning: ISS Stage III (β2M 6.5 mg/L) [ctx:301], LDH Ratio 1.52 (erhöht) [ctx:303], high-risk CA del17p und gain1q positiv in FISH vom 10.11.2024 [ctx:305]. R2-ISS Stage IV (höchste Risikokategorie, schlechteste Prognose)."
+
+  incomplete_data:
+    question: "Welcher R-ISS-Status ergibt sich aus den verfügbaren Daten?"
+    available:
+      - "β2-microglobulin: 4.0 mg/L (20.11.2024)"
+      - "Albumin: 3.5 g/dL (20.11.2024)"
+    missing:
+      - "LDH: Keine Werte in der Akte gefunden"
+      - "Zytogenetik/FISH: Keine FISH-Befunde dokumentiert"
+    answer: "Answer: Status=nicht berechenbar | Grund=Fehlende Werte: LDH, Zytogenetik (FISH)"
+    rationale: "Reasoning: β2-Mikroglobulin 4.0 mg/L und Albumin 3.5 g/dL vom 20.11.2024 vorhanden [ctx:401, ctx:403], ergibt ISS Stage II. Für R-ISS fehlen jedoch LDH-Werte und FISH-Befunde (letzte Suche Zytologie/Pathologie bis 22.11.2024 ohne Ergebnis)."
+
+uncertainty:
+  missing_cytogenetics: "Cannot calculate R-ISS or R2-ISS without cytogenetic data; calculate ISS only."
+  missing_ldh: "Cannot calculate R-ISS or R2-ISS without LDH; calculate ISS only."
+  outdated_values: "If β2M and albumin are > 6 months old, note that calculated stage may not reflect current status."
+  ldh_reference_range: "Use the reference range returned by the lab tool to determine if LDH is elevated. If no reference range is available, note this limitation in the Reasoning."
+
+micro_tests:
+  should_activate:
+    - "Welcher ISS-Score ergibt sich aus den Laborwerten?"
+    - "R-ISS oder R2-ISS-Status berechnen?"
+    - "Was bedeutet ISS Stage III für die Prognose?"
+  should_not_activate:
+    - "Wie hat sich das Paraprotein entwickelt?"  # trend, not staging
+    - "Ist der Patient für CAR-T geeignet?"  # eligibility, may reference ISS but not primary focus
+  adversarial:
+    - "R-ISS berechnen, aber FISH-Befund fehlt in der Akte."  # must state nicht berechenbar
+    - "ISS berechnen mit β2M in μg/mL statt mg/L."  # must convert units or note unit issue

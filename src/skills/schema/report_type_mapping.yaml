@@ -1,0 +1,74 @@
+skill:
+  id: schema.report_type_mapping
+  name: Report Type Mapping
+  version: 1
+  category: schema
+  description: >
+    Guidance on which report types contain specific evidence classes in the anonymized database.
+  triggers:
+    question_types: ["therapy_exposure", "eligibility", "comparison", "current_status", "ever_status", "*"]
+    semantic_cues:
+      - "Needs guidance on which report_type to query for a given evidence class."
+    keywords: ["(lexicon examples) doctor_letter, tumor_board, radiology, pathology"]
+    data_domains: ["doctor_letter", "tumor_board", "radiology", "pathology", "flow", "cytology", "cardiology", "history", "consult"]
+activation:
+  intent: "Use when choosing report_type filters for retrieve_reports based on evidence needed."
+conflicts: []
+mapping:
+  therapy_plans:
+    preferred: ["doctor_letter", "tumor_board"]
+    rationale: >
+      Doctor letters and tumor board decisions summarize planned or ongoing therapies, dosing changes,
+      and procedural recommendations; use them for current regimens and decision rationale.
+  imaging:
+    preferred: ["radiology","doctor_letter"]
+    rationale: >
+      radiology reports contain imaging findings and response assessments; query when the question
+      refers to lesions, progression, or imaging-based changes. Doctor letters often repeat key imaging
+      conclusions, so include them if a recent radiology report is missing or unavailable.
+  pathology:
+    preferred: ["pathology", "flow", "cytology"]
+    rationale: >
+      Pathology, flow cytometry, and cytology reports contain diagnostic confirmations,
+      cell populations, and marker results; use for histology/phenotype and disease definition.
+  cardiology:
+    preferred: ["cardiology", "doctor_letter"]
+    rationale: >
+      Cardiology reports (e.g., echocardiography) carry cardiac function metrics; use them for EF,
+      strain, and valve findings. Doctor letters often summarize key cardiac risk notes.
+  consults:
+    preferred: ["consult", "doctor_letter"]
+    rationale: >
+      Consult reports capture specialist recommendations outside oncology; include them when the question
+      involves comorbid management or cross-discipline input. Doctor letters may also summarize consult outcomes.
+  labs:
+    preferred: ["doctor_letter"]
+    rationale: >
+      Doctor letters often summarize lab trends in narrative form; use retrieve_lab_values for structured
+      labs, and consult doctor letters when narrative lab interpretation or thresholds are needed.
+  history:
+    preferred: ["history", "doctor_letter"]
+    rationale: >
+      History/anamnesis reports contain baseline status, comorbidities, and prior therapies; pair with doctor letters
+      when reconstructing background or longitudinal timelines.
+extensions:
+  instructions:
+    - "Use these mappings to set retrieve_reports.report_type for targeted queries."
+    - "When multiple preferred types exist, query the most recent first, then expand to others if no hits are found."
+    - "Do not reference report sections as hard filters; use report_type and focused keywords instead."
+    - "For lab questions, call retrieve_lab_values first and only query reports if the lab tool returns no values."
+requirements:
+  - "Document which report_type filters were applied for each retrieve_reports call."
+  - "If evidence is missing, state which categories were searched before escalating to broader scopes."
+uncertainty:
+  missing_mapping: "Wenn keine eindeutige Zuordnung möglich ist, doctor_letter + tumor_board als Default nennen und Unsicherheit vermerken."
+micro_tests:
+  should_activate:
+    - "Welche Berichtstypen enthalten Therapiedetails?"
+    - "Ich suche Imaging-Resultate – welche report_type setzen?"
+    - "Wo finde ich Pathologie und Flow-Daten?"
+  should_not_activate:
+    - "Reine Laborsuche mit retrieve_lab_values."
+    - "Kleine Ja/Nein-Statusfrage ohne tool-Auswahl."
+  adversarial:
+    - "Frage nach Report-Typ für FLC-Werte (eigentlich Labtool), sollte retrieve_lab_values priorisieren."  # ensures lab-first guidance

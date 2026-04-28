@@ -1,0 +1,155 @@
+skill:
+  id: knowledge.perseus
+  name: D-VRd quadruplet with MRD-adapted daratumumab maintenance (PERSEUS, NEJM 2024)
+  version: 1
+  category: knowledge
+  description: >
+    Curated trial grounded domain knowledge from PERSEUS (phase 3) in transplant eligible newly diagnosed MM.
+    Use for Category 3 questions about (1) eligibility for a D-VRd style frontline strategy and (2) therapy planning
+    and next steps across induction, stem cell collection, ASCT, consolidation, and maintenance, including the MRD
+    adapted daratumumab maintenance stop and restart rules described in the trial.
+
+  triggers:
+    question_types: ["eligibility", "next_step", "therapy_planning", "frontline_strategy", "maintenance_strategy"]
+    keywords:
+      - "PERSEUS, D-VRd, D-VRD, daratumumab, daratumumab subcutaneous, Darzalex Faspro, VRd, VRD"
+      - "transplant eligible, ASCT, induction, consolidation, maintenance, MRD negative, clonoSEQ"
+    semantic_cues:
+      - "Question asks whether a transplant eligible NDMM patient could receive a daratumumab based VRd quadruplet."
+      - "Question asks for sequencing and timing: induction cycles, stem cell mobilization, transplant, consolidation, maintenance."
+      - "Question asks when daratumumab maintenance can be stopped or should be restarted based on MRD or loss of CR."
+      - "Question asks about benefit tradeoffs of adding daratumumab to VRd."
+    data_domains: ["doctor_letter", "tumor_board", "therapy_history", "lab_values", "clinical_status", "pathology"]
+
+activation:
+  intent: >
+    Use as an evidence card. Apply PERSEUS inclusion context and regimen schema to create a patient specific checklist
+    and a timeline plan. Treat this as trial derived context rather than approval label criteria or institutional SOP.
+
+conflicts: []
+
+requirements:
+  - "Explicitly label conclusions as trial derived (PERSEUS) and avoid claiming these are universal guideline rules."
+  - "Separate (A) trial style eligibility context from (B) feasibility decisions (frailty, comorbidities, logistics) that depend on local transplant workup."
+  - "When summarizing benefit, report the PFS improvement and deeper response and MRD outcomes as stated in the paper."
+  - "When planning maintenance, include the MRD adapted daratumumab discontinuation rule and the restart triggers, and state that MRD testing availability is local."
+
+knowledge:
+  provenance:
+    paper: "Sonneveld et al., N Engl J Med 2024;390:301-313 (PERSEUS)"
+    notes: "This card includes information explicitly described in the manuscript text and tables."
+
+  trial_population_and_context:
+    setting: "Transplant eligible newly diagnosed MM treated with VRd backbone plus or minus subcutaneous daratumumab."
+    key_inclusion_described:
+      - criterion: "Age"
+        threshold: "18 to 70 years"
+      - criterion: "Disease"
+        threshold: "Newly diagnosed multiple myeloma"
+      - criterion: "Transplant eligibility"
+        threshold: "Eligible for high dose therapy and autologous stem cell transplantation"
+      - criterion: "Performance status"
+        threshold: "ECOG 0 to 2"
+    guardrails:
+      - "Additional eligibility criteria are listed in the supplementary appendix and are not included here."
+
+  treatment_schema_for_planning:
+    overview:
+      - "Two arms: D-VRd versus VRd. Both arms include induction, ASCT, consolidation, and lenalidomide maintenance until progression."
+      - "VRd is given in 6 cycles total: 4 induction cycles and 2 consolidation cycles, with 28 day cycles."
+    vrd_backbone_details:
+      bortezomib: "1.3 mg/m^2 subcutaneously on days 1, 4, 8, 11 each cycle"
+      lenalidomide: "25 mg orally on days 1 through 21 each cycle"
+      dexamethasone: "40 mg on days 1 through 4 and days 9 through 12 each cycle"
+    daratumumab_schedule_in_trial:
+      induction_and_consolidation:
+        - "Subcutaneous daratumumab 1800 mg weekly during cycles 1 to 2."
+        - "Subcutaneous daratumumab 1800 mg every 2 weeks during cycles 3 to 6."
+      maintenance:
+        - "Subcutaneous daratumumab 1800 mg every 4 weeks during maintenance until progression or toxicity related discontinuation, with an MRD adapted stopping rule below."
+    stem_cell_collection_and_transplant_timing:
+      mobilization:
+        - "Within 6 weeks after completion of induction (after cycle 4), stem cell mobilization per local standard was performed."
+        - "If yield was inadequate, a second mobilization or bone marrow harvest was permitted."
+      conditioning_and_asct:
+        - "Conditioning with melphalan 200 mg/m^2, then autologous stem cell transplantation."
+      consolidation_start:
+        - "Consolidation began 30 to 60 days after transplantation."
+    maintenance_details:
+      lenalidomide:
+        - "Lenalidomide maintenance 10 mg daily in 28 day cycles, with possible increase to 15 mg after 3 cycles at investigator discretion."
+        - "Maintenance continued until disease progression or toxicity related discontinuation."
+      mrd_adapted_daratumumab_discontinuation_and_restart:
+        discontinuation_rule:
+          - "After at least 24 months of maintenance, daratumumab was discontinued if the patient had CR or better and sustained MRD negativity for at least 12 months."
+          - "These patients continued lenalidomide until progression or toxicity related discontinuation."
+        restart_triggers:
+          - "Restart daratumumab if confirmed loss of CR without progression, such as reappearance of M protein or at least 5% plasma cells in marrow."
+          - "Restart daratumumab if MRD recurrence at a sensitivity threshold of 10^-4 or higher."
+
+  efficacy_context_for_frontline_strategy:
+    primary_end_point:
+      - "At median follow up 47.5 months, estimated PFS at 48 months was 84.3% with D-VRd and 67.7% with VRd."
+      - "Hazard ratio for progression or death was 0.42, favoring D-VRd."
+    depth_of_response:
+      - "CR or better occurred in 87.9% with D-VRd versus 70.1% with VRd."
+      - "MRD negativity at 10^-5 occurred in 75.2% with D-VRd versus 47.5% with VRd."
+      - "Sustained MRD negativity for at least 12 months was 64.8% with D-VRd versus 29.7% with VRd."
+    overall_survival_note:
+      - "Overall survival data were immature at the time of report."
+
+  safety_and_feasibility_notes_for_planning:
+    common_grade_3_4_events:
+      - "Neutropenia and thrombocytopenia were more frequent with D-VRd than with VRd."
+      - "Serious adverse events were reported more often with D-VRd than with VRd."
+    infections:
+      - "Infections were common in both arms, including Covid-19 and pneumonia as notable events."
+    stem_cell_yield_and_engraftment:
+      - "Median CD34+ yield was lower with D-VRd than with VRd, but time to hematopoietic reconstitution after transplant was similar (median 14 days in both groups)."
+    implication:
+      - "For planning, explicitly check cytopenia risk, infection history, and the feasibility of stem cell collection under a daratumumab containing induction."
+
+guidelines:
+  - "Eligibility answers must be checklist style with Met, Not met, or Unclear for age, NDMM status, transplant eligibility, and ECOG, and must cite evidence with dates."
+  - "Frontline strategy answers must include two sections: Expected benefit and Expected burden, then map to patient specific constraints."
+  - "Planning answers must be timeline style: induction cycles, mobilization and collection within 6 weeks after cycle 4, ASCT, consolidation start 30 to 60 days after ASCT, then maintenance."
+  - "Maintenance answers must include the MRD adapted daratumumab discontinuation rule and the restart triggers, and must state that MRD testing schedules and thresholds are locally implemented."
+  - "Do not propose supportive medications, prophylaxis, or transplant admission rules unless present in local SOP or patient documents."
+
+examples:
+  eligibility_checklist_template:
+    - item: "Age 18 to 70"
+      evidence_needed: "Birth date or documented age"
+    - item: "Newly diagnosed MM"
+      evidence_needed: "Diagnosis date and baseline workup"
+    - item: "Transplant eligible"
+      evidence_needed: "Documented transplant eligibility or tumorboard plan"
+    - item: "ECOG 0 to 2"
+      evidence_needed: "Documented ECOG near decision date"
+  planning_output_stub:
+    - section: "Regimen framing"
+      detail: "State PERSEUS compares D-VRd versus VRd with ASCT and len maintenance in both arms."
+    - section: "Timeline"
+      detail: "4 induction cycles, stem cell collection within 6 weeks after cycle 4, melphalan plus ASCT, consolidation 30 to 60 days later, then maintenance."
+    - section: "Maintenance and MRD"
+      detail: "Len until progression, daratumumab maintenance with MRD adapted stop after at least 24 months if CR and sustained MRD negative for at least 12 months, restart triggers."
+    - section: "Risks to anticipate"
+      detail: "Cytopenias, infections, and practical stem cell collection feasibility."
+    - section: "Open items"
+      detail: "Missing ECOG, transplant eligibility documentation, MRD testing availability, cytogenetic risk, infection history."
+
+uncertainty:
+  protocol_dependency: "Additional eligibility criteria are referenced as being in the supplementary appendix and are not enumerated here."
+  external_validity: "This is a transplant eligible NDMM population; applicability to transplant ineligible patients is out of scope."
+  local_mrd_practice: "MRD assay choice, timing, and thresholds depend on local practice and availability."
+
+micro_tests:
+  should_activate:
+    - "Soll bei NDMM transplant eligible D-VRd statt VRd gegeben werden?"
+    - "Welche naechsten Schritte unter PERSEUS Schema: Induktion, Stammzellmobilisation, ASCT, Konsolidierung, Erhaltung?"
+    - "Wann kann Daratumumab in der Erhaltung abgesetzt werden und wann wieder starten?"
+  should_not_activate:
+    - "Welche aktuelle LDH hat der Patient?"
+    - "Welche Laborwerte zeigen ein ISS Stadium?"
+  adversarial:
+    - "Patient 75 Jahre: muss sagen, dass PERSEUS Alterskriterium ueberschritten ist und dass die Evidenz nur begrenzt uebertragbar ist."

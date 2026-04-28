@@ -1,0 +1,58 @@
+skill:
+  id: workflows.diagnostics_checklist
+  name: Diagnostics Checklist Workflow
+  version: 1
+  category: workflow
+  description: >
+    Select for questions that ask which diagnostics are required before a therapy/study
+    or whether prerequisite assessments are completed, missing, or pending.
+  triggers:
+    question_types: ["diagnostics_checklist", "eligibility"]
+    semantic_cues:
+      - "Asks which diagnostic workup is required/completed/pending for a therapy/study."
+    keywords: ["(optional lexicon) Diagnostik, Screening, erforderlich, Voraussetzung, CAR-T"]
+    data_domains: ["doctor_letter", "tumor_board", "radiology", "history", "lab_values"]
+activation:
+  intent: "Use when building a checklist of required diagnostics and their completion status."
+conflicts:
+  - workflows.current_status_check
+  - workflows.ever_status_check
+steps:
+  - name: Extract required diagnostics
+    detail: >
+      Parse the question/instructions to list the expected tests (e.g., imaging, BM biopsy,
+      infection serologies, cardiac evaluation). Use schema mappings if available.
+  - name: Verify completion status
+    detail: >
+      For each item, query retrieve_reports / retrieve_lab_values to confirm the latest occurrence.
+      Include history/anamnesis notes when performance status or baseline comorbidities are relevant.
+      Limit to one targeted report query and one lab lookup per item before marking “not documented”.
+      Capture date, modality, and key findings; if absent, record “not documented”.
+  - name: Summarize outstanding items
+    detail: >
+      Produce a checklist of completed vs. pending diagnostics, including citations and when the
+      last attempt occurred. Recommend scheduling steps for missing items.
+requirements:
+  - "Every checklist line must cite the confirming report or explicitly mark 'Keine Dokumentation'."
+  - "When the question mentions a specific protocol, include any protocol-specific items even if not found."
+  - "Use this workflow only for diagnostics/eligibility intent; do not apply it to simple current-status questions."
+uncertainty:
+  missing_evidence: "Nicht dokumentiert; als 'offen' mit letztem Suchdatum ausweisen."
+retry_policy:
+  max_attempts: 2
+  rules:
+    - "Allow at most 1 retry for any retrieval step."
+    - "Retries must change scope meaningfully (top_k jump, broaden date range, or switch to a different report_type/corpus)."
+outputs:
+  - "Checklist table (completed/pending/missing)."
+  - "Narrative summary highlighting critical missing diagnostics."
+micro_tests:
+  should_activate:
+    - "Welche Diagnostik ist vor CAR-T erforderlich und was fehlt noch?"
+    - "Sind die Einschlussuntersuchungen für Studie X erledigt?"
+    - "Welche Workup-Schritte stehen vor Start von Dara-KPd aus?"
+  should_not_activate:
+    - "Nimmt der Patient aktuell Lenalidomid?"  # current status
+    - "Wie war die Response auf Isa/Pom/Dex?"  # response, not checklist
+  adversarial:
+    - "Welche Diagnostik fehlt noch, obwohl nur ein doctor_letter ohne Details vorliegt?"  # must mark missing with scope

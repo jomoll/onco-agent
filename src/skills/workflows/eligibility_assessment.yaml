@@ -1,0 +1,139 @@
+skill:
+  id: workflows.eligibility_assessment
+  name: Eligibility Assessment Workflow
+  version: 1
+  category: workflow
+  description: >
+    Select for Category 3 questions about therapy/study eligibility, risk scores, or
+    next-step therapy decisions that require multi-criteria evidence gathering.
+  triggers:
+    question_types: ["eligibility", "next_step", "refractory_status"]
+    semantic_cues:
+      - "Needs multi-criterion eligibility/next-step assessment (lines, labs, performance, infections)."
+    keywords: ["(optional lexicon) geeignet, Einschluss, ECOG, IPSS, HCT-CI, Refraktär, CAR-T, BCMA"]
+    data_domains: ["doctor_letter", "tumor_board", "radiology", "history", "consult", "lab_values"]
+activation:
+  intent: "Use for comprehensive eligibility or next-step decisions requiring criteria checklist."
+conflicts:
+  - workflows.current_status_check
+steps:
+  - name: Enumerate criteria
+    detail: >
+      Extract the explicit eligibility criteria, score components, or decision checkpoints
+      mentioned in the question (e.g., prior lines, organ function, infections). Create a
+      checklist where each item maps to a specific evidence type (lab, imaging, therapy).
+  - name: Gather therapy history
+    detail: >
+      Use retrieve_reports with therapy keywords and parsing.report_type_mapping guidance to
+      summarize prior lines, response, and refractory status. Highlight exposure to required
+      agent classes (e.g., PI, IMiD, CD38) and list the most recent regimen.
+  - name: Collect organ function & labs
+    detail: >
+      Query retrieve_lab_values for renal, hepatic, hematologic,
+      and infection markers required by the criteria. Note missing measurements explicitly and cite
+      the date range searched.
+  - name: Confirm performance status & comorbidities
+    detail: >
+      Search relevant reports (e.g., physician summaries, tumor boards, consults, history/anamnesis)
+      for ECOG/Karnofsky, cardiac function, infections, or other exclusion factors. When no explicit
+      value is found, record the absence and when the last assessment occurred.
+  - name: Assess risk scores if relevant
+    detail: >
+      For eligibility criteria that include risk stratification (e.g., ISS/R-ISS/R2-ISS, HCT-CI), check
+      if these scores are documented or calculable. Use the scoring_calculation workflow or call the
+      appropriate scoring tool (calculate_iss_score, calculate_riss_score, calculate_r2iss_score) with
+      retrieved lab values and cytogenetics. Some trials or guidelines stratify by risk tier, so having
+      this information supports complete eligibility assessment.
+  - name: Summarize outstanding diagnostics
+    detail: >
+      Identify any diagnostic steps the question requires (restaging, bone marrow, infection screening)
+      and state whether they are completed or pending, citing the confirming document.
+  - name: Compile recommendation
+    detail: >
+      Merge the checklist results into a structured summary: cite criteria met/not met, highlight gaps,
+      and recommend suitability or next-step therapy options with supporting evidence.
+requirements:
+  - "For each criterion, cite the specific report/lab that confirms it or mark it as missing."
+  - "When exposure to therapy classes is required, list both the regimen name and dates."
+  - "If data are missing, add them to an 'Offen' or 'Ausstehende Diagnostik' section instead of guessing."
+  - "Stop once all explicitly asked criteria are assessed; do not expand to unrelated eligibility checks."
+  - >
+    Make a holistic clinical judgment from ALL available evidence. Do not default to
+    'Unklar' just because one individual criterion (e.g., formal ECOG score) is missing
+    — if age, comorbidities, organ function labs, and clinical descriptions collectively
+    point clearly toward eligible or not eligible, commit to Ja or Nein. Reserve 'Unklar'
+    for cases where the available evidence is genuinely contradictory or so sparse that
+    no reasonable judgment can be made.
+  - >
+    COMMIT RULE for holistic assessments (transplantability, eligibility):
+    These are clinical judgment questions, not checklist questions. A clinician reading
+    the same records would form an opinion even with incomplete data. You must do the same.
+
+    COMMITTING TO Nein — any of these is sufficient, with or without a formal ECOG score:
+    · Age ≥70 with at least one documented comorbidity (cardiac, renal, pulmonary, neurological).
+    · Any age with severe organ dysfunction (e.g., eGFR <30, LVEF <40%, severe COPD,
+      respiratory failure, critical illness / ICU admission).
+    · Any age with documented severe comorbidities that independently preclude transplantation
+      (e.g., active severe infection, neurological deficits limiting ADL, platelet count
+      precluding conditioning). Absent formal ECOG is NOT a reason to say Unklar.
+    ❌ WRONG: "Unklar | fehlender ECOG-Score" when organ dysfunction or comorbidities are
+       documented. → CORRECT: "Nein | <clinical reason found in record>"
+
+    COMMITTING TO Ja — requires positive fitness evidence, not just absence of comorbidities:
+    · Functional descriptions suggesting independence (e.g., arbeitsfähig, guter AZ,
+      selbständig, ECOG 0–1) AND adequate organ function (renal, cardiac, hepatic) in record.
+    · If no fitness evidence at all is present and the record is sparse → answer 'Unklar'.
+    · Younger age (<70) alone without any fitness evidence is NOT sufficient for Ja.
+
+    RULE: Missing one formal metric (ECOG, specific lab) does NOT justify 'Unklar' when the
+    overall clinical picture is directional. Put the caveat in Reasoning, commit in Answer.
+  - >
+    For criteria_table_plus_final schemas (e.g., BCMA-CAR-T eligibility): exclusion-type
+    criteria (active infections, CNS involvement, severe organ dysfunction) that are not
+    documented anywhere in the patient record should be marked 'Nicht erfüllt' (= criterion
+    met, i.e., no exclusion present), NOT 'Fehlt'. Only mark 'Fehlt' when the criterion
+    requires a specific positive finding or test result that is genuinely absent (e.g.,
+    a required FISH result that was never performed). When the majority of criteria point
+    toward eligible or not eligible, commit the Final verdict accordingly — do not let
+    one or two 'Fehlt' items force the Final to 'Unklar'.
+  - >
+    TRANSIENT ABNORMALITY RULE (criteria_table_plus_final schemas only):
+    When assessing organ function criteria in a criteria table, single-timepoint lab
+    abnormalities should NOT automatically trigger 'Nicht erfüllt'. Before marking a
+    criterion as failed due to a lab value:
+    (1) Check whether the abnormality is transient vs. persistent across ≥2 time points.
+    (2) If the most recent available value is normal, base the verdict on that value and
+        note the prior elevation in Reasoning (e.g., "ALT 315 U/l on 2024-02-12,
+        normalized to 42 U/l on 2024-04-01 [ctx:007]").
+    This rule only applies when building a criteria table — not to yn_plus_short_text
+    or other schema types.
+  - >
+    CONTRAINDICATION COMPLETENESS RULE (criteria_table_plus_final schemas only):
+    When the final verdict in a criteria table is heading toward Ja (eligible), verify
+    that exclusion-type criteria have been actively searched — not just assumed absent.
+    For CAR-T/cellular therapy, explicitly check: active autoimmune disease, prior
+    allogeneic SCT within 6 months, uncontrolled CNS disease, active hepatitis B/C or
+    HIV, ECOG ≥3. Issue a targeted retrieval if these areas have not yet been covered.
+    This verification step is NOT required for yn_plus_short_text schemas (e.g., Q46
+    refractoriness, Q47 transplantability) — for those, follow the existing COMMIT RULE.
+uncertainty:
+  missing_evidence: "Kriterium unklar/fehlend; unter 'Offen' mit Suchumfang listen."
+retry_policy:
+  max_attempts: 2
+  rules:
+    - "Allow at most 1 retry for any retrieval step."
+    - "Retries must change scope meaningfully (top_k jump, broaden date range, or switch to a different report_type/corpus)."
+outputs:
+  - "Eligibility summary (Geeignet/Nicht geeignet/Unklar) with rationale."
+  - "Checklist of criteria met vs. missing, each with citations."
+  - "Outstanding diagnostics/tasks with status."
+micro_tests:
+  should_activate:
+    - "Ist der Patient für BCMA-CAR-T geeignet?"
+    - "Erfüllt die Patientin die Kriterien für Studie X?"
+    - "Kann eine nächste Therapielinie empfohlen werden basierend auf Organfunktion und Vortherapien?"
+  should_not_activate:
+    - "IgG am 2024-11-08?"  # lab snapshot
+    - "Nimmt der Patient aktuell Lenalidomid?"  # status
+  adversarial:
+    - "Eligibility beurteilen, obwohl ECOG und aktuelle Infektlage fehlen."  # must flag missing criteria

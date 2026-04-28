@@ -1,0 +1,49 @@
+skill:
+  id: style.question_types.lab_snapshot
+  name: Lab Snapshot Template
+  version: 1
+  category: style
+  inherits:
+    - style.base
+  description: >
+    Select for questions asking for a single lab value at a specific timepoint.
+    Output only the value with date/time and unit.
+  triggers:
+    question_types: ["lab_snapshot"]
+    semantic_cues:
+      - "Requests a single lab value at/near a date or timestamp."
+      - "No trend/trajectory analysis requested."
+    keywords: ["(optional lexicon) am, zum Zeitpunkt, Wert, Labor, IgG, FLC, Paraprotein"]
+    data_domains: ["lab_values"]
+activation:
+  intent: "Use when a specific lab value at a given date/time is requested."
+conflicts:
+  - style.question_types.lab_trend
+  - style.question_types.comparison
+response_level_hint: 1
+structure:
+  template:
+    - "Single line: '<Test>: <value> <unit> (YYYY-MM-DD HH:MM, Quelle) [ID]'."
+requirements:
+  - "Final output must keep the Answer/Rationale format from style.structured_annotation; use this template to shape rationale content, not the Answer line."
+  - "Return exactly one line unless multiple labs were explicitly requested."
+  - "Include unit and timestamp for each value."
+  - "Do not add interpretation or trend commentary."
+  - "If no value exists at the requested time, return the nearest available value and state the deviation."
+uncertainty:
+  missing_evidence: "Kein Messwert im angefragten Zeitfenster gefunden; nächstliegender Wert mit Abweichung angeben."
+  no_documents: "Nicht dokumentiert."
+examples:
+  - question: "Wie hoch war das IgG am 2024-11-08?"
+    answer: >
+      "IgG: 6.1 g/L (2024-11-08 08:12) [lab:IgG_2024-11-08]"
+micro_tests:
+  should_activate:
+    - "Wie hoch war das IgG am 2024-11-08?"
+    - "Paraprotein zum Zeitpunkt der Aufnahme?"
+    - "CRP-Wert am Tag der Fieberepisode?"
+  should_not_activate:
+    - "Wie hat sich das IgG im Verlauf entwickelt?"  # trend
+    - "Vergleiche Paraprotein zwischen April und August."  # comparison
+  adversarial:
+    - "Welcher IgG-Wert liegt aktuell vor, ohne dass ein Verlauf gewünscht ist?"  # avoid adding trends

@@ -1,0 +1,168 @@
+skill:
+  id: knowledge.cartitude4
+  name: Cilta-cel CAR-T trial card for eligibility and planning (CARTITUDE-4, NEJM 2023)
+  version: 1
+  category: knowledge
+  description: >
+    Curated trial-grounded domain knowledge for BCMA CAR-T (ciltacabtagene autoleucel, cilta-cel)
+    based on CARTITUDE-4. Use for Category 3 questions about (1) study or therapy eligibility and
+    (2) therapy planning and next steps, including bridging, lymphodepletion, infusion dose context,
+    and early toxicity monitoring (CRS, ICANS, delayed neuro events, infections, hypogammaglobulinemia).
+
+  triggers:
+    question_types: ["eligibility", "next_step", "therapy_planning", "refractory_status"]
+    keywords:
+      - "cilta-cel, ciltacabtagene autoleucel, CARTITUDE-4, BCMA CAR-T, CAR-T, car t, Janssen, Legend"
+      - "lenalidomid-refraktaer, lenalidomide-refractory, first relapse, 1-3 prior lines"
+    semantic_cues:
+      - "Question asks whether a patient is eligible for cilta-cel in earlier lines (lenalidomide-refractory after 1-3 prior lines)."
+      - "Question asks for next steps and logistics for cilta-cel, including apheresis, bridging, lymphodepletion, infusion, and monitoring."
+      - "Question asks about CAR-T toxicities in this earlier-line population, including delayed neuro events."
+    data_domains: ["doctor_letter", "tumor_board", "therapy_history", "lab_values", "meds", "clinical_status"]
+
+activation:
+  intent: >
+    Use as an evidence card. Apply CARTITUDE-4 inclusion context (lenalidomide-refractory, prior lines,
+    ECOG gate, prior BCMA exposure restriction) and translate it into a patient-specific checklist.
+    Then produce a practical planning output covering referral timing, bridging rationale, lymphodepletion,
+    and early plus delayed monitoring. Treat this as trial-derived context, not as approval-label or local SOP.
+
+conflicts: []
+
+requirements:
+  - "Explicitly label conclusions as trial-derived (CARTITUDE-4) and do not claim these are current label criteria."
+  - "For each criterion, cite patient evidence with date or mark it Unclear. Do not infer missing items."
+  - "Separate (A) minimum trial-style eligibility from (B) feasibility and logistics (apheresis, bridging time, monitoring)."
+  - "Do not invent additional exclusions. The paper states full eligibility is in the protocol."
+  - "If the question is about a local study, state that site-specific criteria may differ."
+
+knowledge:
+  provenance:
+    paper: "San-Miguel et al., N Engl J Med 2023;389:335-347 (CARTITUDE-4)"
+    notes: "This card includes only items explicitly described in the NEJM paper text."
+
+  therapy_summary:
+    modality: "BCMA-directed CAR-T, single infusion after lymphodepletion."
+    setting: >
+      Earlier-line relapsed MM with lenalidomide-refractory disease after 1 to 3 prior lines.
+      Trial compared cilta-cel to physician’s choice of DPd or PVd.
+
+  minimum_trial_eligibility_context:
+    inclusion_described:
+      - criterion: "Disease context"
+        threshold: "Lenalidomide-refractory multiple myeloma"
+      - criterion: "Prior lines"
+        threshold: "1 to 3 previous lines of treatment"
+      - criterion: "Prior drug classes"
+        threshold: "Received a proteasome inhibitor and an immunomodulatory drug"
+      - criterion: "ECOG performance status"
+        threshold: "ECOG <= 1"
+      - criterion: "Prior BCMA or cellular therapy exposure"
+        threshold: "No prior CAR-T therapy and no prior BCMA-targeted treatment"
+    guardrails:
+      - "Full eligibility criteria are stated to be in the protocol. Do not assume infection or organ-function cutoffs beyond what is explicitly stated."
+
+  treatment_process_for_planning:
+    assignment_and_bridging:
+      - "Patients assigned to cilta-cel underwent apheresis, then received bridging therapy with PVd or DPd."
+      - "At least one bridging cycle was given, with number of cycles determined by clinical status and manufacturing time."
+      - "If confirmed progression occurred during bridging therapy or lymphodepletion, this counted as a progression event, and cilta-cel could still be given at investigator discretion."
+
+    manufacturing_timing:
+      - "Median time from receipt of apheresis material to product release was 44 days (range 25 to 127 days)."
+      - "Planning should explicitly address disease control during this interval and risk of progression before infusion."
+
+    lymphodepletion_and_infusion:
+      - "Lymphodepletion: cyclophosphamide 300 mg/m^2 plus fludarabine 30 mg/m^2 daily for 3 days."
+      - "Infusion timing: cilta-cel infused 5 to 7 days after initiation of lymphodepletion."
+      - "Target dose: 0.75 x 10^6 CAR+ viable T cells per kg body weight."
+
+  efficacy_context_for_next_step_reasoning:
+    - "Cilta-cel improved PFS versus standard care in this population. Median PFS was not reached with cilta-cel and was 11.8 months with standard care at the interim analysis."
+    - "Overall response and depth were higher with cilta-cel, including a high rate of complete response or better and MRD negativity."
+    - "Overall survival was immature at the time of report."
+
+  toxicity_and_monitoring:
+    crs:
+      frequency: "CRS in 76.1% of infused patients."
+      severity: "Grade 3 CRS was rare (about 1.1%); no grade 5 CRS reported."
+      timing: "Median onset 8 days after infusion (range 1 to 23); median duration 3 days (range 1 to 17)."
+      implication: >
+        Monitoring needs to cover an extended early window in this product, not only day 1 to 3.
+        Ensure local CRS grading and escalation pathways are in place.
+
+    icans_and_neuro:
+      icans:
+        frequency: "ICANS in 4.5%, all grade 1 to 2."
+        timing: "Median onset 9.5 days (range 6 to 15); median duration 2 days (range 1 to 6)."
+      other_neurotoxicity:
+        frequency: "Non-ICANS neurotoxic events reported in 20.5%, with grade 3 to 4 in 2.8%."
+        notable_events:
+          - "Cranial nerve palsies in 9.1%, median onset 21 days (range 17 to 60)."
+          - "CAR-T-related peripheral neuropathy in 2.8%."
+          - "Movement and neurocognitive symptoms were rare in this trial, but delayed onset was reported."
+      implication: >
+        Include both early neuro checks for ICANS and a delayed neuro surveillance plan, specifically
+        for cranial nerve symptoms and neuropathy over the first 1 to 2 months.
+
+    infections_and_igg:
+      infections:
+        frequency: "Infections during treatment in 62.0%, with grade 3 to 4 infections in 26.9%."
+        covid: "Covid-19 occurred, including severe and fatal events in a subset."
+      hypogammaglobulinemia:
+        frequency: "Very common, including high incidence when incorporating lab results."
+        ivig_use: "IVIG use was frequent in the cilta-cel arm."
+      implication: >
+        For planning, explicitly request baseline infection history and prophylaxis policy alignment.
+        Check IgG trajectory when available and consider IVIG per local practice, especially with recurrent infections.
+
+guidelines:
+  - "Eligibility outputs must be checklist-style with Met, Not met, or Unclear for each inclusion context item."
+  - "Planning outputs must be timeline-style: referral and workup, apheresis, bridging, lymphodepletion, infusion, early monitoring, delayed monitoring."
+  - "Explicitly highlight the manufacturing interval and need for bridging decisions."
+  - "Do not propose specific bridging regimens unless present in the record or local SOP. State bridging goals and what information is needed."
+  - "When toxicity is mentioned, include timing windows and note that local SOP governs management."
+
+examples:
+  eligibility_checklist_template:
+    - item: "Lenalidomide-refractory disease"
+      evidence_needed: "Progression on lenalidomide or documented refractoriness with dates"
+    - item: "1 to 3 prior lines"
+      evidence_needed: "Therapy lines with dates and components"
+    - item: "Prior PI and IMID exposure"
+      evidence_needed: "Medication history confirming at least one PI and one IMID"
+    - item: "ECOG <= 1"
+      evidence_needed: "Documented ECOG near decision date"
+    - item: "No prior CAR-T and no prior BCMA-targeted therapy"
+      evidence_needed: "Therapy history confirming absence of CAR-T and BCMA-targeted agents"
+
+  planning_output_stub:
+    - section: "Suitability and referral"
+      detail: "State trial-derived suitability, list missing items blocking a confident call."
+    - section: "Apheresis and bridging"
+      detail: "Describe bridging as disease control during manufacturing; list patient-specific factors that increase progression risk."
+    - section: "Manufacturing interval risk"
+      detail: "Flag median 44-day release timing and risk of progression before infusion."
+    - section: "Lymphodepletion and infusion"
+      detail: "State trial lymphodepletion regimen and infusion timing, then defer to local SOP for scheduling and admission rules."
+    - section: "Monitoring plan"
+      detail: "CRS window with median onset ~8 days; ICANS median onset ~9.5 days; include delayed neuro surveillance up to at least day 60."
+    - section: "Infection and IgG plan"
+      detail: "Explicitly request baseline infection history, prophylaxis plan, IgG monitoring, and IVIG considerations."
+
+uncertainty:
+  protocol_dependency: "Full eligibility and exclusions are stated to be in the protocol and are not enumerated in this card."
+  missing_patient_data: "If ECOG or lenalidomide refractoriness timing is missing, label the conclusion Unclear."
+  local_policy: "Admission criteria, prophylaxis, and management protocols are local. Do not assert them."
+
+micro_tests:
+  should_activate:
+    - "Ist der Patient fuer Cilta-cel (CARTITUDE-4 Setting) geeignet?"
+    - "Lenalidomid-refraktaer nach 1-3 Vortherapien: kommt CAR-T in Frage?"
+    - "Welche naechsten Schritte fuer Cilta-cel Planung: Apherese, Bridging, Lymphodepletion, Monitoring?"
+    - "Brauchen wir ein verlaengertes CRS Monitoringfenster bei Cilta-cel?"
+  should_not_activate:
+    - "Wie hoch ist das aktuelle Kalzium?"
+    - "Welche Therapien bekam der Patient im Jahr 2018?"
+  adversarial:
+    - "Patient ohne klare Lenalidomid-Refraktaeritaet: muss Unklar sagen und die noetige Evidenz auflisten."

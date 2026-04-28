@@ -1,0 +1,143 @@
+skill:
+  id: knowledge.determination
+  name: Upfront ASCT vs no upfront ASCT with continuous len maintenance (DETERMINATION, NEJM 2022)
+  version: 1
+  category: knowledge
+  description: >
+    Curated trial grounded domain knowledge from the DETERMINATION phase 3 trial in newly diagnosed MM.
+    Use for Category 3 questions about (1) eligibility for transplant eligible first line strategies and
+    (2) therapy planning and next steps when deciding between upfront ASCT plus RVd versus RVd alone,
+    with lenalidomide maintenance until progression in both arms.
+
+  triggers:
+    question_types: ["eligibility", "next_step", "therapy_planning", "frontline_strategy"]
+    keywords:
+      - "DETERMINATION, IFM 2009, RVd, RVD, VRd, ASCT, autologous stem cell transplantation, melphalan 200"
+      - "transplant eligible, upfront transplant, early transplant, deferred transplant, stem cell collection, maintenance until progression"
+    semantic_cues:
+      - "Question asks whether a patient is transplant eligible in NDMM or whether to proceed with upfront ASCT."
+      - "Question asks how to plan first line therapy sequence around stem cell collection, ASCT, consolidation, and maintenance."
+      - "Question asks about expected benefit tradeoffs of upfront ASCT versus RVd alone with continuous maintenance."
+    data_domains: ["doctor_letter", "tumor_board", "therapy_history", "lab_values", "clinical_status"]
+
+activation:
+  intent: >
+    Use as an evidence card. Apply the trial inclusion context and treatment schema, then translate into
+    a patient specific decision checklist and a concrete plan for next steps. Treat this as trial derived context,
+    not as a substitute for guidelines, local SOP, or patient specific transplant workup.
+
+conflicts: []
+
+requirements:
+  - "Explicitly label conclusions as trial derived (DETERMINATION) and avoid claiming these are universal guideline rules."
+  - "Separate (A) trial style eligibility context from (B) practical transplant feasibility and patient preference."
+  - "When summarizing benefit, report PFS gain and lack of OS difference as stated in the paper, and mention toxicity tradeoffs."
+  - "Do not invent the detailed organ function cutoffs. State that inadequate hematologic, hepatic, renal, or cardiac function were exclusions and that full criteria are in the protocol."
+
+knowledge:
+  provenance:
+    paper: "Richardson et al., N Engl J Med 2022;387:132-147 (DETERMINATION)"
+    notes: "This card includes only information explicitly stated in the NEJM paper text."
+
+  trial_population_and_context:
+    setting: "Adults with newly diagnosed symptomatic, measurable MM who were considered transplant eligible by trial design."
+    key_inclusion_described:
+      - criterion: "Age"
+        threshold: "18 to 65 years"
+      - criterion: "Disease"
+        threshold: "Symptomatic, measurable, newly diagnosed MM"
+      - criterion: "Performance status"
+        threshold: "ECOG 0 to 2"
+    key_exclusions_described:
+      - "Previous use of systemic therapy for myeloma"
+      - "Central nervous system involvement"
+      - "Primary amyloidosis"
+      - "Inadequate hematologic, hepatic, renal, or cardiac function (details in protocol)"
+
+  treatment_schema_for_planning:
+    induction_and_randomization:
+      - "All patients received 1 cycle of RVd, then were randomized."
+      - "Both arms then received 2 additional cycles of RVd and proceeded to stem cell collection."
+    arms:
+      rvd_alone_arm:
+        - "After collection, 5 additional cycles of RVd were given (total 8 cycles), then lenalidomide maintenance until progression."
+      asct_arm:
+        - "After collection, high dose melphalan 200 mg per m^2 plus ASCT was given."
+        - "On recovery (approximately day 60), 2 additional cycles of RVd were given, then lenalidomide maintenance until progression."
+    maintenance:
+      - "Maintenance in both groups was lenalidomide 10 mg daily with possible increase to 15 mg depending on side effects, continued until progression or unacceptable toxicity."
+    salvage_transplant_note:
+      - "After protocol therapy, off trial salvage transplant was recommended but not mandated for patients in the RVd alone arm at relapse."
+
+  efficacy_and_tradeoffs_for_decision_support:
+    progression_free_survival:
+      - "Median PFS was 67.5 months with upfront ASCT versus 46.2 months with RVd alone, with higher risk of progression or death in the RVd alone arm (hazard ratio 1.53)."
+    overall_survival:
+      - "No overall survival benefit was observed at the reported follow up. Estimated 5 year survival was about 80% in both groups."
+    toxicity_burden:
+      - "Grade 3 or higher treatment related adverse events were more frequent with upfront ASCT (94.2%) than with RVd alone (78.2%)."
+      - "Hematologic grade 3 or higher events were notably more frequent with upfront ASCT."
+    quality_of_life:
+      - "Quality of life showed a transient clinically meaningful decrease around ASCT, with later recovery during maintenance."
+    second_primary_malignancies:
+      - "Second primary cancers were reported in about 10% in both groups."
+      - "Second primary hematologic cancers were more frequent with upfront ASCT, including AML or MDS events reported in the ASCT group."
+
+  practical_implications_for_workflow_questions:
+    when_upfront_asct_is_supported_by_trial:
+      - "If the goal is longer first remission and the patient can tolerate ASCT, the trial supports upfront ASCT as a PFS improving strategy."
+    when_rvd_alone_is_reasonable:
+      - "If avoiding intensive toxicity burden and short term quality of life decline is a priority, RVd alone with continuous lenalidomide maintenance remains a reasonable strategy in the trial, with no OS disadvantage shown at the reported follow up."
+    what_to_check_for_transplant_feasibility:
+      - "Confirm transplant candidacy beyond the trial inclusion context, including organ function adequacy, frailty, infections, and psychosocial feasibility per local transplant program."
+    deferred_transplant_caveat:
+      - "The paper reports that only a minority of patients in the RVd alone group received subsequent ASCT by the data cutoff, so do not assume deferred transplant will always occur in practice."
+
+guidelines:
+  - "For eligibility questions, output a checklist with Met, Not met, or Unclear for age, ECOG, NDMM status, measurable disease, and key exclusions if documented."
+  - "For frontline strategy questions, output two parts: Expected benefit and Expected burden, then tie back to patient specific constraints and preferences if present in the record."
+  - "For planning questions, output a timeline: RVd cycles, timing of stem cell collection, ASCT branch if chosen, and maintenance until progression."
+  - "If the patient age is above 65 or ECOG is above 2, explicitly state that the trial evidence is out of scope and that real world transplant eligibility may differ."
+
+examples:
+  eligibility_checklist_template:
+    - item: "Age 18 to 65"
+      evidence_needed: "Birth date or documented age"
+    - item: "ECOG 0 to 2"
+      evidence_needed: "Documented ECOG near decision date"
+    - item: "Symptomatic, measurable NDMM"
+      evidence_needed: "Diagnosis date, CRAB features, measurable parameter"
+    - item: "No prior systemic therapy for MM"
+      evidence_needed: "Therapy history before RVd start"
+    - item: "No CNS involvement or primary amyloidosis"
+      evidence_needed: "Problem list, imaging, pathology if available"
+    - item: "Adequate organ function"
+      evidence_needed: "Labs and cardiopulmonary assessment per local transplant program, with note that protocol thresholds are not included here"
+
+  planning_output_stub:
+    - section: "Decision framing"
+      detail: "State that DETERMINATION compares RVd alone versus RVd plus upfront ASCT, both with len maintenance until progression."
+    - section: "Option A: RVd plus upfront ASCT"
+      detail: "Timeline through collection, melphalan plus ASCT, consolidation cycles, then len maintenance."
+    - section: "Option B: RVd alone"
+      detail: "Timeline through 8 cycles RVd, then len maintenance, with note that salvage ASCT may be considered later."
+    - section: "Tradeoffs"
+      detail: "PFS gain with ASCT, no OS difference reported, higher toxicity and transient QoL dip with ASCT."
+    - section: "Open items"
+      detail: "Missing ECOG, organ function, patient preference, or cytogenetic risk documentation that influences decision."
+
+uncertainty:
+  protocol_dependency: "Detailed organ function cutoffs and full eligibility criteria are referenced as being in the protocol and are not enumerated in this card."
+  external_validity: "Trial age cap was 65 years and may not generalize to older transplant eligible patients."
+
+micro_tests:
+  should_activate:
+    - "Soll der Patient upfront ASCT bekommen oder RVd ohne Transplant mit Erhaltung?"
+    - "Ist der Patient transplant eligible nach DETERMINATION Setting?"
+    - "Welche naechsten Schritte fuer Stammzellmobilisation und ASCT Planung?"
+    - "Wie gross ist der PFS Vorteil von ASCT in DETERMINATION?"
+  should_not_activate:
+    - "Aktueller Kreatininwert am Stichtag?"
+    - "Welche Nebenwirkungen hat Lenalidomid?"
+  adversarial:
+    - "Patient 70 Jahre: muss sagen, dass DETERMINATION Alterskriterium ueberschritten ist und dass das nur begrenzt uebertragbar ist."

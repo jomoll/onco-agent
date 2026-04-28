@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+dist/
+build/
+*.whl
+.venv/
+venv/
+env/
+
+# Environment
+.env
+
+# Databases (user data — never commit)
+src/database/*.sqlite
+src/database/*.db
+
+# Node / frontend
+src/clinical-rag-ui/node_modules/
+src/clinical-rag-ui/.env
+src/clinical-rag-ui/dist/
+
+# Outputs
+outputs/
+answers_*.json
+*.log
+nohup.out
+
+# Jupyter
+.ipynb_checkpoints/
+
+# macOS
+.DS_Store
+
+# IDE
+.vscode/
+.idea/

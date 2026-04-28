@@ -1,0 +1,53 @@
+skill:
+  id: workflows.lab_trend
+  name: Lab Trend Workflow
+  version: 1
+  category: workflow
+  description: >
+    Select when the question asks for lab development over time (trend, increase/decrease).
+  triggers:
+    question_types: ["lab_trend", "lab_trajectory", "response_assessment"]
+    semantic_cues:
+      - "Trend or trajectory of lab values over time is requested."
+    keywords: ["(optional lexicon) Verlauf, Trend, Entwicklung, Anstieg, Abfall"]
+    data_domains: ["lab_values"]
+activation:
+  intent: "Use when multiple timepoints are needed to summarize direction/change."
+conflicts:
+  - workflows.lab_at_timepoint
+  - workflows.current_status_check
+steps:
+  - name: Identify lab markers
+    detail: >
+      Extract requested lab names and map them to canonical lab keys. If unspecified, ask
+      for the primary disease markers (e.g., paraprotein, FLC, IgG) relevant to the question.
+  - name: Retrieve time series
+    detail: >
+      Call retrieve_lab_values with time_scope="range" for the full available period, limiting
+      max_results_per_lab to a manageable number (e.g., 10–20). If the time span is explicit,
+      use date_start/date_end accordingly.
+  - name: Summarize trend
+    detail: >
+      Identify earliest and latest values and 1–2 key intermediate points if they change direction.
+requirements:
+  - "Cite at least two timepoints (earliest and latest)."
+  - "Do not call retrieve_reports unless the lab tool returns no values."
+uncertainty:
+  missing_evidence: "Trend unklar, nur einzelne Messwerte vorhanden; alle verfügbaren Punkte nennen."
+retry_policy:
+  max_attempts: 2
+  rules:
+    - "Allow at most 1 retry for retrieve_lab_values."
+    - "Retries must change scope meaningfully (broaden the date range or increase max_results_per_lab)."
+outputs:
+  - "Trend summary with key timepoints and values."
+micro_tests:
+  should_activate:
+    - "Wie hat sich das Paraprotein im Verlauf entwickelt?"
+    - "Trend des CRP in den letzten Monaten?"
+    - "Ist der Hb-Wert steigend oder fallend?"
+  should_not_activate:
+    - "CRP am 2024-11-08?"  # point-in-time
+    - "Nimmt der Patient aktuell Lenalidomid?"  # status
+  adversarial:
+    - "Nur zwei Messpunkte vorhanden – Trend ableiten?"  # must note limited data

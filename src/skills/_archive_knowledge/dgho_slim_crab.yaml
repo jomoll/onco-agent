@@ -1,0 +1,97 @@
+skill:
+  id: knowledge.dgho_slim_crab
+  version: 1
+  category: knowledge
+  name: 'DGHO MM guideline card: SLiM-CRAB treatment indication and smouldering watchful waiting'
+  description: 'Curated domain knowledge from the DGHO Onkopedia Multiple Myeloma guideline on when MM is therapy-indicated
+    (SLiM-CRAB), and when asymptomatic smouldering disease is managed with watchful waiting. Use to ground eligibility and
+    next-step questions about therapy start timing.'
+  triggers:
+    data_domains:
+    - doctor_letter
+    - tumor_board
+    - lab_values
+    - imaging
+    - pathology
+    question_types:
+    - eligibility
+    - next_step
+    - therapy_planning
+    - diagnostic_threshold
+    keywords:
+    - SLiM-CRAB, CRAB, smouldering, schwelendes Myelom, Therapieindikation, watch and wait, w & w
+    semantic_cues:
+    - Question asks whether MM is therapy-indicated vs smouldering and how to decide on starting therapy.
+    - Question hinges on SLiM-CRAB thresholding or on interpretation of renal function, anemia, hypercalcemia, bone lesions.
+activation:
+  stage_constraints:
+    preferred_stage: plan
+    avoid_stages:
+    - parse
+  do_not_use_if:
+  - Question is purely about a single lab value reference range without treatment decision.
+  - Question is about a non-MM malignancy.
+conflicts:
+  overrides:
+  - If a trial card is active for a specific regimen, do not contradict trial-specific inclusion criteria. Use this guideline
+    card only for general therapy-indication logic.
+  duplicates:
+  - knowledge.how_i_treat_frontline_te_ndmm
+requirements:
+  inputs_required:
+  - 'Key SLiM-CRAB signals: calcium, hemoglobin, creatinine or eGFR, imaging bone lesions, bone marrow plasma cell percentage,
+    free light chain ratio, MRI focal lesions.'
+  - Symptom status and suspected etiology for renal impairment if present.
+  must_cite_or_quote: false
+  must_show_work: false
+knowledge:
+  provenance:
+    paper: 'DGHO Onkopedia Leitlinie: Multiples Myelom (MM_DGHO.pdf)'
+    section_hints:
+    - Table of SLiM-CRAB criteria and therapy algorithm legend
+  core_points:
+  - Fulfilling at least one SLiM-CRAB criterion is sufficient as an indication to treat.
+  - The creatinine threshold in CRAB is a guideline value; if renal impairment is driven by pathogenic light chains or other
+    MM-related symptoms likely improve with therapy, earlier therapy start is indicated.
+  - With only a single SLiM criterion, careful watchful waiting with close monitoring can be considered case-by-case.
+  - Asymptomatic smouldering MM is not treated.
+  operationalization:
+    decision_checks:
+    - 'Check SLiM: marrow clonal plasma cells >60%, involved/uninvolved free light chain ratio >=100, or >1 focal MRI lesion
+      >=5 mm.'
+    - 'Check CRAB: hypercalcemia, renal impairment, anemia, bone lesions, and whether clinically attributable to MM.'
+    - If renal dysfunction is present, assess plausibility of cast nephropathy or light-chain driven injury. If plausible,
+      consider earlier therapy even if strict creatinine cutoff is not met.
+    - If only one SLiM criterion is present, state uncertainty and recommend close follow-up if choosing watchful waiting.
+guidelines:
+  answer_guardrails:
+  - Do not claim therapy is indicated unless at least one explicit SLiM-CRAB signal is present in the provided record.
+  - If data are missing, say what is missing and why it matters.
+  phrasing_hints:
+  - 'Use guideline-consistent terms: SLiM-CRAB, schwelendes Myelom, abwartendes Vorgehen, engmaschige Kontrollen.'
+examples:
+  positive:
+  - q: Reicht ein SLiM-Kriterium als Therapieindikation?
+    a: Ja. Laut DGHO ist die Erfuellung eines SLiM-CRAB-Kriteriums als Behandlungsindikation ausreichend. Bei isoliertem SLiM-Kriterium
+      kann im Einzelfall auch ein abwartendes Vorgehen mit engmaschigen Kontrollen diskutiert werden, falls keine weiteren
+      Symptome vorliegen.
+  - q: Patient hat smouldering MM ohne CRAB. Soll man behandeln?
+    a: Nein. Beim asymptomatischen (schwelenden) MM erfolgt keine Behandlung, stattdessen Verlaufskontrollen.
+  negative:
+  - q: Wie hoch ist das Kalzium im letzten Labor?
+    a: 'Nicht geeignet: reine Laborauskunft ohne Therapieentscheidung.'
+uncertainty:
+  when_to_say_unclear:
+  - Only borderline or single SLiM criterion is mentioned without corroborating data.
+  - Renal impairment is present but etiology is ambiguous.
+  fallback: State that SLiM-CRAB treatment indication cannot be determined from available inputs and list missing measurements.
+micro_tests:
+  should_activate:
+  - Hat der Patient eine Therapieindikation nach SLiM-CRAB?
+  - Ist das noch schwelendes MM oder therapiebeduerftiges MM?
+  should_not_activate:
+  - Was ist der IgG-Wert?
+  - Welche Dosis Dexamethason hat der Patient bekommen?
+  adversarial:
+  - 'Patient mit Kreatininanstieg, aber unklar ob prerenal oder cast nephropathy: muss Unsicherheit benennen und fehlende
+    Diagnostik nennen.'

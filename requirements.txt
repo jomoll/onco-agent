@@ -1,0 +1,24 @@
+# Core agent dependencies
+dspy-ai>=2.4
+llama-index-core>=0.10
+rank-bm25>=0.2
+python-dotenv>=1.0
+
+# API server
+fastapi>=0.110
+uvicorn[standard]>=0.29
+pydantic>=2.0
+
+# LLM backends
+openai>=1.30               # vLLM / OpenAI-compatible endpoint
+google-auth>=2.0           # Vertex AI Gemini backend (optional)
+requests>=2.30             # Vertex AI Gemini HTTP calls
+
+
+
+# Optional: dense/hybrid retrieval
+# sentence-transformers>=2.7
+# numpy>=1.26
+
+# CLI niceties
+tqdm>=4.66

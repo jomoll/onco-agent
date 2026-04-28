@@ -1,0 +1,99 @@
+skill:
+  id: workflows.first_event_search
+  name: First Event Search Workflow
+  version: 1
+  category: workflow
+  description: >
+    Select for temporal_localization questions asking when an event first or last
+    occurred. Requires a full-history search sorted oldest-first to identify the
+    earliest positive finding and the most recent prior negative study.
+  triggers:
+    question_types: ["temporal_localization"]
+    semantic_cues:
+      - "Asks for the date of first/last occurrence or onset."
+      - "Often phrased as 'wann/seit wann/erstmals/zuletzt'."
+    keywords: ["wann", "erstmals", "seit wann", "zuletzt", "Erstdiagnose", "erstmalig", "Beginn"]
+    data_domains: ["doctor_letter", "radiology", "pathology", "tumor_board"]
+activation:
+  intent: "Use for first/last-occurrence date questions; requires full-history search sorted oldest-first."
+conflicts:
+  - workflows.current_status_check
+  - workflows.ever_status_check
+steps:
+  - name: Full-history retrieval (oldest-first)
+    detail: >
+      Use retrieve_reports with time_scope="all" and the target event keywords.
+      Use a moderate top_k (8-12) to capture the full chronological range.
+      Do NOT add temporal qualifiers like "neu" or "erstmals" to the query —
+      search for the bare clinical concept (e.g., "Osteolysen", "Niereninsuffizienz")
+      to avoid retrieving only recent denials.
+  - name: Identify earliest positive finding
+    detail: >
+      Sort retrieved reports chronologically (oldest first). Scan for the first
+      report that positively documents the target event. Record the date, source,
+      and the exact wording confirming the finding.
+  - name: Identify prior negative comparison
+    detail: >
+      Look for the most recent report BEFORE the first positive finding that
+      either negates the finding or does not mention it. If found, this establishes
+      the onset window. If no prior comparison exists, state "Kein früherer
+      Bericht verfügbar".
+  - name: Verify no earlier document exists
+    detail: >
+      If the initial retrieval found a positive document at date D, do NOT assume it is
+      the earliest. Issue one verification call with a date range ending just before D
+      (i.e., time_scope covering the full record up to D minus one day), same concept
+      keywords, increased top_k (15+). This surfaces early documents that BM25 relevance
+      ranking may have deprioritised in favour of more recent or more frequently mentioned
+      findings. If no earlier positive is found, the original date D is confirmed as
+      the first occurrence.
+      Date precision sub-step: when the event has been approximately located at month/year
+      resolution (e.g., "Dezember 2019"), issue one additional targeted retrieval with a
+      6-week window centred on that month (time_scope covering the 3 weeks before and after)
+      to retrieve the source document and extract the exact day. If the source only records
+      month/year, note this explicitly in the Reasoning: "Datum nur als MM.YYYY angegeben."
+      Never present a month-only date as if it were day-level precision.
+  - name: Escalate scope if no positive found
+    detail: >
+      If neither the initial retrieval nor the verification found any positive document,
+      issue one broader retry: increase top_k substantially and/or broaden report_type
+      filters. If the event is imaging-related, include all radiology subtypes
+      (CT, MRT, PET-CT, Skelettszintigraphie). Cap at 3 total retrieval calls across
+      all steps.
+requirements:
+  - "Always cite both the first positive finding AND the most recent prior negative study."
+  - "If no prior comparison exists, explicitly say 'Kein früherer Bericht verfügbar'."
+  - "Never add temporal qualifiers to search queries — search for the bare concept to avoid missing early mentions."
+  - "Use time_scope='all' — recent reports may say 'keine neuen Osteolysen' even if lesions were documented years earlier."
+  - "For date ranges ('zwischen Datum A und B'), search the full range and report the first positive within it."
+  - >
+    Date precision: report the most granular date present in the source document.
+    DD.MM.YYYY is required when a day is available in the retrieved text. Report MM.YYYY
+    only when no day is documented, and state this explicitly in the Reasoning
+    ("Datum nur als MM.YYYY angegeben"). Never omit a day that is present in the source,
+    and never present a month-only approximation as a full date.
+uncertainty:
+  missing_evidence: "Kein früherer Bericht verfügbar; frühestes Datum der vorliegenden Nachweise nennen."
+  no_documents: "Nicht dokumentiert."
+retry_policy:
+  max_attempts: 3
+  rules:
+    - "Step 1: initial broad retrieval (time_scope='all', moderate top_k)."
+    - "Step 2: date-range verification before the earliest positive found — required when a positive was found."
+    - "Step 3: scope escalation — only if no positive found after steps 1 and 2."
+    - "Do not issue multiple narrow variations of the same query within a step."
+outputs:
+  - "Date of first/last occurrence with source citation."
+  - "Prior comparison date and finding (or 'Kein früherer Bericht verfügbar')."
+micro_tests:
+  should_activate:
+    - "Wann zeigten sich erstmals neue Osteolysen im CT?"
+    - "Seit wann besteht die Niereninsuffizienz?"
+    - "Wann war der letzte Nachweis einer Plasmazelle im Knochenmark?"
+  should_not_activate:
+    - "Nimmt der Patient aktuell Lenalidomid?"  # current status
+    - "Gab es jemals eine SZT?"  # ever status
+  adversarial:
+    - "Wann zuletzt KEINE Osteolysen, und wann traten sie dann auf?"  # prior negative then first positive
+    - "Event approximately located in 'Dezember 2019' from initial retrieval → must issue date-precision sub-step to find exact day; answer '17.12.2019', not '12.2019'."
+    - "First retrieval returns report from 2021 mentioning event 'since 2019' → must verify with pre-2021 range search to find original 2019 document."

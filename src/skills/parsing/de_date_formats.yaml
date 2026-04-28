@@ -1,0 +1,44 @@
+skill:
+  id: parsing.de_date_formats
+  name: Normalize German Date Formats
+  version: 1
+  category: parsing
+  description: >
+    Reference for German clinical date/time formats and their ISO-8601 equivalents.
+    Consult when interpreting or normalizing dates encountered in reports.
+  triggers:
+    keywords: ["(lexicon examples) am, vom, bis, KW, dd.mm.yyyy, heute, gestern"]
+    question_types: ["temporal_localization", "timeline", "*"]
+    semantic_cues:
+      - "Dates/times need normalization or relative phrases need anchoring."
+    data_domains: ["doctor_letter", "tumor_board", "radiology", "pathology", "flow", "cytology", "lab_values"]
+activation:
+  intent: "Provides date format examples and conversion rules — consult when interpreting German date expressions."
+conflicts: []
+requirements:
+  - "Use when dates/times must be normalized to ISO or relative expressions need anchoring."
+  - "Keep original date phrases available for citation if needed."
+guidelines:
+  - Accept DD.MM.YYYY, DD.MM.YY, DD/MM/YY, "am 24. Dezember 2024", "KW 13/2023",
+    and relative references such as "vor 3 Wochen" anchored to the report date.
+  - For ISO conversion, assume the report date when resolving relative phrases
+    and include the inferred rationale in metadata.
+  - Preserve time-of-day when available (e.g., "08:30 Uhr").
+examples:
+  - raw: "PET-CT vom 24.12.2024"
+    normalized: "2024-12-24"
+  - raw: "Thrombozytenkontrolle zwei Wochen zuvor (06.01.25)."
+    normalized: "2025-01-06"
+uncertainty:
+  missing_anchor: "Wenn kein Bezugsdatum für relative Angaben vorhanden ist, die relative Form beibehalten und als unklar markieren."
+  no_parse: "Kann das Datum nicht sicher geparst werden, Originaltext unverändert lassen."
+micro_tests:
+  should_activate:
+    - "PET-CT vom 24.12.2024"
+    - "Thrombozytenkontrolle zwei Wochen zuvor (06.01.25)."
+    - "Kontrolle in KW 13/2023"
+  should_not_activate:
+    - "Frage ohne Datumsangaben."
+    - "Reines Ja/Nein ohne Zeitbezug."
+  adversarial:
+    - "Am letzten Freitag vs. 2 Wochen zuvor, ohne Bezugsdatum genannt."  # must flag missing anchor

@@ -1,0 +1,74 @@
+skill:
+  id: workflows.current_status_check
+  name: Current Status Check Workflow
+  version: 1
+  category: workflow
+  description: >
+    Select for simple yes/no current-status questions (medication, procedure, infection)
+    where only the latest documentation is required.
+  triggers:
+    question_types: ["current_status"]
+    semantic_cues:
+      - "Binary present-tense status of therapy/device/condition; latest evidence only."
+    keywords: ["(optional lexicon) aktuell, laufend, erhält, besteht"]
+    data_domains: ["doctor_letter", "tumor_board", "radiology", "pathology", "flow", "cytology"]
+activation:
+  intent: "Use for present-tense yes/no with minimal lookup (latest 1–2 reports)."
+conflicts:
+  - workflows.ever_status_check
+  - workflows.lab_trend
+steps:
+  - name: Targeted recent report search
+    detail: >
+      Use retrieve_reports with focused keywords and time_scope="latest". Prefer relevant
+      report_type(s) from parsing.report_type_mapping. If multiple recent reports exist,
+      prioritize the latest timestamped report or the last 1-2 documents by setting top_k=1-2.
+      Stop if a
+      decisive mention is found.
+  - name: Confirm absence in latest documentation
+    detail: >
+      If the latest report(s) omit the item, state absence based on the most recent 1-2
+      documents. Do not expand to historical searches or issue incremental retries.
+requirements:
+  - "Answer with Ja/Nein and cite the most recent confirming document."
+  - "For 'Nein', explicitly state that the latest documentation omits the item."
+  - "Do not expand beyond the latest 1-2 reports for current status."
+  - "If the latest reports are missing the evidence, answer 'Nein' (not 'Nicht dokumentiert') because active treatments would be documented."
+  - "Allow at most 1 retrieve_reports call; no minor variations or extra retries."
+  - "Stop once the latest decisive status is documented; do not expand to historical searches."
+  - "Interpret Stichtag as the date of the latest available report; use the most recent before it if none exists on that exact date."
+  - "If a medication list exists and explicitly lists the drug → 'Ja'. If the list exists but drug is absent → 'Nein'."
+  - "Use 'Unklar' only for truly ambiguous cases with conflicting information."
+  - >
+    Historical mentions do NOT imply current administration: A drug mentioned only in
+    past therapy lines (e.g., 'Daratumumab was given in line 3') is NOT evidence of
+    current use. Only an explicit statement of ongoing/current administration counts as 'Ja'.
+  - >
+    Subsequent therapy lines supersede earlier ones: If the latest report documents a
+    newer therapy line that replaced the regimen containing the queried drug, the answer
+    is 'Nein' — the drug is no longer being given. Do not assume continuation of a prior
+    regimen when a later regimen is documented.
+  - >
+    Never answer 'Nicht dokumentiert' for current medication questions. Active therapies
+    are always documented in the latest report. Absence from the latest report means
+    'Nein', not 'Nicht dokumentiert' or 'Unklar'.
+uncertainty:
+  missing_evidence: "Nicht dokumentiert bis <Datum>; auf letzte 1–2 Berichte verweisen."
+retry_policy:
+  max_attempts: 2
+  rules:
+    - "Allow at most 1 retry and only if the initial call failed to retrieve the latest reports."
+    - "If relevant recent reports are retrieved but the target fact is missing, terminate and answer 'Nein' without retrying."
+    - "Any retry must change scope meaningfully (e.g., switch report_type to another relevant class or increase top_k to 2)."
+outputs:
+  - "Binary status with date and source section."
+micro_tests:
+  should_activate:
+    - "Nimmt der Patient aktuell Lenalidomid?"
+    - "Besteht aktuell eine Infektion?"
+    - "Liegt der Port noch?"
+  should_not_activate:
+    - "Gab es jemals eine SZT?"  # ever status
+    - "Wie hat sich das Paraprotein entwickelt?"  # trend
+  adversarial:
+    - "Ist aktuell KEIN Dexamethason mehr im Plan?"  # must cite omission in latest report

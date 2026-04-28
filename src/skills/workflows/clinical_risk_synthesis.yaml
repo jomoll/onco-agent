@@ -1,0 +1,104 @@
+skill:
+  id: workflows.clinical_risk_synthesis
+  name: Clinical Risk Synthesis Workflow
+  version: 1
+  category: workflow
+  description: >
+    Select for questions that ask which of two competing clinical dimensions dominates
+    or is more prominent at the assessment date (e.g., disease progression vs. therapy
+    toxicity, disease burden vs. treatment tolerance). Requires gathering evidence for
+    both sides independently before rendering a judgment.
+  triggers:
+    question_types: ["comparison", "clinical_judgment", "yn_plus_short_text"]
+    semantic_cues:
+      - "Asks which of two competing clinical risks or dimensions is dominant or in the foreground."
+      - "Requires weighing evidence on both sides before committing to a verdict."
+    keywords:
+      - "dominieren"
+      - "überwiegt"
+      - "im Vordergrund"
+      - "Krankheitsprogression"
+      - "Therapietoxizität"
+      - "Therapieverträglichkeit"
+      - "Risiko"
+    data_domains: ["doctor_letter", "tumor_board", "lab_values"]
+activation:
+  intent: "Use when two clinical dimensions must be independently gathered and weighed before a verdict."
+conflicts:
+  - workflows.current_status_check
+  - workflows.eligibility_assessment
+steps:
+  - name: Identify the two dimensions
+    detail: >
+      Parse the question to name the two competing dimensions explicitly.
+      Example: dimension A = disease progression, dimension B = therapy toxicity.
+      Do this before any retrieval.
+  - name: Gather evidence for dimension A
+    detail: >
+      Retrieve documents relevant to the first dimension using retrieve_reports with
+      time_scope="latest", targeting recent doctor_letters and tumor_board reports.
+      For disease progression: search for progression events, response assessments
+      (PD/SD/PR), rising paraprotein, new symptoms (Schmerzen, B-Symptome, neue
+      Organbeteiligung), refractory status documentation, physician statements about
+      Progression or Erkrankungsfortschritt.
+      Use top_k=4-6. Stop if decisive evidence is found; otherwise proceed with
+      what is available.
+  - name: Gather evidence for dimension B
+    detail: >
+      Retrieve documents relevant to the second dimension using retrieve_reports with
+      time_scope="latest". For therapy toxicity: search for documented adverse events,
+      hospitalizations due to side effects, dose reductions, treatment discontinuations
+      due to toxicity, or explicit physician statements about Verträglichkeit, Toxizität,
+      Nebenwirkungen, Dosisreduktion, therapiebedingte Komplikationen.
+      Use top_k=4-6. Retrieve lab values if cytopenias or organ dysfunction are relevant.
+  - name: Weigh and commit
+    detail: >
+      List the evidence for each dimension explicitly before deciding. Classify each
+      piece of evidence by strength:
+      - Strong: explicit physician judgment, hospitalization, treatment-limiting AE,
+        documented progression event or progression-refractory confirmation
+      - Moderate: dose reduction, concerning lab trend, physician mention of concern
+      - Weak: passing mention, historical context, stable-but-present finding
+      Then commit to the dimension with substantially more or stronger evidence.
+      If the evidence is genuinely balanced, state 'Beides gleichwertig' with explicit
+      reasoning. If both dimensions are undocumented, state 'Unklar'.
+      Do NOT default to 'Unklar' when one side has clearly more evidence.
+requirements:
+  - "Always gather evidence for BOTH dimensions before rendering a verdict."
+  - "Do not commit to one side without first searching for evidence on the other side."
+  - "List supporting evidence for each dimension separately in the Reasoning."
+  - "If one dimension is completely absent from the record, state this explicitly and commit to the other dimension."
+  - >
+    COMMIT RULE: If one side has substantially more evidence (2+ strong signals, or 3+
+    moderate), commit to it even if the other side also has some evidence. Express the
+    minority evidence in Reasoning but do not let it prevent a verdict. Reserve
+    'Beides gleichwertig' only when both sides have comparable evidence strength after
+    independent retrieval of both dimensions.
+  - >
+    ABSENCE INTERPRETATION: If no toxicity evidence is found after a dedicated search,
+    this is weak evidence FOR the other dimension (progression dominant), not neutral.
+    Do not treat absence of toxicity documentation as 'Unklar' when progression is
+    clearly documented.
+uncertainty:
+  missing_evidence: "Keine ausreichenden Informationen für einen der beiden Aspekte; fehlende Dimension explizit nennen."
+retry_policy:
+  max_attempts: 2
+  rules:
+    - "Allow at most 1 retry per dimension if initial retrieval returns no evidence."
+    - "Retries must broaden scope (larger top_k or different report_type)."
+    - "If one dimension has no documentation after 2 attempts, commit to the other dimension."
+outputs:
+  - "Dominant dimension (or 'Beides gleichwertig' / 'Unklar') with justification."
+  - "Evidence summary for each dimension with inline citations."
+micro_tests:
+  should_activate:
+    - "Welche Risiken dominieren aktuell: Krankheitsprogression oder Therapietoxizität?"
+    - "Was steht aktuell mehr im Vordergrund: Therapieverträglichkeit oder Krankheitskontrolle?"
+    - "Welcher Aspekt dominiert derzeit: Progressionsrisiko oder Toxizität der laufenden Therapie?"
+  should_not_activate:
+    - "Ist der Patient für BCMA-CAR-T geeignet?"    # eligibility, not comparison
+    - "Wie war die Response auf Isa/Pom/Dex?"       # response assessment, not comparison
+    - "Ist der Patient triple-class refraktär?"      # refractory classification
+  adversarial:
+    - "Keine explizite Toxizitätsdokumentation vorhanden — muss trotzdem beide Seiten prüfen, dann Progression als dominant werten falls belegt."
+    - "Physician statement says 'gute Verträglichkeit' but also 'Progress unter Therapie' — must weigh both and commit."

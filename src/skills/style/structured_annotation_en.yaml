@@ -1,0 +1,170 @@
+skill:
+  id: style.structured_annotation.en
+  name: Structured Answer Format — English
+  version: 1.1
+  category: style
+  inherits:
+    - style.base.en
+  description: >
+    Enforces structured answers matching annotation UI format using concrete examples — English variant.
+    Each schema type shows: format with all options, concrete example, and common mistakes.
+  triggers:
+    question_types: ["*"]
+    semantic_cues:
+      - "Use whenever producing patient-facing answers that should align with annotation schemas."
+activation:
+  intent: "Default formatting layer for clinical Q&A to mirror annotation schemas."
+conflicts: []
+structure:
+  template:
+    - "Answer: <schema-aligned value(s) or Abstain>"
+    - "Reasoning: <1–2 sentences with inline citations [ctx:ID]>"
+rules:
+  answer_formats:
+    single_choice: |
+      Format: Answer: <option from schema>
+      Example: Answer: Yes
+               Reasoning: A Daratumumab therapy is documented in the medical letter of 23.07.2021 [ctx:001].
+      ❌ WRONG: "Yes, the patient receives..." (no extra words in Answer line)
+
+    two_single_choice: |
+      Format: Answer: <label1>=<option1>; <label2>=<option2>
+      Example: Answer: Currently=Yes; Ever=No
+               Reasoning: Current therapy with Bortezomib ongoing [ctx:002], no CAR-T documented [ctx:005].
+      ❌ WRONG: Adding explanations in Answer line
+
+    yn_plus_short_text: |
+      Format: Answer: Yes/No/Unclear | <brief text>
+      Example: Answer: Yes | Dose reduction to 75% due to neutropenia
+               Reasoning: Reduction of Carfilzomib dose documented in the course [ctx:003].
+      ❌ WRONG: Adding citations in Answer line
+
+    answer_plus_single_choice: |
+      Format: Answer: Category=<option>; Answer=<text>
+      Example: Answer: Category=CR; Answer=KRD therapy achieved best response
+               Reasoning: CR documented after 3 cycles of KRD [ctx:007].
+
+    criteria_table_plus_final: |
+      Format: Answer: Criteria: <criterion1>=Met/Not met/Missing; ... | Final: Yes/No/Unclear
+      Example: Answer: Criteria: ECOG≤2=Met; Kidney function=Not met; Active infections=Met; FISH=Missing | Final: No
+               Reasoning: ECOG 1 documented [ctx:004], but GFR <30 ml/min [ctx:006]. No active infections documented. FISH result not in the record.
+      NOTE on 'Missing' vs 'Met' for exclusion criteria: When a criterion checks for the
+      ABSENCE of a condition (e.g., "no active infections", "no CNS involvement"), and
+      the condition is not mentioned anywhere in the record, mark as 'Met' (= exclusion
+      criterion met, condition absent). 'Missing' is reserved for criteria requiring a specific
+      positive test or value that was never performed/documented.
+      NOTE on Final verdict: Commit to Yes or No when the majority of criteria are resolved.
+      One or two 'Missing' items do NOT justify Final=Unclear if the overall picture is clear.
+
+    multi_interval_up_to_3: |
+      Format: Answer: Status=Documented/Never administered/Not documented/Unclear || (Start=DD.MM.YYYY, End=DD.MM.YYYY/Ongoing); ...
+      Example: Answer: Status=Documented || 08.10.2022 - 18.10.2022; 15.07.2023 - 24.07.2023
+               Reasoning: Meropenem from 08.–18.10.2022 [ctx:002] and 15.–24.07.2023 [ctx:008].
+      ❌ WRONG: Using vague dates or missing Status field
+
+    cycle_start_dose_list: |
+      Format: Answer: Status=Documented/Never administered/Not documented/Unclear || <DD.MM.YYYY> | <dose> | <unit mg/mg/m^2/mg/kg>; ...
+      Example: Answer: Status=Documented || 05.12.2018 | 5 | mg; 09.01.2019 | 10 | mg
+               Reasoning: Cycle 1 on 05.12.2018 with 5 mg [ctx:001], cycle 2 on 09.01.2019 with 10 mg [ctx:003].
+      ❌ WRONG: C1D1: 05.12.2018 (use calendar dates DD.MM.YYYY, NEVER cycle labels like C1D1/C2D1/C*D1)
+      Note: Rows only appear when Status=Documented
+
+    melphalan_exposure_episode_up_to_3: |
+      Format: Answer: Status=Documented/Never administered/Not documented/Unclear || <Type High-dose/ASCT|Regimen> | <DD.MM.YYYY> | <dose> | <unit>; ...
+      Example: Answer: Status=Documented || High-dose/ASCT | 03.03.2014 | 100 | mg/m^2; High-dose/ASCT | 05.03.2019 | 100 | mg/m^2
+               Reasoning: First HD-Melphalan in March 2014 [ctx:002], second in March 2019 [ctx:007].
+      Note: Max 3 episodes, Rows only when Status=Documented
+
+    doxo_exposure_episode_up_to_3: |
+      Format: Answer: Status=Documented/Never administered/Not documented/Unclear || <Form Conventional|Liposomal|Unclear> | <DD.MM.YYYY> | <dose> | <unit>; ...
+      Example: Answer: Status=Documented || Conventional | 25.06.2021 | 20 | mg
+               Reasoning: Conventional doxorubicin in June 2021 with 20 mg documented [ctx:004].
+      Note: Max 3 episodes, Rows only when Status=Documented
+
+    count_plus_interval: |
+      Format: Answer: Count=1/2/3/4/5/Not documented/Unclear | Start=DD.MM.YYYY | End=DD.MM.YYYY
+      Example: Answer: Count=3 | Start=10.05.2021 | End=15.08.2021
+               Reasoning: Three transfusions between May and August 2021 documented [ctx:005].
+
+    date_or_not_documented: |
+      Format: Answer: <DD.MM.YYYY or MM.YYYY or Not documented or Unclear>
+      Example: Answer: 10/2018
+               Reasoning: First kidney failure documented in October 2018 [ctx:003].
+
+    score_value_plus_date_and_source: |
+      Format: Answer: <score value> | <DD.MM.YYYY> | Documented/Calculated
+      Format (not calculable): Answer: Status: not calculable
+      Format (unclear): Answer: Unclear
+      Example: Answer: 0 | 15.10.2018 | Documented
+               Reasoning: ECOG score of 0 explicitly documented in the medical letter of 15.10.2018 [ctx:002].
+      Example: Answer: ISS II | 15.10.2018 | Calculated
+               Reasoning: Calculated from albumin 3.2 g/dl and β2-microglobulin 4.5 mg/l of 15.10.2018 [ctx:002].
+      Example: Answer: Status: not calculable
+               Reasoning: β2-microglobulin values required for ISS calculation are absent from the available reports [ctx:005].
+      ❌ WRONG: "Unclear" when the score cannot be calculated due to missing lab values (use "Status: not calculable" instead)
+      ❌ WRONG: "ECOG score: 0 (Date: 2025-12-09)" or "ISS-Stage=II" (use pipe separators, not colons/equals)
+      ❌ WRONG: "0" or "II" alone (must include date and source)
+
+    free_text: |
+      Format: Answer: <brief text>
+      Example: Answer: Increase of plasma cells from 5% to 18%
+               Reasoning: Bone marrow biopsy of 10.03.2019 shows 5% [ctx:001], biopsy of 15.07.2021 shows 18% [ctx:004].
+
+    list: |
+      Format: Answer: Items: <item1>; <item2>; ...
+      Example: Answer: Items: Lenalidomide; Bortezomib; Daratumumab
+               Reasoning: All three agents documented in therapy history [ctx:002][ctx:005].
+
+    abstain: |
+      Format: Answer: Abstain
+      Example: Answer: Abstain
+               Reasoning: Contradictory dosage information across multiple reports [ctx:003][ctx:007].
+
+  evidence:
+    - "Cite evidence ONLY in Reasoning using provided [ctx:ID] format"
+    - "Never add citations, prose, or explanations in the Answer line"
+    - "Do not invent evidence; if insufficient, use Abstain (but see below: absence in existing records ≠ 'Not documented')."
+    - "'Not documented' means NO relevant clinical documentation exists at all (no doctor letters, no treatment summaries, no labs). If ANY clinical documentation exists for the patient and the queried finding/drug/condition is absent from it → 'No'. Absence of a finding in existing documentation is evidence of 'No', not 'Not documented'."
+    - >
+      Exception to the above: When a question asks whether a condition is 'documented
+      or demonstrable via lab values' (or similar), answering 'No' requires that the
+      relevant lab values exist and are normal. If the necessary lab values are entirely
+      absent from the record (not just the condition mention), answer 'Not documented'
+      — the condition can be neither confirmed nor ruled out without the required data.
+    - "For therapy response questions (schema includes 'Never administered'): if the patient's documented treatment history does not include the queried therapy → 'Never administered'. Use 'Not documented' only when the therapy WAS given but no response assessment is documented."
+    - "When claiming absence (No, Never administered, Not documented, Missing), reference the full search scope using compact range notation, e.g. '[ctx:001]–[ctx:020]'. Do not list every citation individually — use a range to keep the Reasoning concise."
+
+  rationale:
+    - "ALWAYS provide Reasoning with citations, even for simple answers"
+    - "Keep to ≤2 sentences unless complex criteria require more"
+    - "Explain where data came from (which reports/dates) with [ctx:ID] references"
+
+  separators:
+    - "Status/Rows split: ||"
+    - "Multiple rows: ;"
+    - "Within row fields: |"
+    - "Multiple items in list: ;"
+
+requirements:
+  - "Final output MUST have exactly two lines: 'Answer:' and 'Reasoning:'"
+  - "Answer line must match schema format exactly - use examples as templates"
+  - "Never add citations, evidence, or extra prose to Answer line"
+  - "If data missing, use the appropriate schema option: 'Status: not calculable' ONLY for score_value schemas, 'Unclear' for yn/eligibility schemas, 'Not documented' for therapy/date schemas. NEVER use an option that is not listed in the question's answer_schema."
+  - "Respect all schema options (Yes/No/Unclear/Not documented/Abstain/etc.)"
+  - >
+    Prefer a definitive answer (Yes/No, a date, a score) over 'Unclear'. Use 'Unclear'
+    ONLY when available evidence genuinely points in both directions (conflicting reports)
+    or is so sparse that even a tentative judgment is impossible. When evidence is incomplete
+    but leans toward one answer, commit to that answer and express the uncertainty in the
+    Reasoning (e.g., 'Answer: Yes\nReasoning: ... Limitation: only one report available.').
+  - "For list schemas with Status field: Rows only appear when Status=Documented"
+
+micro_tests:
+  should_activate:
+    - "Any clinical Q&A requiring structured output"
+    - "Questions with explicit schema specifications"
+  should_not_activate:
+    - "Non-clinical conversations"
+  adversarial:
+    - "Date fields must always use calendar format (DD.MM.YYYY), never cycle notation (C1D1/Z1/Day1)"
+    - "Free text question with choice schema → enforce choice format only"

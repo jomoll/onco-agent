@@ -1,0 +1,69 @@
+skill:
+  id: style.question_types.comparison
+  name: Comparison Template
+  version: 1
+  category: style
+  inherits:
+    - style.base
+  description: >
+    Answers that compare two time periods, tests, or treatment phases (Category 2/3).
+  triggers:
+    question_types: ["comparison"]
+    semantic_cues:
+      - "Contrast two periods/tests/assessments ('zwischen A und B', 'vs')."
+    keywords: ["(optional lexicon) Vergleich, Unterschied, zwischen, versus, geändert"]
+    data_domains: ["doctor_letter", "tumor_board", "radiology", "pathology", "flow", "cytology", "lab_values"]
+activation:
+  intent: "Use when explicitly comparing two defined periods/tests; not for single snapshot or full trend."
+conflicts:
+  - style.question_types.lab_snapshot
+  - style.question_types.current_status
+response_level_hint: 2
+structure:
+  template:
+    - "Intro sentence summarizing the overall change."
+    - "Bullet A: Period/Test 1 metrics."
+    - "Bullet B: Period/Test 2 metrics."
+    - "Closing sentence interpreting the difference."
+requirements:
+  - "Final output must keep the Answer/Rationale format from style.structured_annotation; use this template to shape rationale content, not the Answer line."
+  - "Use consistent units and ensure both periods cite separate sources."
+  - "When highlighting improvement/worsening, tie to quantitative thresholds."
+  - "If data missing for one side, state explicitly instead of extrapolating."
+  - "Stop after contrasting the two specified periods/tests; avoid additional historical context."
+  - >
+    PREREQUISITE CHECK: Before producing any comparison, verify that exactly two separate
+    documented findings of the requested type exist. If fewer than two findings are
+    retrieved (0 or 1), answer 'Nicht dokumentiert' and explain that a comparison requires
+    two documented findings. Never fabricate or infer a second data point.
+  - >
+    Both findings must be of the same report type to be comparable (e.g., two KMP pathology
+    reports, two FISH analyses). Do not compare findings from different modalities
+    (e.g., flow cytometry vs. histopathology) unless the question explicitly asks for it.
+    If the two closest findings are from different modalities, answer 'Unklar' and explain
+    that a direct comparison is not possible.
+uncertainty:
+  missing_evidence: "Eine Vergleichsseite fehlt; explizit als 'nicht dokumentiert' kennzeichnen."
+  no_documents: "Nicht dokumentiert."
+  single_finding_only: >
+    Nur ein Befund dokumentiert; ein Vergleich erfordert zwei separate Befunde.
+    Answer 'Nicht dokumentiert' und erkläre, dass nur ein Befund vorliegt.
+  incompatible_modalities: >
+    Zwei Befunde gefunden, aber aus unterschiedlichen Modalitäten (z.B. Durchflusszytometrie
+    vs. Histopathologie). Answer 'Unklar' und erkläre, dass ein direkter Vergleich nicht möglich ist.
+examples:
+  - question: "Was hat sich zwischen der KMP A und B geändert?"
+    answer: >
+      "Zwischen der Knochenmarkpunktion vom 2023-03-01 und 2023-09-15 nahm die Plasmazelllast deutlich ab. [report:BM-A/B]\n
+       • 2023-03-01: 40 % klonale Plasmazellen, del(17p) nachweisbar. [report:BM-A]\n
+       • 2023-09-15: 5 % Plasmazellen, FISH ohne del(17p). [report:BM-B]"
+micro_tests:
+  should_activate:
+    - "Vergleiche das Paraprotein zwischen April und August."
+    - "Was hat sich zwischen MRT 2023 und MRT 2024 geändert?"
+    - "Wie unterscheidet sich die Verträglichkeit von Linie 3 vs. Linie 4?"
+  should_not_activate:
+    - "IgG am 2024-11-08?"  # snapshot
+    - "Nimmt der Patient aktuell Lenalidomid?"  # current status
+  adversarial:
+    - "Ist die aktuelle Plasmazelllast höher als im Vorjahr?"  # forces two-sided comparison

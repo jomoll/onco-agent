@@ -1,0 +1,60 @@
+skill:
+  id: workflows.ever_status_check
+  name: Ever Status Check Workflow
+  version: 1
+  category: workflow
+  description: >
+    Select for yes/no questions asking whether an event ever occurred (past history),
+    requiring a full-history search.
+  triggers:
+    question_types: ["ever_status", "ever_performed", "history_status"]
+    semantic_cues:
+      - "Binary ever/never across full history."
+      - "Often phrased with 'jemals/bisher/noch kein'."
+    keywords: ["(optional lexicon) jemals, bisher, noch kein, durchgeführt, erhalten"]
+    data_domains: ["doctor_letter", "tumor_board", "radiology", "pathology", "flow", "cytology"]
+activation:
+  intent: "Use for full-history yes/no; requires broader search than current_status_check."
+conflicts:
+  - workflows.current_status_check
+steps:
+  - name: Initial full-history search
+    detail: >
+      Use retrieve_reports with time_scope="all" and focused keywords using a small top_k.
+      Prefer relevant report_type(s) from parsing.report_type_mapping. Stop if a decisive
+      mention is found.
+      If the question is about FISH, include both "FISH" and typical result markers
+      (e.g., "del(", "t(", "gain", "amp", "Deletion", "Translokation") in the query.
+  - name: Escalate scope once
+    detail: >
+      If the first call does not find evidence, widen scope in a single step by increasing
+      top_k substantially or broadening report_type/time filters. Do not make incremental
+      retries. Cap retrieval attempts at 2 total.
+  - name: Confirm absence across history
+    detail: >
+      If no mentions are found, state that no documentation exists across the available
+      report history and cite the search scope.
+requirements:
+  - "Answer with Ja/Nein and cite the earliest or most relevant confirming document."
+  - "For 'Nein', explicitly state that no documentation exists across the available history."
+  - "Use at most 2 retrieve_reports calls: first small top_k, second with a large top_k or broader scope."
+  - "If the question is phrased as 'noch kein/keinen', treat 'Ja' as 'never exposed' and 'Nein' as 'exposed at least once'; make this explicit in the rationale."
+uncertainty:
+  missing_evidence: "Keine Dokumentation in der gesamten verfügbaren Akte."
+retry_policy:
+  max_attempts: 2
+  rules:
+    - "Allow at most 1 retry, and it must expand scope (large top_k jump, broader report_type, or wider time filter)."
+    - "Do not issue multiple narrow variations of the same query."
+outputs:
+  - "Binary status with date and source section."
+micro_tests:
+  should_activate:
+    - "Hat der Patient jemals eine Autologe SZT erhalten?"
+    - "Wurde schon einmal eine BiTE-Therapie durchgeführt?"
+    - "Gab es bisher eine FISH-Diagnostik?"
+  should_not_activate:
+    - "Nimmt der Patient aktuell Lenalidomid?"  # current status
+    - "Wann traten erstmals Osteolysen auf?"  # temporal
+  adversarial:
+    - "Bisher noch keine Anti-CD38-Therapie – bestätigen?"  # double negation handling

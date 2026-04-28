@@ -1,0 +1,189 @@
+skill:
+  id: policy.plan_vs_administered
+  name: Planned vs Administered Therapy Policy
+  version: 1
+  category: policy
+  description: >
+    Determine whether therapy evidence reflects planned, started, stopped, or declined treatment.
+    Uses status labels, recency, and report_type authority to select the authoritative state.
+  triggers:
+    question_types: ["therapy_exposure", "current_status", "ever_status", "eligibility", "*"]
+    semantic_cues:
+      - Need to separate planned vs actually given therapy
+    keywords: ["started", "stopped", "planned", "abgebrochen", "abgelehnt", "Bridging", "Erhaltung"]
+    data_domains: ["doctor_letter", "tumor_board", "flow", "pathology"]
+
+activation:
+  intent: Use after ranking to derive therapy state for the target concept.
+
+conflicts: []
+
+policy_rules:
+  status_priority:
+    started: 100
+    stopped: 90
+    ongoing: 85
+    planned: 50
+    declined: 40
+    unknown: 0
+  recency:
+    primary_time_field: event_time
+    fallback_time_field: document_time
+    decay_days: 365
+  report_type_bonus:
+    doctor_letter: 5
+    tumor_board: 10
+
+  maintenance_therapy_rules:
+    description: >
+      Maintenance and ongoing therapy keywords elevate status from 'planned' to 'ongoing' (85).
+      Documented cycle dates with explicit numbering count as 'administered' evidence.
+    rules:
+      - rule_id: maintenance_keywords_to_ongoing
+        description: >
+          If the evidence text contains maintenance/continuation keywords, classify as 'ongoing'
+          (priority 85) rather than 'planned' (50).
+        keywords:
+          - "Erhaltungstherapie"
+          - "Erhaltung"
+          - "fortgesetzt"
+          - "fortgeführt"
+          - "Fortführung"
+          - "weiterhin"
+          - "laufend"
+          - "ongoing"
+          - "kontinuierlich"
+          - "Dauertherapie"
+        action:
+          override_status: "ongoing"
+
+      - rule_id: cycle_dates_to_administered
+        description: >
+          If the evidence documents explicit cycle dates (e.g., C7D1, Zyklus 3 Tag 1) or
+          specific administration dates with doses, classify as 'started' (priority 100)
+          regardless of whether the text appears in a treatment plan section.
+        patterns:
+          - "C\\d+D\\d+"
+          - "Zyklus\\s*\\d+"
+          - "Applikation\\s*(am|vom)"
+          - "verabreicht\\s*(am|vom)"
+        action:
+          override_status: "started"
+
+      - rule_id: dosing_schedule_to_ongoing
+        description: >
+          If the evidence contains an active dosing schedule (e.g., '5 mg d1-21', 'q28d'),
+          classify as 'ongoing' (priority 85).
+        patterns:
+          - "\\d+\\s*mg\\s*d\\d+"
+          - "q\\d+d"
+          - "alle\\s*\\d+\\s*(Tage|Wochen)"
+          - "Tag\\s*\\d+\\s*(-|bis)\\s*\\d+"
+        action:
+          override_status: "ongoing"
+
+outputs:
+  therapy_state: administered | planned_only | none | declined | unknown
+  determinacy: high | medium | low
+  supporting_evidence_ids: list of evidence ids used
+  trace: rationale with scores and applied priorities
+
+requirements:
+  - Only use evidence where concept_type is therapy and concept_id matches the target concept_id.
+  - If no matching evidence exists, determinacy=low and state=unknown.
+  - Prefer newer evidence; decay older than 12 months unless no newer exists.
+  - >
+    INVOCATION REQUIREMENT: The therapy_exposure workflow MUST invoke this policy before
+    finalising any Status field in the Answer. Any use of "Nicht dokumentiert" or
+    "Nie verabreicht" requires explicit application of this policy's three-way distinction.
+    A failed or empty retrieval is not sufficient grounds for either status — the agent
+    must first confirm whether the drug appears anywhere in the therapy history before
+    selecting between "Nie verabreicht" (drug absent from entire record) and
+    "Nicht dokumentiert" (drug present but detail missing).
+  - >
+    Apply maintenance_therapy_rules BEFORE status_priority ranking: if maintenance keywords
+    or cycle date patterns are detected in the evidence text, override the status label
+    accordingly. This prevents documented ongoing therapies from being downranked as 'planned'.
+  - >
+    Distinguish three negative states carefully:
+    (1) 'Nie verabreicht' — the drug does not appear in ANY therapy regimen or medication
+    list across the entire record. The patient was never exposed to this drug.
+    (2) 'Nicht dokumentiert' — the drug appears in therapy history but the specific detail
+    asked about (dates, doses, cycles) is not recorded.
+    (3) 'Unklar' — conflicting evidence about whether the drug was given.
+    Do NOT confuse (1) and (2): if a drug is completely absent from all therapy mentions,
+    the answer is 'Nie verabreicht', not 'Nicht dokumentiert'.
+  - >
+    Tumor board decisions and recommendations are NOT evidence of administration.
+    A tumor board report that recommends, discusses, or plans a therapy counts only as
+    'planned' (priority 50). It must be corroborated by a later doctor_letter or treatment
+    report confirming actual administration to be classified as 'started' or 'ongoing'.
+    Without such confirmation, the therapy_state remains 'planned_only'.
+  - >
+    Contraindicated or cancelled procedures must never be counted as administered.
+    If the evidence contains keywords indicating the therapy was contraindicated, cancelled,
+    not feasible, or declined (e.g., 'Kontraindikation', 'kontraindiziert', 'nicht durchführbar',
+    'abgelehnt', 'nicht möglich', 'nicht geeignet', 'cancelled'), classify as 'declined'
+    (priority 40) regardless of any prior planning mentions.
+  - >
+    ANSWER COMMITMENT RULE — planning-only evidence:
+    When therapy_state = planned_only (only tumor board recommendations or treatment plans,
+    no corroborating doctor letter confirming actual administration), the correct answer
+    for ever-status and current-status questions is 'Nein', NOT 'Unklar'.
+    Use 'Unklar' ONLY when there is genuine conflict: some evidence supports administration
+    (e.g., a doctor letter describing the drug as given) while other evidence contradicts it.
+    A single tumor board planning entry with no follow-up confirmation = planned_only = 'Nein'.
+    Do not let uncertainty about planning vs. administration resolve to 'Unklar' — it resolves
+    to 'Nein' (not administered) with a Reasoning note explaining the planning-only evidence.
+  - >
+    Drug names must be explicitly mentioned to count as exposure. Do not infer drug
+    administration from procedure names alone:
+    - HD-PBSCT / autologe SZT / ASCT does NOT automatically imply Melphalan unless
+      'Melphalan' (or an alias like 'Alkeran') is explicitly named in the text.
+    - A regimen abbreviation (e.g., 'VMP') does NOT confirm individual drug exposure
+      unless the specific drug is also mentioned by name elsewhere in the record.
+    - Conditioning regimens must name the specific drugs used, not just 'Hochdosischemotherapie'.
+
+tests:
+  - name: planning_only_resolves_to_nein
+    input:
+      target_concept: "Bortezomib"
+      question_type: "ever_status"
+      evidence_items:
+        - evidence_id: "tb1"
+          concept_type: "therapy"
+          concept_id: "Bortezomib"
+          status: "planned"
+          document_time: "2022-05-10"
+          evidence_source_kind: "report"
+          report_type: "tumor_board"
+    expect:
+      therapy_state: "planned_only"
+      answer: "Nein"
+      not: "Unklar"
+      note: "Tumor board planning alone → Nein, not Unklar"
+
+  - name: started_beats_planned
+    input:
+      target_concept: "Daratumumab"
+      evidence_items:
+        - evidence_id: "p1"
+          concept_type: "therapy"
+          concept_id: "Daratumumab"
+          status: "planned"
+          document_time: "2023-01-01"
+          evidence_source_kind: "report"
+          report_type: "tumor_board"
+          provenance: {doc_id: "tb1", span: [1, 10]}
+        - evidence_id: "a1"
+          concept_type: "therapy"
+          concept_id: "Daratumumab"
+          status: "started"
+          document_time: "2023-02-15"
+          evidence_source_kind: "report"
+          report_type: "doctor_letter"
+          provenance: {doc_id: "ab1", span: [5, 20]}
+    expect:
+      therapy_state: "administered"
+      determinacy: "high"
+      support_ids: ["a1"]

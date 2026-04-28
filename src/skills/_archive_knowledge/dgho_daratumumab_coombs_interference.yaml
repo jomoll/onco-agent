@@ -1,0 +1,83 @@
+skill:
+  id: knowledge.dgho_daratumumab_coombs_interference
+  version: 1
+  category: knowledge
+  name: 'DGHO MM guideline card: Daratumumab interferes with indirect Coombs testing (transfusion planning)'
+  description: 'Curated DGHO guideline knowledge on daratumumab interference with indirect Coombs testing (false positive
+    antibody screen), potentially delaying RBC availability, persisting up to 6 months after therapy. Includes recommendation
+    for comprehensive blood group typing including Kell antigens before starting and issuing a patient blood group card noting
+    daratumumab. Use for therapy planning and safety.'
+  triggers:
+    data_domains:
+    - doctor_letter
+    - therapy_history
+    question_types:
+    - next_step
+    - therapy_planning
+    - eligibility
+    keywords:
+    - Daratumumab, Coombs, Antikoerpersuchtest, Blutgruppe, Kell, Erythrozytenkonzentrate, Transfusion, Blutgruppenpass
+    semantic_cues:
+    - Question involves starting daratumumab and asks about labs, transfusion preparation, or safety logistics.
+    - Question involves transfusion difficulties in a patient currently or recently on daratumumab.
+activation:
+  stage_constraints:
+    preferred_stage: plan
+    avoid_stages:
+    - parse
+  do_not_use_if:
+  - Question is about isatuximab only and no transfusion context is present.
+conflicts:
+  overrides:
+  - If another transfusion policy skill exists, align and use this card to justify the daratumumab-specific interference mechanism.
+  duplicates: []
+requirements:
+  inputs_required:
+  - Whether daratumumab has been given and timing relative to now.
+  - Whether transfusion is anticipated.
+  must_cite_or_quote: false
+  must_show_work: false
+knowledge:
+  provenance:
+    paper: 'DGHO Onkopedia Leitlinie: Multiples Myelom (MM_DGHO.pdf)'
+    section_hints:
+    - Daratumumab section and transfusion remark
+  core_points:
+  - Daratumumab binds CD38 on erythrocytes and interferes with the indirect Coombs test, causing a false positive antibody
+    screen and potentially delaying provision of RBC units.
+  - Interference can persist up to 6 months after the end of daratumumab therapy.
+  - Before starting therapy, a comprehensive blood group determination including Kell antigens is recommended, and the patient
+    should receive a blood group card noting daratumumab therapy.
+  operationalization:
+    planning_checks:
+    - Before initiating daratumumab, ensure extended blood typing is done and documented, including Kell.
+    - If transfusion may be needed, alert transfusion service about daratumumab exposure and timing.
+    - If patient already received daratumumab, mention persistence of interference when interpreting antibody screens.
+guidelines:
+  answer_guardrails:
+  - Do not imply hemolysis or alloimmunization from a positive screen without considering daratumumab interference.
+  - Do not generalize the 6 month window beyond what is stated; frame as up to 6 months.
+examples:
+  positive:
+  - q: Was muss ich vor Start von Daratumumab bzgl. Transfusion beachten?
+    a: DGHO weist darauf hin, dass Daratumumab den indirekten Coombs-Test stoert und der Antikoerpersuchtest falsch positiv
+      sein kann, was die Bereitstellung von EK verzoegern kann. Vor Therapiebeginn sollte eine umfassende Blutgruppenbestimmung
+      inkl. Kell erfolgen und ein Blutgruppenpass mit Vermerk zur Daratumumab-Therapie ausgehaendigt werden.
+  negative:
+  - q: Was ist die Ansprechrate unter DaraVRd?
+    a: 'Nicht geeignet: kein Transfusionsbezug.'
+uncertainty:
+  when_to_say_unclear:
+  - Timing of last daratumumab dose is unknown and transfusion issue is being evaluated.
+  fallback: Request timing of daratumumab exposure and advise considering interference if within the possible persistence
+    window.
+micro_tests:
+  should_activate:
+  - Daratumumab und Coombs Test, was beachten?
+  - Warum ist der Antikoerpersuchtest positiv unter Daratumumab?
+  should_not_activate:
+  - Venetoclax Off-Label?
+  - Cilta-cel Indikation?
+  adversarial:
+  - 'Patient mit positivem Antikoerpersuchtest unter Dara: muss Interferenz als Ursache erwägen, nicht vorschnell Alloantikörper
+    behaupten.'

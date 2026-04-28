@@ -1,0 +1,2155 @@
+{
+  "patient_id": "patient_002",
+  "firstname": "Jane",
+  "lastname": "Doe",
+  "date_of_birth": "1970-09-28",
+  "reports": [
+    {
+      "report_type": "history",
+      "report_date": "2024-02-05",
+      "title": "Basic medical history – Initial diagnosis Multiple Myeloma",
+      "sections": [
+        {
+          "name": "Medical history",
+          "content": "The 53-year-old female patient presents for further evaluation of an incidental finding. In the context of a routine blood draw by the primary care physician (01/2024), a pronounced hyperglobulinemia with elevated total protein (106 g/l) and a normochromic anemia (Hb 9,2 g/dl) were detected. The patient reports fatigue and reduced performance for approximately 3 months. Denies bone pain. No renal symptoms. No B symptoms."
+        },
+        {
+          "name": "Pre-existing conditions",
+          "content": "No hematologic diseases. Hypothyroidism treated with L-Thyroxin. No hypertension, no diabetes mellitus. No known kidney disease."
+        },
+        {
+          "name": "Family history",
+          "content": "No hematologic malignancies known in the family. Mother diagnosed with breast cancer (age at diagnosis 68 years)."
+        }
+      ]
+    },
+    {
+      "report_type": "pathology",
+      "report_date": "2024-02-12",
+      "title": "Bone marrow biopsy – Initial diagnosis",
+      "sections": [
+        {
+          "name": "Question",
+          "content": "Suspected multiple myeloma. Bone marrow aspiration and core biopsy dated 10.02.2024.\nMacroscopy: A representative core cylinder, approx. 1,8 cm in length.  \nProcessing: HE, Giemsa, PAS, Gomori, CD138, MUM1, kappa, lambda."
+        },
+        {
+          "name": "Findings",
+          "content": "Normocellular to mildly hypercellular bone marrow core cylinder (cellularity approx. 50–60%) with moderately extensive interstitial and focal infiltrate of mature plasma cells.\nInfiltration grade: approx. 35% of nucleated cells.  \nImmunohistochemistry: CD138+, MUM1+, IgG+, lambda light chains dominant, kappa negative."
+        },
+        {
+          "name": "FISH result",
+          "content": "FISH analysis (02/2024, plasma cell gating):\n- del(17p): negative  \n- t(4;14): negative  \n- t(14;16): negative  \n- 1q21 gain: negative  \nConclusion: No high‑risk cytogenetics detected. Standard risk."
+        },
+        {
+          "name": "Diagnosis",
+          "content": "Multiple myeloma, IgG lambda light chain.\nISS stage I (β2‑microglobulin 2,1 mg/l, albumin 4,2 g/dl).  \nR‑ISS stage I (ISS I, no high‑risk cytogenetics, LDH normal)."
+        }
+      ]
+    },
+    {
+      "report_type": "radiology",
+      "report_date": "2024-02-15",
+      "title": "Whole‑body MRI – Staging",
+      "sections": [
+        {
+          "name": "Findings",
+          "content": "Whole‑body MRI (1,5 Tesla, STIR and T1w) dated 15.02.2024.\nBone marrow: Focal heterogeneous signal pattern with isolated small STIR‑positive foci in the sacroiliac region (max. 6 mm). No diffuse involvement pattern.  \nSpine: No osteolysis. No pathological fracture. Normal bone marrow signal.  \nExtramedullary manifestation: Not detected.  \nConclusion: Isolated small foci compatible with focal myelomatous involvement, no extensive bone disease."
+        }
+      ]
+    },
+    {
+      "report_type": "flow",
+      "report_date": "2024-02-10",
+      "title": "Flow cytometry – Bone marrow initial diagnosis",
+      "sections": [
+        {
+          "name": "Result",
+          "content": "Multiparameter flow cytometry (bone marrow aspirate from 10.02.2024). Detection of a clonal plasma cell population: 32% of nucleated cells. Phenotype: CD138+, CD38+, CD19-, CD56+, CD45-, lambda+, kappa-. BCMA expression: positive (MFI 1840). No detection of minimal residual disease (MRD) by NGF at this time not meaningful (first diagnosis, no therapy)."
+        }
+      ]
+    },
+    {
+      "report_type": "doctor_letter",
+      "report_date": "2024-02-20",
+      "title": "Physician letter – Initial diagnosis and treatment planning",
+      "sections": [
+        {
+          "name": "Diagnoses",
+          "content": "Hematologic diagnoses: Multiple myeloma, IgG light chain lambda (first diagnosis 02/2024) ISS stage I, R‑ISS stage I Standard‑risk cytogenetics (FISH without high‑risk abnormality) Osseous manifestation: isolated small foci (MRI), no overt osteolysis CRAB criteria: anemia (Hb 9,2 g/dl), otherwise no organ dysfunction\n\nSecondary diagnoses: hypothyroidism, L‑thyroxine 100 µg/d No cardiac comorbidities"
+        },
+        {
+          "name": "History and examination",
+          "content": "The 53‑year‑old patient is in good general condition. Past history: fatigue, no bone pain, no renal symptoms. ECOG performance status: 0. Clinical examination: no lymphadenopathy, no hepatosplenomegaly."
+        },
+        {
+          "name": "Prior therapy",
+          "content": "No prior therapy."
+        },
+        {
+          "name": "Treatment plan",
+          "content": "Because of age (53 years) and ECOG 0, the patient is transplant‑eligible. Initiate first‑line therapy with VRd (bortezomib/lenalidomide/dexamethasone) starting 01.03.2024. Bortezomib 1,3 mg/m² s.c. on days 1, 4, 8, 11 of a 21‑day cycle. Lenalidomide 25 mg/d orally on days 1–14. Dexamethasone 40 mg orally on days 1, 2, 4, 5, 8, 9, 11, 12. Zoledronic acid 4 mg i.v. every 4 weeks.\n\nAfter 3–4 cycles remission assessment. With adequate response (≥PR): stem‑cell mobilization and high‑dose melphalan + autologous SCT planned."
+        },
+        {
+          "name": "Transfusion",
+          "content": "Due to symptomatic anemia (Hb 9,2 g/dl, exertional dyspnea) transfusion of 2 erythrocyte concentrates on 19.02.2024. Post‑transfusion Hb 11,4 g/dl."
+        },
+        {
+          "name": "Procedure",
+          "content": "Visit after cycle 1 (approx. 22.03.2024) for tolerability and laboratory assessment. Platelet/coagulation monitoring weekly during the first 4 weeks."
+        }
+      ]
+    },
+    {
+      "report_type": "tumor_board",
+      "report_date": "2024-02-22",
+      "title": "Tumor board decision – Initial diagnosis MM, treatment planning",
+      "sections": [
+        {
+          "name": "Reason for discussion",
+          "content": "Initial diagnosis of multiple myeloma, IgG light chain lambda, in a 53‑year‑old transplant‑eligible patient."
+        },
+        {
+          "name": "Findings",
+          "content": "MM IgG lambda, ISS I, R‑ISS I, standard‑risk cytogenetics. Anemia (Hb 9,2 g/dl) as the only CRAB criterion. No renal insufficiency, no hypercalcemia, no overt osteolysis."
+        },
+        {
+          "name": "Resolution",
+          "content": "Consensus: VRd induction therapy, goal ≥VGPR after 4 cycles. Response ≥PR: stem‑cell mobilization and HD‑Melphalan + autologous SZT. Inclusion in GMMG‑HD10 / DSMM XX study evaluated: patient essentially meets inclusion criteria (newly diagnosed MM, transplant‑eligible, ECOG 0–1, age <70 years). Counseling and informed consent will be offered."
+        }
+      ]
+    },
+    {
+      "report_type": "doctor_letter",
+      "report_date": "2024-03-25",
+      "title": "Physician letter – VRd cycle 1 tolerability assessment",
+      "sections": [
+        {
+          "name": "Diagnoses",
+          "content": "Multiple myeloma, IgG LK lambda (ED 02/2024)\nISS I, R‑ISS I  \nCurrent: VRd cycle 1 completed"
+        },
+        {
+          "name": "Current course",
+          "content": "VRd cycle 1 (01.03.–21.03.2024) completed without problems. Bortezomib s.c. days 1, 4, 8, 11 without local reaction. Lenalidomid 25 mg days 1–14 well tolerated. No infection, no hospitalization.\nLabor 22.03.2024: IgG 38,4 g/l (baseline 52,3 g/l, –27%), Hb 12,8 g/dl, Leukozyten 6,2 G/l, Neutrophile 3,8 G/l.  \nAdverse events: tingling of fingertips (neuropathy grade 1), fatigue grade 1, no neutropenia grade 3/4."
+        },
+        {
+          "name": "Maintenance medication",
+          "content": "Lenalidomid 25 mg p.o. (pausiert Tage 15–21)\nDexamethasone 40 mg p.o. (days 1, 2, 4, 5, 8, 9, 11, 12)  \nZoledronic acid 4 mg i.v. (monthly, first dose 01.03.2024)  \nValaciclovir 500 mg 1‑0‑1  \nPantoprazole 40 mg 1‑0‑0  \nL‑Thyroxine 100 µg 1‑0‑0  \nRivaroxaban 10 mg (thrombosis prophylaxis during Lenalidomide)"
+        },
+        {
+          "name": "Further procedure",
+          "content": "Start VRd cycle 2 on 22.03.2024. Next blood count check day 8 (29.03.2024) with the primary care physician. Re‑presentation after cycle 2."
+        }
+      ]
+    },
+    {
+      "report_type": "doctor_letter",
+      "report_date": "2024-04-22",
+      "title": "Physician letter – VRd cycle 2 follow‑up",
+      "sections": [
+        {
+          "name": "Diagnoses",
+          "content": "Multiple myeloma, IgG LK lambda (ED 02/2024)\nAfter 2 cycles VRd: early response"
+        },
+        {
+          "name": "Current course",
+          "content": "VRd cycle 2 (22.03.–11.04.2024) completed without complications. Labor 19.04.2024: IgG 26,1 g/l (‑50% compared with baseline 52,3 g/l), FLK lambda 142 mg/l (‑54%). Immunofixation remains positive. Hb 13,0 g/dl, Leukozyten 5,8 G/l, Neutrophile 3,4 G/l.\nResponse after 2 cycles: PR (reduction of M‑protein >50%).  \nNeuropathy grade 1 persists (tingling of fingertips, feet), no dose reduction required."
+        },
+        {
+          "name": "Maintenance medication",
+          "content": "As before. Rivaroxaban 10 mg continued."
+        },
+        {
+          "name": "Further procedure",
+          "content": "Start VRd cycle 3 on 12.04.2024. After cycle 4 remission assessment and decision regarding stem‑cell mobilization. ECOG: 0"
+        }
+      ]
+    },
+    {
+      "report_type": "tumor_board",
+      "report_date": "2024-05-07",
+      "title": "Tumor board decision – Interim review after 2 cycles of VRd",
+      "sections": [
+        {
+          "name": "Reason for discussion",
+          "content": "Follow‑up assessment in newly diagnosed MM IgG lambda, ISS I, after 2 cycles of VRd induction."
+        },
+        {
+          "name": "Findings",
+          "content": "IgG 26.1 g/L (baseline 52.3 g/L), free light chain lambda 142 mg/L. Response: PR after 2 cycles. Tolerability good. Neuropathy grade 1."
+        },
+        {
+          "name": "Decision",
+          "content": "Continue VRd cycles 3 and 4. Remission assessment after cycle 4. If ≥VGPR: stem‑cell mobilization after cycle 6, then high‑dose melphalan + ASCT. If <PR after cycle 4: discuss therapy adjustment. No change to the current therapy."
+        }
+      ]
+    },
+    {
+      "report_type": "doctor_letter",
+      "report_date": "2024-05-20",
+      "title": "Physician letter – VRd cycle 3 follow‑up",
+      "sections": [
+        {
+          "name": "Diagnoses",
+          "content": "Multiple myeloma, IgG lambda (diagnosed 02/2024)\nAfter 3 cycles of VRd: PR (progressive response)"
+        },
+        {
+          "name": "Current course",
+          "content": "Cycle 3 (12 Apr–02 May 2024) completed without issues. Laboratory 17 May 2024: IgG 16.2 g/L (‑69 %), free light chain lambda 64 mg/L (‑79 %), kappa/lambda 0.23 (still clonal). Hb 13.4 g/dL, neutrophils 3.2 G/L. No grade 3/4 neutropenia.\nAssessment: Persistent deep PR, trend toward VGPR. Immunofixation positive."
+        },
+        {
+          "name": "Chronic medication",
+          "content": "As before. Zoledronic acid administration 3."
+        },
+        {
+          "name": "Further procedure",
+          "content": "Cycle 4 started 03 May 2024. Remission assessment planned after cycle 4 (≈ 10 Jun 2024)."
+        }
+      ]
+    },
+    {
+      "report_type": "doctor_letter",
+      "report_date": "2024-06-10",
+      "title": "Physician letter – Remission assessment after 4 cycles of VRd",
+      "sections": [
+        {
+          "name": "Diagnoses",
+          "content": "Multiple myeloma, IgG lambda (diagnosed 02/2024)\nAfter 4 cycles of VRd: VGPR  \nCurrent: bortezomib + lenalidomide + dexamethasone (ongoing)"
+        },
+        {
+          "name": "Therapeutic response",
+          "content": "After 4 cycles VRd:\n- IgG: 9,8 g/l (baseline 52 g/l)\n- Immunofixation in serum: positive (weak, M‑protein detectable)\n- Free light chains lambda: 28 mg/l (baseline 310 mg/l)\n- Kappa/Lambda ratio: 0,4 (slightly decreased, still clonal)\nAssessment: VGPR (very good partial response)\n\nVRd tolerability: Peripheral neuropathy grade 1 (tingling in hands, no functional impairment). Fatigue grade 1. No grade 3/4 neutropenia. No infection. No pneumonia."
+        },
+        {
+          "name": "Current medication",
+          "content": "Currently ongoing: VRd cycle 5 (started 05.06.2024)\n- Bortezomib 1,3 mg/m² s.c.\n- Lenalidomide 25 mg/d p.o. (days 1–14)\n- Dexamethasone 40 mg p.o.\nZoledronic acid 4 mg i.v. monthly\nValacyclovir 500 mg 1‑0‑1\nPantoprazole 40 mg 1‑0‑0\nL‑Thyroxine 100 µg 1‑0‑0"
+        },
+        {
+          "name": "Planning",
+          "content": "With VGPR response: stem‑cell mobilization planned after cycle 6 (≈ 07/2024).\nSubsequently: high‑dose melphalan + autologous SCT.\nNo CD38 antibody, no BiTE, no CAR‑T therapy received to date.\nPatient exposed to IMiD (lenalidomide) and PI (bortezomib), but never received a CD38 antibody.\n\nECOG: 0."
+        }
+      ]
+    },
+    {
+      "report_type": "doctor_letter",
+      "report_date": "2024-06-24",
+      "title": "Physician letter – VRd cycle 5 follow‑up",
+      "sections": [
+        {
+          "name": "Diagnoses",
+          "content": "Multiple myeloma, IgG light chain lambda (diagnosed 02/2024)\nAfter 5 cycles VRd: VGPR (confirmed)"
+        },
+        {
+          "name": "Current course",
+          "content": "Cycle 5 (05.06.–25.06.2024) completed. Laboratory 21.06.2024: IgG 8,4 g/l, free light chain lambda 18,2 mg/l (now within normal range), free light chain kappa 10,8 mg/l, kappa/lambda 0,59 (normal). Immunofixation: positive (weak, M‑protein still detectable). Hb 13,6 g/dl. Neutrophils 3,0 G/l.\nAssessment: VGPR confirmed – marked reduction of M‑protein >90 % versus baseline.\nNeuropathy grade 1 stable, no progression."
+        },
+        {
+          "name": "Maintenance medication",
+          "content": "As before. Zoledronic acid administration 5."
+        },
+        {
+          "name": "Further procedure",
+          "content": "Cycle 6 planned 26.06.2024. After cycle 6: stem‑cell mobilization with G‑CSF planned (mid‑July 2024). Appointment for mobilization already coordinated."
+        }
+      ]
+    },
+    {
+      "report_type": "tumor_board",
+      "report_date": "2024-07-08",
+      "title": "Tumor board decision – VGPR after 5 VRd, stem‑cell mobilization planned",
+      "sections": [
+        {
+          "name": "Reason for meeting",
+          "content": "Planning stem‑cell mobilization and autologous transplantation after VGPR under VRd induction."
+        },
+        {
+          "name": "Findings",
+          "content": "VGPR after 5 cycles VRd. IgG 8,4 g/l, immunofixation positive. Free light chain lambda normalized. ECOG 0. No relevant comorbidity. Transplant eligibility confirmed."
+        },
+        {
+          "name": "Decision",
+          "content": "Complete cycle 6 VRd, then stem cell mobilization with G‑CSF (10 µg/kg/d) starting day 4 after cycle end. Use of plerixafor reserved for insufficient mobilization. Goal: ≥4 × 10^6 CD34+/kg (2 transplants). High‑dose melphalan 200 mg/m² + autologous SCT planned for 08/2024. Afterwards: lenalidomide maintenance therapy."
+        }
+      ]
+    },
+    {
+      "report_type": "radiology",
+      "report_date": "2024-07-15",
+      "title": "Whole‑body PET‑CT – staging before SCT",
+      "sections": [
+        {
+          "name": "Full report",
+          "content": "Clinical information: MM IgG lambda, VGPR after 6 cycles VRd, staging before planned autologous stem cell transplantation.\n\nQuestion: Detection of active myelomatous lesions? Comparison with prior examination (whole‑body MRI 02/2024).  \n\nPrior imaging: whole‑body MRI 15.02.2024.  \n\nFindings: No FDG‑avid lesions detected osseously or extramedullary. No pathologically increased metabolism in bone marrow (no SUV‑max elevation above liver median). The previously known small STIR‑positive foci in the iliosacral region from the MRI prior study show correspondingly no increased FDG signal. No new osteolyses detected. No lymphadenopathy. Normal lungs, liver, spleen.  \n\nImpression: Complete metabolic remission (CMR, Deauville 1). No active myelomatous lesions detectable. Findings consistent with VGPR/CR on metabolic level. Suitable for stem cell transplantation."
+        }
+      ]
+    },
+    {
+      "report_type": "doctor_letter",
+      "report_date": "2024-07-22",
+      "title": "Physician letter – VRd cycle 6 completed, mobilization planning",
+      "sections": [
+        {
+          "name": "Diagnoses",
+          "content": "Multiple myeloma, IgG LC lambda (diagnosed 02/2024) After 6 cycles VRd: VGPR (PET‑CT: CMR) Planning stem cell mobilization from 22.07.2024"
+        },
+        {
+          "name": "Current course",
+          "content": "Cycle 6 VRd (26.06.–16.07.2024) completed. Laboratory 19.07.2024: IgG 7.6 g/L, immunofixation positive (weak). Free light chain lambda 14.8 mg/L (normal range), κ/λ 0.71. PET‑CT 15.07.2024: complete metabolic remission (CMR, Deauville 1). Patient is transplant‑eligible."
+        },
+        {
+          "name": "Current medication",
+          "content": "G‑CSF (filgrastim) 10 µg/kg/d subcutaneously from 22.07.2024 (day 1 mobilization). All other medications as before, lenalidomide paused from 17.07.2024."
+        },
+        {
+          "name": "Further procedure",
+          "content": "Stem cell mobilization: G‑CSF days 1–5. CD34+ count in peripheral blood from day 4. Apheresis planned when CD34+ ≥10/µL (approximately 25–26.07.2024). Goal: ≥4 × 10^6 CD34+/kg. Inpatient admission for ASCT: 12.08.2024."
+        }
+      ]
+    },
+    {
+      "report_type": "doctor_letter",
+      "report_date": "2024-07-29",
+      "title": "Physician letter – stem cell mobilization and apheresis",
+      "sections": [
+        {
+          "name": "Diagnoses",
+          "content": "Multiple myeloma, IgG LC lambda (diagnosed 02/2024) Stem cell mobilization successfully completed"
+        },
+        {
+          "name": "Current course",
+          "content": "G‑CSF mobilization (filgrastim 10 µg/kg/d subcutaneously) from 22.07.2024. CD34+ count peripheral blood day 4 (25.07.2024): 42/µL – sufficient for apheresis. Apheresis 25.07.2024 and 26.07.2024 (2 sessions of 3 h each via central venous access). Collected CD34+ cells: 6.2 × 10^6/kg (sufficient for 2 transplants). Cryopreservation performed. Tolerability: grade 2 bone pain under G‑CSF (ibuprofen as needed). No fever, no infection, no plerixafor required."
+        },
+        {
+          "name": "Further procedure",
+          "content": "Inpatient admission for high‑dose melphalan + ASCT on 12.08.2024. Patient is informed and pre‑operative examinations (ECG, echocardiogram, laboratory) will be performed on 08.08.2024 on an outpatient basis."
+        }
+      ]
+    },
+    {
+      "report_type": "doctor_letter",
+      "report_date": "2024-08-12",
+      "title": "Medical report – Inpatient admission for ASCT / high-dose melphalan conditioning",
+      "sections": [
+        {
+          "name": "Diagnoses",
+          "content": "Multiple myeloma, IgG light chain lambda (diagnosed 02/2024) After 6 cycles of VRd: VGPR, CMR on PET‑CT Admission for autologous stem cell transplantation"
+        },
+        {
+          "name": "Admission",
+          "content": "Inpatient admission on 12.08.2024 for high-dose melphalan conditioning and autologous stem cell transplantation. Admission laboratory 12.08.2024: Hb 13.1 g/dl, leukocytes 5.4 G/l, neutrophils 3.2 G/l, platelets 210 G/l. Creatinine 0.85 mg/dl, eGFR 86 ml/min. IgG 7.6 g/l. LDH 202 U/l. ECG: sinus rhythm. Echocardiography: EF 65%, no left ventricular dysfunction, no effusion. Conditioning: high-dose melphalan 200 mg/m² IV over 30 min on 12.08.2024 (D‑2). BSA = 1.72 m², total dose 344 mg. Adequate hyperhydration (3 l/m²/day IV) and antiemesis (ondansetron + aprepitant)."
+        },
+        {
+          "name": "Stem cell return",
+          "content": "Reinfusion of cryopreserved autologous stem cells (6.2 × 10⁶ CD34⁺/kg) on 14.08.2024 (D0). Infusion without complications."
+        },
+        {
+          "name": "Further procedure",
+          "content": "G‑CSF (filgrastim) starting D+5 (19.08.2024). Daily blood count and vital sign monitoring. Isolation until engraftment."
+        }
+      ]
+    },
+    {
+      "report_type": "doctor_letter",
+      "report_date": "2024-08-26",
+      "title": "Medical report – ASCT discharge after engraftment",
+      "sections": [
+        {
+          "name": "Diagnoses",
+          "content": "Multiple myeloma, IgG light chain lambda (diagnosed 02/2024) After high-dose melphalan + ASCT (14.08.2024): Engraftment day +8 Discharge day +12"
+        },
+        {
+          "name": "Inpatient course",
+          "content": "Engraftment: neutrophils >0.5 G/l on day +8 (22.08.2024), platelets >20 G/l on day +7. Course uncomplicated. Mucositis: grade 1 (mild mucosal irritation, pain control with metamizole sufficient). No fever, no documented bacteremia. No transfusion‑requiring anemia (Hb nadir 8.4 g/dl on day +7, no red cell transfusion required). Discharge laboratory 26.08.2024: Hb 10.2 g/dl, leukocytes 4.8 G/l, neutrophils 2.9 G/l, platelets 86 G/l (rising). Creatinine 0.88 mg/dl."
+        },
+        {
+          "name": "Maintenance medication",
+          "content": "Valaciclovir 500 mg 1‑0‑1 (prophylaxis for at least 6 months)\nPantoprazole 40 mg 1‑0‑0  \nFluconazole 100 mg 1‑0‑0 (antifungal prophylaxis until leukocytes >1 G/l for 7 days)  \nL‑thyroxine 100 µg 1‑0‑0  \nNo lenalidomide until remission assessment"
+        },
+        {
+          "name": "Further procedure",
+          "content": "Outpatient follow‑up day +25 on 09.09.2024. Remission assessment (bone marrow aspiration, immunofixation) after 60 days (October 2024). Lenalidomide maintenance planned after confirmed engraftment and remission assessment."
+        }
+      ]
+    },
+    {
+      "report_type": "doctor_letter",
+      "report_date": "2024-09-09",
+      "title": "Medical report – Post‑ASCT outpatient follow‑up day +26",
+      "sections": [
+        {
+          "name": "Diagnoses",
+          "content": "Multiple myeloma, IgG LC lambda (ED 02/2024) After HD‑Melphalan + ASCT: Day +26, recovery phase"
+        },
+        {
+          "name": "Current course",
+          "content": "Patient in good general condition. ECOG 0. Fatigue grade 1, decreasing. No fever, no infection. No mucositis any more. Laboratory 06.09.2024: Hb 11,8 g/dl, leukocytes 6,2 G/l, neutrophils 4,1 G/l, platelets 148 G/l (stable). Creatinine 0,82 mg/dl, LDH 198 U/l. IgG 5,8 g/l, immunofixation: positive (assessment of remission depth still pending – formal remission assessment after Day +60)."
+        },
+        {
+          "name": "Long‑term medication",
+          "content": "Valaciclovir, pantoprazole, L‑thyroxine as before. Fluconazole stopped (leukocytes normalized)."
+        },
+        {
+          "name": "Further procedure",
+          "content": "Next follow‑up 23.09.2024. Bone‑marrow aspiration and formal remission assessment Day +60: 14.10.2024."
+        }
+      ]
+    },
+    {
+      "report_type": "doctor_letter",
+      "report_date": "2024-09-23",
+      "title": "Physician letter – Post‑ASCT outpatient follow‑up Day +40",
+      "sections": [
+        {
+          "name": "Diagnoses",
+          "content": "Multiple myeloma, IgG LC lambda (ED 02/2024) After ASCT: Day +40, continued recovery"
+        },
+        {
+          "name": "Current course",
+          "content": "Patient feels markedly better. Fatigue almost completely resolved. Physical activity (walking 30 min/d). ECOG 0. Laboratory 20.09.2024: Hb 12,4 g/dl, leukocytes 5,8 G/l, neutrophils 3,6 G/l, platelets 188 G/l. IgG 5,2 g/l, immunofixation pending (full remission assessment Day +60). Creatinine 0,80 mg/dl."
+        },
+        {
+          "name": "Further procedure",
+          "content": "Bone‑marrow aspiration planned 14.10.2024 (Day +61). Afterwards discussion in tumor board and decision on lenalidomide maintenance."
+        }
+      ]
+    },
+    {
+      "report_type": "radiology",
+      "report_date": "2024-09-30",
+      "title": "Whole‑body MRI – follow‑up post‑ASCT",
+      "sections": [
+        {
+          "name": "Full report",
+          "content": "Clinical information: MM IgG lambda, after HD‑Melphalan + ASCT 08/2024, follow‑up.\n\nQuestion: Residual myelomatous foci? Comparison with PET‑CT 07/2024 and baseline MRI 02/2024.  \n\nPrior imaging: Whole‑body MRI 15.02.2024, PET‑CT 15.07.2024.  \n\nFindings: Bone marrow: Largely homogeneous, fatty signal. No evidence of active STIR‑positive foci any more. Previously known small iliac‑sacral foci from the prior MRI no longer discernible. No new osseous lesions. No extramedullary pathology. Spine: No fractures, no new osteolyses.  \n\nAssessment: Complete imaging‑morphologic remission. No evidence of residual myelomatous foci. Marked regression compared with prior study. Consistent with stringent complete response (sCR) on imaging level."
+        }
+      ]
+    },
+    {
+      "report_type": "flow",
+      "report_date": "2024-10-07",
+      "title": "Flow cytometry – MRD assessment post‑ASCT (NGF)",
+      "sections": [
+        {
+          "name": "Result",
+          "content": "Multiparameter flow cytometry of the bone‑marrow aspirate from 07.10.2024 (Next‑Generation Flow, EuroFlow panel, sensitivity 10^-5). Result: MRD‑NEGATIVE. No detection of a clonal plasma‑cell population with the aberrant phenotype CD138+/CD38+/CD19-/CD56+/lambda+. Proportion of aberrant plasma cells: <0,001% of nucleated cells (below the detection limit). Normal polyclonal plasma‑cell population: 0,08%. Conclusion: MRD negativity after ASCT confirmed (sensitivity threshold 10^-5)."
+        }
+      ]
+    },
+    {
+      "report_type": "pathology",
+      "report_date": "2024-10-14",
+      "title": "Bone marrow biopsy – Remission assessment post‑ASCT",
+      "sections": [
+        {
+          "name": "Findings",
+          "content": "Bone marrow core biopsy from 07.10.2024.\nCellularity: approx. 40 % (age‑appropriate post‑ASCT).  \nNo evidence of a plasma cell infiltrate. Scattered plasma cells (normal, <1 % of nucleated cells). No clonality detectable.  \nImmunohistochemistry: CD138 positive in isolated cells (normal plasma cells), kappa and lambda positivity evenly distributed (polyclonal)."
+        },
+        {
+          "name": "Diagnosis",
+          "content": "No evidence of a myeloma relapse. Histologically complete remission. Together with negative serum immunofixation and MRD negativity by NGF, the patient meets the criteria for a stringent complete remission (sCR)."
+        }
+      ]
+    },
+    {
+      "report_type": "doctor_letter",
+      "report_date": "2024-10-21",
+      "title": "Physician letter – Remission assessment sCR, MRD‑negative after ASCT",
+      "sections": [
+        {
+          "name": "Diagnoses",
+          "content": "Multiple myeloma, IgG LC lambda (ED 02/2024)\nAfter VRd × 6 + HD‑Melphalan + ASCT (08/2024): sCR, MRD‑negative (10/2024)"
+        },
+        {
+          "name": "Remission assessment",
+          "content": "Remission assessment after ASCT (Day +68):\n- Serum IgG: 5.0 g/l (reference range)  \n- Serum immunofixation: NEGATIVE (no M‑protein detectable)  \n- Urine immunofixation: NEGATIVE  \n- Free light chain lambda: 11.4 mg/l (reference range)  \n- Free light chain kappa: 10.2 mg/l, Kappa/Lambda: 0.90 (reference range)  \n- BM histology 07.10.2024: No plasma cell infiltrate, histologically CR  \n- MRD by NGF (EuroFlow): Negative (<10⁻⁵)  \n- PET‑CT/MRT 09/2024: Complete imaging‑morphological remission  \n\nOverall assessment: Stringent complete remission (sCR), MRD‑negative. Best response since diagnosis."
+        },
+        {
+          "name": "Long‑term medication",
+          "content": "Valaciclovir 500 mg 1‑0‑1 (continue until 02/2025)\nPantoprazole 40 mg 1‑0‑0  \nL‑Thyroxine 100 µg 1‑0‑0"
+        },
+        {
+          "name": "Further procedure",
+          "content": "Tumor board 28.10.2024 to discuss maintenance therapy. Lenalidomide maintenance planned."
+        }
+      ]
+    },
+    {
+      "report_type": "tumor_board",
+      "report_date": "2024-10-28",
+      "title": "Tumor board decision – Lenalidomide maintenance therapy after ASCT",
+      "sections": [
+        {
+          "name": "Reason for discussion",
+          "content": "Planning maintenance therapy for sCR/MRD‑negative MM after ASCT in a 54‑year‑old patient."
+        },
+        {
+          "name": "Findings",
+          "content": "sCR after VRd × 6 + HD‑Melphalan + ASCT. MRD‑negative by NGF. Standard‑risk cytogenetics."
+        },
+        {
+          "name": "Decision",
+          "content": "Start of lenalidomide maintenance therapy from 04.11.2024.\nDosage: Lenalidomide 10 mg/d p.o. days 1–21 of a 28‑day cycle (standard maintenance dose; consider 15 mg if no toxicity after 3 months).  \nPlanned duration: at least 2 years (until progression or unacceptable toxicity).  \nMRD assessment every 6 months by NGF and immunofixation. Skeletal imaging if clinical suspicion.  \nThrombosis prophylaxis: Aspirin 100 mg/d together with lenalidomide."
+        }
+      ]
+    },
+    {
+      "report_type": "doctor_letter",
+      "report_date": "2024-11-04",
+      "title": "Physician letter – Start of lenalidomide maintenance Cycle 1",
+      "sections": [
+        {
+          "name": "Diagnoses",
+          "content": "Multiple myeloma, IgG light chain lambda (diagnosed 02/2024)\nsCR, MRD-negative after ASCT  \nStart lenalidomide maintenance 04.11.2024"
+        },
+        {
+          "name": "Current course",
+          "content": "Lenalidomide maintenance started at 10 mg/d p.o. days 1–21, 28‑day cycle. First administration well tolerated. No diarrhea, no rash. Mild fatigue grade 1.\nLaboratory 01.11.2024: IgG 5,1 g/l, immunofixation negative. FLK lambda 10,8 mg/l, kappa 10,4 mg/l, Kappa/Lambda 0,96. Hb 13,2 g/dl, neutrophils 2,8 G/l, platelets 198 G/l."
+        },
+        {
+          "name": "Ongoing medication",
+          "content": "Lenalidomide 10 mg/d p.o. days 1–21\nAspirin 100 mg/d (thrombosis prophylaxis)  \nValaciclovir 500 mg 1‑0‑1  \nPantoprazole 40 mg 1‑0‑0  \nL‑Thyroxine 100 µg 1‑0‑0"
+        },
+        {
+          "name": "Further procedure",
+          "content": "Next assessment after Cycle 2 (02.12.2024). Complete blood count also to be checked by the primary care physician around day 14."
+        }
+      ]
+    },
+    {
+      "report_type": "doctor_letter",
+      "report_date": "2024-12-02",
+      "title": "Physician letter – Lenalidomide maintenance Cycle 2",
+      "sections": [
+        {
+          "name": "Diagnoses",
+          "content": "Multiple myeloma, IgG light chain lambda (diagnosed 02/2024)\nsCR, MRD-negative  \nLenalidomide maintenance Cycle 2"
+        },
+        {
+          "name": "Current course",
+          "content": "Cycle 2 lenalidomide 10 mg well tolerated. No grade 3/4 neutropenia. No infection.\nLaboratory 29.11.2024: IgG 5,3 g/l, immunofixation negative, FLK kappa/lambda within normal range. Hb 13,0 g/dl, neutrophils 2,4 G/l, platelets 204 G/l. Creatinine 0,82 mg/dl.  \nIncrease to 15 mg because of moderate neutropenia (ANC 2,4 G/l) not performed initially – dose escalation considered for Cycle 4."
+        },
+        {
+          "name": "Ongoing medication",
+          "content": "As before. Discontinue valaciclovir from 02/2025 (after 6 months post‑ASCT)."
+        },
+        {
+          "name": "Further procedure",
+          "content": "Quarterly review 06.01.2025 with laboratory values including immunofixation."
+        }
+      ]
+    },
+    {
+      "report_type": "doctor_letter",
+      "report_date": "2025-01-06",
+      "title": "Physician letter – Lenalidomide maintenance quarterly review (Cycle 3)",
+      "sections": [
+        {
+          "name": "Diagnoses",
+          "content": "Multiple Myeloma, IgG LC lambda (ED 02/2024)\nsCR, MRD-negative  \nLenalidomide maintenance Cycle 3, quarterly control"
+        },
+        {
+          "name": "Current course",
+          "content": "Patient asymptomatic, ECOG 0, working full‑time again. Lenalidomide 10 mg well tolerated, no relevant toxicity.\nLabor 03.01.2025: IgG 5,0 g/l, Immunfixation negative, FLK kappa/lambda normal. Hb 13,5 g/dl, Neutrophile 2,6 G/l, Thrombozyten 210 G/l. Kreatinin 0,80 mg/dl. Albumin 4,3 g/dl. LDH 192 U/l.  \nRemission ongoing, sCR confirmed."
+        },
+        {
+          "name": "Chronic medication",
+          "content": "Lenalidomide 10 mg days 1–21, 28‑day cycle. Aspirin 100 mg/d. Pantoprazole 40 mg. L‑Thyroxine 100 µg. Valaciclovir discontinued 02/2025."
+        },
+        {
+          "name": "Further procedure",
+          "content": "Next follow‑up 03.03.2025. MRD assessment (NGF + immunofixation) for 02/2025 at 6 months post‑ASCT planned (MRI 03.02.2025)."
+        }
+      ]
+    },
+    {
+      "report_type": "radiology",
+      "report_date": "2025-02-03",
+      "title": "Whole‑body MRI – follow‑up 6 months post‑ASCT",
+      "sections": [
+        {
+          "name": "Full report",
+          "content": "Clinical data: MM IgG lambda, sCR after ASCT 08/2024, follow‑up under lenalidomide maintenance.\n\nQuestion: Remission ongoing? New lesions?  \n\nPrior imaging: whole‑body MRI 30.09.2024.  \n\nFindings: Bone marrow: homogeneous fat signal in axial skeleton. No evidence of active STIR‑positive lesions. No new osteolyses. Iliosacral region: previously known foci from 02/2024 still not detectable. Soft tissues: no extramedullary involvement. Lymph nodes: no lymphadenopathy.  \n\nAssessment: Ongoing imaging‑morphologic complete remission. No indication of relapse or new myelomatous activity. Findings stable compared with prior examination."
+        }
+      ]
+    },
+    {
+      "report_type": "flow",
+      "report_date": "2025-02-10",
+      "title": "Flow cytometry – MRD assessment 6 months post‑ASCT",
+      "sections": [
+        {
+          "name": "Result",
+          "content": "Multiparameter flow cytometry of the bone‑marrow aspirate from 07.02.2025 (Next‑Generation Flow, EuroFlow panel, sensitivity 10^-5).\nResult: MRD‑NEGATIVE. No detection of aberrant clonal plasma cells. Proportion: <0,001% of nucleated cells.  \nConclusion: Ongoing MRD negativity 6 months after ASCT under lenalidomide maintenance confirmed."
+        }
+      ]
+    },
+    {
+      "report_type": "doctor_letter",
+      "report_date": "2025-03-03",
+      "title": "Physician letter – Lenalidomide maintenance Cycle 5 quarterly control",
+      "sections": [
+        {
+          "name": "Diagnoses",
+          "content": "Multiple Myeloma, IgG LC lambda (ED 02/2024)\nsCR, MRD‑negative (confirmed 02/2025)  \nLenalidomide maintenance Cycle 5"
+        },
+        {
+          "name": "Current course",
+          "content": "MRI 02/2025 and NGF‑MRD 02/2025: Ongoing complete remission and MRD negativity.\nPatient in very good general condition, no complaints. ECOG 0.  \nLabor 28.02.2025: IgG 5,2 g/l, Immunfixation negative. Hb 13,8 g/dl, Neutrophile 2,5 G/l, Thrombozyten 218 G/l. Kreatinin 0,79 mg/dl."
+        },
+        {
+          "name": "Chronic medication",
+          "content": "Lenalidomide 10 mg days 1–21. Aspirin 100 mg/d. Pantoprazole 40 mg. L‑thyroxine 100 µg."
+        },
+        {
+          "name": "Further procedure",
+          "content": "Next quarterly check 07.04.2025."
+        }
+      ]
+    },
+    {
+      "report_type": "doctor_letter",
+      "report_date": "2025-04-07",
+      "title": "Physician letter – Lenalidomide maintenance cycle 6 quarterly control",
+      "sections": [
+        {
+          "name": "Diagnoses",
+          "content": "Multiple myeloma, IgG LK lambda (ED 02/2024)\nsCR, MRD‑negative  \nLenalidomide maintenance cycle 6"
+        },
+        {
+          "name": "Current course",
+          "content": "Unchanged, symptom‑free under Lenalidomide 10 mg. No infection, no neuropathy. Mild fatigue grade 1 persists, not therapy‑relevant.\nLabor 04.04.2025: IgG 5,0 g/l, immunofixation negative. Hb 13,6 g/dl, neutrophils 2,3 G/l, platelets 212 G/l. Creatinine 0,81 mg/dl. eGFR 88 ml/min."
+        },
+        {
+          "name": "Long‑term medication",
+          "content": "As before."
+        },
+        {
+          "name": "Further procedure",
+          "content": "Next check 05.05.2025."
+        }
+      ]
+    },
+    {
+      "report_type": "doctor_letter",
+      "report_date": "2025-05-05",
+      "title": "Physician letter – Lenalidomide maintenance cycle 7",
+      "sections": [
+        {
+          "name": "Diagnoses",
+          "content": "Multiple myeloma, IgG LK lambda (ED 02/2024)\nsCR, MRD‑negative  \nLenalidomide maintenance cycle 7"
+        },
+        {
+          "name": "Current course",
+          "content": "Regular Lenalidomide intake, no dose adjustment required. Blood count stable.\nLabor 02.05.2025: IgG 5,1 g/l, immunofixation negative. Hb 13,9 g/dl, neutrophils 2,4 G/l, platelets 220 G/l."
+        },
+        {
+          "name": "Long‑term medication",
+          "content": "As before."
+        },
+        {
+          "name": "Further procedure",
+          "content": "Six-month follow-up 02.06.2025 with comprehensive laboratory and MRD."
+        }
+      ]
+    },
+    {
+      "report_type": "doctor_letter",
+      "report_date": "2025-06-02",
+      "title": "Physician letter – Lenalidomid maintenance six-month follow-up (cycle 8)",
+      "sections": [
+        {
+          "name": "Diagnoses",
+          "content": "Multiple myeloma, IgG light chain lambda (ED 02/2024) sCR, MRD-negative Lenalidomid maintenance 7 months"
+        },
+        {
+          "name": "Current course",
+          "content": "7 months Lenalidomid maintenance. Patient stable, ECOG 0. Remission ongoing. Laboratory 30.05.2025: IgG 5,0 g/l, immunofixation negative. FLK kappa 10,6 mg/l, lambda 11,2 mg/l, kappa/lambda 0,95 (normal). Hb 14,0 g/dl, neutrophils 2,6 G/l, platelets 215 G/l. Creatinine 0,78 mg/dl. LDH 190 U/l. Albumin 4,2 g/dl."
+        },
+        {
+          "name": "Current medication",
+          "content": "Lenalidomid 10 mg days 1–21. Aspirin 100 mg/d. Pantoprazol 40 mg. L-Thyroxin 100 µg."
+        },
+        {
+          "name": "Further procedure",
+          "content": "12-month review at tumor board 16.06.2025. MRI and MRD assessment 07.07.2025 (12 months post-ASCT)."
+        }
+      ]
+    },
+    {
+      "report_type": "tumor_board",
+      "report_date": "2025-06-16",
+      "title": "Tumor board decision – 12-month review after ASCT",
+      "sections": [
+        {
+          "name": "Reason for discussion",
+          "content": "Regular 12-month assessment in MM IgG lambda after ASCT 08/2024, sCR/MRD-negative, on Lenalidomid maintenance."
+        },
+        {
+          "name": "Findings",
+          "content": "sCR sustained, immunofixation persistently negative. MRD by NGF 02/2025 negative. No imaging evidence of relapse (MRI 02/2025). Lenalidomid 10 mg, 7 cycles completed, well tolerated."
+        },
+        {
+          "name": "Decision",
+          "content": "Continuation of Lenalidomid maintenance 10 mg. 12-month staging with MRI and bone marrow puncture/NGF-MRD planned 07/2025. No dose escalation planned (ANC 2,3–2,6 G/l, caution). With sustained sCR/MRD negativity: maintenance intended for a total of 2 years (until 11/2026)."
+        }
+      ]
+    },
+    {
+      "report_type": "radiology",
+      "report_date": "2025-07-07",
+      "title": "Whole-body MRI – follow-up 12 months post-ASCT",
+      "sections": [
+        {
+          "name": "Full report",
+          "content": "Clinical information: MM IgG lambda, sCR after ASCT 08/2024, 12-month staging under Lenalidomid maintenance.\n\nQuestion: Ongoing remission? New osseous lesions?  \n\nPrior imaging: Whole-body MRI 03.02.2025.  \n\nFindings: Bone marrow: Unchanged homogeneous fatty signal in axial and appendicular skeleton. No active STIR-positive focus detectable. No new osteolyses. No pathological fractures. Soft tissues and lymph nodes: Unremarkable.  \n\nAssessment: Stable ongoing imaging-morphologic complete remission 12 months after ASCT. No evidence of relapse."
+        }
+      ]
+    },
+    {
+      "report_type": "flow",
+      "report_date": "2025-07-07",
+      "title": "Flow cytometry – MRD assessment 12 months post‑ASCT",
+      "sections": [
+        {
+          "name": "Result",
+          "content": "Next‑Generation Flow (EuroFlow, sensitivity 10^-5) from bone marrow aspirate 07.07.2025.\nResult: MRD‑NEGATIVE. No detection of aberrant clonal plasma cells.  \nConclusion: Persistent MRD negativity 12 months after ASCT, 8 months after start of lenalidomide maintenance."
+        }
+      ]
+    },
+    {
+      "report_type": "pathology",
+      "report_date": "2025-07-14",
+      "title": "Bone marrow biopsy – follow‑up 12 months post‑ASCT",
+      "sections": [
+        {
+          "name": "Findings",
+          "content": "Bone marrow core biopsy from 07.07.2025.\nCellularity: approx. 40–45%.  \nNo evidence of a plasma‑cell infiltrate. Scattered mature plasma cells (<1%), polyclonal."
+        },
+        {
+          "name": "Diagnosis",
+          "content": "No histologic evidence of myeloma relapse. Ongoing histologic complete remission 12 months post‑ASCT. Together with NGF‑MRD negativity and negative immunofixation: sustained sCR."
+        }
+      ]
+    },
+    {
+      "report_type": "doctor_letter",
+      "report_date": "2025-08-04",
+      "title": "Physician letter – lenalidomide maintenance cycle 10",
+      "sections": [
+        {
+          "name": "Diagnoses",
+          "content": "Multiple myeloma, IgG LK lambda (ED 02/2024)\nsCR, MRD‑negative (12‑month staging 07/2025)  \nLenalidomide maintenance cycle 10"
+        },
+        {
+          "name": "Current course",
+          "content": "12‑month staging 07/2025: MRI, NGF‑MRD and BM histology confirm ongoing sCR/MRD negativity. Patient extremely pleased with sustained remission. ECOG 0.\nLabor 01.08.2025: IgG 5,1 g/l, immunofixation negative. Hb 14,1 g/dl, neutrophils 2,4 G/l, platelets 224 G/l."
+        },
+        {
+          "name": "Chronic medication",
+          "content": "Lenalidomide 10 mg days 1–21. Aspirin 100 mg/d. Pantoprazole 40 mg. L‑thyroxine 100 µg."
+        },
+        {
+          "name": "Further procedure",
+          "content": "Next quarterly follow‑up 01.09.2025."
+        }
+      ]
+    },
+    {
+      "report_type": "doctor_letter",
+      "report_date": "2025-09-01",
+      "title": "Physician letter – lenalidomide maintenance cycle 11 quarterly control",
+      "sections": [
+        {
+          "name": "Diagnoses",
+          "content": "Multiple myeloma, IgG LK lambda (ED 02/2024)\nsCR, MRD‑negative  \nLenalidomide maintenance cycle 11"
+        },
+        {
+          "name": "Current course",
+          "content": "Unchanged, symptom‑free, ECOG 0. Lenalidomid continues to be well tolerated. Laboratory 29.08.2025: IgG 5,0 g/l, Immunfixation negative. Hb 13,8 g/dl, Neutrophile 2,5 G/l, Thrombozyten 218 G/l. Kreatinin 0,80 mg/dl."
+        },
+        {
+          "name": "Long‑term medication",
+          "content": "As before."
+        },
+        {
+          "name": "Further procedure",
+          "content": "Next check 06.10.2025."
+        }
+      ]
+    },
+    {
+      "report_type": "doctor_letter",
+      "report_date": "2025-10-06",
+      "title": "Physician letter – Lenalidomid‑maintenance Cycle 12",
+      "sections": [
+        {
+          "name": "Diagnoses",
+          "content": "Multiple myeloma, IgG LK lambda (ED 02/2024)\nsCR, MRD‑negative  \nLenalidomid‑maintenance Cycle 12"
+        },
+        {
+          "name": "Current course",
+          "content": "10 months Lenalidomid 10 mg. Patient stable, no new complaints. No infection in the last 3 months. Laboratory 03.10.2025: IgG 5,1 g/l, Immunfixation negative. FLK kappa/lambda normal. Hb 13,7 g/dl, Neutrophile 2,3 G/l, Thrombozyten 212 G/l."
+        },
+        {
+          "name": "Long‑term medication",
+          "content": "As before."
+        },
+        {
+          "name": "Further procedure",
+          "content": "Next check 03.11.2025. Annual staging (MRT + MRD) planned 12/2025."
+        }
+      ]
+    },
+    {
+      "report_type": "doctor_letter",
+      "report_date": "2025-11-03",
+      "title": "Physician letter – Lenalidomid‑maintenance Cycle 13",
+      "sections": [
+        {
+          "name": "Diagnoses",
+          "content": "Multiple myeloma, IgG LK lambda (ED 02/2024)\nsCR, MRD‑negative  \nLenalidomid‑maintenance Cycle 13"
+        },
+        {
+          "name": "Current course",
+          "content": "Stable situation. Patient works full‑time, no limitations due to therapy. Fatigue completely resolved. Laboratory 31.10.2025: IgG 5,2 g/l, Immunfixation negative. Hb 14,0 g/dl, Neutrophile 2,6 G/l, Thrombozyten 220 G/l."
+        },
+        {
+          "name": "Maintenance medication",
+          "content": "As before."
+        },
+        {
+          "name": "Further procedure",
+          "content": "Annual staging 01.12.2025 (MRT, MRD, KM). Tumor board thereafter 15.12.2025."
+        }
+      ]
+    },
+    {
+      "report_type": "doctor_letter",
+      "report_date": "2025-12-01",
+      "title": "Physician letter – Lenalidomide maintenance annual review (Cycle 14)",
+      "sections": [
+        {
+          "name": "Diagnoses",
+          "content": "Multiple myeloma, IgG light chain lambda (ED 02/2024)\nsCR, MRD-negative – 16 months post-ASCT  \nLenalidomide maintenance Cycle 14"
+        },
+        {
+          "name": "Current course",
+          "content": "Annual follow-up examination. Detailed remission assessment with MRT (01.12.2025), NGF-MRD (01.12.2025), KM biopsy (01.12.2025).\nLabor 28.11.2025: IgG 5,0 g/l, immunofixation negative. FLK kappa 10,4 mg/l, lambda 11,0 mg/l, Kappa/Lambda 0,95 (normal). Hb 13,9 g/dl, neutrophils 2,5 G/l, platelets 216 G/l. Creatinine 0,81 mg/dl. LDH 188 U/l. Albumin 4,3 g/dl.  \nECOG 0."
+        },
+        {
+          "name": "Maintenance medication",
+          "content": "Lenalidomide 10 mg days 1–21. Aspirin 100 mg/d. Pantoprazole 40 mg. L-thyroxine 100 µg."
+        },
+        {
+          "name": "Further procedure",
+          "content": "Tumor board 15.12.2025. Lenalidomide maintenance is continued (16 months of planned 24 months completed)."
+        }
+      ]
+    },
+    {
+      "report_type": "radiology",
+      "report_date": "2025-12-01",
+      "title": "Whole-body MRI – Annual staging 16 months post-ASCT",
+      "sections": [
+        {
+          "name": "Full report",
+          "content": "Clinical data: MM IgG lambda, sCR after ASCT 08/2024, 16-month staging under lenalidomide maintenance.\n\nQuestion: Persistent remission?  \n\nPrior imaging: GK-MRT 07.07.2025.  \n\nFindings: Bone marrow: As on prior examination, unchanged homogeneous fatty signal. No STIR‑positive focus. No new lesions. Soft tissues and lymph nodes: Unremarkable.  \n\nAssessment: Stable ongoing imaging‑morphologic complete remission. No evidence of relapse. Findings unchanged compared with prior imaging."
+        }
+      ]
+    },
+    {
+      "report_type": "flow",
+      "report_date": "2025-12-08",
+      "title": "Flow cytometry – MRD annual control",
+      "sections": [
+        {
+          "name": "Result",
+          "content": "Next‑Generation Flow (EuroFlow, sensitivity 10^-5) from 01.12.2025.\nResult: MRD-NEGATIVE. No detection of aberrant clonal plasma cells (< detection limit 10^-5).  \nConclusion: Persistent MRD negativity 16 months after ASCT. Deepest remission sustained."
+        }
+      ]
+    },
+    {
+      "report_type": "pathology",
+      "report_date": "2025-12-08",
+      "title": "Bone marrow biopsy – Annual biopsy 16 months post-ASCT",
+      "sections": [
+        {
+          "name": "Findings",
+          "content": "Bone marrow trephine biopsy from 01.12.2025.\nCellularity: ca. 40%.  \nNo plasma cell infiltrate detectable. Polyclonal isolated plasma cells <1%."
+        },
+        {
+          "name": "Diagnosis",
+          "content": "Sustained histologic complete remission. No myeloma relapse detectable. sCR persists."
+        }
+      ]
+    },
+    {
+      "report_type": "tumor_board",
+      "report_date": "2025-12-15",
+      "title": "Tumor board decision – annual follow‑up, continuation of lenalidomide maintenance",
+      "sections": [
+        {
+          "name": "Meeting purpose",
+          "content": "Annual review in MM IgG lambda, sCR/MRD‑negative 16 months post‑ASCT under lenalidomide maintenance."
+        },
+        {
+          "name": "Findings",
+          "content": "sCR ongoing. MRI 12/2025: Stable complete remission. NGF‑MRD 12/2025: Negative. BM histology 12/2025: No infiltrate. Immunofixation negative. Lenalidomide 10 mg, 14 cycles, well tolerated."
+        },
+        {
+          "name": "Decision",
+          "content": "Continuation of lenalidomide maintenance until at least 11/2026 (planned total duration 2 years, therapy start 11/2024). If sustained sCR/MRD negativity, discuss possible extension.\nNext staging: 07/2026 (24 months post‑ASCT). Monitoring intervals: quarterly clinical assessment + laboratory + immunofixation, semi‑annual MRD + imaging."
+        }
+      ]
+    },
+    {
+      "report_type": "doctor_letter",
+      "report_date": "2025-07-21",
+      "title": "Physician letter – result of 12‑month staging, lenalidomide maintenance cycle 9",
+      "sections": [
+        {
+          "name": "Diagnoses",
+          "content": "Multiple myeloma, IgG lambda (ED 02/2024)\nsCR, MRD‑negative – 12‑month staging confirmed  \nLenalidomide maintenance cycle 9"
+        },
+        {
+          "name": "Current course",
+          "content": "12‑month staging results communicated: MRI 07.07.2025 (persistent imaging‑morphologic CR), NGF‑MRD 07.07.2025 (negative, <10^-5), BM histology 07.07.2025 (no infiltrate). Patient informed of excellent result.\nLabor 18.07.2025: IgG 5,0 g/l, Immunofixation negative. Hb 14,0 g/dl, Neutrophile 2,4 G/l, Thrombozyten 224 G/l. ECOG 0."
+        },
+        {
+          "name": "Ongoing medication",
+          "content": "Lenalidomide 10 mg days 1–21. Aspirin 100 mg/d. Pantoprazole 40 mg. L‑thyroxine 100 µg."
+        },
+        {
+          "name": "Further procedure",
+          "content": "Next follow‑up 04.08.2025. Annual staging with MRI and MRD planned 12/2025 (16 months post‑ASCT)."
+        }
+      ]
+    },
+    {
+      "report_type": "doctor_letter",
+      "report_date": "2025-12-18",
+      "title": "Physician letter – Year-end discussion following tumor board decision",
+      "sections": [
+        {
+          "name": "Diagnoses",
+          "content": "Multiple myeloma, IgG LC lambda (ED 02/2024) sCR, MRD-negative – 16 months after ASCT Lenalidomid maintenance cycle 14 completed"
+        },
+        {
+          "name": "Current course",
+          "content": "Tumor board decision communicated on 15.12.2025: continuation of Lenalidomid maintenance until 11/2026. Patient understands and accepts the plan. Very good general condition, ECOG 0. No therapy-related complaints. Echocardiography 22.12.2025 (cardiology consult): Normal cardiac function, EF 64%, no pericardial effusion. No cardiotoxicity from ASCT or Lenalidomid."
+        },
+        {
+          "name": "Chronic medication",
+          "content": "Lenalidomid 10 mg days 1–21 (starting 27.12.2025 cycle 15). Aspirin 100 mg/d. Pantoprazol 40 mg. L‑Thyroxin 100 µg."
+        },
+        {
+          "name": "Further procedure",
+          "content": "Next quarterly review 06.01.2026. Semiannual staging (MRI + MRD) 06/2026. Lenalidomid maintenance continues planned for 8 months (until 11/2026)."
+        }
+      ]
+    },
+    {
+      "report_type": "cardiology",
+      "report_date": "2025-12-22",
+      "title": "Cardiology consult – Year-end echocardiography",
+      "sections": [
+        {
+          "name": "Question",
+          "content": "Cardiac follow-up monitoring in Z.n. HD‑Melphalan + ASCT and ongoing Lenalidomid maintenance. Exclusion of cardiotoxicity."
+        },
+        {
+          "name": "Findings",
+          "content": "Echocardiography transthoracic 22.12.2025: LV function: Normal, EF 64% (biplane, Simpson). Wall motion abnormalities: None. Valves: Mitral valve and aortic valve without significant findings. No stenosis, no hemodynamically relevant insufficiency. Pericardium: No effusion. Right heart: Unremarkable. TAPSE 22 mm (normal). Diastolic function: Grade 1 (mild relaxation disorder, age‑appropriate)."
+        },
+        {
+          "name": "Assessment",
+          "content": "Normal cardiac function without evidence of cardiotoxicity from Melphalan or Lenalidomid. LV EF stable. No therapy adjustment required from a cardiology perspective. Next review in 12 months."
+        }
+      ]
+    }
+  ],
+  "lab_values": [
+    {
+      "name": "IgG",
+      "date": "2024-02-08",
+      "value": "52.3",
+      "unit": "g/l",
+      "reference_range": "7.0 - 16.0"
+    },
+    {
+      "name": "IgA",
+      "date": "2024-02-08",
+      "value": "0.5",
+      "unit": "g/l",
+      "reference_range": "0.7 - 4.0"
+    },
+    {
+      "name": "IgM",
+      "date": "2024-02-08",
+      "value": "0.2",
+      "unit": "g/l",
+      "reference_range": "0.4 - 2.3"
+    },
+    {
+      "name": "Free light chains lambda",
+      "date": "2024-02-08",
+      "value": "310",
+      "unit": "mg/l",
+      "reference_range": "5.7 - 26.3"
+    },
+    {
+      "name": "Free Light Chains Kappa",
+      "date": "2024-02-08",
+      "value": "18.2",
+      "unit": "mg/l",
+      "reference_range": "3.3 - 19.4"
+    },
+    {
+      "name": "Kappa/Lambda",
+      "date": "2024-02-08",
+      "value": "0.06",
+      "unit": "",
+      "reference_range": "0.26 - 1.65"
+    },
+    {
+      "name": "Beta-2-Microglobulin",
+      "date": "2024-02-08",
+      "value": "2.1",
+      "unit": "mg/l",
+      "reference_range": "< 2.5"
+    },
+    {
+      "name": "Albumin",
+      "date": "2024-02-08",
+      "value": "4.2",
+      "unit": "g/dl",
+      "reference_range": "3.5 - 5.0"
+    },
+    {
+      "name": "LDH",
+      "date": "2024-02-08",
+      "value": "188",
+      "unit": "U/l",
+      "reference_range": "< 244"
+    },
+    {
+      "name": "Calcium",
+      "date": "2024-02-08",
+      "value": "2.3",
+      "unit": "mmol/l",
+      "reference_range": "2.15 - 2.55"
+    },
+    {
+      "name": "Creatinine",
+      "date": "2024-02-08",
+      "value": "0.8",
+      "unit": "mg/dl",
+      "reference_range": "0.5 - 1.1"
+    },
+    {
+      "name": "eGFR",
+      "date": "2024-02-08",
+      "value": "88",
+      "unit": "ml/min",
+      "reference_range": "> 60"
+    },
+    {
+      "name": "Hemoglobin",
+      "date": "2024-02-08",
+      "value": "9.2",
+      "unit": "g/dl",
+      "reference_range": "12.0 - 16.0"
+    },
+    {
+      "name": "Leukocytes",
+      "date": "2024-02-08",
+      "value": "6.8",
+      "unit": "G/l",
+      "reference_range": "4.0 - 9.0"
+    },
+    {
+      "name": "Neutrophils",
+      "date": "2024-02-08",
+      "value": "4.2",
+      "unit": "G/l",
+      "reference_range": "1.8 - 7.5"
+    },
+    {
+      "name": "Platelets",
+      "date": "2024-02-08",
+      "value": "224",
+      "unit": "G/l",
+      "reference_range": "150 - 400"
+    },
+    {
+      "name": "Inflammatory markers",
+      "date": "2024-02-08",
+      "value": "0.4",
+      "unit": "mg/dl",
+      "reference_range": "< 0.5"
+    },
+    {
+      "name": "Hemoglobin",
+      "date": "2024-02-20",
+      "value": "11.4",
+      "unit": "g/dl",
+      "reference_range": "12.0 - 16.0"
+    },
+    {
+      "name": "IgG",
+      "date": "2024-06-05",
+      "value": "9.8",
+      "unit": "g/l",
+      "reference_range": "7.0 - 16.0"
+    },
+    {
+      "name": "Free Light Chains Lambda",
+      "date": "2024-06-05",
+      "value": "28.0",
+      "unit": "mg/l",
+      "reference_range": "5.7 - 26.3"
+    },
+    {
+      "name": "Free Light Chains Kappa",
+      "date": "2024-06-05",
+      "value": "11.2",
+      "unit": "mg/l",
+      "reference_range": "3.3 - 19.4"
+    },
+    {
+      "name": "Kappa/Lambda",
+      "date": "2024-06-05",
+      "value": "0.4",
+      "unit": "",
+      "reference_range": "0.26 - 1.65"
+    },
+    {
+      "name": "Beta-2-Microglobulin",
+      "date": "2024-06-05",
+      "value": "1.9",
+      "unit": "mg/l",
+      "reference_range": "< 2.5"
+    },
+    {
+      "name": "Hemoglobin",
+      "date": "2024-06-05",
+      "value": "12.2",
+      "unit": "g/dl",
+      "reference_range": "12.0 - 16.0"
+    },
+    {
+      "name": "Leukocytes",
+      "date": "2024-06-05",
+      "value": "5.4",
+      "unit": "G/l",
+      "reference_range": "4.0 - 9.0"
+    },
+    {
+      "name": "Neutrophils",
+      "date": "2024-06-05",
+      "value": "3.1",
+      "unit": "G/l",
+      "reference_range": "1.8 - 7.5"
+    },
+    {
+      "name": "Platelets",
+      "date": "2024-06-05",
+      "value": "198",
+      "unit": "G/l",
+      "reference_range": "150 - 400"
+    },
+    {
+      "name": "Creatinine",
+      "date": "2024-06-05",
+      "value": "0.9",
+      "unit": "mg/dl",
+      "reference_range": "0.5 - 1.1"
+    },
+    {
+      "name": "LDH",
+      "date": "2024-06-05",
+      "value": "195",
+      "unit": "U/l",
+      "reference_range": "< 244"
+    },
+    {
+      "name": "Albumin",
+      "date": "2024-06-05",
+      "value": "4.1",
+      "unit": "g/dl",
+      "reference_range": "3.5 - 5.0"
+    },
+    {
+      "name": "Inflammatory marker",
+      "date": "2024-06-05",
+      "value": "0.3",
+      "unit": "mg/dl",
+      "reference_range": "< 0.5"
+    },
+    {
+      "name": "IgG",
+      "date": "2024-03-22",
+      "value": "38.4",
+      "unit": "g/l",
+      "reference_range": "7.0 - 16.0"
+    },
+    {
+      "name": "Free light chains Lambda",
+      "date": "2024-03-22",
+      "value": "184",
+      "unit": "mg/l",
+      "reference_range": "5.7 - 26.3"
+    },
+    {
+      "name": "Free light chains Kappa",
+      "date": "2024-03-22",
+      "value": "14.8",
+      "unit": "mg/l",
+      "reference_range": "3.3 - 19.4"
+    },
+    {
+      "name": "Kappa/Lambda",
+      "date": "2024-03-22",
+      "value": "0.08",
+      "unit": "",
+      "reference_range": "0.26 - 1.65"
+    },
+    {
+      "name": "Hemoglobin",
+      "date": "2024-03-22",
+      "value": "12.8",
+      "unit": "g/dl",
+      "reference_range": "12.0 - 16.0"
+    },
+    {
+      "name": "Leukocytes",
+      "date": "2024-03-22",
+      "value": "6.2",
+      "unit": "G/l",
+      "reference_range": "4.0 - 9.0"
+    },
+    {
+      "name": "Neutrophils",
+      "date": "2024-03-22",
+      "value": "3.8",
+      "unit": "G/l",
+      "reference_range": "1.8 - 7.5"
+    },
+    {
+      "name": "Platelets",
+      "date": "2024-03-22",
+      "value": "216",
+      "unit": "G/l",
+      "reference_range": "150 - 400"
+    },
+    {
+      "name": "Creatinine",
+      "date": "2024-03-22",
+      "value": "0.82",
+      "unit": "mg/dl",
+      "reference_range": "0.5 - 1.1"
+    },
+    {
+      "name": "IgG",
+      "date": "2024-04-19",
+      "value": "26.1",
+      "unit": "g/l",
+      "reference_range": "7.0 - 16.0"
+    },
+    {
+      "name": "Free light chains Lambda",
+      "date": "2024-04-19",
+      "value": "142",
+      "unit": "mg/l",
+      "reference_range": "5.7 - 26.3"
+    },
+    {
+      "name": "Hemoglobin",
+      "date": "2024-04-19",
+      "value": "13.0",
+      "unit": "g/dl",
+      "reference_range": "12.0 - 16.0"
+    },
+    {
+      "name": "Neutrophils",
+      "date": "2024-04-19",
+      "value": "3.4",
+      "unit": "G/l",
+      "reference_range": "1.8 - 7.5"
+    },
+    {
+      "name": "Platelets",
+      "date": "2024-04-19",
+      "value": "204",
+      "unit": "G/l",
+      "reference_range": "150 - 400"
+    },
+    {
+      "name": "IgG",
+      "date": "2024-05-17",
+      "value": "16.2",
+      "unit": "g/l",
+      "reference_range": "7.0 - 16.0"
+    },
+    {
+      "name": "Free Light Chains Lambda",
+      "date": "2024-05-17",
+      "value": "64.0",
+      "unit": "mg/l",
+      "reference_range": "5.7 - 26.3"
+    },
+    {
+      "name": "Free Light Chains Kappa",
+      "date": "2024-05-17",
+      "value": "12.4",
+      "unit": "mg/l",
+      "reference_range": "3.3 - 19.4"
+    },
+    {
+      "name": "Kappa/Lambda",
+      "date": "2024-05-17",
+      "value": "0.19",
+      "unit": "",
+      "reference_range": "0.26 - 1.65"
+    },
+    {
+      "name": "Hemoglobin",
+      "date": "2024-05-17",
+      "value": "13.4",
+      "unit": "g/dl",
+      "reference_range": "12.0 - 16.0"
+    },
+    {
+      "name": "Neutrophils",
+      "date": "2024-05-17",
+      "value": "3.2",
+      "unit": "G/l",
+      "reference_range": "1.8 - 7.5"
+    },
+    {
+      "name": "IgG",
+      "date": "2024-06-21",
+      "value": "8.4",
+      "unit": "g/l",
+      "reference_range": "7.0 - 16.0"
+    },
+    {
+      "name": "Free Light Chains Lambda",
+      "date": "2024-06-21",
+      "value": "18.2",
+      "unit": "mg/l",
+      "reference_range": "5.7 - 26.3"
+    },
+    {
+      "name": "Free Light Chains Kappa",
+      "date": "2024-06-21",
+      "value": "10.8",
+      "unit": "mg/l",
+      "reference_range": "3.3 - 19.4"
+    },
+    {
+      "name": "Kappa/Lambda",
+      "date": "2024-06-21",
+      "value": "0.59",
+      "unit": "",
+      "reference_range": "0.26 - 1.65"
+    },
+    {
+      "name": "Hemoglobin",
+      "date": "2024-06-21",
+      "value": "13.6",
+      "unit": "g/dl",
+      "reference_range": "12.0 - 16.0"
+    },
+    {
+      "name": "Neutrophils",
+      "date": "2024-06-21",
+      "value": "3.0",
+      "unit": "G/l",
+      "reference_range": "1.8 - 7.5"
+    },
+    {
+      "name": "Platelets",
+      "date": "2024-06-21",
+      "value": "196",
+      "unit": "G/l",
+      "reference_range": "150 - 400"
+    },
+    {
+      "name": "IgG",
+      "date": "2024-07-19",
+      "value": "7.6",
+      "unit": "g/l",
+      "reference_range": "7.0 - 16.0"
+    },
+    {
+      "name": "Free Light Chains Lambda",
+      "date": "2024-07-19",
+      "value": "14.8",
+      "unit": "mg/l",
+      "reference_range": "5.7 - 26.3"
+    },
+    {
+      "name": "Free Light Chains Kappa",
+      "date": "2024-07-19",
+      "value": "10.5",
+      "unit": "mg/l",
+      "reference_range": "3.3 - 19.4"
+    },
+    {
+      "name": "Kappa/Lambda",
+      "date": "2024-07-19",
+      "value": "0.71",
+      "unit": "",
+      "reference_range": "0.26 - 1.65"
+    },
+    {
+      "name": "Hemoglobin",
+      "date": "2024-07-19",
+      "value": "13.2",
+      "unit": "g/dl",
+      "reference_range": "12.0 - 16.0"
+    },
+    {
+      "name": "Neutrophils",
+      "date": "2024-07-19",
+      "value": "3.1",
+      "unit": "G/l",
+      "reference_range": "1.8 - 7.5"
+    },
+    {
+      "name": "Platelets",
+      "date": "2024-07-19",
+      "value": "210",
+      "unit": "G/l",
+      "reference_range": "150 - 400"
+    },
+    {
+      "name": "Hemoglobin",
+      "date": "2024-08-12",
+      "value": "13.1",
+      "unit": "g/dl",
+      "reference_range": "12.0 - 16.0"
+    },
+    {
+      "name": "Leukocytes",
+      "date": "2024-08-12",
+      "value": "5.4",
+      "unit": "G/l",
+      "reference_range": "4.0 - 9.0"
+    },
+    {
+      "name": "Neutrophils",
+      "date": "2024-08-12",
+      "value": "3.2",
+      "unit": "G/l",
+      "reference_range": "1.8 - 7.5"
+    },
+    {
+      "name": "Platelets",
+      "date": "2024-08-12",
+      "value": "210",
+      "unit": "G/l",
+      "reference_range": "150 - 400"
+    },
+    {
+      "name": "Creatinine",
+      "date": "2024-08-12",
+      "value": "0.85",
+      "unit": "mg/dl",
+      "reference_range": "0.5 - 1.1"
+    },
+    {
+      "name": "IgG",
+      "date": "2024-08-12",
+      "value": "7.6",
+      "unit": "g/l",
+      "reference_range": "7.0 - 16.0"
+    },
+    {
+      "name": "LDH",
+      "date": "2024-08-12",
+      "value": "202",
+      "unit": "U/l",
+      "reference_range": "< 244"
+    },
+    {
+      "name": "Hemoglobin",
+      "date": "2024-08-26",
+      "value": "10.2",
+      "unit": "g/dl",
+      "reference_range": "12.0 - 16.0"
+    },
+    {
+      "name": "Leukocytes",
+      "date": "2024-08-26",
+      "value": "4.8",
+      "unit": "G/l",
+      "reference_range": "4.0 - 9.0"
+    },
+    {
+      "name": "Neutrophils",
+      "date": "2024-08-26",
+      "value": "2.9",
+      "unit": "G/l",
+      "reference_range": "1.8 - 7.5"
+    },
+    {
+      "name": "Platelets",
+      "date": "2024-08-26",
+      "value": "86",
+      "unit": "G/l",
+      "reference_range": "150 - 400"
+    },
+    {
+      "name": "Creatinine",
+      "date": "2024-08-26",
+      "value": "0.88",
+      "unit": "mg/dl",
+      "reference_range": "0.5 - 1.1"
+    },
+    {
+      "name": "IgG",
+      "date": "2024-09-06",
+      "value": "5.8",
+      "unit": "g/l",
+      "reference_range": "7.0 - 16.0"
+    },
+    {
+      "name": "Hemoglobin",
+      "date": "2024-09-06",
+      "value": "11.8",
+      "unit": "g/dl",
+      "reference_range": "12.0 - 16.0"
+    },
+    {
+      "name": "Leukocytes",
+      "date": "2024-09-06",
+      "value": "6.2",
+      "unit": "G/l",
+      "reference_range": "4.0 - 9.0"
+    },
+    {
+      "name": "Neutrophils",
+      "date": "2024-09-06",
+      "value": "4.1",
+      "unit": "G/l",
+      "reference_range": "1.8 - 7.5"
+    },
+    {
+      "name": "Platelets",
+      "date": "2024-09-06",
+      "value": "148",
+      "unit": "G/l",
+      "reference_range": "150 - 400"
+    },
+    {
+      "name": "Creatinine",
+      "date": "2024-09-06",
+      "value": "0.82",
+      "unit": "mg/dl",
+      "reference_range": "0.5 - 1.1"
+    },
+    {
+      "name": "LDH",
+      "date": "2024-09-06",
+      "value": "198",
+      "unit": "U/l",
+      "reference_range": "< 244"
+    },
+    {
+      "name": "IgG",
+      "date": "2024-10-10",
+      "value": "5.0",
+      "unit": "g/l",
+      "reference_range": "7.0 - 16.0"
+    },
+    {
+      "name": "Free light chains Lambda",
+      "date": "2024-10-10",
+      "value": "11.4",
+      "unit": "mg/l",
+      "reference_range": "5.7 - 26.3"
+    },
+    {
+      "name": "Free light chains Kappa",
+      "date": "2024-10-10",
+      "value": "10.2",
+      "unit": "mg/l",
+      "reference_range": "3.3 - 19.4"
+    },
+    {
+      "name": "Kappa/Lambda",
+      "date": "2024-10-10",
+      "value": "0.90",
+      "unit": "",
+      "reference_range": "0.26 - 1.65"
+    },
+    {
+      "name": "Beta2-microglobulin",
+      "date": "2024-10-10",
+      "value": "1.6",
+      "unit": "mg/l",
+      "reference_range": "< 2.5"
+    },
+    {
+      "name": "Hemoglobin",
+      "date": "2024-10-10",
+      "value": "12.6",
+      "unit": "g/dl",
+      "reference_range": "12.0 - 16.0"
+    },
+    {
+      "name": "Leukocytes",
+      "date": "2024-10-10",
+      "value": "5.8",
+      "unit": "G/l",
+      "reference_range": "4.0 - 9.0"
+    },
+    {
+      "name": "Neutrophils",
+      "date": "2024-10-10",
+      "value": "3.4",
+      "unit": "G/l",
+      "reference_range": "1.8 - 7.5"
+    },
+    {
+      "name": "Platelets",
+      "date": "2024-10-10",
+      "value": "192",
+      "unit": "G/l",
+      "reference_range": "150 - 400"
+    },
+    {
+      "name": "Creatinine",
+      "date": "2024-10-10",
+      "value": "0.83",
+      "unit": "mg/dl",
+      "reference_range": "0.5 - 1.1"
+    },
+    {
+      "name": "Albumin",
+      "date": "2024-10-10",
+      "value": "4.2",
+      "unit": "g/dl",
+      "reference_range": "3.5 - 5.0"
+    },
+    {
+      "name": "LDH",
+      "date": "2024-10-10",
+      "value": "194",
+      "unit": "U/l",
+      "reference_range": "< 244"
+    },
+    {
+      "name": "IgG",
+      "date": "2024-11-01",
+      "value": "5.1",
+      "unit": "g/l",
+      "reference_range": "7.0 - 16.0"
+    },
+    {
+      "name": "Hemoglobin",
+      "date": "2024-11-01",
+      "value": "13.2",
+      "unit": "g/dl",
+      "reference_range": "12.0 - 16.0"
+    },
+    {
+      "name": "Neutrophils",
+      "date": "2024-11-01",
+      "value": "2.8",
+      "unit": "G/l",
+      "reference_range": "1.8 - 7.5"
+    },
+    {
+      "name": "Platelets",
+      "date": "2024-11-01",
+      "value": "198",
+      "unit": "G/l",
+      "reference_range": "150 - 400"
+    },
+    {
+      "name": "Creatinine",
+      "date": "2024-11-01",
+      "value": "0.82",
+      "unit": "mg/dl",
+      "reference_range": "0.5 - 1.1"
+    },
+    {
+      "name": "IgG",
+      "date": "2024-11-29",
+      "value": "5.3",
+      "unit": "g/l",
+      "reference_range": "7.0 - 16.0"
+    },
+    {
+      "name": "Hemoglobin",
+      "date": "2024-11-29",
+      "value": "13.0",
+      "unit": "g/dl",
+      "reference_range": "12.0 - 16.0"
+    },
+    {
+      "name": "Neutrophils",
+      "date": "2024-11-29",
+      "value": "2.4",
+      "unit": "G/l",
+      "reference_range": "1.8 - 7.5"
+    },
+    {
+      "name": "Platelets",
+      "date": "2024-11-29",
+      "value": "204",
+      "unit": "G/l",
+      "reference_range": "150 - 400"
+    },
+    {
+      "name": "Creatinine",
+      "date": "2024-11-29",
+      "value": "0.82",
+      "unit": "mg/dl",
+      "reference_range": "0.5 - 1.1"
+    },
+    {
+      "name": "IgG",
+      "date": "2025-01-03",
+      "value": "5.0",
+      "unit": "g/l",
+      "reference_range": "7.0 - 16.0"
+    },
+    {
+      "name": "Free light chains Lambda",
+      "date": "2025-01-03",
+      "value": "10.9",
+      "unit": "mg/l",
+      "reference_range": "5.7 - 26.3"
+    },
+    {
+      "name": "Free light chains Kappa",
+      "date": "2025-01-03",
+      "value": "10.6",
+      "unit": "mg/l",
+      "reference_range": "3.3 - 19.4"
+    },
+    {
+      "name": "Kappa/Lambda",
+      "date": "2025-01-03",
+      "value": "0.97",
+      "unit": "",
+      "reference_range": "0.26 - 1.65"
+    },
+    {
+      "name": "Hemoglobin",
+      "date": "2025-01-03",
+      "value": "13.5",
+      "unit": "g/dl",
+      "reference_range": "12.0 - 16.0"
+    },
+    {
+      "name": "Neutrophils",
+      "date": "2025-01-03",
+      "value": "2.6",
+      "unit": "G/l",
+      "reference_range": "1.8 - 7.5"
+    },
+    {
+      "name": "Platelets",
+      "date": "2025-01-03",
+      "value": "210",
+      "unit": "G/l",
+      "reference_range": "150 - 400"
+    },
+    {
+      "name": "LDH",
+      "date": "2025-01-03",
+      "value": "192",
+      "unit": "U/l",
+      "reference_range": "< 244"
+    },
+    {
+      "name": "Albumin",
+      "date": "2025-01-03",
+      "value": "4.3",
+      "unit": "g/dl",
+      "reference_range": "3.5 - 5.0"
+    },
+    {
+      "name": "Creatinine",
+      "date": "2025-01-03",
+      "value": "0.80",
+      "unit": "mg/dl",
+      "reference_range": "0.5 - 1.1"
+    },
+    {
+      "name": "IgG",
+      "date": "2025-02-28",
+      "value": "5.2",
+      "unit": "g/l",
+      "reference_range": "7.0 - 16.0"
+    },
+    {
+      "name": "Hemoglobin",
+      "date": "2025-02-28",
+      "value": "13.8",
+      "unit": "g/dl",
+      "reference_range": "12.0 - 16.0"
+    },
+    {
+      "name": "Neutrophils",
+      "date": "2025-02-28",
+      "value": "2.5",
+      "unit": "G/l",
+      "reference_range": "1.8 - 7.5"
+    },
+    {
+      "name": "Platelets",
+      "date": "2025-02-28",
+      "value": "218",
+      "unit": "G/l",
+      "reference_range": "150 - 400"
+    },
+    {
+      "name": "Creatinine",
+      "date": "2025-02-28",
+      "value": "0.79",
+      "unit": "mg/dl",
+      "reference_range": "0.5 - 1.1"
+    },
+    {
+      "name": "IgG",
+      "date": "2025-04-04",
+      "value": "5.0",
+      "unit": "g/l",
+      "reference_range": "7.0 - 16.0"
+    },
+    {
+      "name": "Hemoglobin",
+      "date": "2025-04-04",
+      "value": "13.6",
+      "unit": "g/dl",
+      "reference_range": "12.0 - 16.0"
+    },
+    {
+      "name": "Neutrophils",
+      "date": "2025-04-04",
+      "value": "2.3",
+      "unit": "G/l",
+      "reference_range": "1.8 - 7.5"
+    },
+    {
+      "name": "Platelets",
+      "date": "2025-04-04",
+      "value": "212",
+      "unit": "G/l",
+      "reference_range": "150 - 400"
+    },
+    {
+      "name": "Creatinine",
+      "date": "2025-04-04",
+      "value": "0.81",
+      "unit": "mg/dl",
+      "reference_range": "0.5 - 1.1"
+    },
+    {
+      "name": "eGFR",
+      "date": "2025-04-04",
+      "value": "88",
+      "unit": "ml/min",
+      "reference_range": "> 60"
+    },
+    {
+      "name": "IgG",
+      "date": "2025-05-30",
+      "value": "5.0",
+      "unit": "g/l",
+      "reference_range": "7.0 - 16.0"
+    },
+    {
+      "name": "Free Light Chains Lambda",
+      "date": "2025-05-30",
+      "value": "11.2",
+      "unit": "mg/l",
+      "reference_range": "5.7 - 26.3"
+    },
+    {
+      "name": "Free Light Chains Kappa",
+      "date": "2025-05-30",
+      "value": "10.6",
+      "unit": "mg/l",
+      "reference_range": "3.3 - 19.4"
+    },
+    {
+      "name": "Kappa/Lambda",
+      "date": "2025-05-30",
+      "value": "0.95",
+      "unit": "",
+      "reference_range": "0.26 - 1.65"
+    },
+    {
+      "name": "Hemoglobin",
+      "date": "2025-05-30",
+      "value": "14.0",
+      "unit": "g/dl",
+      "reference_range": "12.0 - 16.0"
+    },
+    {
+      "name": "Neutrophils",
+      "date": "2025-05-30",
+      "value": "2.6",
+      "unit": "G/l",
+      "reference_range": "1.8 - 7.5"
+    },
+    {
+      "name": "Platelets",
+      "date": "2025-05-30",
+      "value": "215",
+      "unit": "G/l",
+      "reference_range": "150 - 400"
+    },
+    {
+      "name": "LDH",
+      "date": "2025-05-30",
+      "value": "190",
+      "unit": "U/l",
+      "reference_range": "< 244"
+    },
+    {
+      "name": "Albumin",
+      "date": "2025-05-30",
+      "value": "4.2",
+      "unit": "g/dl",
+      "reference_range": "3.5 - 5.0"
+    },
+    {
+      "name": "Creatinine",
+      "date": "2025-05-30",
+      "value": "0.78",
+      "unit": "mg/dl",
+      "reference_range": "0.5 - 1.1"
+    },
+    {
+      "name": "IgG",
+      "date": "2025-08-01",
+      "value": "5.1",
+      "unit": "g/l",
+      "reference_range": "7.0 - 16.0"
+    },
+    {
+      "name": "Hemoglobin",
+      "date": "2025-08-01",
+      "value": "14.1",
+      "unit": "g/dl",
+      "reference_range": "12.0 - 16.0"
+    },
+    {
+      "name": "Neutrophils",
+      "date": "2025-08-01",
+      "value": "2.4",
+      "unit": "G/l",
+      "reference_range": "1.8 - 7.5"
+    },
+    {
+      "name": "Platelets",
+      "date": "2025-08-01",
+      "value": "224",
+      "unit": "G/l",
+      "reference_range": "150 - 400"
+    },
+    {
+      "name": "IgG",
+      "date": "2025-08-29",
+      "value": "5.0",
+      "unit": "g/l",
+      "reference_range": "7.0 - 16.0"
+    },
+    {
+      "name": "Hemoglobin",
+      "date": "2025-08-29",
+      "value": "13.8",
+      "unit": "g/dl",
+      "reference_range": "12.0 - 16.0"
+    },
+    {
+      "name": "Neutrophils",
+      "date": "2025-08-29",
+      "value": "2.5",
+      "unit": "G/l",
+      "reference_range": "1.8 - 7.5"
+    },
+    {
+      "name": "Platelets",
+      "date": "2025-08-29",
+      "value": "218",
+      "unit": "G/l",
+      "reference_range": "150 - 400"
+    },
+    {
+      "name": "Creatinine",
+      "date": "2025-08-29",
+      "value": "0.80",
+      "unit": "mg/dl",
+      "reference_range": "0.5 - 1.1"
+    },
+    {
+      "name": "IgG",
+      "date": "2025-10-03",
+      "value": "5.1",
+      "unit": "g/l",
+      "reference_range": "7.0 - 16.0"
+    },
+    {
+      "name": "Free Light Chains Lambda",
+      "date": "2025-10-03",
+      "value": "11.0",
+      "unit": "mg/l",
+      "reference_range": "5.7 - 26.3"
+    },
+    {
+      "name": "Free Light Chains Kappa",
+      "date": "2025-10-03",
+      "value": "10.4",
+      "unit": "mg/l",
+      "reference_range": "3.3 - 19.4"
+    },
+    {
+      "name": "Kappa/Lambda",
+      "date": "2025-10-03",
+      "value": "0.95",
+      "unit": "",
+      "reference_range": "0.26 - 1.65"
+    },
+    {
+      "name": "Hemoglobin",
+      "date": "2025-10-03",
+      "value": "13.7",
+      "unit": "g/dl",
+      "reference_range": "12.0 - 16.0"
+    },
+    {
+      "name": "Neutrophils",
+      "date": "2025-10-03",
+      "value": "2.3",
+      "unit": "G/l",
+      "reference_range": "1.8 - 7.5"
+    },
+    {
+      "name": "Platelets",
+      "date": "2025-10-03",
+      "value": "212",
+      "unit": "G/l",
+      "reference_range": "150 - 400"
+    },
+    {
+      "name": "IgG",
+      "date": "2025-10-31",
+      "value": "5.2",
+      "unit": "g/l",
+      "reference_range": "7.0 - 16.0"
+    },
+    {
+      "name": "Hemoglobin",
+      "date": "2025-10-31",
+      "value": "14.0",
+      "unit": "g/dl",
+      "reference_range": "12.0 - 16.0"
+    },
+    {
+      "name": "Neutrophils",
+      "date": "2025-10-31",
+      "value": "2.6",
+      "unit": "G/l",
+      "reference_range": "1.8 - 7.5"
+    },
+    {
+      "name": "Platelets",
+      "date": "2025-10-31",
+      "value": "220",
+      "unit": "G/l",
+      "reference_range": "150 - 400"
+    },
+    {
+      "name": "IgG",
+      "date": "2025-11-28",
+      "value": "5.0",
+      "unit": "g/l",
+      "reference_range": "7.0 - 16.0"
+    },
+    {
+      "name": "Free Light Chains Lambda",
+      "date": "2025-11-28",
+      "value": "11.0",
+      "unit": "mg/l",
+      "reference_range": "5.7 - 26.3"
+    },
+    {
+      "name": "Free Light Chains Kappa",
+      "date": "2025-11-28",
+      "value": "10.4",
+      "unit": "mg/l",
+      "reference_range": "3.3 - 19.4"
+    },
+    {
+      "name": "Kappa/Lambda",
+      "date": "2025-11-28",
+      "value": "0.95",
+      "unit": "",
+      "reference_range": "0.26 - 1.65"
+    },
+    {
+      "name": "Beta2-microglobulin",
+      "date": "2025-11-28",
+      "value": "1.5",
+      "unit": "mg/l",
+      "reference_range": "< 2.5"
+    },
+    {
+      "name": "Hemoglobin",
+      "date": "2025-11-28",
+      "value": "13.9",
+      "unit": "g/dl",
+      "reference_range": "12.0 - 16.0"
+    },
+    {
+      "name": "Leukocytes",
+      "date": "2025-11-28",
+      "value": "5.6",
+      "unit": "G/l",
+      "reference_range": "4.0 - 9.0"
+    },
+    {
+      "name": "Neutrophils",
+      "date": "2025-11-28",
+      "value": "2.5",
+      "unit": "G/l",
+      "reference_range": "1.8 - 7.5"
+    },
+    {
+      "name": "Platelets",
+      "date": "2025-11-28",
+      "value": "216",
+      "unit": "G/l",
+      "reference_range": "150 - 400"
+    },
+    {
+      "name": "Creatinine",
+      "date": "2025-11-28",
+      "value": "0.81",
+      "unit": "mg/dl",
+      "reference_range": "0.5 - 1.1"
+    },
+    {
+      "name": "LDH",
+      "date": "2025-11-28",
+      "value": "188",
+      "unit": "U/l",
+      "reference_range": "< 244"
+    },
+    {
+      "name": "Albumin",
+      "date": "2025-11-28",
+      "value": "4.3",
+      "unit": "g/dl",
+      "reference_range": "3.5 - 5.0"
+    }
+  ]
+}

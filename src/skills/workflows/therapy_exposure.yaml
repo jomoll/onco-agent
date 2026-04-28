@@ -1,0 +1,148 @@
+skill:
+  id: workflows.therapy_exposure
+  name: Therapy Exposure Timeline
+  version: 1
+  category: workflow
+  description: >
+    Use when the question requires therapy history, start/stop dates, or cumulative dose
+    (Category 2). Do not select for simple current-status yes/no.
+  triggers:
+    question_types: ["therapy_exposure", "eligibility"]
+    semantic_cues:
+      - "Needs timeline and dosing of a therapy (start/stop, cycles, cumulative)."
+    keywords: ["(optional lexicon) Therapie, Regime, Zyklus, Gesamtdosis, kumulativ, seit Beginn"]
+    data_domains: ["doctor_letter", "tumor_board"]
+activation:
+  intent: "Use for therapy history/dosing timelines; not for simple present-tense status."
+conflicts:
+  - workflows.current_status_check
+  - workflows.ever_status_check
+steps:
+  - name: Status pre-determination
+    detail: >
+      Before any retrieval, decide which negative status applies if no exposure is found.
+      The three states are mutually exclusive — apply policy.plan_vs_administered explicitly:
+      (1) "Nie verabreicht" — the drug does not appear in ANY therapy mention, medication
+          list, or treatment plan across the entire record. The patient was never exposed.
+      (2) "Nicht dokumentiert" — the drug appears in the therapy history but the specific
+          dates, doses, or cycles asked about are not recorded.
+      (3) "Unklar" — conflicting evidence about whether the drug was given.
+      Never use "Nicht dokumentiert" as a fallback for a failed search. If retrieval finds
+      no entries, perform one broad term search (time_scope="all", top_k≥20) across all
+      report types before concluding "Nie verabreicht". Only after confirming total absence
+      across the record may "Nie verabreicht" be used.
+
+  - name: Clarify therapy alias
+    detail: >
+      Normalize the referenced regimen into its constituent agents (e.g., PI + IMiD + steroid)
+      and capture any route/dose hints provided in the question. Use parsing.therapy_class_aliases
+      to expand class/regimen queries into drug names. Consult parsing.report_type_mapping to pick
+      the most relevant documents for medication history.
+
+  - name: Initial retrieve_reports call
+    detail: >
+      Query retrieve_reports with the drug name (and its aliases) as the primary search
+      terms. Use time_scope="all" with top_k between 8 and 15. Constrain report_type to
+      therapy/medication summaries defined in parsing.report_type_mapping.
+      IMPORTANT for cycle/timing questions: Search broadly for the drug name first
+      (e.g., "Lenalidomid Revlimid Dosis mg"). Do NOT build enumerative boolean queries
+      with individual cycle tokens (e.g., "C1D1 OR C2D1 OR C3D1 ...") — these overspecify
+      the query and miss documents that list cycle dates in plain text (e.g., "Zyklus 1 ab
+      10/2013" or simply dates in therapy sections). Cycle start dates are often documented
+      as calendar dates in doctor letters without C*D1 notation.
+      If the first call returns fewer than 3 relevant hits, retry with broader scope
+      (top_k ≥ 20, add report_type history/doctor_letter).
+
+  - name: Confirm first exposure
+    detail: >
+      Once first mention found, issue range search ending the day before to ensure
+      no earlier exposure. Document evidence if none found.
+
+  - name: Confirm discontinuation
+    detail: >
+      Search forward from last documented administration to reference date to
+      verify whether therapy continued, stopped, or switched.
+
+  - name: Completeness sweep for multi-entry schemas
+    detail: >
+      When the output schema is cycle_start_dose_list or multi_interval_up_to_3, this
+      step is MANDATORY regardless of whether entries were already found in prior steps.
+      Issue at least one additional retrieval using a different date window (e.g., the
+      earlier half of the record) and a different keyword variant (regimen name instead
+      of drug name, or vice versa). The goal is to confirm the *first* documented cycle
+      start and surface any episodes missed by BM25 ranking. Do not stop after finding
+      the most recent cycle — earlier cycles in long records are frequently deprioritised
+      by relevance ranking and require targeted early-window searches.
+
+      Sufficiency rule for completeness schemas: evidence_required is NOT satisfied
+      until you have issued queries that cover the full date span shown in the patient
+      context (Erster Bericht → Letzter Bericht). When the record spans more than
+      3 years OR the approximate token count exceeds 50k, split the timeline into at
+      least two non-overlapping date windows and query each separately using
+      date_start/date_end arguments. A single broad query is insufficient for long
+      records because embedding-based retrieval is recency-biased and will systematically
+      miss early therapy episodes. Do not choose 'finish' before at least one
+      early-window query (date_end ≤ midpoint of the record span) has been executed.
+
+  - name: Quantify dosing
+    detail: >
+      Aggregate dose statements (mg/m², cycles) from infusion summaries. If incomplete,
+      state the known cumulative amount and highlight missing cycles.
+      For doxo_exposure_episode_up_to_3 and melphalan_exposure_episode_up_to_3: report
+      the dose at each distinct administration date. Do NOT sum daily doses within a
+      multi-day window into a cumulative total for the episode — each administration day
+      is a separate row. Example: Doxorubicin 9 mg/m² given on 3 consecutive days → three
+      rows each with 9 mg/m², not one row with 27 mg/m².
+      For multi_interval_up_to_3: consolidate consecutive administration dates belonging
+      to the same treatment episode into a single period (Start = first day, End = last
+      day). Open a new period only when there is a gap of >14 days between administrations
+      or a documented treatment interruption/restart. Do not produce one row per infusion day.
+requirements:
+  - "Always cite the earliest and latest documented administrations separately."
+  - "Explicitly state when therapy is ongoing, discontinued, or never initiated."
+  - "If dosing data are missing, log the gap and reference the reports that were checked."
+  - "For cycle_start_dose_list schema: extract actual calendar dates (DD.MM.YYYY) with dose. Never use cycle labels like 'C1D1=' - use real dates."
+  - "For level-1 current-status questions, skip first-exposure, discontinuation, and dosing steps."
+  - "Mention both start and latest known stop (or 'laufend') when dose/timeline is requested."
+  - "Reference at least two citations when both start and stop are documented."
+  - >
+    CONSISTENCY GATE: Before writing the Answer line, re-read the Reasoning. If the Reasoning
+    describes a specific date, dose, or administration event for the queried drug, the Status
+    field in the Answer MUST be "Dokumentiert". A Status of "Nicht dokumentiert" or
+    "Nie verabreicht" while the Reasoning contains positive evidence for that drug is always
+    an error. Either correct the Status to "Dokumentiert" or revise the Reasoning to explain
+    why the evidence found does not satisfy the schema (e.g., therapy planned but not confirmed).
+  - >
+    For multi-entry schemas (cycle_start_dose_list, multi_interval_up_to_3): the completeness
+    sweep step is not optional. Perform it before finalising the answer, even when early
+    retrieval returned results. Partial lists (e.g., missing the first cycle) are scored as
+    incorrect.
+uncertainty:
+  missing_evidence: "Keine Dosisangaben oder Start/Stop gefunden; geprüfte Quellen und Suchscope angeben."
+retry_policy:
+  max_attempts: 3
+  rules:
+    - "Allow at most 1 retry per retrieve_reports call; the completeness sweep counts as an independent call, not a retry."
+    - "Retries must change scope meaningfully (top_k jump, broaden date range, or switch to a different report_type/corpus)."
+    - "For cycle/timing questions, the retry must broaden top_k and report_type scope — not add more cycle-token variants to the query."
+    - "For multi-entry schemas, 3 total retrieval calls is the minimum, not the maximum. Additional calls are allowed when the record is large and earlier cycles may be buried."
+outputs:
+  - "status (Ja/Nein/Unbekannt)"
+  - "start_date, stop_date or \"laufend\""
+  - "cumulative_dose with units, if derivable"
+  - "source sections cited individually"
+micro_tests:
+  should_activate:
+    - "Wie viele Zyklen Carfilzomib wurden verabreicht?"
+    - "Wann startete Lenalidomid-Erhaltung und wann wurde sie gestoppt?"
+    - "Kumulative Dosis Bortezomib?"
+  should_not_activate:
+    - "Nimmt der Patient aktuell Lenalidomid?"  # current status
+    - "Gab es jemals eine SZT?"  # ever status
+  adversarial:
+    - "Gesamtdosis unklar, nur zwei Berichte mit uneinheitlichen Angaben vorhanden."  # must state gap
+    - "Doxorubicin 9 mg/m² an Tag 1–3 eines Zyklus → WRONG: eine Zeile mit 27 mg/m² kumulativ; CORRECT: drei Zeilen je 9 mg/m² mit Datum des jeweiligen Tages."
+    - "Meropenem täglich vom 08.–12.10.2022 → WRONG: fünf separate Perioden; CORRECT: eine Periode 08.10.2022–12.10.2022."
+    - "Reasoning: 'C1D1 am 04.01.2022 erwähnt' aber Answer: Status=Nicht dokumentiert → WRONG; must set Status=Dokumentiert."
+    - "Drug not mentioned anywhere in record → 'Nie verabreicht', NOT 'Nicht dokumentiert'."
+    - "Lenalidomid 10 mg täglich dokumentiert, aber kein Zyklusstart: → Nie verabreicht is WRONG if drug appears in record; Nicht dokumentiert is correct if dates absent."

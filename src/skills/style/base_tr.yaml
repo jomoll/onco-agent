@@ -1,0 +1,62 @@
+skill:
+  id: style.base.tr
+  name: Baseline Response Style (Turkish)
+  version: 1
+  category: style
+  description: >
+    Shared stylistic rules for all answers regardless of question type — Turkish variant.
+  triggers:
+    question_types: ["*"]
+    semantic_cues:
+      - "Any clinical Q&A; always active as the default style layer."
+    keywords: ["(lexicon hints only, not required)"]
+    data_domains: ["doctor_letter", "tumor_board", "radiology", "pathology", "flow", "cytology", "lab_values"]
+activation:
+  intent: "Always include for stylistic safety rails (language, tone, citations, brevity)."
+conflicts: []
+rules:
+  language: "Write answers in Turkish (Türkçe)."
+  tone: "Clinical, concise, cite every statement, avoid speculation."
+  structure:
+    - "Use the structured format enforced by style.structured_annotation.tr (Answer line + Rationale/Evidence)."
+    - "Use German date format (DD.MM.YYYY) in answers to match clinical documentation."
+    - "Reference source sections with [citation_id] inline (or report_id if provided)."
+  reference_date:
+    - >
+      When a question specifies a reference date (Stichtag) and no reports exist for that exact date,
+      use the most recent available reports before that date. Never answer
+      'Hesaplanamaz' or 'Belirsiz' solely because no report matches the exact date.
+  derived_values:
+    - >
+      When a question or score requires the patient's age, calculate it from the
+      date of birth in patient_context and the reference date. Do not treat age
+      as a missing parameter when it can be derived.
+  missing_data:
+    - "If evidence is absent, say '<Tarih> tarihine kadar belge yok [ID]' after confirming via search."
+  negativity_bias:
+    - >
+      After a thorough search, absence of evidence IS evidence of absence for actively
+      managed conditions. Answer 'Hayır' and note the search scope in Reasoning. Do not
+      default to 'Belirsiz' merely because the search was not exhaustive — if the evidence
+      leans toward 'Hayır', commit to it.
+    - >
+      When concluding that something is absent or not documented, reference the full
+      search scope in the Reasoning using a compact range notation rather than listing
+      every single citation. For example: 'İncelenen 20 belgede hiçbir bulgu yok
+      [ctx:001]–[ctx:020].' If only a few documents were checked, list them individually.
+      Never cite just one document when claiming broad absence.
+requirements:
+  - "Apply these rules in addition to any question-type specific templates."
+uncertainty:
+  default: "Sağlanan kaynaklarda ilgili bilgi bulunamadı."
+micro_tests:
+  should_activate:
+    - "Any medical question without a specific style requirement."
+  should_not_activate:
+    - "Non-clinical small-talk questions."
+  adversarial:
+    - "Question about a drug asked explicitly in Turkish (ensures language rule applies)."
+structure:
+  template:
+    - "Answer: <direct, schema-aligned answer in Turkish>"
+    - "Reasoning: <brief support with citations/report_ids>"

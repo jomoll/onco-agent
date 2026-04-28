@@ -1,0 +1,85 @@
+skill:
+  id: knowledge.dgho_renal_failure_dialysis
+  version: 1
+  category: knowledge
+  name: 'DGHO MM guideline card: MM related renal failure including dialysis cases'
+  description: 'Curated DGHO guideline knowledge on MM-related renal impairment including dialysis-requiring cases: focus
+    on rapid reduction of light chain production, early steroids in cast nephropathy, and use of standard regimens with renal
+    dosing considerations. Use for next-step therapy planning and urgency framing.'
+  triggers:
+    data_domains:
+    - doctor_letter
+    - lab_values
+    - therapy_history
+    question_types:
+    - next_step
+    - therapy_planning
+    - eligibility
+    keywords:
+    - Niereninsuffizienz, Dialyse, cast nephropathy, Leichtketten, Proteinurie, eGFR, Kreatinin, terminale Niereninsuffizienz
+    semantic_cues:
+    - Question asks what to do next in MM with acute kidney injury or dialysis requirement.
+    - Question asks whether key agents can be used in renal impairment.
+activation:
+  stage_constraints:
+    preferred_stage: plan
+    avoid_stages:
+    - parse
+  do_not_use_if:
+  - Renal impairment is clearly unrelated to MM (for example obstructive uropathy documented) and the question is not about
+    MM therapy.
+conflicts:
+  overrides:
+  - Do not override regimen-specific trial eligibility cards; use this card for general urgency and mechanism rationale around
+    light chains.
+  duplicates: []
+requirements:
+  inputs_required:
+  - Renal function trend and dialysis status.
+  - Serum free light chains and evidence for light-chain disease if available.
+  - Current or proposed anti-myeloma therapy.
+  must_cite_or_quote: false
+  must_show_work: false
+knowledge:
+  provenance:
+    paper: 'DGHO Onkopedia Leitlinie: Multiples Myelom (MM_DGHO.pdf)'
+    section_hints:
+    - 6.1.1.3 MM-bedingte dialysepflichtige Niereninsuffizienz and renal remarks
+  core_points:
+  - Rapid reduction of light chain production is the prerequisite for recovery of myeloma-related renal dysfunction.
+  - Steroids counter the tubular inflammatory reaction in cast nephropathy and should be given early.
+  - Standard therapies can be used with attention to dosing and renal function adjustments.
+  - Daratumumab is not renally eliminated; population PK suggests no meaningful exposure differences across renal function,
+    including end-stage renal failure.
+  operationalization:
+    planning_checks:
+    - Treat renal MM scenarios as urgent when cast nephropathy is plausible, and prioritize regimens that rapidly debulk light
+      chains plus early steroids.
+    - Explicitly mention renal dosing review for each component and check supportive care needs.
+    - If daratumumab is being considered, note that it is not renally eliminated, while other agents may need adjustment.
+guidelines:
+  answer_guardrails:
+  - Do not promise renal recovery. Frame as goal and prerequisite contingent on etiology and response.
+  - If etiology is unclear, recommend confirming light-chain driven injury rather than assuming.
+examples:
+  positive:
+  - q: Patient ist dialysepflichtig mit V.a. cast nephropathy. Was ist der wichtigste naechste Schritt?
+    a: DGHO betont die rasche Senkung der Leichtkettenproduktion als Voraussetzung fuer Erholung der myelombedingten Nierenfunktion.
+      Steroide sollten fruehzeitig gegeben werden. Therapieplanung sollte renal angepasst werden.
+  negative:
+  - q: Wie interpretiere ich die MRD in PERSEUS?
+    a: 'Nicht geeignet: kein Niereninsuffizienz-Thema.'
+uncertainty:
+  when_to_say_unclear:
+  - No free light chain data or renal biopsy/imaging context is available.
+  - Alternative renal etiologies are plausible.
+  fallback: State that cast nephropathy cannot be confirmed from the record and list needed data (FLC, urine, nephrology assessment).
+micro_tests:
+  should_activate:
+  - Therapie bei dialysepflichtigem MM, was ist prioritär?
+  - Kann Daratumumab bei terminaler Niereninsuffizienz eingesetzt werden?
+  should_not_activate:
+  - Ist der Patient fuer Cilta-cel geeignet?
+  - Welche Nebenwirkungen hat Venetoclax?
+  adversarial:
+  - 'Patient dialysepflichtig, aber Ursache vermutlich Sepsis: muss Ursache trennen und keine falsche Kausalitaet behaupten.'

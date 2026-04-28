@@ -1,0 +1,50 @@
+skill:
+  id: style.question_types.lab_trend
+  name: Lab Trend Template
+  version: 1
+  category: style
+  inherits:
+    - style.base
+  description: >
+    Select for questions asking about lab development over time (trend).
+    Summarize direction and key values.
+  triggers:
+    question_types: ["lab_trend", "lab_trajectory", "response_assessment"]
+    semantic_cues:
+      - "Requests change over time for labs (increase/decrease/trajectory)."
+    keywords: ["(optional lexicon) Verlauf, Trend, Entwicklung, Anstieg, Abfall"]
+    data_domains: ["lab_values"]
+activation:
+  intent: "Use when the question asks for direction/change over time for labs."
+conflicts:
+  - style.question_types.lab_snapshot
+  - style.question_types.current_status
+response_level_hint: 2
+structure:
+  template:
+    - "Lead sentence: 'Der <Test> zeigte einen <Trend> von <start> nach <end>.'"
+    - "Bullet list (max 3): key timestamps with values."
+requirements:
+  - "Final output must keep the Answer/Rationale format from style.structured_annotation; use this template to shape rationale content, not the Answer line."
+  - "Use at least two timepoints (earliest and latest)."
+  - "Keep to max 3 bullets; include units and dates."
+  - "If trend is unclear, state that explicitly and list the available points."
+uncertainty:
+  missing_evidence: "Trend unklar; nur einzelne Messpunkte vorhanden (alle verfügbaren Werte mit Datum nennen)."
+  no_documents: "Keine Laborwerte dokumentiert."
+examples:
+  - question: "Wie hat sich das Paraprotein im Verlauf entwickelt?"
+    answer: >
+      "Das Paraprotein zeigte einen Abfall von 3.2 g/dL auf 0.6 g/dL. [lab:PP_1][lab:PP_2]\n
+       • 2023-04-03: 3.2 g/dL. [lab:PP_1]\n
+       • 2023-08-21: 0.6 g/dL. [lab:PP_2]"
+micro_tests:
+  should_activate:
+    - "Wie hat sich das Paraprotein im Verlauf entwickelt?"
+    - "Ist der CRP-Verlauf steigend oder fallend?"
+    - "Trend der FLC kappa über die letzten Monate?"
+  should_not_activate:
+    - "CRP am 2024-11-08?"  # snapshot
+    - "Nimmt der Patient aktuell Dexamethason?"  # therapy status
+  adversarial:
+    - "Hat sich das IgG inzwischen normalisiert oder gibt es nur einen einzelnen Wert?"  # needs to state insufficient points if only one value

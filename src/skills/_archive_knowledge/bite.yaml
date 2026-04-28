@@ -1,0 +1,132 @@
+skill:
+  id: knowledge.bite
+  name: Talquetamab (GPRC5D x CD3) trial card for eligibility and planning (MonumenTAL-1, NEJM 2022)
+  version: 1
+  category: knowledge
+  description: >
+    Curated domain knowledge from the MonumenTAL-1 phase 1 study of talquetamab.
+    Use to ground Category 3 questions about (1) study or therapy eligibility and (2) therapy
+    planning and next steps when talquetamab (GPRC5D x CD3 bispecific) is under consideration.
+  triggers:
+    keywords:
+      - "talquetamab, GPRC5D, JNJ-64407564, MonumenTAL-1, bispecific, T-cell redirecting, GPRC5D x CD3, BITE"
+    question_types: ["eligibility", "next_step", "therapy_planning", "refractory_status"]
+    semantic_cues:
+      - "Question asks about eligibility for talquetamab or a GPRC5D-targeted bispecific."
+      - "Question asks for next-step planning where a bispecific is being considered and trial-grounded guardrails are needed."
+    data_domains: ["doctor_letter", "tumor_board", "lab_values", "therapy_history"]
+
+activation:
+  intent: >
+    Use as a compact evidence card. Apply trial-derived minimum criteria, dosing and premedication
+    requirements, and toxicity monitoring considerations. Treat this as supportive domain knowledge,
+    not as a substitute for local label, local trial protocol, or institutional SOP.
+
+conflicts: []
+
+requirements:
+  - "When using this card, explicitly label conclusions as trial-derived (MonumenTAL-1) and avoid asserting that these are current approval-label criteria."
+  - "For every criterion, cite patient evidence (therapy history, labs, ECOG) or mark it missing instead of guessing."
+  - "Separate (A) eligibility against minimum trial criteria from (B) practical feasibility and monitoring constraints (CRS, infection risk)."
+  - "If the question is about a study/trial at a specific site, state that local protocol may differ and that additional inclusion/exclusion criteria are likely."
+
+knowledge:
+  provenance:
+    paper: "Chari et al., N Engl J Med 2022;387:2232-2244 (MonumenTAL-1)"
+    notes: "Only minimum eligibility criteria explicitly stated in the NEJM paper are included here."
+  therapy_summary:
+    target: "GPRC5D on myeloma cells; CD3 on T cells; redirects T cells to kill GPRC5D-expressing myeloma."
+    setting: >
+      Heavily pretreated relapsed/refractory MM after established therapies. In the subcutaneous cohorts,
+      nearly all patients had triple-class exposure and many were triple-class refractory.
+  minimum_trial_eligibility:
+    core:
+      - criterion: "Age"
+        threshold: ">= 18 years"
+      - criterion: "Disease status"
+        threshold: "Measurable MM per IMWG criteria"
+      - criterion: "Prior therapy context"
+        threshold: "Not able to receive established therapies without unacceptable side effects OR progressed with established therapies"
+      - criterion: "Absolute neutrophil count (ANC)"
+        threshold: ">= 1000 cells/mm^3"
+      - criterion: "Platelets"
+        threshold: ">= 50,000 cells/mm^3"
+      - criterion: "Creatinine clearance"
+        threshold: ">= 40 ml/min/1.73 m^2"
+    guardrail:
+      - "Do not infer other exclusions (infection, CNS disease, etc.) unless they are present in your local protocol or retrieved documents."
+  dosing_and_premedication:
+    recommended_subcutaneous_regimens_in_study:
+      - regimen: "405 ug/kg subcutaneously every week"
+        intent: "Recommended dose for phase 2 in this study"
+      - regimen: "800 ug/kg subcutaneously every 2 weeks"
+        intent: "Recommended dose for phase 2 in this study"
+    step_up_and_premeds:
+      - "Step-up dosing was implemented to mitigate the risk of severe CRS."
+      - "Premedication with a glucocorticoid, an antihistamine, and acetaminophen was required before all step-up doses and before the initial full dose."
+    do_not_invent:
+      - "Do not fabricate step-up dose amounts or timing if not present in retrieved documents or protocol."
+  response_context_for_planning:
+    - "In the NEJM study, investigator-assessed response rates for the recommended subcutaneous regimens were about 70% (405 ug/kg weekly) and 64% (800 ug/kg every 2 weeks) in evaluable cohorts."
+    - "Responses were also observed in patients previously treated with BCMA-targeted T-cell redirecting therapies, supporting sequencing to a different antigen target."
+  toxicity_and_monitoring:
+    crs:
+      frequency: "Common in recommended subcutaneous cohorts, mostly grade 1 to 2."
+      timing: "Primarily during step-up and first full doses; median onset about 2 days after most recent dose; median duration about 2 days."
+      management: "Supportive care; tocilizumab commonly used; glucocorticoids less commonly used in subcutaneous cohorts."
+    infections_and_igg:
+      infections: "Infections occurred in roughly one third to one half of patients in recommended subcutaneous cohorts; severe infections were less common in these cohorts."
+      hypogammaglobulinemia: "Very common; defined as AE or postbaseline IgG < 500 mg/dL."
+      implication: >
+        Make infection risk explicit in planning. Check infection history, vaccination status, and local prophylaxis policy.
+        Consider IVIG per local practice when IgG is low or infections recur.
+    skin_oral_nail:
+      pattern: "Frequent on-target toxicities: skin-related events, dysgeusia, nail-related events, dry mouth, dysphagia, appetite and weight effects."
+      implication: >
+        Include dermatologic and oral supportive care, nutrition and weight monitoring, and criteria for dose holds
+        or modifications when clinically significant toxicity occurs.
+    neurotoxicity:
+      pattern: "Neurotoxic events reported; in subcutaneous cohorts they were generally grade 1 to 2 and resolved."
+      implication: "Include neuro checks during early cycles, especially around step-up dosing and cycle 1."
+
+guidelines:
+  - "Eligibility answers: produce a checklist. For each item, state Met, Not met, or Unclear with the exact evidence source and date."
+  - "Planning answers: add a Monitoring and Support section focused on CRS early-cycle monitoring, infection and IgG plan, and skin/oral/nail AE plan."
+  - "If labs are close to thresholds (ANC around 1000, platelets around 50k, borderline renal function), flag this as a limiting factor and propose what to recheck."
+  - "Do not invent step-up dose amounts, monitoring duration, or site logistics. If not in evidence, state what would be needed from local protocol."
+
+examples:
+  eligibility_checklist_template:
+    - item: "Measurable MM per IMWG"
+      evidence_needed: "M-protein, free light chains, marrow, or imaging evidence as appropriate"
+    - item: "Prior therapy exhausted or intolerant"
+      evidence_needed: "Therapy lines with dates, refractory status, intolerance documentation"
+    - item: "ANC >= 1000/mm^3"
+      evidence_needed: "CBC close to decision date"
+    - item: "Platelets >= 50,000/mm^3"
+      evidence_needed: "CBC close to decision date"
+    - item: "CrCl >= 40 ml/min/1.73m^2"
+      evidence_needed: "Renal labs, calculated CrCl if available; if only eGFR is present, state the proxy assumption"
+  planning_output_stub:
+    - section: "Suitability"
+      detail: "Trial-derived minimum criteria met, not met, or unclear."
+    - section: "Key risks and monitoring"
+      detail: "CRS early-cycle plan; infection and IgG plan; skin/oral/nail AE plan; neuro checks."
+    - section: "Open items"
+      detail: "Missing labs, missing ECOG, missing infection status, or missing protocol details that block confidence."
+
+uncertainty:
+  missing_protocol: "Only minimum eligibility thresholds explicitly stated in NEJM are included; local protocol likely has additional criteria."
+  borderline_data: "If values are borderline or outdated, state uncertainty and propose repeat assessments."
+
+micro_tests:
+  should_activate:
+    - "Ist der Patient fuer Talquetamab geeignet?"
+    - "Erfuellt der Patient die Kriterien einer GPRC5D x CD3 bispezifischen Therapie?"
+    - "Welche naechsten Schritte und welches Monitoring sind vor Start von Talquetamab noetig?"
+    - "Sequenzierung nach BCMA-CAR-T: kommt Talquetamab in Frage?"
+  should_not_activate:
+    - "Nimmt der Patient aktuell Lenalidomid?"
+    - "IgG am 2024-11-08?"
+  adversarial:
+    - "Patient mit Thrombozyten 45k, aber dringender Therapiewunsch: muss 'Nicht geeignet oder unklar' und Reassessment nennen."

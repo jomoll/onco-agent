@@ -1,0 +1,53 @@
+{
+  "parsing": [
+    "parsing/de_date_formats.yaml",
+    "parsing/therapy_normalization.yaml",
+    "parsing/report_type_mapping.yaml"
+  ],
+  "policy": [
+    "policy/temporal_authority.yaml",
+    "policy/plan_vs_administered.yaml",
+    "policy/contradiction_resolution.yaml",
+    "policy/response_assessment.yaml"
+  ],
+  "knowledge": [],
+  "style": [
+    "style/base.yaml",
+    "style/base_en.yaml",
+    "style/base_fr.yaml",
+    "style/base_es.yaml",
+    "style/base_it.yaml",
+    "style/base_sq.yaml",
+    "style/base_tr.yaml",
+    "style/question_types/current_status.yaml",
+    "style/question_types/ever_status.yaml",
+    "style/question_types/lab_snapshot.yaml",
+    "style/question_types/lab_trend.yaml",
+    "style/question_types/temporal_localization.yaml",
+    "style/question_types/comparison.yaml",
+    "style/question_types/therapy_exposure.yaml",
+    "style/question_types/response_assessment.yaml",
+    "style/question_types/eligibility.yaml",
+    "style/structured_annotation.yaml",
+    "style/structured_annotation_en.yaml",
+    "style/structured_annotation_fr.yaml",
+    "style/structured_annotation_es.yaml",
+    "style/structured_annotation_it.yaml",
+    "style/structured_annotation_sq.yaml",
+    "style/structured_annotation_tr.yaml"
+  ],
+  "workflows": [
+    "workflows/diagnostics_checklist.yaml",
+    "workflows/therapy_exposure.yaml",
+    "workflows/lab_at_timepoint.yaml",
+    "workflows/lab_trend.yaml",
+    "workflows/refractory_classification.yaml",
+    "workflows/eligibility_assessment.yaml",
+    "workflows/next_therapy_planning.yaml",
+    "workflows/current_status_check.yaml",
+    "workflows/ever_status_check.yaml",
+    "workflows/scoring_calculation.yaml",
+    "workflows/first_event_search.yaml",
+    "workflows/clinical_risk_synthesis.yaml"
+  ]
+}

@@ -1,0 +1,81 @@
+skill:
+  id: policy.contradiction_resolution
+  name: Contradiction Resolution Policy
+  version: 1
+  category: policy
+  description: >
+    Resolve conflicting candidate claims deterministically. Eligibility is strict; descriptive questions may present conflict.
+  triggers:
+    question_types: ["eligibility", "therapy_exposure", "current_status", "ever_status", "comparison", "*"]
+    semantic_cues:
+      - conflicting evidence
+      - abstain vs. report conflict
+
+activation:
+  intent: Apply after candidate claims are derived to decide select vs. conflict vs. abstain.
+
+conflicts: []
+
+policy_rules:
+  resolution_by_question_type:
+    consensus_or_abstain: ["eligibility", "next_step"]
+    select_highest: ["therapy_exposure", "current_status", "ever_status"]
+    present_conflict: ["comparison", "descriptive"]
+
+  determinacy_priority:
+    high: 3
+    medium: 2
+    low: 1
+
+outputs:
+  resolution_action: select | present_conflict | abstain
+  final_claim_or_conflict: final claim if selected, else list of conflicting claims or abstain reason
+  supporting_evidence_ids: evidence ids used for the resolution
+  trace: applied rule and rationale
+
+requirements:
+  - >
+    For question_types in consensus_or_abstain (eligibility, next_step): Check whether all
+    candidate claims agree on the same direction/value. If ALL claims agree (e.g., all say
+    'not eligible' or all say 'eligible'), select the highest-determinacy claim as the final
+    answer — do NOT abstain. Only abstain when claims genuinely DISAGREE on direction
+    (e.g., one says 'eligible' and another says 'not eligible'). A single unanimous direction
+    with varying determinacy levels is consensus, not conflict.
+  - If select_highest, pick the highest determinacy claim; if tie, choose the one with the most recent supporting evidence.
+  - If present_conflict, surface both claims and cite both sets of evidence.
+
+tests:
+  - name: eligibility_conflict_abstains
+    description: "Opposing directions → abstain"
+    input:
+      question_type: "eligibility"
+      candidate_claims:
+        - claim_id: "c1"
+          value: "eligible"
+          determinacy: "high"
+          supporting_evidence_ids: ["e1"]
+        - claim_id: "c2"
+          value: "not_eligible"
+          determinacy: "high"
+          supporting_evidence_ids: ["e2"]
+    expect:
+      resolution_action: "abstain"
+      supporting_evidence_ids: ["e1", "e2"]
+
+  - name: eligibility_consensus_selects
+    description: "All claims agree on direction → select highest determinacy, do NOT abstain"
+    input:
+      question_type: "eligibility"
+      candidate_claims:
+        - claim_id: "c1"
+          value: "not_eligible"
+          determinacy: "high"
+          supporting_evidence_ids: ["e1"]
+        - claim_id: "c2"
+          value: "not_eligible"
+          determinacy: "medium"
+          supporting_evidence_ids: ["e2"]
+    expect:
+      resolution_action: "select"
+      final_claim_or_conflict: "c1"
+      supporting_evidence_ids: ["e1"]

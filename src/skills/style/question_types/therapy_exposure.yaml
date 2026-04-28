@@ -1,0 +1,51 @@
+skill:
+  id: style.question_types.therapy_exposure
+  name: Therapy Exposure Answer Template
+  version: 1
+  category: style
+  inherits:
+    - style.base
+  description: >
+    Select for therapy exposure questions where the answer needs history or dosing
+    details (Category 2). For simple current-status yes/no, prefer current_status style.
+  triggers:
+    question_types: ["therapy_exposure"]
+    semantic_cues:
+      - "Asks whether/when a therapy was given with start/stop or dosing detail."
+      - "May ask cumulative dose or number of cycles."
+    keywords: ["(optional lexicon) Therapie, Zyklus, Dosis, Infusion, Gesamtdosis, kumulativ"]
+    data_domains: ["doctor_letter", "tumor_board"]
+activation:
+  intent: "Use when therapy history or dosing is needed (start/stop, cycles, cumulative dose)."
+conflicts:
+  - style.question_types.current_status
+  - style.question_types.ever_status
+response_level_hint: 2
+structure:
+  level_hint: "Use Level 1 when binary, Level 2 when dose/timeline requested."
+  template:
+    - "Level 1: one sentence with Ja/Nein + latest confirmation date/source; optional second sentence for start if helpful."
+    - "Level 2: short bullets (max 3) — status with start/stop, earliest↔latest mentions, dose/zx if asked."
+    - "Always cite the report section (e.g., doctor_letter:Medikation) with [ID]."
+requirements:
+  - "Final output must keep the Answer/Rationale format from style.structured_annotation."
+  - "Respect schema options (Dokumentiert/Nie verabreicht/Nicht dokumentiert/Unklar); no prose in Answer line."
+  - "Keep Category 1 answers ≤2 sentences; Category 2 answers ≤3 bullets."
+  - "For interval/cycle list schemas, place intervals/timestamps in Answer line per style.structured_annotation."
+uncertainty:
+  missing_evidence: "Keine Dosisangabe in den vorliegenden Berichten."
+  no_documents: "Nicht dokumentiert."
+examples:
+  - question: "Hat der Patient bereits eine cellular therapy erhalten?"
+    answer: >
+      "Nein, es gibt keine Dokumentation einer Infusion bis 2025-02-08. [report:...]"
+micro_tests:
+  should_activate:
+    - "Wann begann die Bortezomib-Therapie und wie viele Zyklen wurden gegeben?"
+    - "Wie hoch ist die kumulative Gesamtdosis von Carfilzomib?"
+    - "Wurde Isa/Pom/Dex verabreicht und wann gestoppt?"
+  should_not_activate:
+    - "Nimmt der Patient aktuell Lenalidomid?"  # current status
+    - "Gab es jemals eine Autologe SZT?"  # ever status
+  adversarial:
+    - "Ist keine Dosis dokumentiert, obwohl die Therapie erwähnt wird?"  # should surface uncertainty rule

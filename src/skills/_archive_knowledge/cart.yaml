@@ -1,0 +1,150 @@
+skill:
+  id: knowledge.cart
+  name: Ide-cel CAR-T trial card for eligibility and planning (KarMMa-3, NEJM 2023)
+  version: 1
+  category: knowledge
+  description: >
+    Curated trial-grounded domain knowledge for BCMA CAR-T (ide-cel) based on KarMMa-3.
+    Use for Category 3 questions about (1) eligibility and (2) therapy planning / next steps,
+    including logistics (leukapheresis, bridging, lymphodepletion), and early toxicity monitoring.
+
+  triggers:
+    question_types: ["eligibility", "next_step", "therapy_planning", "refractory_status"]
+    keywords:
+      - "CAR-T, CART, ide-cel, idecabtagene vicleucel, Abecma, BCMA, KarMMa-3"
+    semantic_cues:
+      - "Question asks whether a patient could be eligible for ide-cel or CAR-T in MM."
+      - "Question asks what needs to be done next to plan ide-cel (workup, timing, bridging, monitoring)."
+      - "Question references triple-class exposure, refractory disease, or progression shortly after last line."
+    data_domains: ["doctor_letter", "tumor_board", "therapy_history", "lab_values"]
+
+activation:
+  intent: >
+    Use as a compact evidence card. Apply KarMMa-3 minimum inclusion context and trial process
+    constraints (prior regimens, refractory definition, ECOG gate, progression timing), then
+    translate into a practical pre-CAR-T checklist and early monitoring plan.
+    Treat this as trial-derived context, not as approval-label or institutional SOP.
+
+conflicts: []
+
+requirements:
+  - "When using this card, explicitly label conclusions as trial-derived (KarMMa-3) and do not claim these are current label criteria."
+  - "For each criterion, cite patient evidence (therapy lines, refractory status, ECOG, timing of progression) or mark it as missing."
+  - "Separate (A) minimum trial-style eligibility from (B) feasibility and logistics (apheresis, bridging, lymphodepletion, monitoring)."
+  - "Do not invent exclusion criteria not stated in the paper. If the question demands exclusions, state that protocol or label is needed."
+  - "When discussing CRS or neurotoxicity risk, provide timing windows and typical severity ranges as described, and avoid overstating."
+
+knowledge:
+  provenance:
+    paper: "Rodriguez-Otero et al., N Engl J Med 2023;388:1002-1014 (KarMMa-3, ide-cel vs standard regimens)"
+    notes: "This card extracts only items explicitly described in the NEJM paper text (trial design, inclusion context, treatment process, safety frequencies)."
+
+  therapy_summary:
+    modality: "BCMA-directed CAR-T, single infusion after lymphodepletion."
+    setting: >
+      Relapsed and refractory MM in adults with triple-class exposure, enrolled after 2 to 4 prior regimens,
+      with disease refractory to the last regimen in KarMMa-3.
+
+  minimum_trial_eligibility_context:
+    core_inclusion_described:
+      - criterion: "Age"
+        threshold: ">= 18 years"
+      - criterion: "Prior regimens"
+        threshold: "2 to 4 prior regimens including anti-CD38 (daratumumab), an IMID, and a PI (at least two consecutive cycles each)"
+      - criterion: "Refractory and progression timing"
+        threshold: "Disease refractory to last regimen AND documented progression within 60 days after completion (last dose) of last therapy"
+      - criterion: "Disease"
+        threshold: "Measurable disease (IMWG)"
+      - criterion: "Performance status gate"
+        threshold: "ECOG 0 to 1 at screening"
+
+    guardrails:
+      - "The paper states that additional eligibility and exclusion criteria are in the protocol. Do not assume them."
+
+  treatment_process_for_planning:
+    manufacturing_and_timing:
+      - "Ide-cel is manufactured after leukapheresis."
+      - "Bridging therapy was commonly used in the ide-cel arm before infusion, reflecting real-world need during manufacturing time."
+      - "Manufacturing failure occurred in a small number of patients; feasibility planning should acknowledge this possibility."
+
+    lymphodepletion_and_infusion:
+      - "Lymphodepletion: fludarabine 30 mg/m^2/day plus cyclophosphamide 300 mg/m^2/day for 3 consecutive days."
+      - "Then 2 days with no treatment before ide-cel infusion."
+      - "Single ide-cel infusion, target dose range in the trial 150x10^6 to 450x10^6 CAR-positive T cells."
+
+  efficacy_context_for_next_step_reasoning:
+    - "In KarMMa-3, median PFS was longer with ide-cel than with standard regimens (13.3 vs 4.4 months)."
+    - "Overall response was higher with ide-cel (71% vs 42%), with deeper responses (CR around 39% vs 5%)."
+    - "Overall survival data were immature at the reported follow-up."
+
+  toxicity_and_monitoring:
+    crs:
+      frequency: "CRS occurred in 88% of infused patients."
+      severity: "Mostly grade 1 to 2; grade >=3 in 5%."
+      timing: "Median time to first onset was 1 day after infusion; median duration 3.5 days."
+      management: "Primarily treated with tocilizumab (about 72%), and glucocorticoids (about 28%)."
+      planning_implication: >
+        Early monitoring is highest yield immediately post infusion. Ensure logistics for prompt CRS grading
+        and access to IL-6 blockade and ICU escalation pathways per local SOP.
+
+    neurotoxicity:
+      frequency: "Investigator-identified neurotoxic events in 15%."
+      severity: "Grade >=3 in 3%."
+      timing: "Median onset 3 days after infusion day+1; median duration 2 days."
+      planning_implication: "Include neuro checks and an escalation plan during the first week post infusion."
+
+    cytopenias_and_infections:
+      cytopenias: "High rates of neutropenia, anemia, thrombocytopenia were reported, including prolonged recovery in some patients."
+      infections: "Infection occurred in 58% with ide-cel; grade 3 to 4 infections in 24%; grade 5 infections in 4%."
+      planning_implication: >
+        Make infection risk explicit. Ensure baseline infection assessment, prophylaxis policy alignment, and
+        a plan for cytopenia monitoring and management post infusion.
+
+guidelines:
+  - "Eligibility answers: output a checklist of KarMMa-3 inclusion context items with Met, Not met, or Unclear."
+  - "Planning answers: output a timeline-style plan: (1) confirm eligibility and referral, (2) leukapheresis, (3) bridging decision, (4) lymphodepletion, (5) infusion, (6) early monitoring for CRS and neurotoxicity."
+  - "If progression timing relative to last regimen is unknown, state that this blocks trial-style eligibility assessment and request dates."
+  - "If ECOG is missing, do not guess. State it is required for trial-style gatekeeping."
+  - "Do not propose specific bridging regimens unless they are present in the record or in local protocols. State bridging as a concept, then list what information is needed."
+
+examples:
+  eligibility_checklist_template:
+    - item: "2 to 4 prior regimens including daratumumab, an IMID, and a PI"
+      evidence_needed: "Therapy lines with dates and components"
+    - item: "Refractory to last regimen"
+      evidence_needed: "Progression on therapy or within standard refractory window documentation"
+    - item: "Progression within 60 days after last dose of last regimen"
+      evidence_needed: "Date of last dose and date of documented progression"
+    - item: "Measurable disease"
+      evidence_needed: "IMWG measurable parameters (M-protein, FLC, marrow or imaging as appropriate)"
+    - item: "ECOG 0 to 1 at screening"
+      evidence_needed: "Documented ECOG close to decision date"
+
+  planning_output_stub:
+    - section: "Pre-CAR-T workup and referral"
+      detail: "Confirm minimum trial-style eligibility, document refractory status and timing, confirm measurable disease and ECOG."
+    - section: "Leukapheresis and bridging"
+      detail: "Plan leukapheresis, assess need for bridging based on disease tempo and symptoms, define bridging goal and stop rules."
+    - section: "Lymphodepletion and infusion"
+      detail: "State fludarabine/cyclophosphamide lymphodepletion window and need for admission per local practice."
+    - section: "Early monitoring"
+      detail: "CRS risk highest early with median onset ~1 day, neurotoxicity median onset ~3 days; ensure escalation pathways and meds per SOP."
+    - section: "Open items"
+      detail: "Missing dates, ECOG, infection status, marrow burden, organ function, local protocol constraints."
+
+uncertainty:
+  protocol_dependency: "Additional inclusion/exclusion criteria are referenced as being in the trial protocol and are not enumerated in this card."
+  label_variability: "Approval-label criteria and institutional requirements may differ from KarMMa-3 eligibility context."
+  missing_patient_data: "If key evidence is absent (dates, ECOG), label conclusions as Unclear rather than inferring."
+
+micro_tests:
+  should_activate:
+    - "Ist der Patient fuer CAR-T (ide-cel) geeignet?"
+    - "Erfuellt der Patient KarMMa-3 aehnliche Kriterien fuer ide-cel?"
+    - "Welche naechsten Schritte fuer CAR-T Planung: Apherese, Bridging, Lymphodepletion, Monitoring?"
+    - "Progress innerhalb von 60 Tagen nach letzter Therapie: relevant fuer CAR-T Eligibility?"
+  should_not_activate:
+    - "Wie ist das aktuelle IgG?"
+    - "Welche Medikamente hat der Patient jemals bekommen?"
+  adversarial:
+    - "Patient ohne dokumentierte letzte Therapiedaten: muss Unklar sagen und die benoetigten Daten auflisten."

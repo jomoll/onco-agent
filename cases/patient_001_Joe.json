@@ -1,0 +1,1854 @@
+{
+  "patient_id": "patient_001",
+  "firstname": "Joe",
+  "lastname": "Doe",
+  "date_of_birth": "1958-04-12",
+  "reports": [
+    {
+      "report_type": "history",
+      "report_date": "2019-03-10",
+      "title": "Baseline history – Initial diagnosis Multiple Myeloma",
+      "sections": [
+        {
+          "name": "Medical history",
+          "content": "The 60-year-old patient presents for evaluation of back pain existing for approximately 4 months and progressive fatigue. No relevant prior illnesses. Non-smoker. No regular alcohol consumption. Employed as an engineer."
+        },
+        {
+          "name": "Family history",
+          "content": "Mother deceased from gastric carcinoma. Father had myocardial infarction at age 72. No known hematologic malignancies in the family."
+        }
+      ]
+    },
+    {
+      "report_type": "pathology",
+      "report_date": "2019-03-15",
+      "title": "Bone marrow biopsy – Initial diagnosis",
+      "sections": [
+        {
+          "name": "Question",
+          "content": "Suspected multiple myeloma. Bone marrow trephine biopsy from 14.03.2019. Macroscopy: Two trephine cores, each approximately 1.5 cm in length. Processing: HE, Giemsa, Gomori, PAS, immunohistochemical stains."
+        },
+        {
+          "name": "Findings",
+          "content": "Hypercellular bone marrow trephine core (cellularity approx. 70–80%) with diffuse and nodularly confluent infiltration by mature plasma cells. Infiltration grade: approx. 60% of nucleated cells. Immunohistochemistry: CD138+, MUM1+, kappa light chains dominant, lambda negative. No evidence of amyloid-like material. Reticulin fibers grade 1 (MF-1) according to WHO."
+        },
+        {
+          "name": "FISH result",
+          "content": "FISH analysis (plasma cell gating): - del(17p): POSITIVE (TP53 deletion in 42% of cells) – high‑risk cytogenetics - t(4;14): negative - t(14;16): negative - 1q21 gain: negative Conclusion: Detection of del(17p) as a high‑risk marker."
+        },
+        {
+          "name": "Diagnosis",
+          "content": "Multiple myeloma, IgG kappa light chain. ISS stage II (β2‑microglobulin 4.1 mg/l, albumin 3.6 g/dl). R‑ISS stage III (ISS II + del(17p) + elevated LDH)."
+        }
+      ]
+    },
+    {
+      "report_type": "radiology",
+      "report_date": "2019-03-18",
+      "title": "Whole‑body CT – Staging",
+      "sections": [
+        {
+          "name": "Findings",
+          "content": "Whole‑body low‑dose CT from 18.03.2019. Skull: No definitive osteolytic lesions. Spine: Multiple small lytic lesions at BWK7, BWK9 and LWK2, max. diameter 8 mm. No pathological fracture. Pelvis: Two small osteolyses in the left Os ilium (each approx. 5 mm). Long bones: No suspicious findings. Conclusion: Osseous manifestations of multiple myeloma in the spine and pelvis. No evidence of pathological fracture."
+        }
+      ]
+    },
+    {
+      "report_type": "radiology",
+      "report_date": "2019-03-20",
+      "title": "Whole‑body MRI – Staging",
+      "sections": [
+        {
+          "name": "Findings",
+          "content": "Whole‑body MRI (1.5 Tesla, STIR and T1w sequences) from 20.03.2019. Bone marrow: Diffuse involvement pattern in the axial skeleton with decreased T1 signal and increased STIR signal. Focal lesions at BWK7 and LWK2 confirmed, each without spinal cord compression. Extramedullary manifestation: Not detected. Conclusion: Diffuse medullary involvement consistent with multiple myeloma. No extramedullary disease."
+        }
+      ]
+    },
+    {
+      "report_type": "doctor_letter",
+      "report_date": "2019-03-22",
+      "title": "Physician's letter – Initial diagnosis and treatment planning",
+      "sections": [
+        {
+          "name": "Diagnoses",
+          "content": "Hematologic diagnoses:\nMultiple myeloma, IgG light chain kappa (initial diagnosis 03/2019)  \nISS stage II, R-ISS stage III  \nHigh‑risk cytogenetics: del(17p) positive  \nOsseous manifestations: osteolyses T7, T9, L2, left ilium  \n\nComorbidities:  \nArterial hypertension, well controlled with medication  \nNo relevant cardiac pre‑existing conditions"
+        },
+        {
+          "name": "History",
+          "content": "The 60‑year‑old patient presents after external diagnostics for planning of first‑line therapy. Since November 2018 progressive back pain, B‑symptoms denied. Incidental finding of anemia (Hb 9.8 g/dl) by the primary care physician."
+        },
+        {
+          "name": "Clinical examination",
+          "content": "ECOG performance status: 1.\nGeneral condition/nutrition: Slightly reduced general condition, good nutritional status.  \nOrgan: No jaundice, no palpable lymphadenopathy. No hepatosplenomegaly."
+        },
+        {
+          "name": "Previous therapy",
+          "content": "No prior therapy for the myeloma."
+        },
+        {
+          "name": "Therapy plan",
+          "content": "Start first‑line therapy with VRd (Bortezomib/Lenalidomide/Dexamethasone) from 25.03.2019, planned 6 cycles of 21 days each.\nBortezomib 1.3 mg/m² subcutaneously on days 1, 4, 8, 11.  \nLenalidomide 25 mg/day orally on days 1–14.  \nDexamethasone 40 mg orally on days 1, 2, 4, 5, 8, 9, 11, 12.  \nBisphosphonate: Zometa (Zoledronic acid) 4 mg intravenously every 4 weeks."
+        },
+        {
+          "name": "Procedure",
+          "content": "Follow‑up in 3 weeks for remission assessment after cycle 1 VRd.\nNext laboratory check: 28.03.2019."
+        }
+      ]
+    },
+    {
+      "report_type": "tumor_board",
+      "report_date": "2019-03-25",
+      "title": "Tumor board decision – Initial diagnosis MM, treatment planning",
+      "sections": [
+        {
+          "name": "Reason for discussion",
+          "content": "Initial diagnosis of a multiple myeloma, IgG light chain kappa, in a 60‑year‑old patient. ISS II, R‑ISS III, high‑risk cytogenetics del(17p). ECOG 1. Eligible for transplantation."
+        },
+        {
+          "name": "Previous therapy",
+          "content": "No prior therapy."
+        },
+        {
+          "name": "Decision",
+          "content": "Consensus: First‑line therapy with VRd (Bortezomib/Lenalidomide/Dexamethasone) × 6 cycles, followed by autologous stem cell transplantation after high‑dose melphalan (200 mg/m²).\nHigh‑risk cytogenetics del(17p) taken into account – no study available that addresses this situation at present.  \nBisphosphonate therapy with zoledronic acid. Remission assessment after 3 cycles. Goal: ≥VGPR before ASCT."
+        }
+      ]
+    },
+    {
+      "report_type": "doctor_letter",
+      "report_date": "2019-04-18",
+      "title": "Physician's letter – Follow-up after Cycle 1 VRd",
+      "sections": [
+        {
+          "name": "Diagnoses",
+          "content": "Multiple myeloma, IgG κ light chain (diagnosed 03/2019) ISS II, R-ISS III, del(17p) VRd Cycle 1 completed, early response"
+        },
+        {
+          "name": "Current course",
+          "content": "Cycle 1 VRd (25.03.–14.04.2019) proceeded with few complications. Mild tingling in the fingertips (peripheral neuropathy grade 1, no functional loss). Fatigue grade 1. No nausea. Laboratory (15.04.2019): IgG 28,4 g/l (baseline 42,1 g/l – decrease 33%). Hemoglobin 10,1 g/dl. Leukocytes 4,8 G/l. Platelets 182 G/l. ECOG: 1."
+        },
+        {
+          "name": "Current medication",
+          "content": "VRd Cycle 2 starting 18.04.2019 Bortezomib 1,3 mg/m² s.c. days 1, 4, 8, 11 Lenalidomide 25 mg/d p.o. days 1–14 Dexamethasone 40 mg p.o. weekly Zoledronic acid 4 mg i.v. monthly Valaciclovir 500 mg 1-0-1 Cotrimoxazole 960 mg Mon/Wed/Fri Pantoprazole 40 mg 1-0-0"
+        },
+        {
+          "name": "Further procedure",
+          "content": "Cycle 2 begins 18.04.2019. Laboratory control in 3 weeks."
+        }
+      ]
+    },
+    {
+      "report_type": "doctor_letter",
+      "report_date": "2019-05-15",
+      "title": "Physician's letter – Follow-up after Cycle 2 VRd",
+      "sections": [
+        {
+          "name": "Diagnoses",
+          "content": "Multiple myeloma, IgG κ light chain (diagnosed 03/2019) VRd Cycle 2 completed, continued response"
+        },
+        {
+          "name": "Current course",
+          "content": "Cycle 2 VRd well tolerated. Peripheral neuropathy grade 1 stable. No infectious complications. Laboratory (12.05.2019): IgG 18,2 g/l (further decrease from 28,4 g/l). κ free light chain 128 mg/l. Hemoglobin 10,8 g/dl. Leukocytes 3,9 G/l – neutropenia grade 1, asymptomatic. ECOG: 1."
+        },
+        {
+          "name": "Current medication",
+          "content": "VRd Cycle 3 starting 17.05.2019 Bortezomib 1,3 mg/m² s.c. Lenalidomide 25 mg/d p.o. Dexamethasone 40 mg p.o. Zoledronic acid 4 mg i.v. monthly Valaciclovir, Cotrimoxazole, Pantoprazole"
+        },
+        {
+          "name": "Further procedure",
+          "content": "Cycle 3 starting 17.05.2019. Next assessment mid-June."
+        }
+      ]
+    },
+    {
+      "report_type": "doctor_letter",
+      "report_date": "2019-06-20",
+      "title": "Physician's letter – Inpatient treatment: Neutropenic sepsis",
+      "sections": [
+        {
+          "name": "Diagnoses",
+          "content": "Multiple myeloma, IgG LK kappa (ED 03/2019) Neutropenic sepsis under VRd cycle 3 (inpatient 15–20.06.2019)"
+        },
+        {
+          "name": "Course",
+          "content": "Inpatient admission on 15.06.2019 for fever 39.8 °C and known neutropenia. Leukocytes 0.8 G/l, neutrophils 0.2 G/l. CRP 18.4 mg/dl. Empiric antibiotic therapy with Piperacillin/Tazobactam 4.5 g i.v. Blood cultures: no pathogen detected. Rapid defervescence within 48 h. Leukocyte reconstitution by discharge on 20.06.2019 (Lk 3.1 G/l). Lenalidomide in cycle 3 discontinued from day 11. Dose reduction to 15 mg/d established for all subsequent cycles."
+        },
+        {
+          "name": "Further procedure",
+          "content": "Discharge 20.06.2019. Extended treatment pause for reconstitution. Cycle 4 VRd earliest early September 2019. Outpatient follow‑up 15.07.2019."
+        }
+      ]
+    },
+    {
+      "report_type": "doctor_letter",
+      "report_date": "2019-07-15",
+      "title": "Physician letter – Outpatient follow‑up after neutropenic sepsis",
+      "sections": [
+        {
+          "name": "Diagnoses",
+          "content": "Multiple myeloma, IgG LK kappa (ED 03/2019) After neutropenic sepsis 06/2019: complete recovery VRd pause since 15.06.2019"
+        },
+        {
+          "name": "Current course",
+          "content": "Patient in good general condition. Complete recovery after sepsis episode. Blood count normalized: Lk 4.4 G/l, neutrophils 2.8 G/l. No fever, no infection. Peripheral neuropathy grade 1 unchanged. Weight stable. Cycle 4 VRd will be started from 06.09.2019. Lenalidomide dose reduction to 15 mg/d established."
+        },
+        {
+          "name": "Further procedure",
+          "content": "Next admission for VRd cycle 4 on 06.09.2019."
+        }
+      ]
+    },
+    {
+      "report_type": "doctor_letter",
+      "report_date": "2019-09-10",
+      "title": "Physician letter – Remission assessment after 3 cycles VRd",
+      "sections": [
+        {
+          "name": "Diagnoses",
+          "content": "Multiple myeloma, IgG LK kappa (ED 03/2019) ISS II, R‑ISS III, del(17p) Therapy: VRd cycles 1–3, VGPR"
+        },
+        {
+          "name": "Therapy course",
+          "content": "Under VRd after 3 cycles good response: IgG decreased from initial 42 g/l to 8.3 g/l. Immunofixation still positive. Free kappa light chains within normal range.\n\nTolerability: Peripheral neuropathy grade 1 (tingling in fingertip tips, no functional limitation). Fatigue grade 2. No gastrointestinal toxicity. Neutropenia grade 2 in cycle 2, treated supportively.  \n\nOn 15.06.2019: Neutropenic sepsis with fever >38.5 °C, inpatient admission for 5 days. Antibiotic therapy with Piperacillin/Tazobactam. Complete recovery. Due to sepsis episode dose reduction of lenalidomide to 15 mg from cycle 4."
+        },
+        {
+          "name": "Current medication",
+          "content": "VRd cycle 4 ongoing (start 06.09.2019) Bortezomib 1.3 mg/m² s.c. Lenalidomide 15 mg/d (dose reduction due to neutropenia) Dexamethasone 40 mg Zoledronic acid 4 mg i.v. monthly Valacyclovir 500 mg 1‑0‑1 (prophylaxis) Cotrimoxazole 960 mg 1‑0‑0 Mon/Wed/Fri (PCP prophylaxis) Pantoprazole 40 mg 1‑0‑0"
+        }
+      ]
+    },
+    {
+      "report_type": "doctor_letter",
+      "report_date": "2019-10-10",
+      "title": "Physician letter – Follow‑up assessment cycle 4 VRd",
+      "sections": [
+        {
+          "name": "Diagnoses",
+          "content": "Multiple Myeloma, IgG κ light chain (ED 03/2019)\nVRd cycle 4 (started 06.09.2019) ongoing, sustained VGPR"
+        },
+        {
+          "name": "Current course",
+          "content": "Cycle 4 VRd with reduced Lenalidomid dose (15 mg/d) well tolerated. No new infection, no hospitalization. Neuropathy grade 1 stable.\nLabor (08.10.2019): IgG 7,8 g/l (within reference range). Hemoglobin 11,4 g/dl. Leukocytes 2,8 G/l (neutropenia grade 2, asymptomatic). Platelets 138 G/l.  \nECOG: 1."
+        },
+        {
+          "name": "Current medication",
+          "content": "VRd (Lenalidomide 15 mg/d, Bortezomib 1.3 mg/m², Dex 40 mg) cycle 4\nZoledronic acid 4 mg i.v. monthly  \nValaciclovir, Cotrimoxazole, Pantoprazole"
+        },
+        {
+          "name": "Further procedure",
+          "content": "Cycle 5 starting 27.10.2019. Remission assessment after cycle 5."
+        }
+      ]
+    },
+    {
+      "report_type": "doctor_letter",
+      "report_date": "2019-11-05",
+      "title": "Physician letter – follow‑up after cycle 5 VRd",
+      "sections": [
+        {
+          "name": "Diagnoses",
+          "content": "Multiple Myeloma, IgG κ light chain (ED 03/2019)\nVRd cycle 5 completed, sustained VGPR"
+        },
+        {
+          "name": "Current course",
+          "content": "Cycle 5 VRd (27.10.–16.11.2019) well tolerated. No infection, no hospitalization. Peripheral neuropathy grade 1 unchanged.\nLabor (02.11.2019): IgG 7,4 g/l. Hemoglobin 11,8 g/dl. Immunofixation: positive (weak – VGPR).  \nECOG: 1."
+        },
+        {
+          "name": "Further procedure",
+          "content": "Cycle 6 (last VRd cycle) starting 18.11.2019. Subsequently stem cell mobilization and ASCT planning."
+        }
+      ]
+    },
+    {
+      "report_type": "doctor_letter",
+      "report_date": "2020-01-15",
+      "title": "Physician letter – response after 6 cycles VRd, ASCT planning",
+      "sections": [
+        {
+          "name": "Diagnoses",
+          "content": "Multiple Myeloma, IgG κ light chain (ED 03/2019)\nAfter 6 cycles VRd: VGPR  \nPlanning autologous stem cell transplantation"
+        },
+        {
+          "name": "Response after VRd",
+          "content": "After 6 cycles VRd:\n- IgG: 5,1 g/l (baseline 42 g/l)  \n- Immunofixation in serum: positive (weak)  \n- Free light chains kappa: 18 mg/l (within normal range)  \n- Kappa/Lambda ratio: 2,1 (slightly elevated)  \nAssessment: VGPR (very good partial response)  \n\nCumulative Bortezomib dose: 6 cycles × 4 Gaben × 1,3 mg/m² × 1,73 m² KOF = ca. 55,0 mg total.  \nCumulative Lenalidomid dose: 3 cycles × 14 days × 25 mg + 3 cycles × 14 days × 15 mg = 1.680 mg total."
+        },
+        {
+          "name": "Stem cell mobilization",
+          "content": "Stem cell mobilization performed with G‑CSF (Filgrastim) and Plerixafor. Collected CD34+ count: 8,2 × 10^6 cells/kg KG (sufficient for 2 transplantations)."
+        },
+        {
+          "name": "Therapy plan",
+          "content": "High‑dose melphalan (200 mg/m²) with subsequent autologous stem cell transplantation planned for 02/2020. Conditioning: melphalan 100 mg/m² day -2 and day -1 (total dose 200 mg/m²; with KOF 1,73 m² = 346 mg total). Transfusions: 2 EK intraoperatively due to Hb drop to 7,1 g/dl."
+        }
+      ]
+    },
+    {
+      "report_type": "doctor_letter",
+      "report_date": "2020-02-05",
+      "title": "Physician letter – Admission for high‑dose chemotherapy and ASCT",
+      "sections": [
+        {
+          "name": "Diagnoses",
+          "content": "Multiple myeloma, IgG LK kappa (ED 03/2019)\nAfter 6 cycles VRd: VGPR  \nAdmission for autologous stem cell transplantation after HD‑Melphalan"
+        },
+        {
+          "name": "Admission findings",
+          "content": "Patient presents for the planned high‑dose chemotherapy with melphalan (200 mg/m²) and autologous stem cell transplantation. Laboratory (05.02.2020): IgG 5,1 g/l. FLK kappa 18,2 mg/l. Immunofixation positive (weak – VGPR). Hemoglobin 11,2 g/dl. Leukocytes 4,2 G/l. Platelets 168 G/l. Creatinine 0,9 mg/dl. Beta2‑Mikroglobulin 2,2 mg/l. ECOG: 1. Karnofsky‑Index 80%."
+        },
+        {
+          "name": "Therapy plan",
+          "content": "Conditioning: melphalan 200 mg/m² (346 mg total with KOF 1,73 m²), divided day -2 and day -1. Transplantation (day 0): 18.02.2020. Supportive therapy: G‑CSF from day +5, anti‑infective prophylaxis, mucosal care."
+        },
+        {
+          "name": "Further procedure",
+          "content": "Discharge planned after leukocyte reconstitution (expected day +12 to +16)."
+        }
+      ]
+    },
+    {
+      "report_type": "doctor_letter",
+      "report_date": "2020-02-28",
+      "title": "Physician letter – Discharge after autologous stem cell transplantation",
+      "sections": [
+        {
+          "name": "Diagnoses",
+          "content": "Multiple myeloma, IgG LK kappa (ED 03/2019)\nAfter HD‑Melphalan (200 mg/m²) + autologe SZT (18.02.2020): early remission"
+        },
+        {
+          "name": "Course",
+          "content": "Autologous stem cell transplantation on 18.02.2020 uncomplicated. Leukocyte reconstitution (>1,0 G/l) on day +12 (01.03.2020). Platelet reconstitution on day +14. Mucositis grade 1 (mild oral erythema, no swallowing problem). No febrile neutropenia. Discharge day +10 (28.02.2020) with Lk 1,8 G/l on upward trend."
+        },
+        {
+          "name": "Chronic medication",
+          "content": "Valaciclovir 500 mg 1-0-1 (6 months post‑ASCT)\nCotrimoxazol 960 mg Mo/Mi/Fr (6 months post‑ASCT)  \nPantoprazol 40 mg 1-0-0  \nMagnesium‑Supplement"
+        },
+        {
+          "name": "Further procedure",
+          "content": "Outpatient remission check approx. 20.04.2020. Start of lenalidomide maintenance therapy after blood count stabilization."
+        }
+      ]
+    },
+    {
+      "report_type": "doctor_letter",
+      "report_date": "2020-04-20",
+      "title": "Physician letter – Post‑ASCT control",
+      "sections": [
+        {
+          "name": "Diagnoses",
+          "content": "Multiple myeloma, IgG kappa light chain (ED 03/2019) After high‑dose melphalan + ASCT (02/2020): CR Maintenance therapy with lenalidomide started"
+        },
+        {
+          "name": "Course after ASCT",
+          "content": "Autologous stem cell transplantation with high‑dose melphalan (200 mg/m²) on 18.02.2020. Uncomplicated course. Day +14: leukocyte reconstitution (>1,0 G/l). Day +20: discharge home.\n\nRemission assessment 04/2020:  \n- IgG: 7,2 g/l (within normal range)  \n- Serum immunofixation: negative  \n- Free kappa light chains: 11,2 mg/l (normal)  \n- Kappa/Lambda ratio: 1,2 (normal)  \nAssessment: Complete remission (CR)"
+        },
+        {
+          "name": "Maintenance therapy",
+          "content": "Start of lenalidomide maintenance therapy from 04/2020. Dosage: lenalidomide 10 mg/d p.o. day 1–21 per 28‑day cycle."
+        }
+      ]
+    },
+    {
+      "report_type": "doctor_letter",
+      "report_date": "2020-06-15",
+      "title": "Physician letter – Follow‑up control 4 months post‑ASCT",
+      "sections": [
+        {
+          "name": "Diagnoses",
+          "content": "Multiple myeloma, IgG kappa light chain (ED 03/2019) After ASCT (02/2020): CR since 04/2020 Lenalidomide maintenance 10 mg/d since 04/2020"
+        },
+        {
+          "name": "Current course",
+          "content": "Complete remission ongoing. Immunofixation negative since 04/2020. Laboratory (12.06.2020): IgG 7,8 g/l. Hemoglobin 13,2 g/dl. Leukocytes 5,8 G/l. Blood count normalized. Lenalidomide maintenance well tolerated so far. Fatigue grade 1, no relevant toxicity. No neutropenia grade ≥2. ECOG: 1."
+        },
+        {
+          "name": "Long‑term medication",
+          "content": "Lenalidomide 10 mg/d p.o. days 1–21 / 28‑day cycle\nZoledronic acid 4 mg i.v. every 4 weeks  \nValaciclovir 500 mg 1-0-1  \nCotrimoxazole 960 mg Mon/Wed/Fri  \nPantoprazole 40 mg 1-0-0"
+        },
+        {
+          "name": "Further procedure",
+          "content": "Next routine check in 3 months (September 2020)."
+        }
+      ]
+    },
+    {
+      "report_type": "radiology",
+      "report_date": "2020-08-12",
+      "title": "Skeletal MRI – Follow‑up control 6 months post‑ASCT",
+      "sections": [
+        {
+          "name": "Full report",
+          "content": "Clinical information: MM IgG kappa, after HD‑Melphalan + ASCT 02/2020, CR since 04/2020. Lenalidomide maintenance ongoing.\n\nQuestion: Follow‑up of bone‑marrow involvement. Comparison with previous examination (MRI 20.03.2019).\n\nPrevious imaging: Whole‑body MRI 20.03.2019.\n\nFindings: Whole‑body MRI (1.5 Tesla, STIR and T1‑weighted) from 12.08.2020.  \nBone marrow: Marked regression of the previously diffuse involvement pattern. T1 signal approximately normal in the axial skeleton. No definite STIR hyper‑intensity pattern detectable any more.  \nFocal lesions: T7 vertebral body lesion regressing (now 4 mm, previously 8 mm), L2 vertebral body lesion no longer clearly delineated.  \nExtramedullary manifestation: Not detectable.  \nConclusion: Marked remission of myelomatous bone‑marrow involvement. No evidence of progression or new lesions."
+        }
+      ]
+    },
+    {
+      "report_type": "doctor_letter",
+      "report_date": "2020-10-12",
+      "title": "Physician’s letter – Routine follow‑up Lenalidomide maintenance, 6 months",
+      "sections": [
+        {
+          "name": "Diagnoses",
+          "content": "Multiple myeloma, IgG kappa (diagnosed 03/2019)\nPost‑ASCT (02/2020): ongoing CR  \nLenalidomide maintenance 10 mg/d since 04/2020"
+        },
+        {
+          "name": "Current course",
+          "content": "Routine follow‑up after 6 months of lenalidomide maintenance. Patient in good general condition. Fatigue grade 1, no limitation in daily activities.\nLaboratory (10.10.2020): IgG 8.1 g/L. Immunofixation: negative. Hemoglobin 13.5 g/dL. Leukocytes 4.8 G/L. No evidence of relapse.  \nECOG: 1."
+        },
+        {
+          "name": "Ongoing medication",
+          "content": "Lenalidomide 10 mg/d p.o. days 1–21\nZoledronic acid 4 mg i.v. every 4 weeks  \nValacyclovir 500 mg 1‑0‑1  \nPantoprazole 40 mg 1‑0‑0"
+        },
+        {
+          "name": "Further procedure",
+          "content": "Continuation of lenalidomide maintenance. Next follow‑up January 2021."
+        }
+      ]
+    },
+    {
+      "report_type": "doctor_letter",
+      "report_date": "2021-01-18",
+      "title": "Physician’s letter – Routine follow‑up Lenalidomide maintenance, 9 months",
+      "sections": [
+        {
+          "name": "Diagnoses",
+          "content": "Multiple myeloma, IgG kappa (diagnosed 03/2019)\nPost‑ASCT (02/2020): CR, 9 months lenalidomide maintenance"
+        },
+        {
+          "name": "Current course",
+          "content": "CR ongoing.\nLaboratory (15.01.2021): IgG 7.9 g/L. Immunofixation: negative. Hemoglobin 13.8 g/dL. Leukocytes 5.2 G/L. No evidence of relapse.  \nLenalidomide well tolerated, fatigue grade 1. No neutropenia grade ≥ 2."
+        },
+        {
+          "name": "Ongoing medication",
+          "content": "Lenalidomide 10 mg/d p.o. days 1–21\nZoledronic acid 4 mg i.v. every 4 weeks  \nValacyclovir 500 mg 1‑0‑1  \nPantoprazole 40 mg 1‑0‑0"
+        },
+        {
+          "name": "Further procedure",
+          "content": "Next follow‑up April 2021. Restaging skeletal CT planned after 12 months of maintenance."
+        }
+      ]
+    },
+    {
+      "report_type": "doctor_letter",
+      "report_date": "2021-04-12",
+      "title": "Physician’s letter – Routine follow‑up Lenalidomide maintenance, 12 months",
+      "sections": [
+        {
+          "name": "Diagnoses",
+          "content": "Multiple Myeloma, IgG LK kappa (ED 03/2019) After ASCT (02/2020): CR, 12 months lenalidomide maintenance"
+        },
+        {
+          "name": "Current course",
+          "content": "Routine follow‑up after 12 months of lenalidomide maintenance. Patient in good general condition. No relevant toxicity. Laboratory (10.04.2021): IgG 8,2 g/l. FLK kappa 12,4 mg/l. Beta2‑Mikroglobulin 2,0 mg/l. Immunfixation: negative. Hemoglobin 13,4 g/dl. Leukocytes 5,0 G/l. CR persistent. ECOG: 1."
+        },
+        {
+          "name": "Chronic medication",
+          "content": "Lenalidomide 10 mg/d p.o. Days 1–21 / 28‑day cycle\nZoledronic acid 4 mg i.v. every 4 weeks  \nPantoprazole 40 mg 1-0-0"
+        },
+        {
+          "name": "Further procedure",
+          "content": "Skeletal CT follow‑up (planned 15.04.2021). Next routine follow‑up July 2021."
+        }
+      ]
+    },
+    {
+      "report_type": "radiology",
+      "report_date": "2021-04-15",
+      "title": "Skeletal CT – Restaging 12 months after ASCT",
+      "sections": [
+        {
+          "name": "Full report",
+          "content": "Clinical information: MM IgG kappa, after ASCT 02/2020, CR, on lenalidomide maintenance. 12‑month restaging.\nQuestion: assessment of known osseous lesions. Exclusion of new manifestations.  \nPrior imaging: whole‑body CT 18.03.2019.  \nFindings: whole‑body low‑dose CT from 15.04.2021.  \nSpine: known osteolyses BWK7, BWK9, LWK2 markedly regressive (BWK7 now 3 mm, LWK2 no longer clearly delineated). LWK4 unremarkable.  \nPelvis: Os ilium lesions left no longer clearly detectable.  \nSkull, long bones: no evidence of new lesions.  \nConclusion: marked remission of osseous manifestations. No evidence of progression."
+        }
+      ]
+    },
+    {
+      "report_type": "doctor_letter",
+      "report_date": "2021-07-08",
+      "title": "Physician letter – Routine follow‑up lenalidomide maintenance, 15 months",
+      "sections": [
+        {
+          "name": "Diagnoses",
+          "content": "Multiple Myeloma, IgG LK kappa (ED 03/2019) After ASCT (02/2020): CR, 15 months lenalidomide maintenance"
+        },
+        {
+          "name": "Current course",
+          "content": "CR persistent. Laboratory (05.07.2021): IgG 8,0 g/l. Immunofixation: negative. Hemoglobin 13,6 g/dl. No evidence of relapse. Lenalidomide still well tolerated. No neutropenia, no infection."
+        },
+        {
+          "name": "Chronic medication",
+          "content": "Lenalidomide 10 mg/d p.o. Days 1–21\nZoledronic acid 4 mg i.v. every 4 weeks  \nPantoprazole 40 mg 1-0-0"
+        },
+        {
+          "name": "Further procedure",
+          "content": "Next follow‑up October 2021."
+        }
+      ]
+    },
+    {
+      "report_type": "doctor_letter",
+      "report_date": "2021-10-14",
+      "title": "Physician’s letter – Routine follow‑up Lenalidomide maintenance, 18 months",
+      "sections": [
+        {
+          "name": "Diagnoses",
+          "content": "Multiple myeloma, IgG LK kappa (ED 03/2019)\nAfter ASCT (02/2020): CR, 18 months Lenalidomide maintenance"
+        },
+        {
+          "name": "Current course",
+          "content": "18‑month routine follow‑up. Laboratory (12.10.2021): IgG 8,4 g/l. Immunofixation: negative. Hemoglobin 13,2 g/dl. No relevant toxicity. Fatigue grade 1 persists.\nECOG: 1."
+        },
+        {
+          "name": "Long‑term medication",
+          "content": "Lenalidomide 10 mg/d p.o. days 1–21\nZoledronic acid 4 mg i.v. every 4 weeks  \nPantoprazole 40 mg 1‑0‑0"
+        },
+        {
+          "name": "Further procedure",
+          "content": "Next follow‑up January 2022."
+        }
+      ]
+    },
+    {
+      "report_type": "doctor_letter",
+      "report_date": "2022-01-20",
+      "title": "Physician’s letter – Routine follow‑up Lenalidomide maintenance, 21 months",
+      "sections": [
+        {
+          "name": "Diagnoses",
+          "content": "Multiple myeloma, IgG LK kappa (ED 03/2019)\nAfter ASCT (02/2020): CR, 21 months Len maintenance  \nSlightly rising IgG – observation"
+        },
+        {
+          "name": "Current course",
+          "content": "Laboratory (18.01.2022): IgG 8,8 g/l (previous value 10/2021: 8,4 g/l – slightly increasing, but within normal range). FLK kappa 14,2 mg/l (normal). Immunofixation: negative. Hemoglobin 12,8 g/dl. No clinical evidence of relapse.\nPatient reports slightly increasing fatigue, otherwise no new symptoms."
+        },
+        {
+          "name": "Long‑term medication",
+          "content": "Lenalidomide 10 mg/d p.o. days 1–21\nZoledronic acid 4 mg i.v. every 4 weeks  \nPantoprazole 40 mg 1‑0‑0"
+        },
+        {
+          "name": "Further procedure",
+          "content": "Given IgG trend, closer monitoring. Skeletal CT 22.01.2022. Next laboratory control in 6 weeks."
+        }
+      ]
+    },
+    {
+      "report_type": "radiology",
+      "report_date": "2022-01-22",
+      "title": "Skeletal CT – Follow‑up Lenalidomide maintenance 21 months",
+      "sections": [
+        {
+          "name": "Full report",
+          "content": "Clinical information: MM IgG kappa, post‑ASCT, CR, on Len maintenance. Slightly rising IgG trend.\n\nQuestion: Imaging follow‑up, exclusion of new osseous lesions.\n\nPrior imaging: Skeletal CT 15.04.2021.\n\nFindings: Whole‑body low‑dose CT from 22.01.2022.\nSpine: Known residual finding BWK7 (3 mm, unchanged). No new lytic lesions. LWK4 unremarkable.\nPelvis: No evidence of new osteolyses.\nSkull, extremities: Unremarkable.\nConclusion: Stable known osseous residual findings. No evidence of new lesions or progression."
+        }
+      ]
+    },
+    {
+      "report_type": "doctor_letter",
+      "report_date": "2022-04-05",
+      "title": "Physician letter – Laboratory abnormality, suspected relapse",
+      "sections": [
+        {
+          "name": "Diagnoses",
+          "content": "Multiple myeloma, IgG kappa (ED 03/2019)\nSuspected relapse with marked IgG increase\nStill on lenalidomide maintenance 10 mg/d"
+        },
+        {
+          "name": "Current course",
+          "content": "On today’s laboratory control a marked IgG increase to 14,2 g/l (previous value 01/2022: 8,8 g/l). Immunofixation: positive (confirmed). FLK kappa increased to 38 mg/l (previous value 14,2 mg/l).\nUrgent further diagnostics initiated: KM‑biopsy and imaging planned. Lenalidomide maintenance continued for now."
+        },
+        {
+          "name": "Further procedure",
+          "content": "KM‑biopsy: 02.05.2022. Skeletal CT: 05.05.2022. PET‑CT: 06.05.2022. Tumor board after all findings are available."
+        }
+      ]
+    },
+    {
+      "report_type": "radiology",
+      "report_date": "2022-05-05",
+      "title": "Skeletal CT – relapse staging",
+      "sections": [
+        {
+          "name": "Full report",
+          "content": "Clinical information: MM IgG kappa, suspected relapse after VRd + ASCT + Len maintenance. IgG increase to 16,8 g/l.\n\nQuestion: Exclusion of new osseous lesions, comparison with prior imaging.\n\nPrior imaging: Skeletal CT 22.01.2022.\n\nFindings: Whole‑body low‑dose CT from 05.05.2022.\nSpine: Newly occurring lytic lesion at LWK4 (12 mm, not present in prior study). Known residual finding BWK7 stable (3 mm).\nPelvis: No new lesions.\nSkull: Unremarkable.\nConclusion: New osteolysis LWK4 (12 mm) as sign of an osseous relapse. No indication of pathological fracture."
+        }
+      ]
+    },
+    {
+      "report_type": "radiology",
+      "report_date": "2022-05-06",
+      "title": "PET‑CT – relapse staging",
+      "sections": [
+        {
+          "name": "Full report",
+          "content": "Clinical information: MM IgG kappa, suspected relapse. New osteolysis LWK4 on skeletal CT 05.05.2022.\n\nQuestion: Metabolic activity of the osseous lesions. Exclusion of extramedullary manifestation.\n\nPrior imaging: No prior study of this modality available.\n\nFindings: PET‑CT from 06.05.2022.\nLWK4: FDG‑avid lesion (SUVmax 4,8), metabolically active, corresponding to the described CT osteolysis.\nOther osseous manifestations: BWK7 without relevant FDG uptake (SUVmax 1,4 – residual scar process).\nExtramedullary manifestation: Not detectable.\nConclusion: Singular metabolically active osseous lesion LWK4, compatible with focal myeloma relapse. No extra‑osseous myeloma."
+        }
+      ]
+    },
+    {
+      "report_type": "doctor_letter",
+      "report_date": "2022-05-08",
+      "title": "Physician letter – relapse diagnosis, start of Dara‑Rd",
+      "sections": [
+        {
+          "name": "Diagnoses",
+          "content": "Multiple myeloma, IgG kappa (ED 03/2019)\n1. Relapse (05/2022) after VRd + ASCT + Len maintenance\nStart of 2nd line: daratumumab + lenalidomide + dexamethasone (Dara‑Rd)"
+        },
+        {
+          "name": "Relapse",
+          "content": "In the course of follow‑up in 04/2022 IgG rose to 16,8 g/l (from previously 7,5 g/l), immunofixation again positive, free light chain kappa 68 mg/l. No clinical CRAB findings.\n\nBone marrow biopsy 02.05.2022: plasma cell infiltration 25 %, del(17p) still detectable.\n\nSkeletal findings: Whole‑body CT 05.05.2022: New osteolysis at LWK4 (12 mm), pre‑existing lesions stable."
+        },
+        {
+          "name": "New staging",
+          "content": "PET-CT 06.05.2022: FDG-avid lesion LWK4 (SUVmax 4,8), further known osseous foci without significant activity change. No extramedullary manifestation. ECOG: 1"
+        },
+        {
+          "name": "Therapy plan second line",
+          "content": "Start Daratumumab (Dara) + Lenalidomide + Dexamethasone (Dara‑Rd) as of 15.05.2022.\nDaratumumab 16 mg/kg i.v. weekly cycles 1–2, every 2 weeks cycles 3–6, monthly from cycle 7.  \nLenalidomide 25 mg/d p.o. days 1–21 per 28‑day cycle.  \nDexamethasone 40 mg weekly.  \nSubcutaneous formulation Daratumumab/Hyaluronidase (1.800 mg) from cycle 3."
+        }
+      ]
+    },
+    {
+      "report_type": "tumor_board",
+      "report_date": "2022-05-10",
+      "title": "Tumor board decision – first relapse MM",
+      "sections": [
+        {
+          "name": "Reason for discussion",
+          "content": "First relapse of a multiple myeloma, IgG κ light chain (diagnosed 03/2019) after VRd induction + ASCT + lenalidomide maintenance."
+        },
+        {
+          "name": "Previous therapy",
+          "content": "03/2019–01/2020: VRd × 6 cycles → VGPR\n02/2020: high‑dose melphalan (200 mg/m²) + autologous SZT → CR  \n04/2020–04/2022: lenalidomide maintenance 10 mg/d"
+        },
+        {
+          "name": "Decision",
+          "content": "Consensus: start Daratumumab + Lenalidomide + Dexamethasone (Dara‑Rd) as second‑line therapy.\nHigh‑risk cytogenetics del(17p) taken into account. No study offer currently available.  \nInitiation of a zoledronic acid pause after 2 years of therapy. Remission assessment after 3 cycles."
+        }
+      ]
+    },
+    {
+      "report_type": "doctor_letter",
+      "report_date": "2022-07-15",
+      "title": "Physician letter – follow‑up Dara‑Rd cycle 3",
+      "sections": [
+        {
+          "name": "Diagnoses",
+          "content": "Multiple myeloma, IgG κ light chain (diagnosed 03/2019)\nFirst relapse (05/2022), second line Dara‑Rd since 15.05.2022: response"
+        },
+        {
+          "name": "Current course",
+          "content": "Cycle 3 Dara‑Rd completed. Infusion reaction grade 1 only with first Daratumumab dose (flush, self‑limiting). No further reactions. Fatigue grade 1.\nLaboratory (12.07.2022): IgG 13,5 g/l (baseline relapse 16,8 g/l – reduction 20%). Hemoglobin 11,2 g/dl. Leukocytes 3,6 G/l. Platelets 152 G/l.  \nECOG: 1."
+        },
+        {
+          "name": "Current medication",
+          "content": "Daratumumab/Hyaluronidase 1.800 mg s.c. every 2 weeks (from cycle 3)\nLenalidomide 25 mg/d p.o. days 1–21  \nDexamethasone 40 mg weekly  \nZoledronic acid 4 mg i.v. monthly"
+        },
+        {
+          "name": "Further procedure",
+          "content": "Continuation of Dara‑Rd. Next remission assessment after cycle 5 (September 2022)."
+        }
+      ]
+    },
+    {
+      "report_type": "doctor_letter",
+      "report_date": "2022-09-12",
+      "title": "Physician letter – follow‑up Dara‑Rd cycle 5",
+      "sections": [
+        {
+          "name": "Diagnoses",
+          "content": "Multiple Myeloma, IgG LK kappa (ED 03/2019)\n2nd line Dara-Rd: further response, towards VGPR"
+        },
+        {
+          "name": "Current course",
+          "content": "Cycle 5 Dara-Rd well tolerated. Daratumumab administrations without problem. No relevant neutropenia.\nLabor (08.09.2022): IgG 11,0 g/l (further decline). FLK kappa 28,0 mg/l. Hemoglobin 11,5 g/dl.  \nECOG: 1."
+        },
+        {
+          "name": "Current medication",
+          "content": "Daratumumab/Hyaluronidase 1.800 mg s.c. every 2 weeks\nLenalidomide 25 mg/d p.o. days 1–21  \nDexamethasone 40 mg weekly  \nZoledronic acid 4 mg i.v. monthly"
+        },
+        {
+          "name": "Further procedure",
+          "content": "Remission control after 6 cycles (November 2022)."
+        }
+      ]
+    },
+    {
+      "report_type": "doctor_letter",
+      "report_date": "2022-11-20",
+      "title": "Physician letter – Response after 6 cycles Dara-Rd",
+      "sections": [
+        {
+          "name": "Diagnoses",
+          "content": "Multiple Myeloma, IgG LK kappa (ED 03/2019)\nUnder Dara-Rd (2nd line, from 05/2022): VGPR"
+        },
+        {
+          "name": "Treatment response",
+          "content": "After 6 cycles Dara-Rd:\n- IgG: 9,3 g/l (baseline relapse value 16,8 g/l)  \n- Immunfixation in serum: positive (weak)  \n- Free light chains kappa: 22 mg/l (slightly elevated)  \nAssessment: VGPR  \n\nTolerability: Infusion reaction Grade 1 at first Dara administration (flush, rhinorrhea, fully reversible). From 2nd infusion onward without problem. Lenalidomide-associated fatigue Grade 1. No neutropenia Grade 3/4."
+        },
+        {
+          "name": "Further procedure",
+          "content": "Continuation of Dara-Rd until progression. Next remission control in 3 months."
+        }
+      ]
+    },
+    {
+      "report_type": "doctor_letter",
+      "report_date": "2023-02-20",
+      "title": "Physician letter – Follow-up control Dara-Rd, sustained VGPR",
+      "sections": [
+        {
+          "name": "Diagnoses",
+          "content": "Multiple Myeloma, IgG LK kappa (ED 03/2019)\n2nd line Dara-Rd (since 05/2022): stable VGPR"
+        },
+        {
+          "name": "Current course",
+          "content": "Routine check under ongoing Dara-Rd. Patient stable, no new complaints. Fatigue Grade 1 persistent.\nLabor (15.02.2023): IgG 9,8 g/l. Immunfixation positive (weak – VGPR). Hemoglobin 11,8 g/dl. No evidence of progression.  \nDaratumumab monthly continues to be well tolerated."
+        },
+        {
+          "name": "Current medication",
+          "content": "Daratumumab/Hyaluronidase 1.800 mg s.c. monthly (from cycle 7)\nLenalidomid 25 mg/d p.o. days 1–21  \nDexamethason 40 mg weekly"
+        },
+        {
+          "name": "Further procedure",
+          "content": "Next routine check May 2023."
+        }
+      ]
+    },
+    {
+      "report_type": "doctor_letter",
+      "report_date": "2023-05-08",
+      "title": "Physician letter – follow‑up control Dara‑Rd",
+      "sections": [
+        {
+          "name": "Diagnoses",
+          "content": "Multiple myeloma, IgG LK kappa (ED 03/2019)\n2nd line Dara‑Rd: VGPR, slightly increasing"
+        },
+        {
+          "name": "Current course",
+          "content": "Routine check. Patient clinically stable. No new bone pain.\nLabor (05.05.2023): IgG 10,2 g/l (slight increase compared to 02/2023: 9,8 g/l). FLK kappa 24,0 mg/l. Hemoglobin 11,4 g/dl. Observation planned."
+        },
+        {
+          "name": "Current medication",
+          "content": "Daratumumab/Hyaluronidase 1.800 mg s.c. monthly\nLenalidomid 25 mg/d p.o. days 1–21  \nDexamethason 40 mg weekly"
+        },
+        {
+          "name": "Further procedure",
+          "content": "More frequent monitoring in 6–8 weeks in view of the IgG increase."
+        }
+      ]
+    },
+    {
+      "report_type": "doctor_letter",
+      "report_date": "2023-07-10",
+      "title": "Physician letter – rising tumor markers, suspected progression under Dara‑Rd",
+      "sections": [
+        {
+          "name": "Diagnoses",
+          "content": "Multiple myeloma, IgG LK kappa (ED 03/2019)\nSuspected progression under Dara‑Rd (2nd line)"
+        },
+        {
+          "name": "Current course",
+          "content": "Marked increase of tumor markers: IgG 13,5 g/l (baseline 05/2023: 10,2 g/l). FLK kappa 52,0 mg/l. LDH 298 U/l (slightly elevated). Hemoglobin 10,8 g/dl. Immunofixation: positive (marked).\nClinically: Patient reports again increasing LWK4 pain.  \nSuspected progression under Dara‑Rd. Further diagnostics urgently initiated."
+        },
+        {
+          "name": "Further procedure",
+          "content": "Skeletal CT: 12.07.2023. KM-Biopsie: 30.08.2023. PET-CT: 01.09.2023. Tumorboard: 20.07.2023."
+        }
+      ]
+    },
+    {
+      "report_type": "radiology",
+      "report_date": "2023-07-12",
+      "title": "Skeletal CT – Suspected progression under Dara‑Rd",
+      "sections": [
+        {
+          "name": "Full report",
+          "content": "Clinical information: MM IgG kappa, under Dara‑Rd. Rising IgG and FLK values. Increasing L4 lumbar pain.\n\nQuestion: Monitoring of known and exclusion of new osseous lesions.  \n\nPrior imaging: Skeletal CT 05.05.2022.  \n\nFindings: Whole‑body low‑dose CT from 12.07.2023.  \nSpine: Size progression of the L4 lesion (now 16 mm, previously 12 mm in 05/2022). New lytic focus at T11 (8 mm, not seen in prior study). No pathologic fracture.  \nPelvis, skull, extremities: No additional new lesions.  \nConclusion: Size progression of L4 and new osteolysis at T11 – radiologically consistent with progression of multiple myeloma."
+        }
+      ]
+    },
+    {
+      "report_type": "tumor_board",
+      "report_date": "2023-07-20",
+      "title": "Tumor board decision – Suspected 2nd relapse under Dara‑Rd",
+      "sections": [
+        {
+          "name": "Reason for discussion",
+          "content": "Rising tumor marker (IgG 13,5 g/l) and new osseous lesion (T11) on imaging in patient under Dara‑Rd (2nd line). Suspected progression."
+        },
+        {
+          "name": "Previous therapy",
+          "content": "03/2019–01/2020: VRd × 6 → VGPR\n02/2020: High‑dose melphalan + ASCT → CR  \n04/2020–04/2022: Len maintenance  \n05/2022–ongoing: Dara‑Rd → VGPR → currently suspected progression"
+        },
+        {
+          "name": "Decision",
+          "content": "Consensus: BM biopsy (30.08.2023) and PET‑CT (01.09.2023) to confirm the relapse. If progression is confirmed: plan next line of therapy (Isa‑Pd). Bridge with current regimen until results are available."
+        }
+      ]
+    },
+    {
+      "report_type": "radiology",
+      "report_date": "2023-08-28",
+      "title": "Skeletal CT – 2nd relapse staging",
+      "sections": [
+        {
+          "name": "Full report",
+          "content": "Clinical information: MM IgG kappa, suspected 2nd relapse under Dara‑Rd. IgG 22,4 g/l, FLK kappa 94 mg/l.\n\nQuestion: Extent of osseous manifestations. Comparison with prior studies.  \n\nPrior imaging: Skeletal CT 12.07.2023.  \n\nFindings: Whole‑body low‑dose CT from 28.08.2023.  \nSpine: L4 lesion 18 mm (increase from 16 mm in 07/2023). T11 lesion confirmed (8 mm, stable since 07/2023).  \nPelvis: New small lytic lesion of the sacral bone (5 mm, new).  \nSkull, extremities: No additional new lesions.  \nConclusion: Radiologic progression with size increase of L4, persistence of T11 and new focus in the sacrum."
+        }
+      ]
+    },
+    {
+      "report_type": "pathology",
+      "report_date": "2023-08-30",
+      "title": "Bone marrow biopsy – 2nd relapse staging",
+      "sections": [
+        {
+          "name": "Findings",
+          "content": "Bone marrow core biopsy from 30.08.2023.\nCellularity: approx. 70%.  \nPlasma cell infiltration: approx. 40% (increase from 25% in 05/2022).  \nImmunohistochemistry: CD138+, kappa+, lambda negative."
+        },
+        {
+          "name": "FISH result",
+          "content": "FISH analysis (30.08.2023):\n- del(17p): POSITIVE (50% of cells, increase from 42%)  \n- t(4;14): negative  \n- t(14;16): negative  \n- 1q21 gain: POSITIVE (NEW since 03/2019)  \n\nComparison with the initial diagnosis (03/2019): A 1q21 gain has newly appeared. del(17p) persists with an increased proportion of affected cells."
+        }
+      ]
+    },
+    {
+      "report_type": "radiology",
+      "report_date": "2023-09-01",
+      "title": "PET‑CT – 2nd relapse staging",
+      "sections": [
+        {
+          "name": "Full report",
+          "content": "Clinical data: MM IgG kappa, 2nd relapse after Dara‑Rd. Staging before initiation of 3rd line therapy.\n\nQuestion: Metabolic activity of the osseous manifestations. Exclusion of extra‑osseous disease.  \n\nPrior imaging: PET‑CT 06.05.2022.  \n\nFindings: PET‑CT from 01.09.2023.  \nLWK4: FDG‑avid (SUVmax 6,2, markedly more active than 05/2022: SUVmax 4,8).  \nBWK11: FDG‑avid (SUVmax 3,8, new).  \nOs sacrum: New increased uptake (SUVmax 2,4).  \nExtramedullary manifestation: Not detectable.  \nConclusion: Multiple metabolically active osseous lesions representing the 2nd relapse. No extra‑osseous involvement."
+        }
+      ]
+    },
+    {
+      "report_type": "doctor_letter",
+      "report_date": "2023-09-05",
+      "title": "Physician letter – Second relapse, start Isa‑Pd (3rd line)",
+      "sections": [
+        {
+          "name": "Diagnoses",
+          "content": "Multiple myeloma, IgG LK kappa (ED 03/2019)\n2nd relapse (08/2023) under Dara‑Rd  \nStart of 3rd line: Isatuximab + Pomalidomide + Dexamethasone (Isa‑Pd)"
+        },
+        {
+          "name": "Second relapse",
+          "content": "Progressive disease under Dara‑Rd: IgG increase to 22,4 g/l, immunofixation positive, free light chains kappa 94 mg/l. Clinically new LWK4 pain.\n\nSkeletal CT 28.08.2023: New osteolysis at BWK11 (8 mm), size progression of LWK4 lesion to 18 mm.  \n\nBone marrow biopsy 30.08.2023: Plasma cell infiltration 40%, del(17p) still positive, new: 1q21 gain detectable (FISH).  \nECOG: 1"
+        },
+        {
+          "name": "Therapy plan 3rd line",
+          "content": "Start Isatuximab + Pomalidomide + Dexamethasone (Isa‑Pd) from 12.09.2023.\nIsatuximab 10 mg/kg i.v. weekly Cycle 1, every 2 weeks from Cycle 2.  \nPomalidomide 4 mg/d p.o. days 1–21 / 28‑day cycle.  \nDexamethasone 40 mg weekly."
+        },
+        {
+          "name": "Current general condition",
+          "content": "ECOG: 1. Patient mobile, independent in all activities of daily living. Weight 82 kg, KOF 1,98 m². No new cardiac complaints. No renal failure, no dialysis."
+        }
+      ]
+    },
+    {
+      "report_type": "tumor_board",
+      "report_date": "2023-09-08",
+      "title": "Tumor board decision – 2nd relapse, therapy planning Isa‑Pd",
+      "sections": [
+        {
+          "name": "Reason for discussion",
+          "content": "Confirmed 2nd relapse of a multiple myeloma after Dara‑Rd. IgG 22,4 g/l. New FISH aberration 1q21 (in addition to known del(17p)). ECOG 1."
+        },
+        {
+          "name": "Previous therapy",
+          "content": "1L VRd × 6 → VGPR, ASCT → CR, Len maintenance\n2L Dara‑Rd → VGPR → Progress 08/2023  \nDaratumumab pre‑treated, lenalidomide‑refractory"
+        },
+        {
+          "name": "Decision",
+          "content": "Consensus: Start Isatuximab + Pomalidomide + Dexamethasone (Isa‑Pd) as 3rd line therapy from 12.09.2023.\nIsatuximab as CD38‑Ab with a different binding epitope compared to Daratumumab. Pomalidomide as the IMiD of choice (lenalidomide‑refractory). No studies available. Remission assessment after Cycle 2."
+        }
+      ]
+    },
+    {
+      "report_type": "doctor_letter",
+      "report_date": "2023-10-15",
+      "title": "Physician letter – Follow‑up assessment Isa‑Pd Cycle 2",
+      "sections": [
+        {
+          "name": "Diagnoses",
+          "content": "Multiple myeloma, IgG LK kappa (ED 03/2019)\n2nd relapse (08/2023), 3rd line Isa‑Pd (from 12.09.2023): early response"
+        },
+        {
+          "name": "Current course",
+          "content": "Isa-Pd cycle 2 completed. Neutropenia grade 2 (G‑CSF single dose). Fatigue grade 2. No infusion‑related reactions to Isatuximab. No infection.\nLabor (10.10.2023): IgG 18,2 g/l (baseline 22,4 g/l – reduction 19%). FLK kappa 76,0 mg/l. Hemoglobin 10,5 g/dl. Leukocytes 3,4 G/l.  \nECOG: 1. Early response (<25% reduction, no PR yet)."
+        },
+        {
+          "name": "Current medication",
+          "content": "Isatuximab 10 mg/kg i.v. every 2 weeks\nPomalidomide 4 mg/d PO days 1–21  \nDexamethasone 40 mg weekly  \nValaciclovir 500 mg 1‑0‑1  \nCotrimoxazole 960 mg Mon/Wed/Fri"
+        },
+        {
+          "name": "Further procedure",
+          "content": "Remission assessment after cycle 3 (November 2023)."
+        }
+      ]
+    },
+    {
+      "report_type": "doctor_letter",
+      "report_date": "2023-11-12",
+      "title": "Physician letter – course control Isa-Pd cycle 3, best response",
+      "sections": [
+        {
+          "name": "Diagnoses",
+          "content": "Multiple myeloma, IgG LK kappa (diagnosed 03/2019)\n3rd line Isa-Pd: PR after 3 cycles (best response)"
+        },
+        {
+          "name": "Current course",
+          "content": "After 3 cycles of Isa-Pd best response: IgG 13,8 g/l (nadir, baseline 22,4 g/l – reduction 38%). Immunofixation positive. Partial response (PR) per IMWG criteria.\nLabor (08.11.2023): IgG 13,8 g/l. FLK kappa 48,0 mg/l. Hemoglobin 10,8 g/dl.  \nTolerability: Pomalidomide‑associated neutropenia grade 3 in cycle 3. Dose reduction to 3 mg/d decided."
+        },
+        {
+          "name": "Current medication",
+          "content": "Isatuximab 10 mg/kg i.v. every 2 weeks\nPomalidomide 3 mg/d PO (dose reduction due to neutropenia grade 3) days 1–21  \nDexamethasone 40 mg weekly"
+        },
+        {
+          "name": "Further procedure",
+          "content": "Continuation of Isa-Pd with reduced Pomalidomide dose. Next assessment December 2023."
+        }
+      ]
+    },
+    {
+      "report_type": "doctor_letter",
+      "report_date": "2023-12-10",
+      "title": "Physician letter – course control Isa-Pd cycle 4",
+      "sections": [
+        {
+          "name": "Diagnoses",
+          "content": "Multiple myeloma, IgG LK kappa (diagnosed 03/2019)\n3rd line Isa-Pd: PR → renewed increase in IgG, response declining"
+        },
+        {
+          "name": "Current course",
+          "content": "IgG 15,1 g/l (increase from 13,8 g/l in 11/2023). FLK kappa 62,0 mg/l. Hemoglobin 10,6 g/dl. Immunofixation strongly positive. Response declining – no formal IMWG progression, but clinical trend worrisome.\nPomalidomide 3 mg: stable blood count values (Lk 4,1 G/l, Neutrophils 2,2 G/l). No infection."
+        },
+        {
+          "name": "Current medication",
+          "content": "Isatuximab 10 mg/kg i.v. every 2 weeks\nPomalidomide 3 mg/d p.o. days 1–21  \nDexamethasone 40 mg weekly"
+        },
+        {
+          "name": "Further procedure",
+          "content": "Tumor board discussion 12.02.2024. Continuation of Isa‑Pd as bridging until tumor board decision."
+        }
+      ]
+    },
+    {
+      "report_type": "doctor_letter",
+      "report_date": "2024-02-10",
+      "title": "Physician letter – Response after 5 cycles of Isa‑Pd, planning next line",
+      "sections": [
+        {
+          "name": "Diagnoses",
+          "content": "Multiple myeloma, IgG kappa light chain (diagnosed 03/2019)\nOn Isa‑Pd (3rd line, since 09/2023): PR, now renewed response declining  \nDaratumumab pretreated, lenalidomide‑refractory  \nTriple‑class‑exposed: PI (Bortezomib), IMiD (Lenalidomide/Pomalidomide), CD38 mAb (Daratumumab/Isatuximab)"
+        },
+        {
+          "name": "Therapeutic response Isa‑Pd",
+          "content": "Best response under Isa‑Pd: PR (partial response) after 3 cycles.\n- IgG nadir: 13,8 g/l (baseline 22,4 g/l)  \nCurrent (02/2024): IgG 16,5 g/l, renewed increase, immunofixation strongly positive.  \n\nPomalidomide tolerability: neutropenia grade 3 (cycle 2), dose reduction to 3 mg. Since then stable blood counts. No infection. Fatigue grade 2.  \n\nDuration of pomalidomide: 12.09.2023 – ongoing (ca. 5 months)."
+        },
+        {
+          "name": "Current status",
+          "content": "ECOG: 1. Patient reports increasing fatigue, but remains independent.\nHCT‑CI: 0 points (no relevant comorbidities).  \nNo dialysis, no renal failure, no atrial fibrillation, no significant liver or lung disease."
+        },
+        {
+          "name": "Planning",
+          "content": "Patient is triple‑class‑exposed and not triple‑class‑refractory (Daratumumab not refractory, last response VGPR).\nNaïve to: Carfilzomib, Ixazomib, Elotuzumab, Belantamab, BiTE therapies (Teclistamab, Elranatamab, Talquetamab), CAR‑T (Ide‑cel, Cilta‑cel).  \n\nTumor board discussion 12.02.2024 planned.  \nOption: BCMA‑directed therapy (CAR‑T or BiTE) after approval and availability.  \nCAR‑T prerequisite: at least 3 prior therapies including PI, IMiD, CD38 mAb → met.  \nECOG 1 → suitable for CAR‑T.  \nNext steps: referral to CAR‑T center, leukapheresis planning."
+        }
+      ]
+    },
+    {
+      "report_type": "tumor_board",
+      "report_date": "2024-02-12",
+      "title": "Tumor board decision – Triple‑class‑exposed relapse, CAR‑T planning",
+      "sections": [
+        {
+          "name": "Reason for discussion",
+          "content": "Third relapse of a multiple myeloma, IgG kappa light chain (diagnosed 03/2019). Patient triple‑class‑exposed (PI, IMiD, CD38 mAb). Planning next line of therapy."
+        },
+        {
+          "name": "Prior therapy",
+          "content": "03/2019–01/2020: VRd × 6 cycles → VGPR\n02/2020: high‑dose melphalan (200 mg/m²) + autologous SCT → CR  \n04/2020–04/2022: lenalidomide maintenance (10 mg/d)  \n05/2022–07/2023: daratumumab + lenalidomide + dexamethasone (Dara‑Rd) → VGPR → progression  \n09/2023–ongoing: isatuximab + pomalidomide + dexamethasone (Isa‑Pd) → PR → now renewed increase"
+        },
+        {
+          "name": "Decision",
+          "content": "Consensus: The patient meets the criteria for a BCMA‑directed CAR‑T cell therapy.\nApproved BCMA‑CAR‑T products in Germany (as of 02/2024): idecabtagene vicleucel (Ide‑cel / Abecma) and ciltacabtagene autoleucel (Cilta‑cel / Carvykti).  \nDiagnostics before CAR‑T: current CT/PET‑CT, bone‑marrow biopsy with immunophenotyping, BCMA expression (FACS), echocardiography, pulmonary function, infection serology (CMV, EBV, HSV, HBV, HCV, HIV), complete blood count and coagulation.  \nLeukapheresis recommended promptly (bridging with pomalidomide/dexamethasone until product availability)."
+        }
+      ]
+    },
+    {
+      "report_type": "doctor_letter",
+      "report_date": "2024-03-08",
+      "title": "Physician letter – CAR‑T preparation, leukapheresis planning",
+      "sections": [
+        {
+          "name": "Diagnoses",
+          "content": "Multiple myeloma, IgG kappa light chain (diagnosed 03/2019) After tumor board 12.02.2024: BCMA‑CAR‑T planned Bridging: Pomalidomide + Dexamethasone"
+        },
+        {
+          "name": "Course",
+          "content": "Following tumor board decision, initiation of CAR‑T preparation. Echocardiography (27.02.2024): EF 62%, no pericardial effusion – cardiac clearance for CAR‑T. Pulmonary function (01.03.2024): FEV1 82%, DLCO 74% – pulmonary clearance. Leukapheresis appointment: 22.03.2024 (CAR‑T center). Bridging: Pomalidomide 3 mg/d + Dexamethasone 20 mg weekly."
+        },
+        {
+          "name": "Current medication",
+          "content": "Pomalidomide 3 mg/d PO (bridging)\nDexamethasone 20 mg PO weekly  \nValaciclovir 500 mg 1‑0‑1  \nPantoprazole 40 mg 1‑0‑0"
+        },
+        {
+          "name": "Further procedure",
+          "content": "Leukapheresis 22.03.2024. PET‑CT baseline 15.03.2024. Production time approx. 4–6 weeks. Expected CAR‑T infusion: end of April / beginning of May 2024."
+        }
+      ]
+    },
+    {
+      "report_type": "radiology",
+      "report_date": "2024-03-15",
+      "title": "PET‑CT – baseline before CAR‑T leukapheresis",
+      "sections": [
+        {
+          "name": "Full report",
+          "content": "Clinical information: MM IgG kappa, 3rd relapse. BCMA‑CAR‑T cell therapy planned. PET‑CT as staging baseline before leukapheresis. Question: Current findings of osseous and extra‑osseous manifestations as baseline before CAR‑T. Prior imaging: PET‑CT 01.09.2023. Findings: PET‑CT from 15.03.2024. Osseous lesions: L4 vertebra FDG‑avid (SUVmax 5.8, slightly decreasing vs. 09/2023: 6.2). T11 vertebra FDG‑avid (SUVmax 3.2, stable). Sacral bone (SUVmax 2.1, stable). Extramedullary manifestation: Not detectable. Conclusion: Stable osseous manifestations under Isa‑Pd bridging. No extra‑osseous myeloma. Baseline documentation for CAR‑T evaluation."
+        }
+      ]
+    }
+  ],
+  "lab_values": [
+    {
+      "name": "IgG",
+      "date": "2019-03-14",
+      "value": "42.1",
+      "unit": "g/l",
+      "reference_range": "7.0 - 16.0"
+    },
+    {
+      "name": "IgA",
+      "date": "2019-03-14",
+      "value": "0.4",
+      "unit": "g/l",
+      "reference_range": "0.7 - 4.0"
+    },
+    {
+      "name": "IgM",
+      "date": "2019-03-14",
+      "value": "0.3",
+      "unit": "g/l",
+      "reference_range": "0.4 - 2.3"
+    },
+    {
+      "name": "Free light chains kappa",
+      "date": "2019-03-14",
+      "value": "842",
+      "unit": "mg/l",
+      "reference_range": "3.3 - 19.4"
+    },
+    {
+      "name": "Free light chains lambda",
+      "date": "2019-03-14",
+      "value": "12.1",
+      "unit": "mg/l",
+      "reference_range": "5.7 - 26.3"
+    },
+    {
+      "name": "Kappa/Lambda",
+      "date": "2019-03-14",
+      "value": "69.6",
+      "unit": "",
+      "reference_range": "0.26 - 1.65"
+    },
+    {
+      "name": "Beta‑2 microglobulin",
+      "date": "2019-03-14",
+      "value": "4.1",
+      "unit": "mg/l",
+      "reference_range": "< 2.5"
+    },
+    {
+      "name": "Albumin",
+      "date": "2019-03-14",
+      "value": "3.6",
+      "unit": "g/dl",
+      "reference_range": "3.5 - 5.0"
+    },
+    {
+      "name": "LDH",
+      "date": "2019-03-14",
+      "value": "298",
+      "unit": "U/l",
+      "reference_range": "< 244"
+    },
+    {
+      "name": "Calcium",
+      "date": "2019-03-14",
+      "value": "2.4",
+      "unit": "mmol/l",
+      "reference_range": "2.15 - 2.55"
+    },
+    {
+      "name": "Creatinine",
+      "date": "2019-03-14",
+      "value": "0.9",
+      "unit": "mg/dl",
+      "reference_range": "0.7 - 1.3"
+    },
+    {
+      "name": "eGFR",
+      "date": "2019-03-14",
+      "value": "78",
+      "unit": "ml/min",
+      "reference_range": "> 60"
+    },
+    {
+      "name": "Hemoglobin",
+      "date": "2019-03-14",
+      "value": "9.8",
+      "unit": "g/dl",
+      "reference_range": "13.5 - 17.5"
+    },
+    {
+      "name": "Leukocytes",
+      "date": "2019-03-14",
+      "value": "5.2",
+      "unit": "G/l",
+      "reference_range": "4.0 - 9.0"
+    },
+    {
+      "name": "Platelets",
+      "date": "2019-03-14",
+      "value": "198",
+      "unit": "G/l",
+      "reference_range": "150 - 400"
+    },
+    {
+      "name": "Inflammatory marker",
+      "date": "2019-03-14",
+      "value": "1.8",
+      "unit": "mg/dl",
+      "reference_range": "< 0.5"
+    },
+    {
+      "name": "IgG",
+      "date": "2019-04-15",
+      "value": "28.4",
+      "unit": "g/l",
+      "reference_range": "7.0 - 16.0"
+    },
+    {
+      "name": "Hemoglobin",
+      "date": "2019-04-15",
+      "value": "10.1",
+      "unit": "g/dl",
+      "reference_range": "13.5 - 17.5"
+    },
+    {
+      "name": "Leukocytes",
+      "date": "2019-04-15",
+      "value": "4.8",
+      "unit": "G/l",
+      "reference_range": "4.0 - 9.0"
+    },
+    {
+      "name": "Platelets",
+      "date": "2019-04-15",
+      "value": "182",
+      "unit": "G/l",
+      "reference_range": "150 - 400"
+    },
+    {
+      "name": "IgG",
+      "date": "2019-05-12",
+      "value": "18.2",
+      "unit": "g/l",
+      "reference_range": "7.0 - 16.0"
+    },
+    {
+      "name": "Free light chains kappa",
+      "date": "2019-05-12",
+      "value": "128",
+      "unit": "mg/l",
+      "reference_range": "3.3 - 19.4"
+    },
+    {
+      "name": "Hemoglobin",
+      "date": "2019-05-12",
+      "value": "10.8",
+      "unit": "g/dl",
+      "reference_range": "13.5 - 17.5"
+    },
+    {
+      "name": "Leukocytes",
+      "date": "2019-05-12",
+      "value": "3.9",
+      "unit": "G/l",
+      "reference_range": "4.0 - 9.0"
+    },
+    {
+      "name": "Hemoglobin",
+      "date": "2019-06-25",
+      "value": "9.4",
+      "unit": "g/dl",
+      "reference_range": "13.5 - 17.5"
+    },
+    {
+      "name": "Leukocytes",
+      "date": "2019-06-25",
+      "value": "3.1",
+      "unit": "G/l",
+      "reference_range": "4.0 - 9.0"
+    },
+    {
+      "name": "Neutrophils",
+      "date": "2019-06-25",
+      "value": "1.8",
+      "unit": "G/l",
+      "reference_range": "1.8 - 7.5"
+    },
+    {
+      "name": "Inflammatory marker",
+      "date": "2019-06-25",
+      "value": "8.4",
+      "unit": "mg/dl",
+      "reference_range": "< 0.5"
+    },
+    {
+      "name": "IgG",
+      "date": "2019-09-05",
+      "value": "8.3",
+      "unit": "g/l",
+      "reference_range": "7.0 - 16.0"
+    },
+    {
+      "name": "Free Kappa Light Chains",
+      "date": "2019-09-05",
+      "value": "17.2",
+      "unit": "mg/l",
+      "reference_range": "3.3 - 19.4"
+    },
+    {
+      "name": "Beta2-microglobulin",
+      "date": "2019-09-05",
+      "value": "2.8",
+      "unit": "mg/l",
+      "reference_range": "< 2.5"
+    },
+    {
+      "name": "Hemoglobin",
+      "date": "2019-09-05",
+      "value": "11.2",
+      "unit": "g/dl",
+      "reference_range": "13.5 - 17.5"
+    },
+    {
+      "name": "Leukocytes",
+      "date": "2019-09-05",
+      "value": "2.1",
+      "unit": "G/l",
+      "reference_range": "4.0 - 9.0"
+    },
+    {
+      "name": "Neutrophils",
+      "date": "2019-09-05",
+      "value": "0.9",
+      "unit": "G/l",
+      "reference_range": "1.8 - 7.5"
+    },
+    {
+      "name": "Platelets",
+      "date": "2019-09-05",
+      "value": "145",
+      "unit": "G/l",
+      "reference_range": "150 - 400"
+    },
+    {
+      "name": "IgG",
+      "date": "2019-10-08",
+      "value": "7.8",
+      "unit": "g/l",
+      "reference_range": "7.0 - 16.0"
+    },
+    {
+      "name": "Hemoglobin",
+      "date": "2019-10-08",
+      "value": "11.4",
+      "unit": "g/dl",
+      "reference_range": "13.5 - 17.5"
+    },
+    {
+      "name": "Leukocytes",
+      "date": "2019-10-08",
+      "value": "2.8",
+      "unit": "G/l",
+      "reference_range": "4.0 - 9.0"
+    },
+    {
+      "name": "IgG",
+      "date": "2019-11-02",
+      "value": "7.4",
+      "unit": "g/l",
+      "reference_range": "7.0 - 16.0"
+    },
+    {
+      "name": "Hemoglobin",
+      "date": "2019-11-02",
+      "value": "11.8",
+      "unit": "g/dl",
+      "reference_range": "13.5 - 17.5"
+    },
+    {
+      "name": "IgG",
+      "date": "2020-01-10",
+      "value": "5.1",
+      "unit": "g/l",
+      "reference_range": "7.0 - 16.0"
+    },
+    {
+      "name": "Free Kappa Light Chains",
+      "date": "2020-01-10",
+      "value": "18.2",
+      "unit": "mg/l",
+      "reference_range": "3.3 - 19.4"
+    },
+    {
+      "name": "Beta2-microglobulin",
+      "date": "2020-01-10",
+      "value": "2.2",
+      "unit": "mg/l",
+      "reference_range": "< 2.5"
+    },
+    {
+      "name": "Hemoglobin",
+      "date": "2020-01-10",
+      "value": "11.2",
+      "unit": "g/dl",
+      "reference_range": "13.5 - 17.5"
+    },
+    {
+      "name": "Leukocytes",
+      "date": "2020-01-10",
+      "value": "4.2",
+      "unit": "G/l",
+      "reference_range": "4.0 - 9.0"
+    },
+    {
+      "name": "Platelets",
+      "date": "2020-01-10",
+      "value": "168",
+      "unit": "G/l",
+      "reference_range": "150 - 400"
+    },
+    {
+      "name": "IgG",
+      "date": "2020-04-15",
+      "value": "7.2",
+      "unit": "g/l",
+      "reference_range": "7.0 - 16.0"
+    },
+    {
+      "name": "Free Kappa Light Chains",
+      "date": "2020-04-15",
+      "value": "11.2",
+      "unit": "mg/l",
+      "reference_range": "3.3 - 19.4"
+    },
+    {
+      "name": "Kappa/Lambda",
+      "date": "2020-04-15",
+      "value": "1.2",
+      "unit": "",
+      "reference_range": "0.26 - 1.65"
+    },
+    {
+      "name": "Hemoglobin",
+      "date": "2020-04-15",
+      "value": "12.8",
+      "unit": "g/dl",
+      "reference_range": "13.5 - 17.5"
+    },
+    {
+      "name": "Creatinine",
+      "date": "2020-04-15",
+      "value": "1.0",
+      "unit": "mg/dl",
+      "reference_range": "0.7 - 1.3"
+    },
+    {
+      "name": "Beta-2-microglobulin",
+      "date": "2020-04-15",
+      "value": "2.1",
+      "unit": "mg/l",
+      "reference_range": "< 2.5"
+    },
+    {
+      "name": "IgG",
+      "date": "2020-06-12",
+      "value": "7.8",
+      "unit": "g/l",
+      "reference_range": "7.0 - 16.0"
+    },
+    {
+      "name": "Hemoglobin",
+      "date": "2020-06-12",
+      "value": "13.2",
+      "unit": "g/dl",
+      "reference_range": "13.5 - 17.5"
+    },
+    {
+      "name": "IgG",
+      "date": "2020-10-10",
+      "value": "8.1",
+      "unit": "g/l",
+      "reference_range": "7.0 - 16.0"
+    },
+    {
+      "name": "Hemoglobin",
+      "date": "2020-10-10",
+      "value": "13.5",
+      "unit": "g/dl",
+      "reference_range": "13.5 - 17.5"
+    },
+    {
+      "name": "IgG",
+      "date": "2021-01-15",
+      "value": "7.9",
+      "unit": "g/l",
+      "reference_range": "7.0 - 16.0"
+    },
+    {
+      "name": "Hemoglobin",
+      "date": "2021-01-15",
+      "value": "13.8",
+      "unit": "g/dl",
+      "reference_range": "13.5 - 17.5"
+    },
+    {
+      "name": "IgG",
+      "date": "2021-04-10",
+      "value": "8.2",
+      "unit": "g/l",
+      "reference_range": "7.0 - 16.0"
+    },
+    {
+      "name": "Free Kappa Light Chains",
+      "date": "2021-04-10",
+      "value": "12.4",
+      "unit": "mg/l",
+      "reference_range": "3.3 - 19.4"
+    },
+    {
+      "name": "Beta-2-microglobulin",
+      "date": "2021-04-10",
+      "value": "2.0",
+      "unit": "mg/l",
+      "reference_range": "< 2.5"
+    },
+    {
+      "name": "Hemoglobin",
+      "date": "2021-04-10",
+      "value": "13.4",
+      "unit": "g/dl",
+      "reference_range": "13.5 - 17.5"
+    },
+    {
+      "name": "IgG",
+      "date": "2021-07-05",
+      "value": "8.0",
+      "unit": "g/l",
+      "reference_range": "7.0 - 16.0"
+    },
+    {
+      "name": "Hemoglobin",
+      "date": "2021-07-05",
+      "value": "13.6",
+      "unit": "g/dl",
+      "reference_range": "13.5 - 17.5"
+    },
+    {
+      "name": "IgG",
+      "date": "2021-10-12",
+      "value": "8.4",
+      "unit": "g/l",
+      "reference_range": "7.0 - 16.0"
+    },
+    {
+      "name": "Hemoglobin",
+      "date": "2021-10-12",
+      "value": "13.2",
+      "unit": "g/dl",
+      "reference_range": "13.5 - 17.5"
+    },
+    {
+      "name": "IgG",
+      "date": "2022-01-18",
+      "value": "8.8",
+      "unit": "g/l",
+      "reference_range": "7.0 - 16.0"
+    },
+    {
+      "name": "Free Kappa Light Chains",
+      "date": "2022-01-18",
+      "value": "14.2",
+      "unit": "mg/l",
+      "reference_range": "3.3 - 19.4"
+    },
+    {
+      "name": "Hemoglobin",
+      "date": "2022-01-18",
+      "value": "12.8",
+      "unit": "g/dl",
+      "reference_range": "13.5 - 17.5"
+    },
+    {
+      "name": "IgG",
+      "date": "2022-04-20",
+      "value": "16.8",
+      "unit": "g/l",
+      "reference_range": "7.0 - 16.0"
+    },
+    {
+      "name": "Free light chains kappa",
+      "date": "2022-04-20",
+      "value": "68.0",
+      "unit": "mg/l",
+      "reference_range": "3.3 - 19.4"
+    },
+    {
+      "name": "Beta-2 microglobulin",
+      "date": "2022-04-20",
+      "value": "3.4",
+      "unit": "mg/l",
+      "reference_range": "< 2.5"
+    },
+    {
+      "name": "Hemoglobin",
+      "date": "2022-04-20",
+      "value": "11.0",
+      "unit": "g/dl",
+      "reference_range": "13.5 - 17.5"
+    },
+    {
+      "name": "Leukocytes",
+      "date": "2022-04-20",
+      "value": "3.8",
+      "unit": "G/l",
+      "reference_range": "4.0 - 9.0"
+    },
+    {
+      "name": "IgG",
+      "date": "2022-07-12",
+      "value": "13.5",
+      "unit": "g/l",
+      "reference_range": "7.0 - 16.0"
+    },
+    {
+      "name": "Free light chains kappa",
+      "date": "2022-07-12",
+      "value": "42.0",
+      "unit": "mg/l",
+      "reference_range": "3.3 - 19.4"
+    },
+    {
+      "name": "Hemoglobin",
+      "date": "2022-07-12",
+      "value": "11.2",
+      "unit": "g/dl",
+      "reference_range": "13.5 - 17.5"
+    },
+    {
+      "name": "Leukocytes",
+      "date": "2022-07-12",
+      "value": "3.6",
+      "unit": "G/l",
+      "reference_range": "4.0 - 9.0"
+    },
+    {
+      "name": "IgG",
+      "date": "2022-09-08",
+      "value": "11.0",
+      "unit": "g/l",
+      "reference_range": "7.0 - 16.0"
+    },
+    {
+      "name": "Free light chains kappa",
+      "date": "2022-09-08",
+      "value": "28.0",
+      "unit": "mg/l",
+      "reference_range": "3.3 - 19.4"
+    },
+    {
+      "name": "Hemoglobin",
+      "date": "2022-09-08",
+      "value": "11.5",
+      "unit": "g/dl",
+      "reference_range": "13.5 - 17.5"
+    },
+    {
+      "name": "IgG",
+      "date": "2022-11-15",
+      "value": "9.3",
+      "unit": "g/l",
+      "reference_range": "7.0 - 16.0"
+    },
+    {
+      "name": "Free light chains kappa",
+      "date": "2022-11-15",
+      "value": "22.0",
+      "unit": "mg/l",
+      "reference_range": "3.3 - 19.4"
+    },
+    {
+      "name": "Hemoglobin",
+      "date": "2022-11-15",
+      "value": "11.8",
+      "unit": "g/dl",
+      "reference_range": "13.5 - 17.5"
+    },
+    {
+      "name": "IgG",
+      "date": "2023-02-15",
+      "value": "9.8",
+      "unit": "g/l",
+      "reference_range": "7.0 - 16.0"
+    },
+    {
+      "name": "Hemoglobin",
+      "date": "2023-02-15",
+      "value": "11.8",
+      "unit": "g/dl",
+      "reference_range": "13.5 - 17.5"
+    },
+    {
+      "name": "IgG",
+      "date": "2023-05-05",
+      "value": "10.2",
+      "unit": "g/l",
+      "reference_range": "7.0 - 16.0"
+    },
+    {
+      "name": "Free light chains kappa",
+      "date": "2023-05-05",
+      "value": "24.0",
+      "unit": "mg/l",
+      "reference_range": "3.3 - 19.4"
+    },
+    {
+      "name": "Hemoglobin",
+      "date": "2023-05-05",
+      "value": "11.4",
+      "unit": "g/dl",
+      "reference_range": "13.5 - 17.5"
+    },
+    {
+      "name": "IgG",
+      "date": "2023-07-05",
+      "value": "13.5",
+      "unit": "g/l",
+      "reference_range": "7.0 - 16.0"
+    },
+    {
+      "name": "Free light chains kappa",
+      "date": "2023-07-05",
+      "value": "52.0",
+      "unit": "mg/l",
+      "reference_range": "3.3 - 19.4"
+    },
+    {
+      "name": "Hemoglobin",
+      "date": "2023-07-05",
+      "value": "10.8",
+      "unit": "g/dl",
+      "reference_range": "13.5 - 17.5"
+    },
+    {
+      "name": "LDH",
+      "date": "2023-07-05",
+      "value": "298",
+      "unit": "U/l",
+      "reference_range": "< 244"
+    },
+    {
+      "name": "IgG",
+      "date": "2023-08-25",
+      "value": "22.4",
+      "unit": "g/l",
+      "reference_range": "7.0 - 16.0"
+    },
+    {
+      "name": "Free light chains kappa",
+      "date": "2023-08-25",
+      "value": "94.0",
+      "unit": "mg/l",
+      "reference_range": "3.3 - 19.4"
+    },
+    {
+      "name": "Beta2-microglobulin",
+      "date": "2023-08-25",
+      "value": "4.8",
+      "unit": "mg/l",
+      "reference_range": "< 2.5"
+    },
+    {
+      "name": "Hemoglobin",
+      "date": "2023-08-25",
+      "value": "10.4",
+      "unit": "g/dl",
+      "reference_range": "13.5 - 17.5"
+    },
+    {
+      "name": "LDH",
+      "date": "2023-08-25",
+      "value": "312",
+      "unit": "U/l",
+      "reference_range": "< 244"
+    },
+    {
+      "name": "IgG",
+      "date": "2023-10-10",
+      "value": "18.2",
+      "unit": "g/l",
+      "reference_range": "7.0 - 16.0"
+    },
+    {
+      "name": "Free light chains kappa",
+      "date": "2023-10-10",
+      "value": "76.0",
+      "unit": "mg/l",
+      "reference_range": "3.3 - 19.4"
+    },
+    {
+      "name": "Hemoglobin",
+      "date": "2023-10-10",
+      "value": "10.5",
+      "unit": "g/dl",
+      "reference_range": "13.5 - 17.5"
+    },
+    {
+      "name": "Leukocytes",
+      "date": "2023-10-10",
+      "value": "3.4",
+      "unit": "G/l",
+      "reference_range": "4.0 - 9.0"
+    },
+    {
+      "name": "IgG",
+      "date": "2023-11-08",
+      "value": "13.8",
+      "unit": "g/l",
+      "reference_range": "7.0 - 16.0"
+    },
+    {
+      "name": "Free light chains kappa",
+      "date": "2023-11-08",
+      "value": "48.0",
+      "unit": "mg/l",
+      "reference_range": "3.3 - 19.4"
+    },
+    {
+      "name": "Hemoglobin",
+      "date": "2023-11-08",
+      "value": "10.8",
+      "unit": "g/dl",
+      "reference_range": "13.5 - 17.5"
+    },
+    {
+      "name": "IgG",
+      "date": "2023-12-05",
+      "value": "15.1",
+      "unit": "g/l",
+      "reference_range": "7.0 - 16.0"
+    },
+    {
+      "name": "Free light chains kappa",
+      "date": "2023-12-05",
+      "value": "62.0",
+      "unit": "mg/l",
+      "reference_range": "3.3 - 19.4"
+    },
+    {
+      "name": "Hemoglobin",
+      "date": "2023-12-05",
+      "value": "10.6",
+      "unit": "g/dl",
+      "reference_range": "13.5 - 17.5"
+    },
+    {
+      "name": "IgG",
+      "date": "2024-02-05",
+      "value": "16.5",
+      "unit": "g/l",
+      "reference_range": "7.0 - 16.0"
+    },
+    {
+      "name": "Free Kappa Light Chains",
+      "date": "2024-02-05",
+      "value": "78.0",
+      "unit": "mg/l",
+      "reference_range": "3.3 - 19.4"
+    },
+    {
+      "name": "Hemoglobin",
+      "date": "2024-02-05",
+      "value": "10.1",
+      "unit": "g/dl",
+      "reference_range": "13.5 - 17.5"
+    },
+    {
+      "name": "Leukocytes",
+      "date": "2024-02-05",
+      "value": "3.2",
+      "unit": "G/l",
+      "reference_range": "4.0 - 9.0"
+    },
+    {
+      "name": "Neutrophils",
+      "date": "2024-02-05",
+      "value": "1.4",
+      "unit": "G/l",
+      "reference_range": "1.8 - 7.5"
+    },
+    {
+      "name": "Platelets",
+      "date": "2024-02-05",
+      "value": "132",
+      "unit": "G/l",
+      "reference_range": "150 - 400"
+    },
+    {
+      "name": "Creatinine",
+      "date": "2024-02-05",
+      "value": "1.1",
+      "unit": "mg/dl",
+      "reference_range": "0.7 - 1.3"
+    },
+    {
+      "name": "eGFR",
+      "date": "2024-02-05",
+      "value": "68",
+      "unit": "ml/min",
+      "reference_range": "> 60"
+    },
+    {
+      "name": "LDH",
+      "date": "2024-02-05",
+      "value": "285",
+      "unit": "U/l",
+      "reference_range": "< 244"
+    },
+    {
+      "name": "Albumin",
+      "date": "2024-02-05",
+      "value": "3.8",
+      "unit": "g/dl",
+      "reference_range": "3.5 - 5.0"
+    },
+    {
+      "name": "Inflammatory Markers",
+      "date": "2024-02-05",
+      "value": "2.2",
+      "unit": "mg/dl",
+      "reference_range": "< 0.5"
+    },
+    {
+      "name": "Beta2-Microglobulin",
+      "date": "2024-02-05",
+      "value": "4.2",
+      "unit": "mg/l",
+      "reference_range": "< 2.5"
+    }
+  ]
+}

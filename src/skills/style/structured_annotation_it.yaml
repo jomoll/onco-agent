@@ -1,0 +1,150 @@
+skill:
+  id: style.structured_annotation.it
+  name: Structured Answer Format — Italian
+  version: 1.1
+  category: style
+  inherits:
+    - style.base.it
+  description: >
+    Enforces structured answers matching annotation UI format using concrete examples — Italian variant.
+    Each schema type shows: format with all options, concrete example, and common mistakes.
+  triggers:
+    question_types: ["*"]
+    semantic_cues:
+      - "Use whenever producing patient-facing answers that should align with annotation schemas."
+activation:
+  intent: "Default formatting layer for clinical Q&A to mirror annotation schemas."
+conflicts: []
+structure:
+  template:
+    - "Answer: <schema-aligned value(s) or Abstain>"
+    - "Reasoning: <1–2 sentences with inline citations [ctx:ID]>"
+rules:
+  answer_formats:
+    single_choice: |
+      Format: Answer: <option from schema>
+      Example: Answer: Sì
+               Reasoning: Una terapia con Daratumumab è documentata nella lettera medica del 23.07.2021 [ctx:001].
+      ❌ WRONG: "Sì, il paziente riceve..." (no extra words in Answer line)
+
+    two_single_choice: |
+      Format: Answer: <label1>=<option1>; <label2>=<option2>
+      Example: Answer: Attualmente=Sì; Mai=No
+               Reasoning: Terapia attuale con Bortezomib in corso [ctx:002], nessuna CAR-T documentata [ctx:005].
+      ❌ WRONG: Adding explanations in Answer line
+
+    yn_plus_short_text: |
+      Format: Answer: Sì/No/Non chiaro | <brief text>
+      Example: Answer: Sì | Riduzione della dose al 75% per neutropenia
+               Reasoning: Riduzione della dose di Carfilzomib documentata nel decorso [ctx:003].
+      ❌ WRONG: Adding citations in Answer line
+
+    answer_plus_single_choice: |
+      Format: Answer: Categoria=<option>; Risposta=<text>
+      Example: Answer: Categoria=CR; Risposta=La terapia KRD ha raggiunto la migliore risposta
+               Reasoning: RC documentata dopo 3 cicli di KRD [ctx:007].
+
+    criteria_table_plus_final: |
+      Format: Answer: Criteria: <criterion1>=Soddisfatto/Non soddisfatto/Mancante; ... | Final: Sì/No/Non chiaro
+      Example: Answer: Criteria: ECOG≤2=Soddisfatto; Funzione renale=Non soddisfatto; Infezioni attive=Soddisfatto; FISH=Mancante | Final: No
+               Reasoning: ECOG 1 documentato [ctx:004], ma GFR <30 ml/min [ctx:006]. Nessuna infezione attiva documentata. Risultato FISH assente dalla cartella.
+      NOTE on 'Mancante' vs 'Soddisfatto' for exclusion criteria: When a criterion checks for the
+      ABSENCE of a condition and the condition is not mentioned in the record, mark as 'Soddisfatto'.
+      'Mancante' is reserved for criteria requiring a specific positive test or value never performed/documented.
+      NOTE on Final verdict: Commit to Sì or No when the majority of criteria are resolved.
+
+    multi_interval_up_to_3: |
+      Format: Answer: Status=Documentato/Mai somministrato/Non documentato/Non chiaro || (Start=DD.MM.YYYY, End=DD.MM.YYYY/In corso); ...
+      Example: Answer: Status=Documentato || 08.10.2022 - 18.10.2022; 15.07.2023 - 24.07.2023
+               Reasoning: Meropenem dal 08.–18.10.2022 [ctx:002] e dal 15.–24.07.2023 [ctx:008].
+      ❌ WRONG: Using vague dates or missing Status field
+
+    cycle_start_dose_list: |
+      Format: Answer: Status=Documentato/Mai somministrato/Non documentato/Non chiaro || <DD.MM.YYYY> | <dose> | <unit>; ...
+      Example: Answer: Status=Documentato || 05.12.2018 | 5 | mg; 09.01.2019 | 10 | mg
+               Reasoning: Ciclo 1 il 05.12.2018 con 5 mg [ctx:001], ciclo 2 il 09.01.2019 con 10 mg [ctx:003].
+      ❌ WRONG: C1D1: 05.12.2018 (use calendar dates DD.MM.YYYY, NEVER cycle labels)
+      Note: Rows only appear when Status=Documentato
+
+    melphalan_exposure_episode_up_to_3: |
+      Format: Answer: Status=Documentato/Mai somministrato/Non documentato/Non chiaro || <Tipo Alte dosi/ASCT|Schema> | <DD.MM.YYYY> | <dose> | <unit>; ...
+      Example: Answer: Status=Documentato || Alte dosi/ASCT | 03.03.2014 | 100 | mg/m^2
+               Reasoning: Primo HD-Melfalan nel marzo 2014 [ctx:002].
+      Note: Max 3 episodes, Rows only when Status=Documentato
+
+    doxo_exposure_episode_up_to_3: |
+      Format: Answer: Status=Documentato/Mai somministrato/Non documentato/Non chiaro || <Forma Convenzionale|Liposomiale|Non chiaro> | <DD.MM.YYYY> | <dose> | <unit>; ...
+      Example: Answer: Status=Documentato || Convenzionale | 25.06.2021 | 20 | mg
+               Reasoning: Doxorubicina convenzionale nel giugno 2021 con 20 mg documentata [ctx:004].
+      Note: Max 3 episodes, Rows only when Status=Documentato
+
+    count_plus_interval: |
+      Format: Answer: Count=1/2/3/4/5/Non documentato/Non chiaro | Start=DD.MM.YYYY | End=DD.MM.YYYY
+      Example: Answer: Count=3 | Start=10.05.2021 | End=15.08.2021
+               Reasoning: Tre trasfusioni tra maggio e agosto 2021 documentate [ctx:005].
+
+    date_or_not_documented: |
+      Format: Answer: <DD.MM.YYYY or MM.YYYY or Non documentato or Non chiaro>
+      Example: Answer: 10/2018
+               Reasoning: Prima insufficienza renale documentata nell'ottobre 2018 [ctx:003].
+
+    score_value_plus_date_and_source: |
+      Format: Answer: <score value> | <DD.MM.YYYY> | Documentato/Calcolato
+      Format (not calculable): Answer: Stato: non calcolabile
+      Format (unclear): Answer: Non chiaro
+      Example: Answer: 0 | 15.10.2018 | Documentato
+               Reasoning: Punteggio ECOG di 0 esplicitamente documentato nella lettera medica del 15.10.2018 [ctx:002].
+      Example: Answer: ISS II | 15.10.2018 | Calcolato
+               Reasoning: Calcolato da albumina 3,2 g/dl e β2-microglobulina 4,5 mg/l del 15.10.2018 [ctx:002].
+      Example: Answer: Stato: non calcolabile
+               Reasoning: I valori di β2-microglobulina richiesti per il calcolo ISS sono assenti dai referti disponibili [ctx:005].
+      ❌ WRONG: "Non chiaro" when score cannot be calculated (use "Stato: non calcolabile")
+
+    free_text: |
+      Format: Answer: <brief text>
+      Example: Answer: Aumento delle plasmacellule dal 5% al 18%
+               Reasoning: Biopsia midollare del 10.03.2019 mostra il 5% [ctx:001], biopsia del 15.07.2021 mostra il 18% [ctx:004].
+
+    list: |
+      Format: Answer: Items: <item1>; <item2>; ...
+      Example: Answer: Items: Lenalidomide; Bortezomib; Daratumumab
+               Reasoning: Tutti e tre gli agenti documentati nella storia terapeutica [ctx:002][ctx:005].
+
+    abstain: |
+      Format: Answer: Abstain
+      Example: Answer: Abstain
+               Reasoning: Informazioni contraddittorie sul dosaggio in più referti [ctx:003][ctx:007].
+
+  evidence:
+    - "Cite evidence ONLY in Reasoning using provided [ctx:ID] format"
+    - "Never add citations, prose, or explanations in the Answer line"
+    - "Do not invent evidence; if insufficient, use Abstain."
+    - "'Non documentato' means NO relevant clinical documentation exists at all. If ANY documentation exists and the queried finding is absent → 'No'."
+    - "For therapy response questions (schema includes 'Mai somministrato'): if therapy not in treatment history → 'Mai somministrato'."
+    - "When claiming absence, reference the full search scope using compact range notation, e.g. '[ctx:001]–[ctx:020]'."
+
+  rationale:
+    - "ALWAYS provide Reasoning with citations, even for simple answers"
+    - "Keep to ≤2 sentences unless complex criteria require more"
+
+  separators:
+    - "Status/Rows split: ||"
+    - "Multiple rows: ;"
+    - "Within row fields: |"
+    - "Multiple items in list: ;"
+
+requirements:
+  - "Final output MUST have exactly two lines: 'Answer:' and 'Reasoning:'"
+  - "Answer line must match schema format exactly - use examples as templates"
+  - "Never add citations, evidence, or extra prose to Answer line"
+  - "If data missing: 'Stato: non calcolabile' ONLY for score_value schemas, 'Non chiaro' for yn/eligibility schemas, 'Non documentato' for therapy/date schemas."
+  - "Respect all schema options (Sì/No/Non chiaro/Non documentato/Abstain/etc.)"
+  - "For list schemas with Status field: Rows only appear when Status=Documentato"
+
+micro_tests:
+  should_activate:
+    - "Any clinical Q&A requiring structured output"
+  should_not_activate:
+    - "Non-clinical conversations"
+  adversarial:
+    - "Date fields must always use calendar format (DD.MM.YYYY), never cycle notation"

@@ -1,0 +1,241 @@
+skill:
+  id: policy.temporal_authority
+  name: Temporal and Source Authority Policy
+  version: 1
+  category: policy
+  description: >
+    Rank and filter evidence items using precedence over report_type, institution source,
+    recency, and rule-based boosts. Use for therapy, eligibility, and status questions.
+  triggers:
+    question_types: ["therapy_exposure", "eligibility", "current_status", "ever_status", "next_step", "*"]
+    semantic_cues:
+      - Needs to decide which longitudinal statement is authoritative.
+    keywords:
+      - latest
+      - most recent
+      - current
+      - ongoing
+      - planned
+      - started
+      - stopped
+      - declined
+  data_domains: ["doctor_letter", "tumor_board", "radiology", "pathology", "flow", "cytology", "lab_values"]
+
+activation:
+  intent: Use after retrieval to rank competing evidence before synthesis.
+
+conflicts: []
+
+policy_rules:
+  report_type_universe:
+    - "doctor_letter"
+    - "tumor_board"
+    - "radiology"
+    - "pathology"
+    - "flow"
+    - "cytology"
+
+  ranking:
+    report_type_priority:
+      tumor_board: 100
+      doctor_letter: 90
+      pathology: 70
+      flow: 65
+      cytology: 60
+      radiology: 55
+
+    institution_priority:
+      internal: 10
+      external: 0
+
+    recency:
+      primary_time_field: event_time
+      fallback_time_field: document_time
+      decay_days: 180
+
+  question_type_overrides:
+    - rule_id: reverse_recency_for_first_occurrence
+      description: >
+        For temporal_localization questions that ask about the FIRST or EARLIEST documented
+        occurrence of a finding (e.g., 'Wann wurde erstmals eine Osteolyse dokumentiert?'),
+        REVERSE the recency ranking: prefer the OLDEST evidence. Sort by event_time ASC
+        instead of DESC. The answer must be the chronologically earliest documented mention.
+      when:
+        question_types: ["temporal_localization"]
+        semantic_cues:
+          - "erstmals"
+          - "erstmalig"
+          - "erste dokumentierte"
+          - "Erstdiagnose"
+          - "first documented"
+          - "früheste"
+      action:
+        sort_order: "ascending"
+        disable_recency_decay: true
+
+    - rule_id: disable_decay_for_ever_status
+      description: >
+        For ever_status questions ('Hat der Patient jemals...?'), recency is irrelevant —
+        any historical evidence counts equally. Disable recency decay entirely so that
+        old evidence is not penalized.
+      when:
+        question_types: ["ever_status"]
+      action:
+        disable_recency_decay: true
+
+  rules:
+    - rule_id: prefer_tumorboard_for_planning
+      when:
+        question_types: ["next_step", "therapy_recommendation", "eligibility"]
+        match:
+          evidence_source_kind: "report"
+      action:
+        boost_if:
+          report_type: "tumor_board"
+          add_score: 25
+
+    - rule_id: downrank_stale_plans
+      when:
+        match:
+          status: "planned"
+      action:
+        apply_recency_decay: true
+        add_score: -10
+
+    # Prefer contemporaneous labs for current-status / lab-snapshot questions
+    - rule_id: prefer_near_reference_lab_current_status
+      when:
+        question_types: ["current_status", "lab_snapshot"]
+        match:
+          evidence_source_kind: "lab"
+      action:
+        boost_if:
+          event_time_within_days_of_reference: 3
+          add_score: 80
+        otherwise:
+          boost_if:
+            event_time_within_days_of_reference: 7
+            add_score: 40
+
+    # If a recent lab exists near the reference date, downrank older reports for the same concept
+    - rule_id: downrank_stale_report_when_recent_lab
+      when:
+        question_types: ["current_status", "lab_snapshot"]
+        match:
+          evidence_source_kind: "report"
+      action:
+        conditional_penalty:
+          reference_recent_lab_within_days: 7   # applies when such a lab exists for the concept
+          if_report_older_than_recent_lab_by_days: 7
+          add_score: -60
+
+    # Prefer recent risk/clinical scores near the reference date (up to 365 days)
+    - rule_id: prefer_recent_scores_for_scoring_questions
+      when:
+        question_types: ["scoring_calculation", "eligibility", "risk_score", "next_step", "score_value_plus_date_and_source"]
+        match:
+          evidence_type: "score"
+      action:
+        boost_if:
+          event_time_within_days_of_reference: 90
+          add_score: 80
+        otherwise:
+          boost_if:
+            event_time_within_days_of_reference: 180
+            add_score: 40
+
+    # Downrank stale scores if newer ones exist within 365 days
+    - rule_id: downrank_stale_scores_when_newer_exist
+      when:
+        question_types: ["scoring_calculation", "eligibility", "risk_score", "next_step", "score_value_plus_date_and_source"]
+        match:
+          evidence_type: "score"
+      action:
+        conditional_penalty:
+          reference_newer_score_within_days: 365
+          if_score_older_than_newer_by_days: 30
+          add_score: -80
+
+    # Exclude diagnosis-era scores older than 365 days when no current evidence exists
+    - rule_id: suppress_diagnosis_era_scores_if_out_of_window
+      when:
+        question_types: ["scoring_calculation", "eligibility", "risk_score", "next_step", "score_value_plus_date_and_source"]
+        match:
+          evidence_type: "score"
+      action:
+        penalty_if:
+          event_time_older_than_days_from_reference: 365
+          add_score: -1000
+
+    # Boost lab components that underpin staging scores when they are near the reference date
+    - rule_id: boost_recent_lab_components_for_scores
+      when:
+        question_types: ["scoring_calculation", "eligibility", "risk_score", "next_step", "score_value_plus_date_and_source"]
+        match:
+          report_type:
+            - "Albumin"
+            - "LDH"
+            - "Beta2-Mikroglobulin"
+            - "β2-Mikroglobulin"
+            - "Beta-2-Mikroglobulin"
+      action:
+        boost_if:
+          event_time_within_days_of_reference: 90
+          add_score: 60
+        otherwise:
+          boost_if:
+            event_time_within_days_of_reference: 180
+            add_score: 30
+
+    # If lab components exist near reference, downrank older narrative scores lacking recency
+    - rule_id: downrank_report_scores_when_recent_labs_exist
+      when:
+        question_types: ["scoring_calculation", "eligibility", "risk_score", "next_step", "score_value_plus_date_and_source"]
+        match:
+          evidence_type: "score"
+          evidence_source_kind: "report"
+      action:
+        conditional_penalty:
+          reference_recent_lab_within_days: 180
+          if_score_older_than_recent_lab_by_days: 30
+          add_score: -70
+
+requirements:
+  - "If no score evidence remains within 365 days of the reference date and required inputs to (re)calculate are unavailable, the downstream answer must use 'Nicht berechenbar'."
+
+outputs:
+  ranked_evidence_ids: Evidence ids sorted by total_score desc
+  trace: Per evidence score breakdown and fired rule_ids
+
+requirements:
+  - Downstream answer generation must cite evidence selected from the top-ranked set unless abstaining.
+  - If evidence_source_kind is report, always expose report_type and document_time in the trace.
+
+tests:
+  - name: tumorboard_overrides_old_arztbrief_for_planning
+    input:
+      question_type: "therapy_recommendation"
+      evidence_items:
+        - evidence_id: "e1"
+          concept_type: "therapy"
+          concept_id: "CAR_T"
+          status: "planned"
+          event_time: "2023-01-10"
+          document_time: "2023-01-10"
+          evidence_source_kind: "report"
+          report_type: "doctor_letter"
+          source_institution: "internal"
+          provenance: {doc_id: "ab1", span: [10, 40]}
+        - evidence_id: "e2"
+          concept_type: "therapy"
+          concept_id: "CAR_T"
+          status: "planned"
+          event_time: "2023-02-01"
+          document_time: "2023-02-01"
+          evidence_source_kind: "report"
+          report_type: "tumor_board"
+          source_institution: "internal"
+          provenance: {doc_id: "tb1", span: [5, 25]}
+    expect:
+      top_ranked_evidence_id: "e2"
+      fired_rules_contains: ["prefer_tumorboard_for_planning"]

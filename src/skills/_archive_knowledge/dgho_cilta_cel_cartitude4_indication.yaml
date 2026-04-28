@@ -1,0 +1,90 @@
+skill:
+  id: knowledge.dgho_cilta_cel_cartitude4_indication
+  version: 1
+  category: knowledge
+  name: 'DGHO MM guideline card: Cilta-cel indication in lenalidomide-refractory relapse and key safety points'
+  description: 'Curated DGHO guideline knowledge on Ciltacabtagen autoleucel (Cilta-cel) indication after at least one prior
+    therapy with IMiD and PI, with progression on last therapy and lenalidomide refractoriness (CARTITUDE-4 context), plus
+    key toxicity frequencies and the note of no maintenance after infusion. Use for eligibility and next-step planning.'
+  triggers:
+    data_domains:
+    - doctor_letter
+    - therapy_history
+    - lab_values
+    question_types:
+    - eligibility
+    - next_step
+    - therapy_planning
+    keywords:
+    - Cilta-cel, Ciltacabtagen, CARTITUDE-4, CAR-T, Anti-BCMA, Lenalidomid refraktaer, Erstrezidiv
+    semantic_cues:
+    - Question asks whether patient meets Cilta-cel indication or how to plan next steps towards CAR-T.
+    - Question asks about expected CRS or ICANS rates and supportive planning.
+activation:
+  stage_constraints:
+    preferred_stage: plan
+    avoid_stages:
+    - parse
+  do_not_use_if:
+  - Question is about non-BCMA CAR-T or non-MM CAR-T.
+  - Question is about bispecific antibodies without CAR-T discussion.
+conflicts:
+  overrides:
+  - If a dedicated CARTITUDE-4 trial card is active, use it for trial-specific inclusion nuances. This DGHO card is for real-world
+    labeled indication summary and high-level safety anchors.
+  duplicates:
+  - knowledge.cartitude4
+requirements:
+  inputs_required:
+  - Prior therapies including PI and IMiD exposure and whether lenalidomide-refractory.
+  - Whether progression occurred during last therapy.
+  - General infection risk and immunoglobulin levels if available.
+  must_cite_or_quote: false
+  must_show_work: false
+knowledge:
+  provenance:
+    paper: 'DGHO Onkopedia Leitlinie: Multiples Myelom (MM_DGHO.pdf)'
+    section_hints:
+    - 6.2.1.7.1 Ciltacabtagen Autoleucel
+  core_points:
+  - Cilta-cel is indicated for r/r MM after at least one prior therapy including an immunomodulator and a proteasome inhibitor,
+    with progression during the last therapy and lenalidomide refractoriness.
+  - 'Safety signal anchors in DGHO: high rate of grade 3 or 4 adverse events, with common severe cytopenias and infections.
+    CRS occurs frequently but severe CRS is rare; ICANS occurs in a minority and severe ICANS is uncommon in the cited context.'
+  - No maintenance therapy is performed after Cilta-cel infusion.
+  - Given infection risk and hypogammaglobulinemia management, consider immunoglobulin substitution when IgG is low.
+  operationalization:
+    eligibility_checks:
+    - Confirm prior exposure to PI and IMiD, and document lenalidomide refractoriness.
+    - Confirm progression on the last therapy.
+    - 'Plan pathway logistics: referral, leukapheresis timing, bridging considerations, and toxicity monitoring plan including
+      CRS and neurotoxicity.'
+    - Assess infection risk and IgG, and consider prophylaxis planning.
+guidelines:
+  answer_guardrails:
+  - Do not claim a patient is eligible unless PI exposure, IMiD exposure, lenalidomide refractoriness, and progression on
+    last therapy are explicitly supported by record.
+  - State that institutional and regulatory criteria may apply beyond this guideline summary.
+examples:
+  positive:
+  - q: Patient ist im Erstrezidiv und unter Lenalidomid progredient. Ist Cilta-cel prinzipiell eine Option?
+    a: Laut DGHO ist Cilta-cel zugelassen fuer r/r MM nach mindestens einer Vortherapie mit IMiD und Proteasom-Inhibitor,
+      wenn waehrend der letzten Therapie eine Progression vorlag und Lenalidomid-Refraktaeritaet besteht. Das trifft prinzipiell
+      auf die Konstellation zu, vorbehaltlich weiterer organisatorischer und klinischer Kriterien.
+  negative:
+  - q: Soll ich bei smouldering MM behandeln?
+    a: 'Nicht geeignet: dafuer ist die SLiM-CRAB Karte zuständig.'
+uncertainty:
+  when_to_say_unclear:
+  - Lenalidomide refractoriness is not clearly documented.
+  - Progression timing relative to last therapy is unclear.
+  fallback: State which eligibility elements are missing and recommend confirming therapy history and refractoriness definitions.
+micro_tests:
+  should_activate:
+  - Erfuellt der Patient die Zulassungskriterien fuer Cilta-cel nach DGHO?
+  - Welche wesentlichen Toxizitaeten muss ich bei Cilta-cel einplanen?
+  should_not_activate:
+  - Kann Venetoclax bei t(11;14) eingesetzt werden?
+  - Wie handhabe ich Blutgruppenbestimmung vor Daratumumab?
+  adversarial:
+  - 'Patient hatte PI und IMiD, aber nicht lenalidomid refraktaer: muss klar ''nicht erfuellt'' sagen, keine kreative Auslegung.'

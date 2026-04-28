@@ -1,0 +1,150 @@
+skill:
+  id: style.structured_annotation.sq
+  name: Structured Answer Format — Albanian
+  version: 1.1
+  category: style
+  inherits:
+    - style.base.sq
+  description: >
+    Enforces structured answers matching annotation UI format using concrete examples — Albanian variant.
+    Each schema type shows: format with all options, concrete example, and common mistakes.
+  triggers:
+    question_types: ["*"]
+    semantic_cues:
+      - "Use whenever producing patient-facing answers that should align with annotation schemas."
+activation:
+  intent: "Default formatting layer for clinical Q&A to mirror annotation schemas."
+conflicts: []
+structure:
+  template:
+    - "Answer: <schema-aligned value(s) or Abstain>"
+    - "Reasoning: <1–2 sentences with inline citations [ctx:ID]>"
+rules:
+  answer_formats:
+    single_choice: |
+      Format: Answer: <option from schema>
+      Example: Answer: Po
+               Reasoning: Një terapi me Daratumumab është dokumentuar në letrën mjekësore të datës 23.07.2021 [ctx:001].
+      ❌ WRONG: "Po, pacienti merr..." (no extra words in Answer line)
+
+    two_single_choice: |
+      Format: Answer: <label1>=<option1>; <label2>=<option2>
+      Example: Answer: Aktualisht=Po; Ndonjëherë=Jo
+               Reasoning: Terapia aktuale me Bortezomib në vazhdim [ctx:002], asnjë CAR-T e dokumentuar [ctx:005].
+      ❌ WRONG: Adding explanations in Answer line
+
+    yn_plus_short_text: |
+      Format: Answer: Po/Jo/E paqartë | <brief text>
+      Example: Answer: Po | Reduktim i dozës në 75% për shkak të neutropenisë
+               Reasoning: Reduktimi i dozës së Carfilzomib dokumentuar në rrjedhën e trajtimit [ctx:003].
+      ❌ WRONG: Adding citations in Answer line
+
+    answer_plus_single_choice: |
+      Format: Answer: Kategoria=<option>; Përgjigja=<text>
+      Example: Answer: Kategoria=CR; Përgjigja=Terapia KRD arriti përgjigjen më të mirë
+               Reasoning: RC dokumentuar pas 3 cikleve të KRD [ctx:007].
+
+    criteria_table_plus_final: |
+      Format: Answer: Criteria: <criterion1>=Përmbushur/Nuk përmbushur/Mungon; ... | Final: Po/Jo/E paqartë
+      Example: Answer: Criteria: ECOG≤2=Përmbushur; Funksioni renal=Nuk përmbushur; Infeksione aktive=Përmbushur; FISH=Mungon | Final: Jo
+               Reasoning: ECOG 1 dokumentuar [ctx:004], por GFR <30 ml/min [ctx:006]. Asnjë infeksion aktiv dokumentuar. Rezultati FISH mungon në dosje.
+      NOTE on 'Mungon' vs 'Përmbushur' for exclusion criteria: When a criterion checks for the
+      ABSENCE of a condition and the condition is not mentioned in the record, mark as 'Përmbushur'.
+      'Mungon' is reserved for criteria requiring a specific positive test or value never performed/documented.
+      NOTE on Final verdict: Commit to Po or Jo when the majority of criteria are resolved.
+
+    multi_interval_up_to_3: |
+      Format: Answer: Status=Dokumentuar/Kurrë nuk është administruar/E padokumentuar/E paqartë || (Start=DD.MM.YYYY, End=DD.MM.YYYY/Në vazhdim); ...
+      Example: Answer: Status=Dokumentuar || 08.10.2022 - 18.10.2022; 15.07.2023 - 24.07.2023
+               Reasoning: Meropenem nga 08.–18.10.2022 [ctx:002] dhe 15.–24.07.2023 [ctx:008].
+      ❌ WRONG: Using vague dates or missing Status field
+
+    cycle_start_dose_list: |
+      Format: Answer: Status=Dokumentuar/Kurrë nuk është administruar/E padokumentuar/E paqartë || <DD.MM.YYYY> | <dose> | <unit>; ...
+      Example: Answer: Status=Dokumentuar || 05.12.2018 | 5 | mg; 09.01.2019 | 10 | mg
+               Reasoning: Cikli 1 më 05.12.2018 me 5 mg [ctx:001], cikli 2 më 09.01.2019 me 10 mg [ctx:003].
+      ❌ WRONG: C1D1: 05.12.2018 (use calendar dates DD.MM.YYYY, NEVER cycle labels)
+      Note: Rows only appear when Status=Dokumentuar
+
+    melphalan_exposure_episode_up_to_3: |
+      Format: Answer: Status=Dokumentuar/Kurrë nuk është administruar/E padokumentuar/E paqartë || <Tipi Dozë e lartë/ASCT|Regjimi> | <DD.MM.YYYY> | <dose> | <unit>; ...
+      Example: Answer: Status=Dokumentuar || Dozë e lartë/ASCT | 03.03.2014 | 100 | mg/m^2
+               Reasoning: HD-Melfalani i parë në mars 2014 [ctx:002].
+      Note: Max 3 episodes, Rows only when Status=Dokumentuar
+
+    doxo_exposure_episode_up_to_3: |
+      Format: Answer: Status=Dokumentuar/Kurrë nuk është administruar/E padokumentuar/E paqartë || <Forma Konvencionale|Liposomale|E paqartë> | <DD.MM.YYYY> | <dose> | <unit>; ...
+      Example: Answer: Status=Dokumentuar || Konvencionale | 25.06.2021 | 20 | mg
+               Reasoning: Doksorubicina konvencionale në qershor 2021 me 20 mg e dokumentuar [ctx:004].
+      Note: Max 3 episodes, Rows only when Status=Dokumentuar
+
+    count_plus_interval: |
+      Format: Answer: Count=1/2/3/4/5/E padokumentuar/E paqartë | Start=DD.MM.YYYY | End=DD.MM.YYYY
+      Example: Answer: Count=3 | Start=10.05.2021 | End=15.08.2021
+               Reasoning: Tre transfuzione mes majit dhe gushtit 2021 të dokumentuara [ctx:005].
+
+    date_or_not_documented: |
+      Format: Answer: <DD.MM.YYYY or MM.YYYY or E padokumentuar or E paqartë>
+      Example: Answer: 10/2018
+               Reasoning: Dështimi i parë renal dokumentuar në tetor 2018 [ctx:003].
+
+    score_value_plus_date_and_source: |
+      Format: Answer: <score value> | <DD.MM.YYYY> | Dokumentuar/Llogaritur
+      Format (not calculable): Answer: Statusi: i pallogaritshëm
+      Format (unclear): Answer: E paqartë
+      Example: Answer: 0 | 15.10.2018 | Dokumentuar
+               Reasoning: Rezultati ECOG 0 dokumentuar shprehimisht në letrën mjekësore të datës 15.10.2018 [ctx:002].
+      Example: Answer: ISS II | 15.10.2018 | Llogaritur
+               Reasoning: Llogaritur nga albumina 3.2 g/dl dhe β2-mikroglobulina 4.5 mg/l të datës 15.10.2018 [ctx:002].
+      Example: Answer: Statusi: i pallogaritshëm
+               Reasoning: Vlerat e β2-mikroglobulinës të nevojshme për llogaritjen ISS mungojnë nga raportet e disponueshme [ctx:005].
+      ❌ WRONG: "E paqartë" when score cannot be calculated (use "Statusi: i pallogaritshëm")
+
+    free_text: |
+      Format: Answer: <brief text>
+      Example: Answer: Rritje e qelizave plazmatike nga 5% në 18%
+               Reasoning: Biopsia e palcës kockore e datës 10.03.2019 tregon 5% [ctx:001], biopsia e datës 15.07.2021 tregon 18% [ctx:004].
+
+    list: |
+      Format: Answer: Items: <item1>; <item2>; ...
+      Example: Answer: Items: Lenalidomide; Bortezomib; Daratumumab
+               Reasoning: Të tre agjentët e dokumentuar në historikun terapeutik [ctx:002][ctx:005].
+
+    abstain: |
+      Format: Answer: Abstain
+      Example: Answer: Abstain
+               Reasoning: Informacion kontradiktor mbi dozimin në raporte të shumta [ctx:003][ctx:007].
+
+  evidence:
+    - "Cite evidence ONLY in Reasoning using provided [ctx:ID] format"
+    - "Never add citations, prose, or explanations in the Answer line"
+    - "Do not invent evidence; if insufficient, use Abstain."
+    - "'E padokumentuar' means NO relevant clinical documentation exists at all. If ANY documentation exists and the queried finding is absent → 'Jo'."
+    - "For therapy response questions (schema includes 'Kurrë nuk është administruar'): if therapy not in treatment history → 'Kurrë nuk është administruar'."
+    - "When claiming absence, reference the full search scope using compact range notation, e.g. '[ctx:001]–[ctx:020]'."
+
+  rationale:
+    - "ALWAYS provide Reasoning with citations, even for simple answers"
+    - "Keep to ≤2 sentences unless complex criteria require more"
+
+  separators:
+    - "Status/Rows split: ||"
+    - "Multiple rows: ;"
+    - "Within row fields: |"
+    - "Multiple items in list: ;"
+
+requirements:
+  - "Final output MUST have exactly two lines: 'Answer:' and 'Reasoning:'"
+  - "Answer line must match schema format exactly - use examples as templates"
+  - "Never add citations, evidence, or extra prose to Answer line"
+  - "If data missing: 'Statusi: i pallogaritshëm' ONLY for score_value schemas, 'E paqartë' for yn/eligibility schemas, 'E padokumentuar' for therapy/date schemas."
+  - "Respect all schema options (Po/Jo/E paqartë/E padokumentuar/Abstain/etc.)"
+  - "For list schemas with Status field: Rows only appear when Status=Dokumentuar"
+
+micro_tests:
+  should_activate:
+    - "Any clinical Q&A requiring structured output"
+  should_not_activate:
+    - "Non-clinical conversations"
+  adversarial:
+    - "Date fields must always use calendar format (DD.MM.YYYY), never cycle notation"
