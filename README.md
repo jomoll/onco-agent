@@ -14,17 +14,17 @@ Given a patient's clinical record (discharge letters, radiology reports, lab val
 <table>
 <tr>
 <td align="center" width="33%">
-<video src="https://github.com/user-attachments/assets/4f68ff46-0ff1-4097-9741-c3ff0ae55e01" controls width="100%"></video>
+<video src="https://github.com/user-attachments/assets/d5902b41-c3af-427a-a705-2dd349df6712" controls width="100%"></video>
 <br>Single-document lookup
 </td>
 
 <td align="center" width="33%">
-<video src="https://github.com/user-attachments/assets/3c859de7-3140-44a1-8726-ff187dc7f4b6" controls width="100%"></video>
+<video src="https://github.com/user-attachments/assets/e4c06a0a-06fc-4a8e-ac7e-9859a8229ca2" controls width="100%"></video>
 <br>Temporal reasoning
 </td>
 
 <td align="center" width="33%">
-<video src="https://github.com/user-attachments/assets/3765f812-3961-4ab6-9340-7e7bc834b38f" controls width="100%"></video>
+<video src="https://github.com/user-attachments/assets/d7b1bfd7-aea1-43d6-831f-671a7cdd8249" controls width="100%"></video>
 <br>Multi-criteria synthesis
 </td>
 </tr>
