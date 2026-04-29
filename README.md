@@ -1,4 +1,12 @@
-# Onco-Agent — Clinical Question-Answering Agent
+<div align="center">
+<h1>
+  Onco-Agent: Clinical Question-Answering Agent
+</h1>
+</div>
+<p align="center">
+📝 <a href="https://arxiv.org/pdf/2604.24473" target="_blank">Paper</a> • 🌐 <a href="https://jomoll.github.io/onco-agent/" target="_blank">Project</a>
+</p>
+
 
 **Onco-Agent** is a multi-turn retrieval-augmented agent for answering structured clinical questions from patient records. It is the system described in our paper:
 
