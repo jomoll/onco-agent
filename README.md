@@ -354,8 +354,9 @@ pytest tests/ -m integration
 ```bibtex
 @article{moll2026agentic,
   title={Agentic clinical reasoning over longitudinal myeloma records: a retrospective evaluation against expert consensus},
-  author={Moll, Johannes and L{\"u}bberstedt, Jannik and Nuernbergk, Christoph and Stroh, Jacob and Mertens, Luisa and Purcarea, Anna and Zirn, Christopher and Benchaaben, Zeineb and Drexel, Fabian and H{\"a}ntze, Hartmut and Narayanan, Anirudh and Puttkammer, Friedrich and Zhukov, Andrei and Lammert, Jacqueline and Ziegelmayer, Sebastian and Graf, Markus and H{\"o}gner, Marion and Makowski, Marcus and Bassermann, Florian and Adams, Lisa C and Pan, Jiazhen and Rueckert, Daniel and Braitsch, Krischan and Bressem, Keno K},
+  author={Moll, Johannes and L{\"u}bberstedt, Jannik and Nuernbergk, Christoph and Stroh, Jacob and Mertens, Luisa and Purcarea, Anna and Zirn, Christopher and Benchaaben, Zeineb and Drexel, Fabian and H{\"a}ntze, Hartmut and others},
   journal={arXiv preprint arXiv:2604.24473},
   year={2026}
+}
 }
 ```
