@@ -358,5 +358,4 @@ pytest tests/ -m integration
   journal={arXiv preprint arXiv:2604.24473},
   year={2026}
 }
-}
 ```
