@@ -4,13 +4,15 @@
 </h1>
 </div>
 <p align="center">
-📝 <a href="https://arxiv.org/pdf/2604.24473" target="_blank">Paper</a> • 🌐 <a href="https://jomoll.github.io/onco-agent/" target="_blank">Project</a>
+📝 <a href="https://www.nature.com/articles/s41698-026-01733-2?status=info&saved-doi=10.1038/s41698-026-01733-2#Abs1" target="_blank">Paper</a> • 🌐 <a href="https://jomoll.github.io/onco-agent/" target="_blank">Project</a>
 </p>
+
+> **📣 Onco-Agent has been published in *npj Precision Oncology*.**
 
 
 **Onco-Agent** is a multi-turn retrieval-augmented agent for answering structured clinical questions from patient records. It is the system described in our paper:
 
-> [Agentic clinical reasoning over longitudinal myeloma records: a retrospective evaluation against expert consensus](https://arxiv.org/pdf/2604.24473)
+> [Skill-guided agentic reasoning enables longitudinal synthesis of myeloma records at expert-level concordance](https://www.nature.com/articles/s41698-026-01733-2?status=info&saved-doi=10.1038/s41698-026-01733-2#Abs1)
 
 Given a patient's clinical record (discharge letters, radiology reports, lab values, etc.) and a doctor's question, the agent:
 
@@ -348,14 +350,21 @@ pytest tests/ -m integration
 | `USE_HYBRID_RETRIEVAL` | `0` | Enable hybrid BM25+embedding retrieval (`1` to enable) |
 
 ---
-
 ## Citation
+
+If you use this code, please cite our paper published in *npj Precision Oncology*:
+
+> Moll, J. et al. Skill-guided agentic reasoning enables longitudinal synthesis of myeloma records at expert-level concordance. *npj Precis. Onc.* **10**, 389 (2026). https://doi.org/10.1038/s41698-026-01733-2
 
 ```bibtex
 @article{moll2026agentic,
-  title={Agentic clinical reasoning over longitudinal myeloma records: a retrospective evaluation against expert consensus},
-  author={Moll, Johannes and L{\"u}bberstedt, Jannik and Nuernbergk, Christoph and Stroh, Jacob and Mertens, Luisa and Purcarea, Anna and Zirn, Christopher and Benchaaben, Zeineb and Drexel, Fabian and H{\"a}ntze, Hartmut and others},
-  journal={arXiv preprint arXiv:2604.24473},
-  year={2026}
+  title   = {Skill-guided agentic reasoning enables longitudinal synthesis of myeloma records at expert-level concordance},
+  author  = {Moll, Johannes and L{\"u}bberstedt, Jannik and Nuernbergk, Christoph and Stroh, Jacob and Mertens, Luisa and Purcarea, Anna and Zirn, Christopher and Benchaaben, Zeineb and Drexel, Fabian and H{\"a}ntze, Hartmut and Narayanan, Anirudh and Puttkammer, Friedrich and Zhukov, Andrei and Lammert, Jacqueline and Ziegelmayer, Sebastian and Graf, Markus and H{\"o}gner, Marion and Makowski, Marcus and Bassermann, Florian and Adams, Lisa C. and Pan, Jiazhen and Rueckert, Daniel and Braitsch, Krischan and Bressem, Keno K.},
+  journal = {npj Precision Oncology},
+  volume  = {10},
+  number  = {1},
+  pages   = {389},
+  year    = {2026},
+  doi     = {10.1038/s41698-026-01733-2}
 }
 ```
